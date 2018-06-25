@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.OtherInfo">
+
+    <RelativeLayout
+        android:id="@+id/relat"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/stroke_btn_grad2"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/textBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="21dp"
+            android:textColor="#fff"
+            android:text="Child's Previous school Experience"/>
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"></LinearLayout>
+
+
+
+            <EditText
+                android:id="@+id/homeAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:gravity="top"
+                android:hint="Name &amp; Address of school "
+                android:layout_below="@+id/sign"
+                android:paddingLeft="5dp"
+                android:inputType="textPersonName"
+                android:background="@drawable/strock_edit"/>
+
+
+
+            <TextView
+                android:id="@+id/DOB2"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:hint="Date Attended"
+                android:focusable="true"
+                android:fontFamily="@font/listfont"
+                android:layout_below="@+id/sign"
+                android:paddingLeft="5dp"
+                android:inputType="phone"
+                android:background="@drawable/strock_edit"/>
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/stroke_btn1"
+                    android:text="NEXT"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/stroke_btn2"
+                    android:text="CANCEL"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

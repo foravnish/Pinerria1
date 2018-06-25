@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sweet.home.pinerria1.Fragment.ComposeMgs">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
+
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/strock_edit">
+        <!--<EditText-->
+            <!--android:id="@+id/edit_to"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:hint="To"-->
+            <!--android:layout_below="@+id/sign"-->
+            <!--android:background="@drawable/strock_edit"/>-->
+            <Spinner
+                android:id="@+id/spiner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:popupBackground="@drawable/strock_edit">
+
+            </Spinner>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_sub"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="5dp"
+            android:hint="Subject"
+            android:layout_below="@+id/sign"
+            android:background="@drawable/strock_edit"/>
+
+
+        <EditText
+            android:id="@+id/edit_msg"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:hint="Message"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:layout_below="@+id/sign"
+            android:background="@drawable/strock_edit"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/submitdata"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="#fff"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/stroke_btn1"
+                android:text="SUBMIT"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="#fff"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/stroke_btn2"
+                android:text="CANCEL"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

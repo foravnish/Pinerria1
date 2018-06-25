@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.OtherInfo">
+
+    <RelativeLayout
+        android:id="@+id/relat"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/stroke_btn_grad2"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/textBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="21dp"
+            android:textColor="#fff"
+            android:text="Other Information"/>
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"></LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step 3 of 4"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_gravity="right"/>
+
+            <EditText
+                android:id="@+id/language"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:hint="Language spoken at home"
+                android:layout_below="@+id/sign"
+                android:paddingLeft="5dp"
+                android:inputType="textPersonName"
+                android:background="@drawable/strock_edit"/>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:weightSum="3"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/homeadd"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Home Address"
+                    android:layout_weight="1.5"
+                    android:layout_below="@+id/sign"
+                    android:paddingLeft="5dp"
+                    android:fontFamily="@font/listfont"
+                    android:background="@drawable/strock_edit"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/strock_edit"
+                    android:layout_weight="1.5">
+                    <Spinner
+                        android:id="@+id/switchStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_alignTop="@+id/postImageView" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/language2"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                android:layout_marginTop="10dp"
+                android:hint="Language spoken at home"
+                android:layout_below="@+id/sign"
+                android:paddingLeft="5dp"
+                android:gravity="top"
+                android:inputType="textPersonName"
+                android:background="@drawable/strock_edit"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/stroke_btn1"
+                    android:text="NEXT"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/stroke_btn2"
+                    android:text="CANCEL"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

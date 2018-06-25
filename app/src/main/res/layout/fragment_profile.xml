@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sweet.home.pinerria1.Activity.MainActivitie">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:paddingTop="5dp"
+            android:background="@color/colorAccent">
+
+        <Spinner
+            android:id="@+id/optionmMenu"
+            android:layout_width="23dp"
+            android:layout_height="25dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/comicz"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:tint="@color/white"
+            android:background="@drawable/menu"
+            android:backgroundTint="@color/white"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4">
+
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:background="@color/colorAccent"
+                    android:gravity="center">
+
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/postImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/redius"
+                    android:scaleType="centerCrop" />
+
+
+                <ImageView
+                    android:id="@+id/classImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignBottom="@+id/relativeLayout"
+                    android:layout_alignStart="@+id/textViewUser"
+                    android:layout_marginLeft="20dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/authorImageView"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="40dp"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp" />
+
+
+                <TextView
+                    android:id="@+id/textViewUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/authorImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/comicz"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+
+                <Spinner
+                    android:id="@+id/switchUser"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/postImageView"
+                    android:layout_alignRight="@+id/postImageView"
+                    android:layout_alignTop="@+id/postImageView"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/profileswitcher"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@+id/liner"
+                android:layout_weight="6">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="0dp"
+                            android:layout_height="130dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="top"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            card_view:cardCornerRadius="7dp">
+
+                            <TextView
+                                android:id="@+id/foddMenu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="10dp"
+                                android:drawableTop="@drawable/fm"
+                                android:fontFamily="@font/comicz"
+                                android:gravity="center"
+                                android:text="Food Menu"
+                                android:textColor="@color/black" />
+                        </android.support.v7.widget.CardView>
+
+
+                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="0dp"
+                            android:layout_height="130dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="top"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            card_view:cardCornerRadius="7dp">
+
+                            <TextView
+                                android:id="@+id/weekMenu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="10dp"
+                                android:drawableTop="@drawable/wp"
+                                android:fontFamily="@font/comicz"
+                                android:gravity="center"
+                                android:text="Weekly Plan"
+                                android:textColor="@color/black" />
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="150dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="top"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawablePadding="10dp"
+                                    android:drawableTop="@drawable/profile"
+                                    android:text="Food Menu"
+                                    android:textColor="@color/colorPrimary" />
+
+                            </android.support.v7.widget.CardView>
+
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="0dp"
+                            android:layout_height="130dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="top"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            card_view:cardCornerRadius="7dp">
+
+
+                            <TextView
+                                android:id="@+id/activitmenu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="10dp"
+                                android:drawableTop="@drawable/ac"
+                                android:fontFamily="@font/comicz"
+                                android:gravity="center"
+                                android:text="Activities"
+                                android:textColor="@color/black" />
+                        </android.support.v7.widget.CardView>
+
+
+                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="0dp"
+                            android:layout_height="130dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="top"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            card_view:cardCornerRadius="7dp">
+
+                            <TextView
+                                android:id="@+id/teacherMenu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="10dp"
+                                android:drawableTop="@drawable/tm"
+                                android:fontFamily="@font/comicz"
+                                android:gravity="center"
+                                android:text="Teachers Remark"
+                                android:textColor="@color/black" />
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="150dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="top"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawablePadding="10dp"
+                                    android:drawableTop="@drawable/profile"
+                                    android:text="Food Menu"
+                                    android:textColor="@color/colorPrimary" />
+
+                            </android.support.v7.widget.CardView>
+
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

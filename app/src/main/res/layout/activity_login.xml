@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context="sweet.home.pinerria1.Activity.Login">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/strock_white"
+            android:orientation="vertical">
+
+            
+            <TextView
+                android:id="@+id/sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign in"
+                android:fontFamily="@font/comicz"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:hint="Mobile Number"
+                android:layout_below="@+id/sign"
+                android:paddingLeft="5dp"
+                android:inputType="phone"
+                android:text="9959565516"
+                android:background="@drawable/strock_edit"/>
+
+
+            <EditText
+                android:id="@+id/edit_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/edit_email"
+                android:paddingLeft="5dp"
+                android:hint="***********"
+                android:text="123456"
+                android:inputType="textPassword"
+                android:background="@drawable/strock_edit"/>
+
+
+            <Button
+                android:id="@+id/bnt_signin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stroke_btn_grad"
+                android:layout_marginTop="40dp"
+                android:layout_below="@+id/edit_pwd"
+                android:text="Sign in"
+                android:textColor="#fff"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password ?"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/bnt_signin"
+                android:fontFamily="@font/comicz"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/food"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/logo" />
+
+    </RelativeLayout>
+</LinearLayout>

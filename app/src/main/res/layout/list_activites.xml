@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/strock_act">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day 1"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:textSize="12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/strock_week3"
+            android:layout_below="@+id/relative">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/network"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/download"/>
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/network"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/strock_week4"
+                android:gravity="left"
+                android:textColor="#fff"
+                android:padding="16dp"
+                android:text="Descriptive text is a text which says what"
+                android:textSize="10dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
