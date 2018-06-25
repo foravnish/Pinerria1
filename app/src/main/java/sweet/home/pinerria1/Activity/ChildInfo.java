@@ -41,7 +41,7 @@ public class ChildInfo extends AppCompatActivity {
         setContentView(R.layout.activity_child_info);
 
         Log.d("sdfsdfsdgfsdgdfgd",getIntent().getStringExtra("value"));
-        Log.d("sdfsdfsdgfsghfdgdfgd",getIntent().getStringExtra("id"));
+        Log.d("sdfsdfsdgfsgdgdfgd",getIntent().getStringExtra("id"));
         next=findViewById(R.id.next);
 
 
