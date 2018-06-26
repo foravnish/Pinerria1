@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -52,17 +53,24 @@ public class ActivitesA extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Dialog dialog;
+ //   ImageView imageNoListing;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_assignments, container, false);
 
+       // imageNoListing = (ImageView) view.findViewById(R.id.imageNoListing);
+
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
+
+        Log.d("ClassId",getArguments().getString("ClassId"));
+
 
         ImageView textBack= view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +89,7 @@ public class ActivitesA extends Fragment {
 
 
 
+
         getActivities();
 
 
@@ -94,37 +103,43 @@ public class ActivitesA extends Fragment {
 
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.activities, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.activities+getArguments().getString("ClassId"), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("Response",response.toString());
                 Util.cancelPgDialog(dialog);
 
+                if (response.length()==0){
+//                    expListView.setVisibility(View.GONE);
+//                    imageNoListing.setVisibility(View.VISIBLE);
+                }
 
-                for (int i=0;i<response.length();i++){
-                    try {
-                        JSONObject jsonObject=response.getJSONObject(i);
+                else {
+//                    expListView.setVisibility(View.VISIBLE);
+//                    imageNoListing.setVisibility(View.GONE);
+
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(i);
 
 
-                        HashMap<String,String> map=new HashMap<>();
+                            HashMap<String, String> map = new HashMap<>();
 
                             map.put("_id", jsonObject.optString("_id"));
                             map.put("title", jsonObject.optString("title"));
                             map.put("description", jsonObject.optString("description"));
                             map.put("datefield", jsonObject.optString("datefield"));
-                            Adapter adapter=new Adapter();
+                            Adapter adapter = new Adapter();
                             expListView.setAdapter(adapter);
                             AllProducts.add(map);
 
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-
                 }
-
 
             }
         }, new Response.ErrorListener() {

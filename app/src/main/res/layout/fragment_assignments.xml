@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="#fff"
-            android:text="Activites"/>
+            android:text="Activities"/>
     </RelativeLayout>
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/lvExp"
@@ -36,7 +36,16 @@
         android:horizontalSpacing="3dp"
         android:layout_below="@+id/relat"
         android:verticalSpacing="7dp"
+        android:visibility="visible"
         android:stretchMode="columnWidth"/>
+
+    <!--<ImageView-->
+        <!--android:id="@+id/imageNoListing"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:visibility="gone"-->
+        <!--android:background="@drawable/noliting"-->
+        <!--/>-->
 
 
 </LinearLayout>

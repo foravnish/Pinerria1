@@ -13,7 +13,8 @@ public class Api {
     public static String food="http://35.184.93.23:3000/api/food-menu/mobile";
     public static String parent="http://35.184.93.23:3000/api/users/parent/me";
     public static String classApi="http://35.184.93.23:3000/api/class";
-    public static String activities="http://35.184.93.23:3000/api/activities";
+    public static String activitiesAll="http://35.184.93.23:3000/api/activities";
+    public static String activities="http://35.184.93.23:3000/api/activities/byclass/";
     public static String Registration="http://35.184.93.23:3000/api/users/parent/register/child";
     public static String PostMsg="http://35.184.93.23:3000/api/message";
     public static String Calender="http://35.184.93.23:3000/api/calendar";
