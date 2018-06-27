@@ -102,12 +102,6 @@ public class Login extends AppCompatActivity {
 
 
                                 childList();
-//
-
-////                                Intent intent =new Intent(Login.this, MainActivitie.class);
-//                                Intent intent =new Intent(Login.this, WellcomeScr.class);
-//                                startActivity(intent);
-//                                finish();
 
 
                             } catch (JSONException e) {

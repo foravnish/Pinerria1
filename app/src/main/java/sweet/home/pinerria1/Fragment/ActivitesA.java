@@ -122,7 +122,6 @@ public class ActivitesA extends Fragment {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
 
-
                             HashMap<String, String> map = new HashMap<>();
 
                             map.put("_id", jsonObject.optString("_id"));
