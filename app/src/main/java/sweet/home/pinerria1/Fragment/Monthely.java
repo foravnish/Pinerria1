@@ -79,6 +79,7 @@ public class Monthely extends Fragment {
 
         Calendar cal = Calendar.getInstance();
 
+
 //        cal.add(Calendar.DATE, -1);
 //        calendarView.setDateSelected(cal.getTime(), true);
 //        calendarView.setDateSelected(CalendarDay.today(), true);
@@ -109,6 +110,19 @@ public class Monthely extends Fragment {
                 Log.d("ResponseCala",response.toString());
                 Util.cancelPgDialog(dialog);
 
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject jsonObject=response.getJSONObject(i);
+
+                        Log.d("year_data",jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+                        Log.d("months_data",jsonObject.optString("start").substring(4, Math.min(jsonObject.optString("start").length(), 7)));
+                        Log.d("date_data",jsonObject.optString("start").substring(7, Math.min(jsonObject.optString("start").length(), 10)));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
 
 
 

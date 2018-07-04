@@ -104,6 +104,12 @@ public class MotherInfo extends AppCompatActivity {
             mobile.requestFocus();
             return false;
         }
+        else if (TextUtils.isEmpty(education.getText().toString()))
+        {
+            education.setError("Oops! Education field blank");
+            education.requestFocus();
+            return false;
+        }
         else if (TextUtils.isEmpty(ocption.getText().toString()))
         {
             ocption.setError("Oops! Occupation field blank");

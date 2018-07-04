@@ -54,7 +54,10 @@ public class OtherInfo extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 statusM=switchStatus.getSelectedItem().toString();
                 if (i==0){
-
+                    language2.setVisibility(View.GONE);
+                }
+                else if (i==1){
+                    language2.setVisibility(View.VISIBLE);
                 }
             }
 
