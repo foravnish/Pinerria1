@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import sweet.home.pinerria1.R;
+import sweet.home.pinerria1.Utils.Const;
 
 public class Emergency1 extends AppCompatActivity {
 
@@ -30,6 +31,10 @@ public class Emergency1 extends AppCompatActivity {
         person1=findViewById(R.id.person1);
         fatherMob=findViewById(R.id.fatherMob);
         motherMob=findViewById(R.id.motherMob);
+
+        motherMob.setText(Const.getMotherMob());
+        fatherMob.setText(Const.getFatherMob());
+
 
         RelativeLayout relat=findViewById(R.id.relat);
         relat.setOnClickListener(new View.OnClickListener() {

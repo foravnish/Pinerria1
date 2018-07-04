@@ -14,6 +14,7 @@ public class Const {
     String desc;
     String orgby;
 
+    public  static  String fatherMob,motherMob;
     public Const(String id, String catid, String eventName, String photo, String date){
         this.id=id;
         this.catid=catid;
@@ -21,6 +22,22 @@ public class Const {
         this.photo=photo;
         this.date=date;
 
+    }
+
+    public static String getFatherMob() {
+        return fatherMob;
+    }
+
+    public static void setFatherMob(String fatherMob) {
+        Const.fatherMob = fatherMob;
+    }
+
+    public static String getMotherMob() {
+        return motherMob;
+    }
+
+    public static void setMotherMob(String motherMob) {
+        Const.motherMob = motherMob;
     }
 
     public String getId() {

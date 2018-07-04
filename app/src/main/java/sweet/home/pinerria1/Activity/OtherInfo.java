@@ -53,6 +53,9 @@ public class OtherInfo extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 statusM=switchStatus.getSelectedItem().toString();
+                if (i==0){
+
+                }
             }
 
             @Override
