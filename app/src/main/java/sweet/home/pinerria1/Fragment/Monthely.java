@@ -1,22 +1,41 @@
 package sweet.home.pinerria1.Fragment;
 
 
+import android.app.Dialog;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.CalendarView;
 import android.widget.RadioButton;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import sweet.home.pinerria1.R;
+import sweet.home.pinerria1.Utils.Api;
+import sweet.home.pinerria1.Utils.AppController;
+import sweet.home.pinerria1.Utils.MyPrefrences;
+import sweet.home.pinerria1.Utils.Util;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +48,7 @@ public class Monthely extends Fragment {
     }
 
     CalendarView calender;
-
+    Dialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +59,11 @@ public class Monthely extends Fragment {
         RadioButton rb  = (RadioButton)view. findViewById(R.id.radiobutton1);
         RadioButton rb2  = (RadioButton)view. findViewById(R.id.radiobutton2);
 //
+
+        dialog=new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
 
 //        calender=(CalendarView) view.findViewById(R.id.calender) ;
 //
@@ -66,8 +90,56 @@ public class Monthely extends Fragment {
         rb.setTypeface(font);
         rb2.setTypeface(font);
 
+        TimeLineCalander();
+
+
+
         return view;
 
     }
+
+
+    private void TimeLineCalander() {
+
+
+
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Calender, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("ResponseCala",response.toString());
+                Util.cancelPgDialog(dialog);
+
+
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Errorcala",error.toString());
+                Util.cancelPgDialog(dialog);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> header = new HashMap<>();
+                String authToken = MyPrefrences.getToken(getActivity());
+                String bearer = "Bearer ".concat(authToken);
+                header.put("Authorization", bearer);
+
+                return header;
+
+            }
+        };
+
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(25000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonArrayRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+    }
+
+
 
 }

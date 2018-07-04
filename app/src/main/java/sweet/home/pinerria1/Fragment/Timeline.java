@@ -106,15 +106,6 @@ public class Timeline extends Fragment {
                         AllProducts.add(map);
 
 
-//                        HashMap<String,String> map=new HashMap<>();
-//                        for (int i=0;i<20;i++) {
-//                            map.put("name", "Name");
-//                            Adapter adapter=new Adapter();
-//                            expListView.setAdapter(adapter);
-//                            AllProducts.add(map);
-//                        }
-//
-
 
 
                     } catch (JSONException e) {
@@ -191,11 +182,13 @@ public class Timeline extends Fragment {
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
+            dateM.setText(AllProducts.get(position).get("start").substring(0, Math.min(AllProducts.get(position).get("start").length(), 10)));
+            //dayM.setText(AllProducts.get(position).get("start"));
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
             dateM.setTypeface(tvFont);
-            dayM.setTypeface(tvFont);
+          //  dayM.setTypeface(tvFont);
 
 
             if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("blue")){
@@ -203,12 +196,6 @@ public class Timeline extends Fragment {
             }
             else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("red")){
                 linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-            }
-            else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("green")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-            }
-            else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("yellow")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
             }
 
             return convertView;

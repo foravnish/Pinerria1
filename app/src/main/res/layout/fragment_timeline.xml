@@ -15,8 +15,7 @@
         android:textColor="#111"
         android:background="#fff"
         android:gravity="center"
-
-
+        android:visibility="gone"
         android:text="21-mar-2018"/>
 
 
