@@ -18,7 +18,9 @@ public class Api {
     public static String Registration="http://35.184.93.23:3000/api/users/parent/register/child";
     public static String PostMsg="http://35.184.93.23:3000/api/message";
     public static String Calender="http://35.184.93.23:3000/api/calendar";
-    public static String Remark="http://35.184.93.23:3000/api/remarks/bystudentid/";
+    //public static String Remark="http://35.184.93.23:3000/api/remarks/bystudentid/";
+//    public static String Remark="http://35.184.93.23:3000/api/remarksandassessments/bystudentid/remarks/";
+    public static String Remark="http://35.184.93.23:3000/api/remarksandassessments/bystudentid/all/";
 
                                                               //  api/users/parent/me
 

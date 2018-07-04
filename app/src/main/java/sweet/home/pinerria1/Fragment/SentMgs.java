@@ -14,8 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -57,7 +60,7 @@ public class SentMgs extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Adapter  listAdapter;
-    Dialog dialog;
+    Dialog dialog,dialog4;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -159,7 +162,7 @@ public class SentMgs extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,date,firstChar;
+        TextView title,desc,date,firstChar,editDelete;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -182,7 +185,7 @@ public class SentMgs extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
 
             convertView=inflater.inflate(R.layout.list_sen_mgs,parent,false);
@@ -191,7 +194,15 @@ public class SentMgs extends Fragment {
             desc=convertView.findViewById(R.id.desc);
             date=convertView.findViewById(R.id.date);
             firstChar=convertView.findViewById(R.id.firstChar);
+            editDelete=convertView.findViewById(R.id.editDelete);
 
+            editDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    Toast.makeText(getActivity(), "pos: "+position, Toast.LENGTH_SHORT).show();
+                    dialogDeleteData();
+                }
+            });
 
             title.setText(AllProducts.get(position).get("recievedByRole"));
             desc.setText(AllProducts.get(position).get("description"));
@@ -207,6 +218,39 @@ public class SentMgs extends Fragment {
 
             return convertView;
         }
+    }
+
+    private void dialogDeleteData() {
+
+        LinearLayout delete,cancel;
+
+        dialog4 = new Dialog(getActivity());
+        dialog4.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog4.setContentView(R.layout.delete_alert);
+        dialog4.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        delete=(LinearLayout)dialog4.findViewById(R.id.delete);
+        cancel=(LinearLayout)dialog4.findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.exit(0);
+                //getActivity().finish();
+//                getActivity().finishAffinity();
+                dialog4.dismiss();
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog4.dismiss();
+            }
+        });
+        dialog4.show();
+
     }
 
 }

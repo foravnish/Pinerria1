@@ -74,6 +74,7 @@
                     android:textSize="14dp"/>
 
                     <TextView
+                        android:id="@+id/editDelete"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:background="@android:drawable/ic_menu_delete"
