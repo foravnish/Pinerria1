@@ -84,8 +84,6 @@ public class ComposeMgs extends Fragment {
         dialog.setCancelable(false);
 
 
-
-
         spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -123,8 +121,6 @@ public class ComposeMgs extends Fragment {
                 }
             }
         });
-
-
 
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.RoleBy, new Response.Listener<JSONArray>() {
