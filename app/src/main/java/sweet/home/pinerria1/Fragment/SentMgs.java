@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +24,16 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,9 +80,6 @@ public class SentMgs extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
-
-
-
 
 
 
@@ -200,7 +203,7 @@ public class SentMgs extends Fragment {
                 @Override
                 public void onClick(View view) {
 //                    Toast.makeText(getActivity(), "pos: "+position, Toast.LENGTH_SHORT).show();
-                    dialogDeleteData();
+                    dialogDeleteData(AllProducts.get(position).get("_id"));
                 }
             });
 
@@ -220,9 +223,9 @@ public class SentMgs extends Fragment {
         }
     }
 
-    private void dialogDeleteData() {
+    private void dialogDeleteData(final String id) {
 
-        LinearLayout delete,cancel;
+        final LinearLayout delete,cancel;
 
         dialog4 = new Dialog(getActivity());
         dialog4.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -247,9 +250,81 @@ public class SentMgs extends Fragment {
             @Override
             public void onClick(View v) {
                 dialog4.dismiss();
+
+                deleteDataApi(id);
             }
         });
         dialog4.show();
+
+    }
+
+    private void deleteDataApi(String id) {
+
+        Util.showPgDialog(dialog);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        StringRequest strReq = new StringRequest(Request.Method.DELETE,
+                Api.DeleteMsg+id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Util.cancelPgDialog(dialog);
+                Log.e("dfsjfdfsdsdffdffgd", "delete Response: " + response);
+
+                Toast.makeText(getActivity(), "Message Deleted Successfully... ", Toast.LENGTH_SHORT).show();
+
+                Fragment fragment = new Message();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Util.cancelPgDialog(dialog);
+                Log.e("fdgdfgdfdfdfsdfgd", "MGS Error: " + error.getMessage());
+                Toast.makeText(getActivity(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Log.e("fgdfgdfgdf","Inside getParams");
+
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+//                params.put("recievedByRole", spiVal.toLowerCase());
+//                params.put("subject", edit_sub.getText().toString());
+//                params.put("description", edit_msg.getText().toString());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> header = new HashMap<>();
+                String authToken = MyPrefrences.getToken(getActivity());
+                String bearer = "Bearer ".concat(authToken);
+                header.put("Authorization", bearer);
+                return header;
+            }
+
+//                        @Override
+//                        public Map<String, String> getHeaders() throws AuthFailureError {
+//                            Log.e("fdgdfgdfgdfg","Inside getHeaders()");
+//                            Map<String,String> headers=new HashMap<>();
+//                            headers.put("Content-Type","application/x-www-form-urlencoded");
+//                            return headers;
+//                        }
+
+        };
+
+
+        // Adding request to request queue
+        queue.add(strReq);
 
     }
 
