@@ -150,6 +150,8 @@ public class Monthely extends Fragment {
                         Days.add(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
 
 
+
+
                         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
                             @Override
                             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -171,6 +173,10 @@ public class Monthely extends Fragment {
                                     Log.d("dsfsdfsdfsdfsdfgFinal2",Days.get(i)+"-"+Months.get(i)+"-"+Years.get(i));
                                     String FianlDate2=Days.get(i)+"-"+Months.get(i)+"-"+Years.get(i);
 
+
+                                    calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i))), true);
+
+
                                     Log.d("fdsfsdfsdfsdfsdf1",FianlDate1);
                                     Log.d("fdsfsdfsdfsdfsdf2",FianlDate2);
 
@@ -190,6 +196,25 @@ public class Monthely extends Fragment {
                         e.printStackTrace();
                     }
                 }
+
+
+                for (int i1=0;i1<Years.size();i1++) {
+
+                    Log.d("dsfsdfsdfgggsds", String.valueOf(Years.size()));
+                    Log.d("dsfsdfdgfsdfgs",Days.get(i1));
+                    Log.d("dsfsdfdgfsdfgs",Months.get(i1));
+                    Log.d("dsfsdfdgfsdfgs",Years.get(i1));
+
+                    Log.d("dsrggfddfsdfgFinal2",Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1));
+                    // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
+
+                    calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+//                    calendarView.setDateSelected(CalendarDay.from(2018, 7, 20), true);
+
+                }
+
+
+
 
             }
         }, new Response.ErrorListener() {
@@ -217,6 +242,7 @@ public class Monthely extends Fragment {
         jsonArrayRequest.setShouldCache(false);
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
     }
+
 
     private void showDataCalender(String date,String isWhat) {
         dialog4 = new Dialog(getActivity());
