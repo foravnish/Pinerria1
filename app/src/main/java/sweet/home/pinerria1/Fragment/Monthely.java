@@ -2,18 +2,25 @@ package sweet.home.pinerria1.Fragment;
 
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.BaseAdapter;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +69,11 @@ public class Monthely extends Fragment {
     List<String> Months=new ArrayList<>();
     List<String> Days=new ArrayList<>();
     List<HashMap<String,String>> AllProducts ;
+    List<HashMap<String,String>> AllProducts2 ;
+
+    Boolean flag=false;
+    String FianlDate2;
+    String colorItem;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,6 +89,7 @@ public class Monthely extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
         AllProducts = new ArrayList<>();
+        AllProducts2 = new ArrayList<>();
 
 //        calender=(CalendarView) view.findViewById(R.id.calender) ;
 //
@@ -118,7 +131,7 @@ public class Monthely extends Fragment {
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Calender, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(final JSONArray response) {
                 Log.d("ResponseCala",response.toString());
                 Util.cancelPgDialog(dialog);
 
@@ -171,7 +184,7 @@ public class Monthely extends Fragment {
                                     Log.d("dsfsdfsdfgs",Days.get(i));
 
                                     Log.d("dsfsdfsdfsdfsdfgFinal2",Days.get(i)+"-"+Months.get(i)+"-"+Years.get(i));
-                                    String FianlDate2=Days.get(i)+"-"+Months.get(i)+"-"+Years.get(i);
+                                    FianlDate2=Days.get(i)+"-"+Months.get(i)+"-"+Years.get(i);
 
 
                                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i))), true);
@@ -183,9 +196,15 @@ public class Monthely extends Fragment {
                                     if (FianlDate2.contains(FianlDate1)){
                                         Log.d("gdfgdfgdfhgdfhfghfgh","yes");
 
-                                        showDataCalender(FianlDate2,AllProducts.get(i).get("colorItem"));
-                                        break;
+                                        flag=true;
+                                        colorItem=AllProducts.get(i).get("colorItem");
+
+                                        // break;
                                     }
+                                }
+
+                                if (flag == true){
+                                    showDataCalender(FianlDate2,colorItem,response);
                                 }
                             }
                         });
@@ -243,14 +262,70 @@ public class Monthely extends Fragment {
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
     }
 
+    @Override
+    public void onResume() {
+        for (int i1=0;i1<Years.size();i1++) {
 
-    private void showDataCalender(String date,String isWhat) {
+            Log.d("dsfsdfsdfgggsds", String.valueOf(Years.size()));
+            Log.d("dsfsdfdgfsdfgs",Days.get(i1));
+            Log.d("dsfsdfdgfsdfgs",Months.get(i1));
+            Log.d("dsfsdfdgfsdfgs",Years.get(i1));
+
+            Log.d("dsrggfddfsdfgFinal2",Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1));
+            // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
+
+            calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+//                    calendarView.setDateSelected(CalendarDay.from(2018, 7, 20), true);
+
+        }
+
+        super.onResume();
+
+    }
+
+    private void showDataCalender(String date, String isWhat, JSONArray jsonArray) {
         dialog4 = new Dialog(getActivity());
         dialog4.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog4.setContentView(R.layout.calender_alert);
         dialog4.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         TextView heading=(TextView)dialog4.findViewById(R.id.heading);
+        ListView listView=(ListView)dialog4.findViewById(R.id.listView);
+
+        Log.d("ddgdgdgsfsdf",jsonArray.toString());
+
+        try {
+            JSONArray jsonArray1=new JSONArray(jsonArray.toString());
+
+            for (int i=0;i<jsonArray1.length();i++){
+                try {
+                    JSONObject jsonObject=jsonArray1.getJSONObject(i);
+
+
+                    HashMap<String,String> map=new HashMap<>();
+
+                    map.put("_id", jsonObject.optString("_id"));
+                    map.put("title", jsonObject.optString("title"));
+                    map.put("description", jsonObject.optString("description"));
+                    map.put("start", jsonObject.optString("start"));
+                    map.put("end", jsonObject.optString("end"));
+                    map.put("colorItem", jsonObject.optString("colorItem"));
+                    Adapter adapter=new Adapter();
+                    listView.setAdapter(adapter);
+                    AllProducts2.add(map);
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Log.d("fdsdfsdfsdfsdf",isWhat);
         if (isWhat.equals("blue")) {
@@ -262,6 +337,65 @@ public class Monthely extends Fragment {
 
         dialog4.show();
 
+    }
+    class Adapter extends BaseAdapter {
+
+        LayoutInflater inflater;
+        TextView title,desc,dateM,dayM;
+        LinearLayout linearColor;
+
+        Adapter() {
+            inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        }
+
+        @Override
+        public int getCount() {
+            return AllProducts.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return AllProducts.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+
+            convertView=inflater.inflate(R.layout.list_timeline,parent,false);
+            title=convertView.findViewById(R.id.title);
+            desc=convertView.findViewById(R.id.desc);
+            dateM=convertView.findViewById(R.id.dateM);
+            dayM=convertView.findViewById(R.id.dayM);
+            linearColor=convertView.findViewById(R.id.linearColor);
+
+            title.setText(AllProducts.get(position).get("title"));
+            desc.setText(AllProducts.get(position).get("description"));
+            dateM.setText(AllProducts.get(position).get("start").substring(0, Math.min(AllProducts.get(position).get("start").length(), 10)));
+            //dayM.setText(AllProducts.get(position).get("start"));
+
+            final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
+            title.setTypeface(tvFont);
+            dateM.setTypeface(tvFont);
+            //  dayM.setTypeface(tvFont);
+
+
+            if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("blue")){
+                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+            }
+            else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("red")){
+                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            }
+
+            return convertView;
+        }
     }
 
 

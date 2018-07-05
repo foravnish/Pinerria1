@@ -27,19 +27,13 @@
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="8pt"
-        android:textColor="#a7acaf"
-        android:background="#fff"
-        android:padding="10dp"
-        android:fontFamily="@font/listfont"
-        android:text="Are You sure you want to delete this message ?"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
