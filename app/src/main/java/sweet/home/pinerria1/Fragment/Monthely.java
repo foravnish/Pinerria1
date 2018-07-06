@@ -293,6 +293,8 @@ public class Monthely extends Fragment {
         ListView listView=(ListView)dialog4.findViewById(R.id.listView);
 
         Log.d("ddgdgdgsfsdf",jsonArray.toString());
+        Log.d("sdfsdfsdffgfgfgfsdfs",date);
+
 
         try {
             JSONArray jsonArray1=new JSONArray(jsonArray.toString());
@@ -300,19 +302,24 @@ public class Monthely extends Fragment {
             for (int i=0;i<jsonArray1.length();i++){
                 try {
                     JSONObject jsonObject=jsonArray1.getJSONObject(i);
-
+                    Log.d("dsfsfsdfsdfs",jsonObject.optString("start"));
 
                     HashMap<String,String> map=new HashMap<>();
 
-                    map.put("_id", jsonObject.optString("_id"));
-                    map.put("title", jsonObject.optString("title"));
-                    map.put("description", jsonObject.optString("description"));
-                    map.put("start", jsonObject.optString("start"));
-                    map.put("end", jsonObject.optString("end"));
-                    map.put("colorItem", jsonObject.optString("colorItem"));
-                    Adapter adapter=new Adapter();
-                    listView.setAdapter(adapter);
-                    AllProducts2.add(map);
+
+
+                  //  if (date.contains(jsonObject.optString("start"))) {
+                        map.put("_id", jsonObject.optString("_id"));
+                        map.put("title", jsonObject.optString("title"));
+                        map.put("description", jsonObject.optString("description"));
+                        map.put("start", jsonObject.optString("start"));
+                        map.put("end", jsonObject.optString("end"));
+                        map.put("colorItem", jsonObject.optString("colorItem"));
+                        Adapter adapter = new Adapter();
+                        listView.setAdapter(adapter);
+                        AllProducts2.add(map);
+                    //}
+
 
 
 
@@ -351,12 +358,12 @@ public class Monthely extends Fragment {
 
         @Override
         public int getCount() {
-            return AllProducts.size();
+            return AllProducts2.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return AllProducts.get(position);
+            return AllProducts2.get(position);
         }
 
         @Override
@@ -369,30 +376,30 @@ public class Monthely extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
 
 
-            convertView=inflater.inflate(R.layout.list_timeline,parent,false);
+            convertView=inflater.inflate(R.layout.list_alet_event,parent,false);
             title=convertView.findViewById(R.id.title);
             desc=convertView.findViewById(R.id.desc);
-            dateM=convertView.findViewById(R.id.dateM);
-            dayM=convertView.findViewById(R.id.dayM);
-            linearColor=convertView.findViewById(R.id.linearColor);
+           // dateM=convertView.findViewById(R.id.dateM);
+            //dayM=convertView.findViewById(R.id.dayM);
+            //linearColor=convertView.findViewById(R.id.linearColor);
 
-            title.setText(AllProducts.get(position).get("title"));
-            desc.setText(AllProducts.get(position).get("description"));
-            dateM.setText(AllProducts.get(position).get("start").substring(0, Math.min(AllProducts.get(position).get("start").length(), 10)));
+            title.setText(AllProducts2.get(position).get("title"));
+            desc.setText(AllProducts2.get(position).get("description"));
+           // dateM.setText(AllProducts2.get(position).get("start").substring(0, Math.min(AllProducts2.get(position).get("start").length(), 10)));
             //dayM.setText(AllProducts.get(position).get("start"));
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
-            dateM.setTypeface(tvFont);
+          //  dateM.setTypeface(tvFont);
             //  dayM.setTypeface(tvFont);
 
 
-            if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("blue")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-            }
-            else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("red")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-            }
+//            if (AllProducts2.get(position).get("colorItem").equalsIgnoreCase("blue")){
+//                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+//            }
+//            else if (AllProducts2.get(position).get("colorItem").equalsIgnoreCase("red")){
+//                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+//            }
 
             return convertView;
         }
