@@ -68,6 +68,12 @@ public class Monthely extends Fragment {
     List<String> Years=new ArrayList<>();
     List<String> Months=new ArrayList<>();
     List<String> Days=new ArrayList<>();
+
+    List<String> Years1=new ArrayList<>();
+    List<String> Months1=new ArrayList<>();
+    List<String> Days1=new ArrayList<>();
+
+
     List<HashMap<String,String>> AllProducts ;
     List<HashMap<String,String>> AllProducts2 ;
 
@@ -198,14 +204,17 @@ public class Monthely extends Fragment {
 
                                         flag=true;
                                         colorItem=AllProducts.get(i).get("colorItem");
-
+                                        showDataCalender(FianlDate2,colorItem,response);
                                         // break;
                                     }
+//                                    else{
+//                                        Toast.makeText(getActivity(), "Nothing Event nor Holiday", Toast.LENGTH_SHORT).show();
+//                                    }
                                 }
 
-                                if (flag == true){
-                                    showDataCalender(FianlDate2,colorItem,response);
-                                }
+//                                if (flag == true){
+//                                    showDataCalender(FianlDate2,colorItem,response);
+//                                }
                             }
                         });
 
@@ -296,9 +305,24 @@ public class Monthely extends Fragment {
         Log.d("sdfsdfsdffgfgfgfsdfs",date);
 
 
+//
+//        Log.d("year_data",jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+//        Log.d("months_data",jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
+//        Log.d("date_data",jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
+//
+//        String year1=jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4));
+//        String months1=jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7));
+//        String day1=jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10));
+//        String dateNew=year1+"-"+months1+"-"+day1;
+
+
+
+//        Log.d("jhkdgfhjhsjkhd",dateNew);
+
         try {
             JSONArray jsonArray1=new JSONArray(jsonArray.toString());
 
+            AllProducts2.clear();
             for (int i=0;i<jsonArray1.length();i++){
                 try {
                     JSONObject jsonObject=jsonArray1.getJSONObject(i);
@@ -306,9 +330,16 @@ public class Monthely extends Fragment {
 
                     HashMap<String,String> map=new HashMap<>();
 
+                    Years1.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+                    Months1.add(jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
+                    Days1.add(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
 
+//                    String dateNew=Years1.get(i)+"-"+Months1.get(i)+"-"+Days1.get(i);
+//                    Log.d("jhkdgfhjhsjkhd",dateNew);
+                    //Log.d("dsfdsfdfgfgsfsdf",Years1.get(i)+"-"+Months1.get(i)+"-"+Days1.get(i));
+                    Log.d("dsfdsfdfgfgsfsdf",Days1.get(i)+"-"+Months1.get(i)+"-"+Years1.get(i));
 
-                  //  if (date.contains(jsonObject.optString("start"))) {
+                    if (date.contains(Days1.get(i)+"-"+Months1.get(i)+"-"+Years1.get(i))) {
                         map.put("_id", jsonObject.optString("_id"));
                         map.put("title", jsonObject.optString("title"));
                         map.put("description", jsonObject.optString("description"));
@@ -318,7 +349,7 @@ public class Monthely extends Fragment {
                         Adapter adapter = new Adapter();
                         listView.setAdapter(adapter);
                         AllProducts2.add(map);
-                    //}
+                    }
 
 
 

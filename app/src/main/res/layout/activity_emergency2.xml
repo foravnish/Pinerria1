@@ -93,9 +93,10 @@
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="20dp"
                 android:textColor="#111"
+                android:textSize="13dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="* School will be arrange emergency transporttion to the nearest "/>
+                android:text="*School will be arrange emergency transporttion to the nearest emergency medical facility. If necessary, my child will be transported an ambulance or other such vehicle when necessary. "/>
 
 
             <CheckBox
