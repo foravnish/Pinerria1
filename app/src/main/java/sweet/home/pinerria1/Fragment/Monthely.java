@@ -322,8 +322,6 @@ public class Monthely extends Fragment {
 
 
 
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
