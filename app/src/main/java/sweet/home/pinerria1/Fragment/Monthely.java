@@ -213,8 +213,6 @@ public class Monthely extends Fragment {
                                         flag=true;
                                         colorItem=AllProducts.get(i).get("colorItem");
 
-
-
                                         showDataCalender(FianlDate2, colorItem, response);
 //                                         break;
                                     }
