@@ -7,11 +7,14 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
@@ -41,7 +46,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -196,6 +203,7 @@ public class Monthely extends Fragment {
                                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i))), true);
 
 
+
                                     Log.d("fdsfsdfsdfsdfsdf1",FianlDate1);
                                     Log.d("fdsfsdfsdfsdfsdf2",FianlDate2);
 
@@ -204,8 +212,11 @@ public class Monthely extends Fragment {
 
                                         flag=true;
                                         colorItem=AllProducts.get(i).get("colorItem");
-                                        showDataCalender(FianlDate2,colorItem,response);
-                                        // break;
+
+
+
+                                        showDataCalender(FianlDate2, colorItem, response);
+//                                         break;
                                     }
 //                                    else{
 //                                        Toast.makeText(getActivity(), "Nothing Event nor Holiday", Toast.LENGTH_SHORT).show();
@@ -237,6 +248,23 @@ public class Monthely extends Fragment {
                     // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
 
                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+
+
+
+//                    if (AllProducts.get(i1).get("colorItem").equals("blue")){
+//                        calendarView.setSelectionColor(Color.BLUE);
+//                    }
+//                    else{
+//                        calendarView.setSelectionColor(Color.RED);
+//                    }
+
+                    Log.d("dfsdfsdfsdfsdfs",AllProducts.get(i1).get("colorItem"));
+
+//                    else if (AllProducts.get(i1).get("colorItem").equalsIgnoreCase("red")){
+//                        calendarView.setSelectionColor(Color.RED);
+//                    }
+
+
 //                    calendarView.setDateSelected(CalendarDay.from(2018, 7, 20), true);
 
                 }
@@ -271,26 +299,27 @@ public class Monthely extends Fragment {
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
     }
 
-    @Override
-    public void onResume() {
-        for (int i1=0;i1<Years.size();i1++) {
-
-            Log.d("dsfsdfsdfgggsds", String.valueOf(Years.size()));
-            Log.d("dsfsdfdgfsdfgs",Days.get(i1));
-            Log.d("dsfsdfdgfsdfgs",Months.get(i1));
-            Log.d("dsfsdfdgfsdfgs",Years.get(i1));
-
-            Log.d("dsrggfddfsdfgFinal2",Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1));
-            // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
-
-            calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
-//                    calendarView.setDateSelected(CalendarDay.from(2018, 7, 20), true);
-
-        }
-
-        super.onResume();
-
-    }
+//    @Override
+//    public void onResume() {
+//
+//        for (int i1=0;i1<Years.size();i1++) {
+//
+//            Log.d("dsfsdfsdfgggsds", String.valueOf(Years.size()));
+//            Log.d("dsfsdfdgfsdfgs",Days.get(i1));
+//            Log.d("dsfsdfdgfsdfgs",Months.get(i1));
+//            Log.d("dsfsdfdgfsdfgs",Years.get(i1));
+//
+//            Log.d("dsrggfddfsdfgFinal2",Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1));
+//            // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
+//
+//            calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+////                    calendarView.setDateSelected(CalendarDay.from(2018, 7, 20), true);
+//
+//        }
+//
+//        super.onResume();
+//
+//    }
 
     private void showDataCalender(String date, String isWhat, JSONArray jsonArray) {
         dialog4 = new Dialog(getActivity());
