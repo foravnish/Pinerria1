@@ -202,8 +202,6 @@ public class Monthely extends Fragment {
 
                                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i))), true);
 
-
-
                                     Log.d("fdsfsdfsdfsdfsdf1",FianlDate1);
                                     Log.d("fdsfsdfsdfsdfsdf2",FianlDate2);
 
