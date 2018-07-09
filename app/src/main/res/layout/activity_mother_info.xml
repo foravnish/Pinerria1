@@ -144,7 +144,7 @@
                 android:hint="Home Address"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
-                android:inputType="textMultiLine"
+                android:inputType="textPersonName"
                 android:background="@drawable/strock_edt_father"/>
 
             <LinearLayout

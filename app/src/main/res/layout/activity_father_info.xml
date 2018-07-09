@@ -140,12 +140,11 @@
             android:id="@+id/homeAddress"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-
             android:layout_marginTop="10dp"
             android:hint="Home Address"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
-            android:inputType="textMultiLine"
+            android:inputType="textPersonName"
             android:background="@drawable/strock_edt_father"/>
 
         <LinearLayout

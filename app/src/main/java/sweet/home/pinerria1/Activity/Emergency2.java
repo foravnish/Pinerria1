@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -79,149 +80,150 @@ public class Emergency2 extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                if (checkbox.isChecked()==true) {
+                if (validate()) {
 
-                    try {
+                    if (checkbox.isChecked() == true) {
 
+                        try {
 
-                        JSONObject cartItemsObjedct2;
-                        JSONObject cartItemsObjedct3;
-                        cartItemsObjedct = new JSONObject();
+                            JSONObject cartItemsObjedct2;
+                            JSONObject cartItemsObjedct3;
+                            cartItemsObjedct = new JSONObject();
 
-                        cartItemsObjedct.putOpt("fatherMobileNumber", getIntent().getStringExtra("fatherMob"));
-                        cartItemsObjedct.putOpt("motherMobileNumber", getIntent().getStringExtra("motherMob"));
+                            cartItemsObjedct.putOpt("fatherMobileNumber", getIntent().getStringExtra("fatherMob"));
+                            cartItemsObjedct.putOpt("motherMobileNumber", getIntent().getStringExtra("motherMob"));
 
-                        cartItemsObjedct2 = new JSONObject();
-                        cartItemsObjedct3 = new JSONObject();
+                            cartItemsObjedct2 = new JSONObject();
+                            cartItemsObjedct3 = new JSONObject();
 
-                        cartItemsObjedct2.putOpt("mobileNumber", getIntent().getStringExtra("motherMob"));
-                        cartItemsObjedct2.putOpt("name", getIntent().getStringExtra("person1"));
-                        cartItemsObjedct2.putOpt("relationShip", getIntent().getStringExtra("personRelation"));
+                            cartItemsObjedct2.putOpt("mobileNumber", getIntent().getStringExtra("motherMob"));
+                            cartItemsObjedct2.putOpt("name", getIntent().getStringExtra("person1"));
+                            cartItemsObjedct2.putOpt("relationShip", getIntent().getStringExtra("personRelation"));
 
-                        cartItemsObjedct3.putOpt("mobileNumber", personMob2.getText().toString());
-                        cartItemsObjedct3.putOpt("name", person2.getText().toString());
-                        cartItemsObjedct3.putOpt("relationShip", personRelation2.getText().toString());
+                            cartItemsObjedct3.putOpt("mobileNumber", personMob2.getText().toString());
+                            cartItemsObjedct3.putOpt("name", person2.getText().toString());
+                            cartItemsObjedct3.putOpt("relationShip", personRelation2.getText().toString());
 
-                        cartItemsObjedct.putOpt("otherPerson1", cartItemsObjedct2);
-                        cartItemsObjedct.putOpt("otherPerson2", cartItemsObjedct3);
+                            cartItemsObjedct.putOpt("otherPerson1", cartItemsObjedct2);
+                            cartItemsObjedct.putOpt("otherPerson2", cartItemsObjedct3);
 
-                        Log.d("sdfsdfsdfdfdfddfsdf", cartItemsObjedct.toString());
-
-
-                        Log.d("fatherData", getIntent().getStringExtra("fatherData"));
-                        Log.d("motherData", getIntent().getStringExtra("motherData"));
-                        Log.d("driver", getIntent().getStringExtra("driver"));
-                        Log.d("language", getIntent().getStringExtra("language"));
-                        Log.d("maritalStatus", getIntent().getStringExtra("maritalStatus"));
-                        Log.d("reason", getIntent().getStringExtra("reason"));
+                            Log.d("sdfsdfsdfdfdfddfsdf", cartItemsObjedct.toString());
 
 
-                        JSONObject father=new JSONObject(getIntent().getStringExtra("fatherData"));
-
-                        JSONObject jfather=new JSONObject();
-                        String fadd=father.optString("address");
-                        String fedu=father.optString("education");
-                        String fema=father.optString("emailId");
-                        String fmob=father.optString("mobileNumber");
-                        String fname=father.optString("name");
-                        String focc=father.optString("occupation");
-                        String foffi=father.optString("officeNumber");
-                        String fwork=father.optString("workPlace");
-
-                        jfather.put("address",fadd);
-                        jfather.put("education",fedu);
-                        jfather.put("emailId",fema);
-                        jfather.put("mobileNumber",fmob);
-                        jfather.put("name",fname);
-                        jfather.put("occupation",focc);
-                        jfather.put("officeNumber",foffi);
-                        jfather.put("workPlace",fwork);
-
-                        JSONObject mother=new JSONObject(getIntent().getStringExtra("motherData"));
-
-                        JSONObject jmother=new JSONObject();
-                        String madd=mother.optString("address");
-                        String medu=mother.optString("education");
-                        String mema=mother.optString("emailId");
-                        String mmob=mother.optString("mobileNumber");
-                        String mname=mother.optString("name");
-                        String mocc=mother.optString("occupation");
-                        String moffi=mother.optString("officeNumber");
-                        String mwork=mother.optString("workPlace");
-
-                        jmother.put("address",madd);
-                        jmother.put("education",medu);
-                        jmother.put("emailId",mema);
-                        jmother.put("mobileNumber",mmob);
-                        jmother.put("name",mname);
-                        jmother.put("occupation",mocc);
-                        jmother.put("officeNumber",moffi);
-                        jmother.put("workPlace",mwork);
+                            Log.d("fatherData", getIntent().getStringExtra("fatherData"));
+                            Log.d("motherData", getIntent().getStringExtra("motherData"));
+                            Log.d("driver", getIntent().getStringExtra("driver"));
+                            Log.d("language", getIntent().getStringExtra("language"));
+                            Log.d("maritalStatus", getIntent().getStringExtra("maritalStatus"));
+                            Log.d("reason", getIntent().getStringExtra("reason"));
 
 
-                        JSONObject driver=new JSONObject(getIntent().getStringExtra("driver"));
+                            JSONObject father = new JSONObject(getIntent().getStringExtra("fatherData"));
 
-                        JSONObject jdri=new JSONObject();
-                        String jdriMob=driver.optString("mobileNumber");
-                        String jdriname=driver.optString("name");
+                            JSONObject jfather = new JSONObject();
+                            String fadd = father.optString("address");
+                            String fedu = father.optString("education");
+                            String fema = father.optString("emailId");
+                            String fmob = father.optString("mobileNumber");
+                            String fname = father.optString("name");
+                            String focc = father.optString("occupation");
+                            String foffi = father.optString("officeNumber");
+                            String fwork = father.optString("workPlace");
 
-                        jdri.put("mobileNumber",jdriMob);
-                        jdri.put("name",jdriname);
+                            jfather.put("address", fadd);
+                            jfather.put("education", fedu);
+                            jfather.put("emailId", fema);
+                            jfather.put("mobileNumber", fmob);
+                            jfather.put("name", fname);
+                            jfather.put("occupation", focc);
+                            jfather.put("officeNumber", foffi);
+                            jfather.put("workPlace", fwork);
 
+                            JSONObject mother = new JSONObject(getIntent().getStringExtra("motherData"));
 
-                        parentsInformation=new JSONObject();
+                            JSONObject jmother = new JSONObject();
+                            String madd = mother.optString("address");
+                            String medu = mother.optString("education");
+                            String mema = mother.optString("emailId");
+                            String mmob = mother.optString("mobileNumber");
+                            String mname = mother.optString("name");
+                            String mocc = mother.optString("occupation");
+                            String moffi = mother.optString("officeNumber");
+                            String mwork = mother.optString("workPlace");
 
-                        Log.d("language", getIntent().getStringExtra("language"));
-                        Log.d("maritalStatus", getIntent().getStringExtra("maritalStatus"));
-                        Log.d("reason", getIntent().getStringExtra("reason"));
-
-                        parentsInformation.put("father",jfather);
-                        parentsInformation.put("mother",jmother);
-                        parentsInformation.put("driver",jdri);
-
-                        parentsInformation.put("language",getIntent().getStringExtra("language"));
-                        parentsInformation.put("maritalStatus",getIntent().getStringExtra("maritalStatus"));
-                        parentsInformation.put("reason",getIntent().getStringExtra("reason"));
-
-
-                        Log.d("childData", getIntent().getStringExtra("childData"));
-                        Log.d("emergencyInformation", cartItemsObjedct.toString());
-
-                        JSONArray jsonArrayChild=new JSONArray(getIntent().getStringExtra("childData"));
-
-                        jsonArray123=new JSONArray();
-
-                        for (int i=0;i<jsonArrayChild.length();i++){
-                            JSONObject   jsonObjectData=jsonArrayChild.getJSONObject(i);
-                            jsonObjectData.put("_id",jsonObjectData.get("_id"));
-                            jsonObjectData.put("address",jsonObjectData.get("address"));
-                            jsonObjectData.put("childAllergy",jsonObjectData.get("childAllergy"));
-                            jsonObjectData.put("childHealth",jsonObjectData.get("childHealth"));
-                            jsonObjectData.put("childNote",jsonObjectData.get("childNote"));
-                            jsonObjectData.put("childProblems",jsonObjectData.get("childProblems"));
-
-                            //jsonObjectData.put("siblingDetail",jsonObjectData.get("siblingDetail"));
-
-
-                           // jsonObjectData.put("classes",jsonObjectData.get("classes"));
-                            //jsonObjectData.put("dob",jsonObjectData.get("dob"));
-                          //  jsonObjectData.put("gender",jsonObjectData.get("gender"));
-                           // jsonObjectData.put("image",jsonObjectData.get("image"));
-                           // jsonObjectData.put("name",jsonObjectData.get("name"));
-                            jsonObjectData.put("nationality",jsonObjectData.get("nationality"));
-                            jsonObjectData.put("previousSchoolAttended",jsonObjectData.get("previousSchoolAttended"));
-                            jsonObjectData.put("previousSchoolDetail",jsonObjectData.get("previousSchoolDetail"));
+                            jmother.put("address", madd);
+                            jmother.put("education", medu);
+                            jmother.put("emailId", mema);
+                            jmother.put("mobileNumber", mmob);
+                            jmother.put("name", mname);
+                            jmother.put("occupation", mocc);
+                            jmother.put("officeNumber", moffi);
+                            jmother.put("workPlace", mwork);
 
 
-                            JSONArray jsonArraySubling=new JSONArray(jsonObjectData.get("siblingDetail").toString());
-                            JSONArray jsonArray14=new JSONArray();
-                            for (int j=0;j<jsonArraySubling.length();j++) {
-                                JSONObject jsonObjectDataSib = jsonArraySubling.getJSONObject(j);
-                                Log.d("fdsgsdgfdgdfgd1",jsonObjectDataSib.get("age").toString());
-                                Log.d("fdsgsdgfdgdfgd2",jsonObjectDataSib.get("name").toString());
+                            JSONObject driver = new JSONObject(getIntent().getStringExtra("driver"));
 
-                                jsonArray14.put(jsonObjectDataSib);
-                            }
+                            JSONObject jdri = new JSONObject();
+                            String jdriMob = driver.optString("mobileNumber");
+                            String jdriname = driver.optString("name");
+
+                            jdri.put("mobileNumber", jdriMob);
+                            jdri.put("name", jdriname);
+
+
+                            parentsInformation = new JSONObject();
+
+                            Log.d("language", getIntent().getStringExtra("language"));
+                            Log.d("maritalStatus", getIntent().getStringExtra("maritalStatus"));
+                            Log.d("reason", getIntent().getStringExtra("reason"));
+
+                            parentsInformation.put("father", jfather);
+                            parentsInformation.put("mother", jmother);
+                            parentsInformation.put("driver", jdri);
+
+                            parentsInformation.put("language", getIntent().getStringExtra("language"));
+                            parentsInformation.put("maritalStatus", getIntent().getStringExtra("maritalStatus"));
+                            parentsInformation.put("reason", getIntent().getStringExtra("reason"));
+
+
+                            Log.d("childData", getIntent().getStringExtra("childData"));
+                            Log.d("emergencyInformation", cartItemsObjedct.toString());
+
+                            JSONArray jsonArrayChild = new JSONArray(getIntent().getStringExtra("childData"));
+
+                            jsonArray123 = new JSONArray();
+
+                            for (int i = 0; i < jsonArrayChild.length(); i++) {
+                                JSONObject jsonObjectData = jsonArrayChild.getJSONObject(i);
+                                jsonObjectData.put("_id", jsonObjectData.get("_id"));
+                                jsonObjectData.put("address", jsonObjectData.get("address"));
+                                jsonObjectData.put("childAllergy", jsonObjectData.get("childAllergy"));
+                                jsonObjectData.put("childHealth", jsonObjectData.get("childHealth"));
+                                jsonObjectData.put("childNote", jsonObjectData.get("childNote"));
+                                jsonObjectData.put("childProblems", jsonObjectData.get("childProblems"));
+
+                                //jsonObjectData.put("siblingDetail",jsonObjectData.get("siblingDetail"));
+
+
+                                // jsonObjectData.put("classes",jsonObjectData.get("classes"));
+                                //jsonObjectData.put("dob",jsonObjectData.get("dob"));
+                                //  jsonObjectData.put("gender",jsonObjectData.get("gender"));
+                                // jsonObjectData.put("image",jsonObjectData.get("image"));
+                                // jsonObjectData.put("name",jsonObjectData.get("name"));
+                                jsonObjectData.put("nationality", jsonObjectData.get("nationality"));
+                                jsonObjectData.put("previousSchoolAttended", jsonObjectData.get("previousSchoolAttended"));
+                                jsonObjectData.put("previousSchoolDetail", jsonObjectData.get("previousSchoolDetail"));
+
+
+                                JSONArray jsonArraySubling = new JSONArray(jsonObjectData.get("siblingDetail").toString());
+                                JSONArray jsonArray14 = new JSONArray();
+                                for (int j = 0; j < jsonArraySubling.length(); j++) {
+                                    JSONObject jsonObjectDataSib = jsonArraySubling.getJSONObject(j);
+                                    Log.d("fdsgsdgfdgdfgd1", jsonObjectDataSib.get("age").toString());
+                                    Log.d("fdsgsdgfdgdfgd2", jsonObjectDataSib.get("name").toString());
+
+                                    jsonArray14.put(jsonObjectDataSib);
+                                }
 
                                 jsonObjectChild = new JSONObject();
                                 jsonObjectChild.put("_id", jsonObjectData.get("_id"));
@@ -238,22 +240,21 @@ public class Emergency2 extends AppCompatActivity {
                                 jsonArray123.put(jsonObjectChild);
 
 
+                            }
 
+                            Log.d("sfsdfsdgsfdgsd", jsonArray123.toString());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
-                        Log.d("sfsdfsdgsfdgsd",jsonArray123.toString());
+                        childDataSubmit(cartItemsObjedct, parentsInformation, jsonArray123);
+                        Util.showPgDialog(dialog);
 
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
+                        Toast.makeText(Emergency2.this, "Please check I have read...", Toast.LENGTH_SHORT).show();
                     }
-
-                    childDataSubmit(cartItemsObjedct,parentsInformation,jsonArray123);
-                    Util.showPgDialog(dialog);
-
-                }
-                else{
-                    Toast.makeText(Emergency2.this, "Please check I have read...", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -459,6 +460,31 @@ public class Emergency2 extends AppCompatActivity {
     }
 
 
+    private boolean validate(){
+
+        if (TextUtils.isEmpty(person2.getText().toString()))
+        {
+            person2.setError("Oops! Person 2 Name blank");
+            person2.requestFocus();
+            return false;
+        }
+
+        else if (TextUtils.isEmpty(personMob2.getText().toString()))
+        {
+            personMob2.setError("Oops! Person 2 Mobile blank");
+            personMob2.requestFocus();
+            return false;
+        }
+        else if (TextUtils.isEmpty(personRelation2.getText().toString()))
+        {
+            personRelation2.setError("Oops! Person 2 Relationship blank");
+            personRelation2.requestFocus();
+            return false;
+        }
+
+        return true;
+
+    }
 
 
 }

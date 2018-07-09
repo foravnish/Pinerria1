@@ -3,6 +3,7 @@ package sweet.home.pinerria1.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,22 +54,23 @@ public class HealthInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(HealthInfo.this, PreviousSchool.class);
+                if (validate()) {
+                    Intent intent = new Intent(HealthInfo.this, PreviousSchool.class);
 
-                intent.putExtra("health1",health1.getText().toString());
-                intent.putExtra("health2",health2.getText().toString());
-                intent.putExtra("health3",health3.getText().toString());
-                intent.putExtra("health4",health4.getText().toString());
+                    intent.putExtra("health1", health1.getText().toString());
+                    intent.putExtra("health2", health2.getText().toString());
+                    intent.putExtra("health3", health3.getText().toString());
+                    intent.putExtra("health4", health4.getText().toString());
 
-                intent.putExtra("id",getIntent().getStringExtra("id"));
-                intent.putExtra("name",getIntent().getStringExtra("name"));
-                intent.putExtra("DOB",getIntent().getStringExtra("DOB"));
-                intent.putExtra("gender",getIntent().getStringExtra("gender"));
-                intent.putExtra("nationality",getIntent().getStringExtra("nationality"));
-                intent.putExtra("homeAddress",getIntent().getStringExtra("homeAddress"));
+                    intent.putExtra("id", getIntent().getStringExtra("id"));
+                    intent.putExtra("name", getIntent().getStringExtra("name"));
+                    intent.putExtra("DOB", getIntent().getStringExtra("DOB"));
+                    intent.putExtra("gender", getIntent().getStringExtra("gender"));
+                    intent.putExtra("nationality", getIntent().getStringExtra("nationality"));
+                    intent.putExtra("homeAddress", getIntent().getStringExtra("homeAddress"));
 
-                startActivity(intent);
-
+                    startActivity(intent);
+                }
 
 
 
@@ -81,4 +83,37 @@ public class HealthInfo extends AppCompatActivity {
 
 
     }
+
+    private boolean validate(){
+
+        if (TextUtils.isEmpty(health1.getText().toString()))
+        {
+            health1.setError("Oops! Field 1 blank");
+            health1.requestFocus();
+            return false;
+        }
+        else if (TextUtils.isEmpty(health2.getText().toString()))
+        {
+            health2.setError("Oops! Field 2 blank");
+            health2.requestFocus();
+            return false;
+        }
+        else if (TextUtils.isEmpty(health3.getText().toString()))
+        {
+            health3.setError("Oops! Field 3 blank");
+            health3.requestFocus();
+            return false;
+        }
+        else if (TextUtils.isEmpty(health4.getText().toString()))
+        {
+            health4.setError("Oops! Field 4 blank");
+            health4.requestFocus();
+            return false;
+        }
+
+        return true;
+
+    }
+
+
 }

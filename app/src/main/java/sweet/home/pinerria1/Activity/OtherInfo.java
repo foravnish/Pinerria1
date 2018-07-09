@@ -3,6 +3,7 @@ package sweet.home.pinerria1.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ public class OtherInfo extends AppCompatActivity {
     Spinner switchStatus;
     String[] str1 = { "Married", "Unmarried"};
     String statusM;
+    boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +56,12 @@ public class OtherInfo extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 statusM=switchStatus.getSelectedItem().toString();
                 if (i==0){
+
                     language2.setVisibility(View.GONE);
+                    flag=false;
                 }
                 else if (i==1){
+                    flag=true;
                     language2.setVisibility(View.VISIBLE);
                 }
             }
@@ -72,19 +77,42 @@ public class OtherInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(OtherInfo.this,OtherPermited.class);
-                intent.putExtra("childData",getIntent().getStringExtra("childData"));
-                intent.putExtra("fatherData",getIntent().getStringExtra("fatherData"));
-                intent.putExtra("motherData",getIntent().getStringExtra("motherData"));
+                if (validate()) {
+                    Intent intent = new Intent(OtherInfo.this, OtherPermited.class);
+                    intent.putExtra("childData", getIntent().getStringExtra("childData"));
+                    intent.putExtra("fatherData", getIntent().getStringExtra("fatherData"));
+                    intent.putExtra("motherData", getIntent().getStringExtra("motherData"));
 
-                intent.putExtra("language",statusM);
-                intent.putExtra("maritalStatus",language.getText().toString());
-                intent.putExtra("reason",language2.getText().toString());
-
-
-                startActivity(intent);
+                    intent.putExtra("language", statusM);
+                    intent.putExtra("maritalStatus", language.getText().toString());
+                    intent.putExtra("reason", language2.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 
     }
+
+    private boolean validate(){
+
+        if (TextUtils.isEmpty(language.getText().toString()))
+        {
+            language.setError("Oops! Language Spoken blank");
+            language.requestFocus();
+            return false;
+        }
+        if (flag==true) {
+         if (TextUtils.isEmpty(language2.getText().toString())) {
+                language2.setError("Oops! Empty Field 2");
+                language2.requestFocus();
+                return false;
+            }
+        }
+
+
+
+        return true;
+
+    }
+
 }

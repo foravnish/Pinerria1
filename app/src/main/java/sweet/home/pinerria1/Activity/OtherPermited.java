@@ -3,6 +3,7 @@ package sweet.home.pinerria1.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,31 +46,32 @@ public class OtherPermited extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                try {
+                if (validate()) {
+                    try {
 
 
-                    cartItemsObjedct = new JSONObject();
-                    cartItemsObjedct.putOpt("name",driverName.getText().toString());
-                    cartItemsObjedct.putOpt("mobileNumber", MobileNo2.getText().toString());
+                        cartItemsObjedct = new JSONObject();
+                        cartItemsObjedct.putOpt("name", driverName.getText().toString());
+                        cartItemsObjedct.putOpt("mobileNumber", MobileNo2.getText().toString());
 
 
-                    Log.d("sdfsdfsdfdfdfddfsdf",cartItemsObjedct.toString());
+                        Log.d("sdfsdfsdfdfdfddfsdf", cartItemsObjedct.toString());
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    Intent intent = new Intent(OtherPermited.this, Emergency.class);
+                    intent.putExtra("childData", getIntent().getStringExtra("childData"));
+                    intent.putExtra("fatherData", getIntent().getStringExtra("fatherData"));
+                    intent.putExtra("motherData", getIntent().getStringExtra("motherData"));
+                    intent.putExtra("language", getIntent().getStringExtra("language"));
+                    intent.putExtra("maritalStatus", getIntent().getStringExtra("maritalStatus"));
+                    intent.putExtra("reason", getIntent().getStringExtra("reason"));
+                    intent.putExtra("driver", cartItemsObjedct.toString());
+
+                    startActivity(intent);
                 }
-
-
-                Intent intent=new Intent(OtherPermited.this,Emergency.class);
-                intent.putExtra("childData",getIntent().getStringExtra("childData"));
-                intent.putExtra("fatherData",getIntent().getStringExtra("fatherData"));
-                intent.putExtra("motherData",getIntent().getStringExtra("motherData"));
-                intent.putExtra("language",getIntent().getStringExtra("language"));
-                intent.putExtra("maritalStatus",getIntent().getStringExtra("maritalStatus"));
-                intent.putExtra("reason",getIntent().getStringExtra("reason"));
-                intent.putExtra("driver",cartItemsObjedct.toString());
-
-                startActivity(intent);
             }
         });
         RelativeLayout relat=findViewById(R.id.relat);
@@ -80,4 +82,37 @@ public class OtherPermited extends AppCompatActivity {
             }
         });
     }
+
+    private boolean validate(){
+
+        if (TextUtils.isEmpty(driverName.getText().toString()))
+        {
+            driverName.setError("Oops! Driver Name blank");
+            driverName.requestFocus();
+            return false;
+        }
+        else if (TextUtils.isEmpty(MobileNo2.getText().toString()))
+        {
+            MobileNo2.setError("Oops! Driver Mobile No blank");
+            MobileNo2.requestFocus();
+            return false;
+        }
+//        else if (TextUtils.isEmpty(health3.getText().toString()))
+//        {
+//            health3.setError("Oops! Empty Field 3 blank");
+//            health3.requestFocus();
+//            return false;
+//        }
+//        else if (TextUtils.isEmpty(health4.getText().toString()))
+//        {
+//            health4.setError("Oops! Empty Field 4 blank");
+//            health4.requestFocus();
+//            return false;
+//        }
+
+        return true;
+
+    }
+
+
 }

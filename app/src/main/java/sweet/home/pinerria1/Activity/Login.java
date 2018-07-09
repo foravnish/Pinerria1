@@ -64,18 +64,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//
-//                    Intent intent =new Intent(Login.this, MainActivitie.class);
-//                    startActivity(intent);
-
-
                 if(validate()){
 
                     Util.showPgDialog(dialog);
-
-
-
-                    // Instantiate the RequestQueue.
 
                     RequestQueue queue = Volley.newRequestQueue(Login.this);
                     StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -158,6 +149,7 @@ public class Login extends AppCompatActivity {
                         // System.out.print(response);
                         Log.d("gdfgdfghdfhdhgf",response.toString());
 
+
                         try {
                             JSONArray jsonArray=response.getJSONArray("child");
                             for (int i=0;i<jsonArray.length();i++) {
@@ -169,25 +161,25 @@ public class Login extends AppCompatActivity {
                                 map.put("_id", jsonObject.optString("_id"));
                                 map.put("name", jsonObject.optString("name"));
 
+
                                 MyPrefrences.setNoOfChild(getApplicationContext(), String.valueOf(jsonArray.length()));
                                 MyPrefrences.setChildList(getApplicationContext(), jsonArray.toString());
 
 
-                                if (response.optString("registrationStatus").equalsIgnoreCase("true")){
-                                    Intent intent =new Intent(Login.this, MainActivitie.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")){
+//                                if (response.optString("registrationStatus").equalsIgnoreCase("true")){
+//                                    Intent intent =new Intent(Login.this, MainActivitie.class);
+//                                    startActivity(intent);
+//                                    finish();
+//                                }
+//                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")){
+//
+//                                    Intent intent =new Intent(Login.this, WellcomeScr.class);
+//                                    startActivity(intent);
+//                                    finish();
 
                                     Intent intent =new Intent(Login.this, WellcomeScr.class);
                                     startActivity(intent);
                                     finish();
-                                }
-
-//                                    Intent intent =new Intent(Login.this, WellcomeScr.class);
-//                                    startActivity(intent);
-//                                    finish();
 
 
                             }
