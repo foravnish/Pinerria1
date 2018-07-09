@@ -139,7 +139,6 @@ public class Login extends AppCompatActivity {
         });
     }
 
-
     private void childList() {
 
         JsonObjectRequest parentMeRequest = new JsonObjectRequest(Api.parent,null,
