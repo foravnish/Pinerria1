@@ -18,10 +18,11 @@ import sweet.home.pinerria1.R;
 public class OtherInfo extends AppCompatActivity {
 
     Button next;
-    EditText language2,language;
-    Spinner switchStatus;
+    EditText language2;
+    Spinner switchStatus,language;
     String[] str1 = { "Married", "Unmarried"};
-    String statusM;
+    String[] str2 = { "Arabic", "English","Both"};
+    String statusM,statusL;
     boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,10 @@ public class OtherInfo extends AppCompatActivity {
         ArrayAdapter subcat1 = new ArrayAdapter(OtherInfo.this,android.R.layout.simple_spinner_item,str1);
         subcat1.setDropDownViewResource(R.layout.simple_spinner_item);
         switchStatus.setAdapter(subcat1);
+
+        ArrayAdapter subcat2 = new ArrayAdapter(OtherInfo.this,android.R.layout.simple_spinner_item,str2);
+        subcat2.setDropDownViewResource(R.layout.simple_spinner_item);
+        language.setAdapter(subcat2);
 
         Log.d("dfdsgdgdfgd1",getIntent().getStringExtra("childData"));
         Log.d("dfdsgdgdfgd2",getIntent().getStringExtra("fatherData"));
@@ -72,6 +77,20 @@ public class OtherInfo extends AppCompatActivity {
             }
         });
 
+        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                statusL=language.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +103,7 @@ public class OtherInfo extends AppCompatActivity {
                     intent.putExtra("motherData", getIntent().getStringExtra("motherData"));
 
                     intent.putExtra("language", statusM);
-                    intent.putExtra("maritalStatus", language.getText().toString());
+                    intent.putExtra("maritalStatus", statusL);
                     intent.putExtra("reason", language2.getText().toString());
                     startActivity(intent);
                 }
@@ -95,12 +114,13 @@ public class OtherInfo extends AppCompatActivity {
 
     private boolean validate(){
 
-        if (TextUtils.isEmpty(language.getText().toString()))
-        {
-            language.setError("Oops! Language Spoken blank");
-            language.requestFocus();
-            return false;
-        }
+//        if (TextUtils.isEmpty(language.getText().toString()))
+//        {
+//            language.setError("Oops! Language Spoken blank");
+//            language.requestFocus();
+//            return false;
+//        }
+
         if (flag==true) {
          if (TextUtils.isEmpty(language2.getText().toString())) {
                 language2.setError("Oops! Empty Field 2");
