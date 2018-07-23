@@ -50,6 +50,7 @@
                         android:textSize="14dp"/>
 
                     <TextView
+                        android:id="@+id/byUser"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_below="@+id/desc"

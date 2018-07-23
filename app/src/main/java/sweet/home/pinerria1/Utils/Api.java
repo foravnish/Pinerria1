@@ -18,6 +18,7 @@ public class Api {
     public static String PostMsg="http://35.184.93.23:3000/api/message";
     public static String Calender="http://35.184.93.23:3000/api/calendar";
     public static String Remark="http://35.184.93.23:3000/api/remarks/bystudentid/";
+    public static String Notification="http://35.184.93.23:3000/api/notification";
 
                                                               //  api/users/parent/me
 

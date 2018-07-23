@@ -1,24 +1,43 @@
 package sweet.home.pinerria1.Fragment;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sweet.home.pinerria1.R;
+import sweet.home.pinerria1.Utils.Api;
+import sweet.home.pinerria1.Utils.AppController;
+import sweet.home.pinerria1.Utils.MyPrefrences;
+import sweet.home.pinerria1.Utils.Util;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +51,8 @@ public class Notification extends Fragment {
 
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
+
+    Dialog dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,13 +61,22 @@ public class Notification extends Fragment {
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
 
-        HashMap<String,String> map=new HashMap<>();
-        for (int i=0;i<20;i++) {
-            map.put("name", "Name");
-            Adapter adapter=new Adapter();
-            expListView.setAdapter(adapter);
-            AllProducts.add(map);
-        }
+//        HashMap<String,String> map=new HashMap<>();
+//        for (int i=0;i<20;i++) {
+//            map.put("name", "Name");
+//            Adapter adapter=new Adapter();
+//            expListView.setAdapter(adapter);
+//            AllProducts.add(map);
+//        }
+
+        dialog=new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
+
+
+        NotificationApi();
+
 
         ImageView textBack= view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +92,89 @@ public class Notification extends Fragment {
         return view;
     }
 
+    private void NotificationApi() {
+
+        Util.showPgDialog(dialog);
+
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Notification, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("ResponseNotification",response.toString());
+                Util.cancelPgDialog(dialog);
+
+
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject jsonObject=response.getJSONObject(i);
+
+
+                        HashMap<String,String> map=new HashMap<>();
+
+                        map.put("_id", jsonObject.optString("_id"));
+                        map.put("recordId", jsonObject.optString("recordId"));
+                        map.put("type", jsonObject.optString("type"));
+                        map.put("title", jsonObject.optString("title"));
+                        map.put("language", jsonObject.optString("language"));
+                        map.put("description", jsonObject.optString("description"));
+                        map.put("desccreatedByRoleription", jsonObject.optString("createdByRole"));
+
+
+                        Adapter adapter=new Adapter();
+                        expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+
+
+//                        HashMap<String,String> map=new HashMap<>();
+//                        for (int i=0;i<20;i++) {
+//                            map.put("name", "Name");
+//                            Adapter adapter=new Adapter();
+//                            expListView.setAdapter(adapter);
+//                            AllProducts.add(map);
+//                        }
+//
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Errorcala",error.toString());
+                Util.cancelPgDialog(dialog);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> header = new HashMap<>();
+                String authToken = MyPrefrences.getToken(getActivity());
+                String bearer = "Bearer ".concat(authToken);
+                header.put("Authorization", bearer);
+
+                return header;
+
+            }
+        };
+
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(25000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonArrayRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
+    }
+
+
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title;
+        TextView title,desc,byUser;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -94,7 +203,12 @@ public class Notification extends Fragment {
             convertView=inflater.inflate(R.layout.list_notifiction,parent,false);
 
             title=convertView.findViewById(R.id.title);
+            desc=convertView.findViewById(R.id.desc);
+            byUser=convertView.findViewById(R.id.byUser);
 
+            title.setText(AllProducts.get(position).get("title"));
+            desc.setText(AllProducts.get(position).get("description"));
+            byUser.setText(AllProducts.get(position).get("createdByRole"));
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
