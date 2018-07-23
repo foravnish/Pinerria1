@@ -116,7 +116,7 @@ public class Notification extends Fragment {
                         map.put("title", jsonObject.optString("title"));
                         map.put("language", jsonObject.optString("language"));
                         map.put("description", jsonObject.optString("description"));
-                        map.put("desccreatedByRoleription", jsonObject.optString("createdByRole"));
+                        map.put("createdByRole", jsonObject.optString("createdByRole"));
 
 
                         Adapter adapter=new Adapter();
