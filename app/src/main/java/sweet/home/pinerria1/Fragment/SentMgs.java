@@ -8,23 +8,32 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +66,7 @@ public class SentMgs extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Adapter  listAdapter;
-    Dialog dialog;
+    Dialog dialog,dialog4;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,9 +80,6 @@ public class SentMgs extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
-
-
-
 
 
 
@@ -159,7 +165,7 @@ public class SentMgs extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,date,firstChar;
+        TextView title,desc,date,firstChar,editDelete;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -182,7 +188,7 @@ public class SentMgs extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
 
             convertView=inflater.inflate(R.layout.list_sen_mgs,parent,false);
@@ -191,7 +197,15 @@ public class SentMgs extends Fragment {
             desc=convertView.findViewById(R.id.desc);
             date=convertView.findViewById(R.id.date);
             firstChar=convertView.findViewById(R.id.firstChar);
+            editDelete=convertView.findViewById(R.id.editDelete);
 
+            editDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    Toast.makeText(getActivity(), "pos: "+position, Toast.LENGTH_SHORT).show();
+                    dialogDeleteData(AllProducts.get(position).get("_id"));
+                }
+            });
 
             title.setText(AllProducts.get(position).get("recievedByRole"));
             desc.setText(AllProducts.get(position).get("description"));
@@ -207,6 +221,111 @@ public class SentMgs extends Fragment {
 
             return convertView;
         }
+    }
+
+    private void dialogDeleteData(final String id) {
+
+        final LinearLayout delete,cancel;
+
+        dialog4 = new Dialog(getActivity());
+        dialog4.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog4.setContentView(R.layout.delete_alert);
+        dialog4.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        delete=(LinearLayout)dialog4.findViewById(R.id.delete);
+        cancel=(LinearLayout)dialog4.findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.exit(0);
+                //getActivity().finish();
+//                getActivity().finishAffinity();
+                dialog4.dismiss();
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog4.dismiss();
+
+                deleteDataApi(id);
+            }
+        });
+        dialog4.show();
+
+    }
+
+    private void deleteDataApi(String id) {
+
+        Util.showPgDialog(dialog);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        StringRequest strReq = new StringRequest(Request.Method.DELETE,
+                Api.DeleteMsg+id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Util.cancelPgDialog(dialog);
+                Log.e("dfsjfdfsdsdffdffgd", "delete Response: " + response);
+
+                Toast.makeText(getActivity(), "Message Deleted Successfully... ", Toast.LENGTH_SHORT).show();
+
+                Fragment fragment = new Message();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Util.cancelPgDialog(dialog);
+                Log.e("fdgdfgdfdfdfsdfgd", "MGS Error: " + error.getMessage());
+                Toast.makeText(getActivity(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Log.e("fgdfgdfgdf","Inside getParams");
+
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+//                params.put("recievedByRole", spiVal.toLowerCase());
+//                params.put("subject", edit_sub.getText().toString());
+//                params.put("description", edit_msg.getText().toString());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> header = new HashMap<>();
+                String authToken = MyPrefrences.getToken(getActivity());
+                String bearer = "Bearer ".concat(authToken);
+                header.put("Authorization", bearer);
+                return header;
+            }
+
+//                        @Override
+//                        public Map<String, String> getHeaders() throws AuthFailureError {
+//                            Log.e("fdgdfgdfgdfg","Inside getHeaders()");
+//                            Map<String,String> headers=new HashMap<>();
+//                            headers.put("Content-Type","application/x-www-form-urlencoded");
+//                            return headers;
+//                        }
+
+        };
+
+
+        // Adding request to request queue
+        queue.add(strReq);
+
     }
 
 }

@@ -114,6 +114,7 @@ public class TeachRemark extends Fragment {
                         map.put("modifiedOn", jsonObject.optString("modifiedOn"));
                         map.put("createdOn", jsonObject.optString("createdOn"));
                         map.put("isClassLevel", jsonObject.optString("isClassLevel"));
+                        map.put("isremarks", jsonObject.optString("isremarks"));
                         Adapter adapter=new Adapter();
                         expListView.setAdapter(adapter);
                         AllProducts.add(map);
@@ -193,8 +194,13 @@ public class TeachRemark extends Fragment {
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
 
+            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("yes")){
+                title.setText("Remark");
+            }
+            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("no")){
+                title.setText("Assesment");
+            }
 
-            title.setText("Remark "+position+1);
             remarkValue.setText(AllProducts.get(position).get("remark"));
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
 

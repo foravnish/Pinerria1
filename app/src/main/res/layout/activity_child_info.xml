@@ -49,7 +49,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical">
+
+
 
 
             <EditText
@@ -132,6 +136,7 @@
                     android:layout_height="40dp"
                     android:textColor="#fff"
                     android:layout_marginRight="20dp"
+
                     android:background="@drawable/stroke_btn1"
                     android:text="NEXT"/>
                 <Button

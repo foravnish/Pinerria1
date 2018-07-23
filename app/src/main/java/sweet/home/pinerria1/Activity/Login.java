@@ -64,18 +64,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//
-//                    Intent intent =new Intent(Login.this, MainActivitie.class);
-//                    startActivity(intent);
-
-
                 if(validate()){
 
                     Util.showPgDialog(dialog);
-
-
-
-                    // Instantiate the RequestQueue.
 
                     RequestQueue queue = Volley.newRequestQueue(Login.this);
                     StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -102,12 +93,6 @@ public class Login extends AppCompatActivity {
 
 
                                 childList();
-//
-
-////                                Intent intent =new Intent(Login.this, MainActivitie.class);
-//                                Intent intent =new Intent(Login.this, WellcomeScr.class);
-//                                startActivity(intent);
-//                                finish();
 
 
                             } catch (JSONException e) {
@@ -154,7 +139,6 @@ public class Login extends AppCompatActivity {
         });
     }
 
-
     private void childList() {
 
         JsonObjectRequest parentMeRequest = new JsonObjectRequest(Api.parent,null,
@@ -163,6 +147,7 @@ public class Login extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         // System.out.print(response);
                         Log.d("gdfgdfghdfhdhgf",response.toString());
+
 
                         try {
                             JSONArray jsonArray=response.getJSONArray("child");
@@ -175,26 +160,27 @@ public class Login extends AppCompatActivity {
                                 map.put("_id", jsonObject.optString("_id"));
                                 map.put("name", jsonObject.optString("name"));
 
+
                                 MyPrefrences.setNoOfChild(getApplicationContext(), String.valueOf(jsonArray.length()));
                                 MyPrefrences.setChildList(getApplicationContext(), jsonArray.toString());
 
 
                                 if (response.optString("registrationStatus").equalsIgnoreCase("true")){
+                                    Log.d("sdfsdfsdfsdfs","true");
                                     Intent intent =new Intent(Login.this, MainActivitie.class);
                                     startActivity(intent);
                                     finish();
                                 }
-                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")){
-
-                                    Intent intent =new Intent(Login.this, WellcomeScr.class);
+                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")) {
+                                    Log.d("sdfsdfsdfsdfs","false");
+                                    Intent intent = new Intent(Login.this, WellcomeScr.class);
                                     startActivity(intent);
                                     finish();
-                                }
 
 //                                    Intent intent =new Intent(Login.this, WellcomeScr.class);
 //                                    startActivity(intent);
 //                                    finish();
-
+                                }
 
                             }
 

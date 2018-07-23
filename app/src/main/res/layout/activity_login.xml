@@ -45,7 +45,7 @@
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:inputType="phone"
-                android:text="7840893300"
+                android:text="9958565516"
                 android:background="@drawable/strock_edit"/>
 
 

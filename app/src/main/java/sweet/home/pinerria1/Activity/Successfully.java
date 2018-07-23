@@ -16,6 +16,39 @@ public class Successfully extends AppCompatActivity {
         setContentView(R.layout.activity_successfully);
 
         ImageView proceed=findViewById(R.id.proceed);
+
+
+        Thread background = new Thread() {
+            public void run() {
+                try {
+
+                    sleep(3*1000);
+
+                    Intent intent = new Intent(Successfully.this, MainActivitie.class);
+                    startActivity(intent);
+                    finish();
+
+
+//                    if (MyPrefrences.getUserLogin(SplashScreen.this)==true){
+//                        Intent intent =new Intent(SplashScreen.this, MainActivity.class);
+//                        intent.putExtra("isflag","0");
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                    else {
+//                        Intent intent = new Intent(SplashScreen.this, LoginAct.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+
+                } catch (Exception e) {
+                }
+            }
+        };
+        // start thread
+        background.start();
+
+
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

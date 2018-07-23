@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:padding="15dp"
     android:fontFamily="@font/comicz"
-
     android:background="@drawable/spinner_item_border"
 
     />

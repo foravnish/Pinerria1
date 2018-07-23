@@ -1,14 +1,33 @@
 package sweet.home.pinerria1.Activity;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import sweet.home.pinerria1.Fragment.Calender;
 import sweet.home.pinerria1.Fragment.Menual;
@@ -16,6 +35,10 @@ import sweet.home.pinerria1.Fragment.Message;
 import sweet.home.pinerria1.Fragment.Notification;
 import sweet.home.pinerria1.Fragment.Profile;
 import sweet.home.pinerria1.R;
+import sweet.home.pinerria1.Utils.Api;
+import sweet.home.pinerria1.Utils.AppController;
+import sweet.home.pinerria1.Utils.MyPrefrences;
+import sweet.home.pinerria1.Utils.Util;
 
 public class MainActivitie extends AppCompatActivity {
 
@@ -38,6 +61,7 @@ public class MainActivitie extends AppCompatActivity {
         FragmentTransaction ft = manager.beginTransaction();
         ft.replace(R.id.container, fragment).commit();
 
+        //displayFirebaseRegId();
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,5 +149,126 @@ public class MainActivitie extends AppCompatActivity {
 
     }
 
+    private void displayFirebaseRegId() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        final String regId = pref.getString("regId", null);
+
+        Log.d("djfsakljf;sldkfsdk", "Firebase reg id: " + regId);
+
+        if (!TextUtils.isEmpty(regId)){
+            //txtRegId.setText("Firebase Reg Id: " + regId);
+
+
+            RequestQueue queue = Volley.newRequestQueue(MainActivitie.this);
+            StringRequest strReq = new StringRequest(Request.Method.POST,
+                    "", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //  Util.cancelPgDialog(dialog);
+                    Log.d("ResponseToken", response);
+                    //parse your response here
+
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //  Util.cancelPgDialog(dialog);
+                    Log.e("fdgdfgdfgd", "Login Error: " + error.getMessage());
+                    //Toast.makeText(getApplicationContext(),"Please Connect to the Internet or Wrong Password", Toast.LENGTH_LONG).show();
+                }
+            }){
+
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Log.e("fgdfgdfgdf","Inside getParams");
+
+                    // Posting parameters to login url
+                    Map<String, String> params = new HashMap<>();
+                    params.put("deviceToken", regId);
+
+                    Log.d("dfsdsdgfdgdfgdfg",regId);
+
+                    return params;
+                }
+
+//                        @Override
+//                        public Map<String, String> getHeaders() throws AuthFailureError {
+//                            Log.e("fdgdfgdfgdfg","Inside getHeaders()");
+//                            Map<String,String> headers=new HashMap<>();
+//                            headers.put("Content-Type","application/x-www-form-urlencoded");
+//                            return headers;
+//                        }
+            };
+            queue.add(strReq);
+
+
+
+
+//            StringRequest postRequest = new StringRequest(Request.Method.POST, "",
+//                    new Response.Listener<String>()
+//                    {
+//                        @Override
+//                        public void onResponse(String response) {
+//                            // response
+//                            Log.d("ResponseToken", response);
+//                          //  Util.cancelPgDialog(dialog);
+//                            try {
+//                                JSONObject jsonObject=new JSONObject(response);
+//                                if (jsonObject.getString("status").equalsIgnoreCase("success")){
+//
+//
+//
+//                                }
+//                                else{
+//                                    // Toast.makeText(getApplicationContext(),jsonObject.getString("message") , Toast.LENGTH_SHORT).show();
+//                                }
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                        }
+//                    },
+//                    new Response.ErrorListener()
+//                    {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            // error
+//                          //  Toast.makeText(HomeAct.this, "Error! Please connect to the Internet.", Toast.LENGTH_SHORT).show();
+//                           // Util.cancelPgDialog(dialog);
+//                        }
+//                    }
+//            ) {
+//                @Override
+//                protected Map<String, String> getParams()
+//                {
+//                    Map<String, String>  params = new HashMap<String, String>();
+//                    params.put("deviceToken", regId);
+//
+//                    Log.d("dfsdsdgfdgdfgdfg",regId);
+//
+//                    return params;
+//                }
+//            };
+//            postRequest.setRetryPolicy(new DefaultRetryPolicy(27000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//            postRequest.setShouldCache(false);
+//
+//            AppController.getInstance().addToRequestQueue(postRequest);
+
+
+
+
+
+
+
+        }
+        else {
+//            txtRegId.setText("Firebase Reg Id is not received yet!");
+            Log.d("djfsakljf;sldkfsdk", "Firebase Reg Id is not received yet!");
+        }
+    }
 
 }

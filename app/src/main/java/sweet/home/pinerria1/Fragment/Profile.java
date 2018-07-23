@@ -67,12 +67,14 @@ public class Profile extends Fragment {
     List<String> listUser2 = new ArrayList<String>();
     List<String> listUser3 = new ArrayList<String>();
     List<String> listUserID = new ArrayList<String>();
+    List<String> listUserClassID = new ArrayList<String>();
     Dialog dialog;
     CircleImageView authorImageView;
     ImageView classImage;
     //String [] opt  = {"Profile","Change Password","Logout"};
     ArrayList<String> opt=new ArrayList<>();
     String sId;
+    String ClassId;
 
 
     @Override
@@ -195,8 +197,13 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new ActivitesA();
+
+                Bundle bundle=new Bundle();
+                bundle.putString("ClassId",ClassId);
+
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
+                fragment.setArguments(bundle);
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
             }
         });
@@ -231,6 +238,7 @@ public class Profile extends Fragment {
 
                 Log.d("fsdafsdafsdfs",listUserID.get(i));
                 sId=listUserID.get(i).toString();
+                ClassId=listUserClassID.get(i).toString();
 
                 String imageUrl="http://35.184.93.23:3000/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
@@ -363,6 +371,7 @@ public class Profile extends Fragment {
                                 listUser2.add(jsonObject.optString("image"));
                                 listUser3.add(jsonObject1.optString("image"));
                                 listUserID.add(jsonObject.optString("_id"));
+                                listUserClassID.add(jsonObject1.optString("_id"));
 
 
                                 ArrayAdapter subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);

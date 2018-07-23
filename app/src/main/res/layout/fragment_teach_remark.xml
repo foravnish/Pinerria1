@@ -37,6 +37,7 @@
         android:layout_below="@+id/relat"
         android:textStyle="bold"
         android:textColor="#111"
+        android:visibility="gone"
         android:background="#fff"
         android:gravity="center"
         android:text="21-mar-2018"/>

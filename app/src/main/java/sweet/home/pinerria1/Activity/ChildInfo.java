@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,10 +28,10 @@ import sweet.home.pinerria1.Utils.MyPrefrences;
 
 public class ChildInfo extends AppCompatActivity {
 
-    Button next,next2,next3,next4,next5;
+    Button next;
     Spinner gender,gender2,gender3,gender4,gender5;
-    String[] str = { "Male", "Female" };
-    TextView DOB,DOB2,DOB3,DOB4,DOB5;
+    String[] str = { "Select Gender","Male", "Female" };
+    TextView DOB;
     DatePickerDialog  datePickerDialog;
     EditText childName,nationality,homeAddress;
     LinearLayout liner1;
@@ -43,7 +44,6 @@ public class ChildInfo extends AppCompatActivity {
         Log.d("sdfsdfsdgfsdgdfgd",getIntent().getStringExtra("value"));
         Log.d("sdfsdfsdgfsgdgdfgd",getIntent().getStringExtra("id"));
         next=findViewById(R.id.next);
-
 
         gender=findViewById(R.id.gender);
 
@@ -83,15 +83,19 @@ public class ChildInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if(validate()){
+                    Intent intent=new Intent(ChildInfo.this, HealthInfo.class);
+                    intent.putExtra("id",getIntent().getStringExtra("id"));
+                    intent.putExtra("name",childName.getText().toString());
+                    intent.putExtra("DOB",DOB.getText().toString());
+                    intent.putExtra("gender",genderVal.toString());
+                    intent.putExtra("nationality",nationality.getText().toString());
+                    intent.putExtra("homeAddress",homeAddress.getText().toString());
+                    startActivity(intent);
 
-                Intent intent=new Intent(ChildInfo.this, HealthInfo.class);
-                intent.putExtra("id",getIntent().getStringExtra("id"));
-                intent.putExtra("name",childName.getText().toString());
-                intent.putExtra("DOB",DOB.getText().toString());
-                intent.putExtra("gender",genderVal.toString());
-                intent.putExtra("nationality",nationality.getText().toString());
-                intent.putExtra("homeAddress",homeAddress.getText().toString());
-                startActivity(intent);
+
+                }
+
 
 
             }
@@ -161,6 +165,27 @@ public class ChildInfo extends AppCompatActivity {
 //
 //        }
     }
+
+
+    private boolean validate(){
+
+        if (TextUtils.isEmpty(nationality.getText().toString()))
+        {
+            nationality.setError("Oops! Nationality blank");
+            nationality.requestFocus();
+            return false;
+        }
+        else if (TextUtils.isEmpty(homeAddress.getText().toString()))
+        {
+            homeAddress.setError("Oops! Home Address blank");
+            homeAddress.requestFocus();
+            return false;
+        }
+
+        return true;
+
+    }
+
 
 
 }

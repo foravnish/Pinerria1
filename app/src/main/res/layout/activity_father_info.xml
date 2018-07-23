@@ -38,14 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"></LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -143,12 +140,11 @@
             android:id="@+id/homeAddress"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-
             android:layout_marginTop="10dp"
             android:hint="Home Address"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
-            android:inputType="textMultiLine"
+            android:inputType="textPersonName"
             android:background="@drawable/strock_edt_father"/>
 
         <LinearLayout

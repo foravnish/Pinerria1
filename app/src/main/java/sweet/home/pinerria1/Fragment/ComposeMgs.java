@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,22 +21,28 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import sweet.home.pinerria1.Activity.Login;
 import sweet.home.pinerria1.R;
 import sweet.home.pinerria1.Utils.Api;
+import sweet.home.pinerria1.Utils.AppController;
 import sweet.home.pinerria1.Utils.MyPrefrences;
 import sweet.home.pinerria1.Utils.Util;
 
@@ -56,6 +63,9 @@ public class ComposeMgs extends Fragment {
     EditText edit_sub,edit_msg;
     Button submitdata;
     Dialog dialog;
+    ArrayAdapter aa;
+    List<String> CatList = new ArrayList<String>();
+    List<HashMap<String,String>> AllProducts ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,7 +76,7 @@ public class ComposeMgs extends Fragment {
         edit_msg=view.findViewById(R.id.edit_msg);
         submitdata=view.findViewById(R.id.submitdata);
 
-
+        AllProducts = new ArrayList<>();
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -74,14 +84,10 @@ public class ComposeMgs extends Fragment {
         dialog.setCancelable(false);
 
 
-        ArrayAdapter aa = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,str);
-        aa.setDropDownViewResource(R.layout.simple_spinner_item);
-
-        spiner.setAdapter(aa);
         spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                spiVal=spiner.getSelectedItem().toString();
+                spiVal=AllProducts.get(i).get("name").toString();
             }
 
             @Override
@@ -94,14 +100,96 @@ public class ComposeMgs extends Fragment {
             @Override
             public void onClick(View view) {
 
+//                sendData();
+                Log.d("dfsfsdfsdfsd",spiVal);
+
                 if (!spiVal.equalsIgnoreCase("To")) {
-                    sendData();
+                    if (!TextUtils.isEmpty(edit_sub.getText().toString())) {
+                        if (!TextUtils.isEmpty(edit_msg.getText().toString())) {
+                            sendData();
+                        }
+                        else{
+                            Toast.makeText(getActivity(), "Please input Message", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Please input Subject", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
-                    Toast.makeText(getActivity(), "Please select role...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please select Role", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.RoleBy, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("ResponseRole",response.toString());
+                Util.cancelPgDialog(dialog);
+
+                CatList.clear();
+                AllProducts.clear();
+                HashMap<String, String> map2 = new HashMap<>();
+                map2.put("name", "To");
+                AllProducts.add(map2);
+                CatList.add("To");
+//.
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject jsonObject=response.getJSONObject(i);
+
+
+                        HashMap<String,String> map=new HashMap<>();
+
+                        map.put("name", jsonObject.optString("name"));
+                        map.put("value", jsonObject.optString("value"));
+
+
+                        CatList.add(jsonObject.optString("value"));
+
+                        AllProducts.add(map);
+
+                        aa = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,CatList);
+                        aa.setDropDownViewResource(R.layout.simple_spinner_item);
+                        spiner.setAdapter(aa);
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ErrorMGS",error.toString());
+                Util.cancelPgDialog(dialog);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> header = new HashMap<>();
+                String authToken = MyPrefrences.getToken(getActivity());
+                String bearer = "Bearer ".concat(authToken);
+                header.put("Authorization", bearer);
+
+                return header;
+
+            }
+        };
+
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(25000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonArrayRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
 
 
 
