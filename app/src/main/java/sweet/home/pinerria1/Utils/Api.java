@@ -21,6 +21,7 @@ public class Api {
     public static String Notification="http://35.184.93.23:3000/api/notification";
     public static String userroles="http://35.184.93.23:3000/api/userroles";
     public static String DeleteMsg="http://35.184.93.23:3000/api/message";
+    public static String SchoolManuals="http://35.184.93.23:3000/assets/pdf/SchoolManuals.pdf";
 
                                                               //  api/users/parent/me
 

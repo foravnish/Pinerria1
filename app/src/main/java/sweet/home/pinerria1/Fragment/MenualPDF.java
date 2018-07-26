@@ -14,21 +14,25 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import sweet.home.pinerria1.R;
 
+import java.io.File;
+
+import sweet.home.pinerria1.R;
+import sweet.home.pinerria1.Utils.Api;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenualPDF extends Fragment  {
+public class MenualPDF extends Fragment {
 
 
     public MenualPDF() {
         // Required empty public constructor
     }
+    public static final String SAMPLE_FILE = Api.SchoolManuals; //your file path
+
 
     ProgressBar progressBar;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,9 +42,9 @@ public class MenualPDF extends Fragment  {
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
 
-      //  Log.d("dsfsfsdfgsdgs",getIntent().getStringExtra("link"));
+//        Log.d("dsfsfsdfgsdgs",getIntent().getStringExtra("link"));
 
-        WebView webView = view. findViewById(R.id.webview);
+        WebView webView =  view.findViewById(R.id.webview);
         //progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         webView.setWebViewClient(new MyBrowser());
@@ -55,17 +59,11 @@ public class MenualPDF extends Fragment  {
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
 
-//        webView.loadUrl("http://35.184.93.23:3000/assets/pdf/SchoolManuals.pdf");
-      //  webView.loadUrl("https://www.tutorialspoint.com/java/java_tutorial.pdf");
-
-
-        String filename ="http://35.184.93.23:3000/assets/pdf/SchoolManuals.pdf";
-        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + filename);
+        webView.loadUrl("http://docs.google.com/gview?embedded=true&url="+SAMPLE_FILE);
 
 
         return view;
     }
-
     private class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -85,5 +83,6 @@ public class MenualPDF extends Fragment  {
         }
 
     }
+
 
 }
