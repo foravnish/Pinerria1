@@ -36,7 +36,7 @@ public class HealthInfo extends AppCompatActivity {
         health4=findViewById(R.id.health4);
 
 
-//
+
         linear1=findViewById(R.id.linear1);
 
 
