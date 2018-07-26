@@ -96,7 +96,7 @@ public class Notification extends Fragment {
 
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Notification, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Notification+"?pagenum=2&perpage=1", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("ResponseNotification",response.toString());
@@ -106,7 +106,6 @@ public class Notification extends Fragment {
                 for (int i=0;i<response.length();i++){
                     try {
                         JSONObject jsonObject=response.getJSONObject(i);
-
 
                         HashMap<String,String> map=new HashMap<>();
 
@@ -122,16 +121,6 @@ public class Notification extends Fragment {
                         Adapter adapter=new Adapter();
                         expListView.setAdapter(adapter);
                         AllProducts.add(map);
-
-
-//                        HashMap<String,String> map=new HashMap<>();
-//                        for (int i=0;i<20;i++) {
-//                            map.put("name", "Name");
-//                            Adapter adapter=new Adapter();
-//                            expListView.setAdapter(adapter);
-//                            AllProducts.add(map);
-//                        }
-//
 
 
 
@@ -162,7 +151,6 @@ public class Notification extends Fragment {
 
             }
         };
-
 
         jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(25000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jsonArrayRequest.setShouldCache(false);

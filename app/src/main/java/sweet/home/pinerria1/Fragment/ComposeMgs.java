@@ -123,7 +123,7 @@ public class ComposeMgs extends Fragment {
         });
 
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.RoleBy, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.userroles, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("ResponseRole",response.toString());
