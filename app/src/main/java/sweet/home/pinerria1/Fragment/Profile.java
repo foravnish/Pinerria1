@@ -187,8 +187,12 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new WeekPlan();
+                Bundle bundle=new Bundle();
+                bundle.putString("ClassId",ClassId);
+
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
+                fragment.setArguments(bundle);
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
             }
         });
