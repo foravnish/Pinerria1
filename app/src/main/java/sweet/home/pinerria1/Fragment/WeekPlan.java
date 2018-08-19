@@ -168,8 +168,6 @@ public class WeekPlan extends Fragment {
 //        queue.add(strReq);
 
 
-
-
         Log.d("sdgfdsgdgdfgd",getArguments().getString("ClassId"));
             Util.showPgDialog(dialog);
             //// TODO Header APi
@@ -182,8 +180,6 @@ public class WeekPlan extends Fragment {
                             System.out.print(response);
                             Util.cancelPgDialog(dialog);
                             Log.d("WeeklyPlanResponse",response.toString());
-
-
 
                         }
 
