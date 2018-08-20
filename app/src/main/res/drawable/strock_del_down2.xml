@@ -9,7 +9,7 @@
         android:bottom="10dp"
         android:left="10dp"
         android:right="10dp"
-        android:top="10dp" />
+        android:top="25dp" />
     <corners
         android:bottomLeftRadius="0dp"
         android:bottomRightRadius="14dp"

@@ -44,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:paddingTop="5dp"
+        android:visibility="visible"
         android:background="#a7acaf"></View>
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,6 +61,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1"
+            android:layout_marginTop="-20dp"
             android:background="@drawable/strock_del_down"
             android:orientation="horizontal">
 
@@ -85,6 +87,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1"
+            android:layout_marginTop="-20dp"
             android:background="@drawable/strock_del_down2"
             android:orientation="horizontal">
 
