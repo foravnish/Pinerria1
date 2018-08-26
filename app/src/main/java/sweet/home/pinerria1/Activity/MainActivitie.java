@@ -32,6 +32,7 @@ import java.util.Map;
 import sweet.home.pinerria1.Fragment.Calender;
 import sweet.home.pinerria1.Fragment.Menual;
 import sweet.home.pinerria1.Fragment.MenualPDF;
+import sweet.home.pinerria1.Fragment.MenualThreeLevel;
 import sweet.home.pinerria1.Fragment.Message;
 import sweet.home.pinerria1.Fragment.Notification;
 import sweet.home.pinerria1.Fragment.Profile;
@@ -135,8 +136,9 @@ public class MainActivitie extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                Fragment fragment = new MenualThreeLevel();
 //                Fragment fragment = new Menual();
-                Fragment fragment = new MenualPDF();
+//                Fragment fragment = new MenualPDF();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
