@@ -171,8 +171,8 @@ public class WeekPlan extends Fragment {
         Log.d("sdgfdsgdgdfgd",getArguments().getString("ClassId"));
             Util.showPgDialog(dialog);
             //// TODO Header APi
-//            JsonObjectRequest parentMeRequest = new JsonObjectRequest(Api.WeeklyPlan+getArguments().getString("ClassId"),null,
-            JsonObjectRequest parentMeRequest = new JsonObjectRequest("http://35.184.93.23:3000/api/weekly-plan/getmonthandweekbydata/5b01bbac5965f71240c7cdef",null,
+            JsonObjectRequest parentMeRequest = new JsonObjectRequest(Api.WeeklyPlan+getArguments().getString("ClassId"),null,
+//            JsonObjectRequest parentMeRequest = new JsonObjectRequest("http://35.184.93.23:3000/api/weekly-plan/getmonthandweekbydata/5b01bbac5965f71240c7cdef",null,
 //            JsonObjectRequest parentMeRequest = new JsonObjectRequest(Api.parent,null,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -207,7 +207,6 @@ public class WeekPlan extends Fragment {
             //System.out.print("called twice");
 //                    SingletonRequestQueue.getInstance(getActivity()).getRequestQueue().add(parentMeRequest);
             AppController.getInstance().addToRequestQueue(parentMeRequest);
-//
     }
 
     class Adapter extends BaseAdapter {
@@ -217,9 +216,7 @@ public class WeekPlan extends Fragment {
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         }
-
         @Override
         public int getCount() {
             return AllProducts.size();
