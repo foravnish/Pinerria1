@@ -72,6 +72,7 @@ public class WeekPlan extends Fragment {
     Dialog dialog;
     TextView bnt_Week1,bnt_Week2,bnt_Week3,bnt_Week4,bnt_Week5;
     ViewPager viewPager;
+    GridView lvExp;
     CustomPagerAdapter mCustomPagerAdapter;
     List<Const> AllEvents=new ArrayList<>();
     int currPos=0;
@@ -96,11 +97,12 @@ public class WeekPlan extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 //
-//        TextView bnt_Week1= view.findViewById(R.id.bnt_Week1);
-//        TextView bnt_Week2= view.findViewById(R.id.bnt_Week2);
-//        TextView bnt_Week3= view.findViewById(R.id.bnt_Week3);
-//        TextView bnt_Week4= view.findViewById(R.id.bnt_Week4);
-//        TextView bnt_Week5= view.findViewById(R.id.bnt_Week5);
+        TextView bnt_Week1= view.findViewById(R.id.bnt_Week1);
+        TextView bnt_Week2= view.findViewById(R.id.bnt_Week2);
+        TextView bnt_Week3= view.findViewById(R.id.bnt_Week3);
+        TextView bnt_Week4= view.findViewById(R.id.bnt_Week4);
+        TextView bnt_Week5= view.findViewById(R.id.bnt_Week5);
+        lvExp= view.findViewById(R.id.lvExp);
 
 
         dialog=new Dialog(getActivity());
@@ -122,36 +124,36 @@ public class WeekPlan extends Fragment {
 
 
 
-//        bnt_Week1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        bnt_Week1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         getWeekPlanData();
 
 
