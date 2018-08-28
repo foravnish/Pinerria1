@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,6 +23,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +49,7 @@ import java.util.Map;
 import sweet.home.pinerria1.R;
 import sweet.home.pinerria1.Utils.Api;
 import sweet.home.pinerria1.Utils.AppController;
+import sweet.home.pinerria1.Utils.Const;
 import sweet.home.pinerria1.Utils.MyPrefrences;
 import sweet.home.pinerria1.Utils.Util;
 
@@ -66,7 +71,10 @@ public class WeekPlan extends Fragment {
     GridView expListView;
     Dialog dialog;
     TextView bnt_Week1,bnt_Week2,bnt_Week3,bnt_Week4,bnt_Week5;
-
+    ViewPager viewPager;
+    CustomPagerAdapter mCustomPagerAdapter;
+    List<Const> AllEvents=new ArrayList<>();
+    int currPos=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,11 +83,24 @@ public class WeekPlan extends Fragment {
 
         ImageView textBack= view.findViewById(R.id.textBack);
 
-        ImageView bnt_Week1= view.findViewById(R.id.bnt_Week1);
-        ImageView bnt_Week2= view.findViewById(R.id.bnt_Week2);
-        ImageView bnt_Week3= view.findViewById(R.id.bnt_Week3);
-        ImageView bnt_Week4= view.findViewById(R.id.bnt_Week4);
-        ImageView bnt_Week5= view.findViewById(R.id.bnt_Week5);
+
+        viewPager = (ViewPager) view.findViewById(R.id.slider);
+//        leftarrow=(TextView)view.findViewById(R.id.leftarrow);
+//        rightarrow=(TextView)view.findViewById(R.id.rightarrow);
+//        date=(TextView)view.findViewById(R.id.date);
+
+        mCustomPagerAdapter=new CustomPagerAdapter(getActivity());
+
+        dialog=new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
+//
+//        TextView bnt_Week1= view.findViewById(R.id.bnt_Week1);
+//        TextView bnt_Week2= view.findViewById(R.id.bnt_Week2);
+//        TextView bnt_Week3= view.findViewById(R.id.bnt_Week3);
+//        TextView bnt_Week4= view.findViewById(R.id.bnt_Week4);
+//        TextView bnt_Week5= view.findViewById(R.id.bnt_Week5);
 
 
         dialog=new Dialog(getActivity());
@@ -99,40 +120,55 @@ public class WeekPlan extends Fragment {
         });
 
 
-        AllProducts = new ArrayList<>();
-        expListView = (GridView) view.findViewById(R.id.lvExp);
 
-        bnt_Week1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        bnt_Week2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        bnt_Week1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
         getWeekPlanData();
+
+
+
+
+        for (int i=0;i<5;i++) {
+
+
+//            AllEvents.add(new Const(jsonObjectThu.toString(), null, null, null, null));
+                                AllEvents.add(new Const("1","2","3","4","5"));
+
+            viewPager.setAdapter(mCustomPagerAdapter);
+
+            mCustomPagerAdapter.notifyDataSetChanged();
+
+        }
+
         return view;
     }
 
@@ -218,6 +254,87 @@ public class WeekPlan extends Fragment {
             return convertView;
         }
     }
+
+
+
+
+
+
+    public class  ViewHolder{
+        GridView expListView;
+        LinearLayout layoutToAdd;
+        LinearLayout mainLayout;
+        LinearLayout liner1,liner2,liner3;
+
+        TextView br1,br2;
+        TextView br3,br4;
+        TextView br5,br6;
+        TextView date,leftarrow,rightarrow;
+    }
+    class CustomPagerAdapter extends PagerAdapter {
+
+        Context mContext;
+        LayoutInflater mLayoutInflater;
+        View view2;
+        ViewHolder viewHolder;
+
+        public CustomPagerAdapter(Context context) {
+            mContext = context;
+            mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return AllEvents.size();
+        }
+
+
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == ((RelativeLayout) object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, final int position) {
+            View itemView = mLayoutInflater.inflate(R.layout.page_weely_plan, container, false);
+
+            viewHolder=new ViewHolder();
+            viewHolder.date=itemView.findViewById(R.id.date);
+            viewHolder.leftarrow=itemView.findViewById(R.id.leftarrow);
+            viewHolder.rightarrow=itemView.findViewById(R.id.rightarrow);
+
+            viewHolder.leftarrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    currPos=viewPager.getCurrentItem();
+                    viewPager.setCurrentItem(currPos-1);
+                }
+            });
+
+            viewHolder.rightarrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    currPos=viewPager.getCurrentItem();
+                    viewPager.setCurrentItem(currPos+1);
+                }
+            });
+
+
+
+
+            container.addView(itemView);
+
+            return itemView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((RelativeLayout) object);
+        }
+    }
+
+
 
 
 }

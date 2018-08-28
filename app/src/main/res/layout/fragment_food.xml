@@ -28,44 +28,7 @@
             android:textColor="#fff"
             android:text="Food Menu"/>
     </RelativeLayout>
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="35dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:foregroundGravity="center"-->
-        <!--android:layout_below="@+id/relat">-->
-        <!--<TextView-->
-            <!--android:id="@+id/leftarrow"-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/left"-->
-            <!--android:textColor="#111"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:textStyle="bold"/>-->
-    <!--<TextView-->
-        <!--android:id="@+id/date"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="#111"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="#fff"-->
-        <!--android:textSize="16dp"-->
-        <!--android:fontFamily="@font/comicz"-->
-        <!--android:layout_toRightOf="@+id/leftarrow"-->
-        <!--android:gravity="center"-->
-        <!--android:text="Days"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/rightarrow"-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="40dp"-->
-            <!--android:textColor="#111"-->
-            <!--android:background="@drawable/right"-->
-            <!--android:textStyle="bold"-->
-            <!--android:layout_toRightOf="@+id/date"/>-->
-    <!--</RelativeLayout>-->
+
 
 
     <RelativeLayout

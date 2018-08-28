@@ -157,7 +157,7 @@ public class Food extends Fragment {
                     public void onResponse(JSONObject response) {
                         Util.cancelPgDialog(dialog);
 
-
+                        AllEvents.clear();
                         Log.d("gdfgdfghdfhdhgf",response.toString());
                         try {
                             JSONObject jsonObjectSunday=response.getJSONObject("Sunday");

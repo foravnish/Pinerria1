@@ -24,28 +24,39 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="#fff"
-            android:text="Week Plans"/>
+            android:text="Weekly Plans"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/date"
+
+
+    <RelativeLayout
+        android:id="@+id/rela"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/relat"
-        android:textStyle="bold"
-        android:textColor="#111"
-        android:background="#fff"
-        android:gravity="center"
-        android:text="21-mar-2018"/>
+        android:layout_marginTop="10dp"
+        android:layout_weight="5">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v4.view.ViewPager>
+
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/liner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/date"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/rela"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="5dp"
         android:weightSum="5">
 
         <TextView
@@ -54,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/comicz"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:background="@drawable/strock_noti1"
             android:textColor="@color/white"
             android:layout_gravity="center"
@@ -67,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textColor="@color/white"
             android:background="@drawable/strock_noti2"
             android:fontFamily="@font/comicz"
@@ -79,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textColor="@color/white"
             android:background="@drawable/strock_noti3"
             android:layout_marginLeft="10dp"
@@ -96,7 +107,7 @@
             android:fontFamily="@font/comicz"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Week 4"/>
@@ -107,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/comicz"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/strock_noti1"
             android:textColor="@color/white"
@@ -125,23 +136,4 @@
         android:layout_below="@+id/liner"
         android:verticalSpacing="7dp"
         android:stretchMode="columnWidth"/>
-
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_below="@+id/date"-->
-        <!--android:paddingRight="2.5dp"-->
-        <!--android:background="@color/white"-->
-        <!--tools:context=".MainActivity">-->
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/recycler_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:paddingHorizontal="10dp" />-->
-
-    <!--</RelativeLayout>-->
-
-
 </RelativeLayout>

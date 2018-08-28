@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context="sweet.home.pinerria1.Fragment.SentMgs">
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/stroke"
+        android:foregroundGravity="center"
+        android:layout_below="@+id/relat">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:gravity="center">
+        <TextView
+            android:id="@+id/leftarrow"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left"
+            android:textColor="#111"
+            android:layout_marginRight="40dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#111"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            android:textSize="16dp"
+            android:fontFamily="@font/comicz"
+            android:layout_toRightOf="@+id/leftarrow"
+            android:gravity="center"
+            android:text="Days"/>
+        <TextView
+            android:id="@+id/rightarrow"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:textColor="#111"
+            android:background="@drawable/right"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/date"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>
