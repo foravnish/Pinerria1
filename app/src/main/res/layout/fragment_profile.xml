@@ -162,6 +162,7 @@
                                 android:drawableTop="@drawable/fm"
                                 android:fontFamily="@font/comicz"
                                 android:gravity="center"
+                                android:textSize="13dp"
                                 android:text="Food Menu"
                                 android:textColor="@color/black" />
                         </android.support.v7.widget.CardView>
@@ -185,6 +186,7 @@
                                 android:drawableTop="@drawable/wp"
                                 android:fontFamily="@font/comicz"
                                 android:gravity="center"
+                                android:textSize="13dp"
                                 android:text="Weekly Plan"
                                 android:textColor="@color/black" />
 
@@ -239,6 +241,7 @@
                                 android:fontFamily="@font/comicz"
                                 android:gravity="center"
                                 android:text="Activities"
+                                android:textSize="13dp"
                                 android:textColor="@color/black" />
                         </android.support.v7.widget.CardView>
 
@@ -261,7 +264,8 @@
                                 android:drawableTop="@drawable/tm"
                                 android:fontFamily="@font/comicz"
                                 android:gravity="center"
-                                android:text="Teachers Remark"
+                                android:textSize="13dp"
+                                android:text="Remarks &amp; Assessment"
                                 android:textColor="@color/black" />
 
                             <android.support.v7.widget.CardView

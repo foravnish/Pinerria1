@@ -65,6 +65,7 @@ public class WeekPlan extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Dialog dialog;
+    TextView bnt_Week1,bnt_Week2,bnt_Week3,bnt_Week4,bnt_Week5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +74,12 @@ public class WeekPlan extends Fragment {
         View view= inflater.inflate(R.layout.fragment_week_plan, container, false);
 
         ImageView textBack= view.findViewById(R.id.textBack);
+
+        ImageView bnt_Week1= view.findViewById(R.id.bnt_Week1);
+        ImageView bnt_Week2= view.findViewById(R.id.bnt_Week2);
+        ImageView bnt_Week3= view.findViewById(R.id.bnt_Week3);
+        ImageView bnt_Week4= view.findViewById(R.id.bnt_Week4);
+        ImageView bnt_Week5= view.findViewById(R.id.bnt_Week5);
 
 
         dialog=new Dialog(getActivity());
@@ -95,78 +102,41 @@ public class WeekPlan extends Fragment {
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
 
+        bnt_Week1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bnt_Week5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         getWeekPlanData();
         return view;
     }
 
     private void getWeekPlanData() {
-//
-
-
-
-
-//        Util.showPgDialog(dialog);
-//
-//        RequestQueue queue = Volley.newRequestQueue(getActivity());
-//        StringRequest strReq = new StringRequest(Request.Method.GET,
-//               "http://35.184.93.23:3000/api/weekly-plan/getmonthandweekbydata/5b01bbac5965f71240c7cdef", new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Util.cancelPgDialog(dialog);
-//                Log.e("dfsjfdfsdsdffdffgd", "PWD Response: " + response);
-//
-//
-//
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Util.cancelPgDialog(dialog);
-//                Log.e("fdgdfgdfdfdfsdfgd", "PWD Error: " + error.getMessage());
-//                //Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
-//
-//               // Util.errorDialog(getActivity(),"Old Password not Correct");
-//            }
-//        }){
-//
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Log.e("fgdfgdfgdf","Inside getParams");
-//
-//                // Posting parameters to login url
-//                Map<String, String> params = new HashMap<>();
-////                params.put("oldpassword", edit_pwdOld.getText().toString());
-////                params.put("password", edit_pwdNew.getText().toString());
-////
-////                Log.d("dsfsdfsdfsdfs",edit_pwdOld.getText().toString());
-////                Log.d("dsfsdfsdfsdfs",edit_pwdNew.getText().toString());
-//                return params;
-//            }
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> header = new HashMap<>();
-//                String authToken = MyPrefrences.getToken(getActivity());
-//                String bearer = "Bearer ".concat(authToken);
-//                header.put("Authorization", bearer);
-//                return header;
-//            }
-//
-////                        @Override
-////                        public Map<String, String> getHeaders() throws AuthFailureError {
-////                            Log.e("fdgdfgdfgdfg","Inside getHeaders()");
-////                            Map<String,String> headers=new HashMap<>();
-////                            headers.put("Content-Type","application/x-www-form-urlencoded");
-////                            return headers;
-////                        }
-//
-//        };
-//
-//
-//        // Adding request to request queue
-//        queue.add(strReq);
-
 
         Log.d("sdgfdsgdgdfgd",getArguments().getString("ClassId"));
             Util.showPgDialog(dialog);
@@ -249,91 +219,5 @@ public class WeekPlan extends Fragment {
         }
     }
 
-//    public class HLVAdapter extends RecyclerView.Adapter<HLVAdapter.ViewHolder> {
-//
-//        ArrayList<String> alName;
-//        ArrayList<Integer> alImage;
-//        List<HashMap<String,String>> allProducts;
-//        Context context;
-//
-//        public HLVAdapter(Context context, List<HashMap<String, String>> allProducts) {
-//            super();
-//            this.context = context;
-//            this.allProducts = allProducts;
-//            this.alImage = alImage;
-//        }
-//
-//        @Override
-//        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-//            View v = LayoutInflater.from(viewGroup.getContext())
-//                    .inflate(R.layout.list_week_plan_week, viewGroup, false);
-//            ViewHolder viewHolder = new ViewHolder(v);
-//            return viewHolder;
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(ViewHolder viewHolder, int i) {
-//            //viewHolder.tvSpecies.setText(AllProducts.get(i).get("name"));
-//            //viewHolder.imgThumbnail.setImageResource(alImage.get(i));
-//
-//            Log.d("fvsdgsdgdfg",allProducts.get(i).get("name"));
-//            viewHolder.bnt_Week.setText("Week "+allProducts.get(i).get("name"));
-//
-////            viewHolder.setClickListener(new ItemClickListener() {
-////                @Override
-////                public void onClick(View view, int position, boolean isLongClick) {
-////                    if (isLongClick) {
-////                        Toast.makeText(context, "#" + position + " - " + alName.get(position) + " (Long click)", Toast.LENGTH_SHORT).show();
-////                        context.startActivity(new Intent(context, MainActivity.class));
-////                    } else {
-////                        Toast.makeText(context, "#" + position + " - " + alName.get(position), Toast.LENGTH_SHORT).show();
-////                    }
-////                }
-////            });
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return AllProducts.size();
-//        }
-//
-//        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-//
-//            public Button bnt_Week;
-//            public TextView tvSpecies;
-//            //private ItemClickListener clickListener;
-//
-//            public ViewHolder(View itemView) {
-//                super(itemView);
-//                bnt_Week = (Button) itemView.findViewById(R.id.bnt_Week);
-//            }
-//
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//
-//            @Override
-//            public boolean onLongClick(View view) {
-//                return false;
-//            }
-//
-////            public void setClickListener(ItemClickListener itemClickListener) {
-////                this.clickListener = itemClickListener;
-////            }
-//
-////            @Override
-////            public void onClick(View view) {
-////                clickListener.onClick(view, getPosition(), false);
-////            }
-//
-////            @Override
-////            public boolean onLongClick(View view) {
-////                clickListener.onClick(view, getPosition(), true);
-////                return true;
-////            }
-//        }
-//
-//    }
 
 }

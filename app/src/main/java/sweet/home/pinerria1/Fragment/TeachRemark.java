@@ -24,6 +24,8 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -159,7 +161,8 @@ public class TeachRemark extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,remarkValue,iv1;
+        TextView title,remarkValue;
+        ImageView iv1;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -198,14 +201,17 @@ public class TeachRemark extends Fragment {
                 title.setText("Remark");
             }
             else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("no")){
-                title.setText("Assesment");
+                title.setText("Assessment");
             }
 
             remarkValue.setText(AllProducts.get(position).get("remark"));
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
 
+            String imageUrl2="http://35.184.93.23:3000/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
 
-            iv1.setText(Html.fromHtml(AllProducts.get(position).get("emojiIcon")));
+            Picasso.with(getActivity()).load(imageUrl2).into(iv1);
+
+            //iv1.setText(Html.fromHtml(AllProducts.get(position).get("emojiIcon")));
 //            iv1.setText(Html.fromHtml("&#9786;"));
 
 //            iv1.setText(Html.fromHtml("\ud83d\ude12"));

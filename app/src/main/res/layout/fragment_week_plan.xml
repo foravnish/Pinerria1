@@ -46,7 +46,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:weightSum="4">
+        android:weightSum="5">
 
         <TextView
             android:id="@+id/bnt_Week1"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/comicz"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:background="@drawable/strock_noti1"
             android:textColor="@color/white"
             android:layout_gravity="center"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textColor="@color/white"
             android:background="@drawable/strock_noti2"
             android:fontFamily="@font/comicz"
@@ -79,7 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textColor="@color/white"
             android:background="@drawable/strock_noti3"
             android:layout_marginLeft="10dp"
@@ -96,11 +96,24 @@
             android:fontFamily="@font/comicz"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Week 4"/>
 
+        <TextView
+            android:id="@+id/bnt_Week5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/comicz"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/strock_noti1"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Week 5"/>
     </LinearLayout>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"

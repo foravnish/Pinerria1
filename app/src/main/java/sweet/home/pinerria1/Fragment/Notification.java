@@ -96,7 +96,7 @@ public class Notification extends Fragment {
 
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Notification+"?pagenum=2&perpage=1", new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Notification+"?pagenum=&perpage=", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("ResponseNotification",response.toString());
@@ -162,7 +162,7 @@ public class Notification extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,byUser;
+        TextView title,desc,byUser,type;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -193,13 +193,16 @@ public class Notification extends Fragment {
             title=convertView.findViewById(R.id.title);
             desc=convertView.findViewById(R.id.desc);
             byUser=convertView.findViewById(R.id.byUser);
+            type=convertView.findViewById(R.id.type);
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
             byUser.setText(AllProducts.get(position).get("createdByRole"));
+            type.setText(AllProducts.get(position).get("type"));
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
+            type.setTypeface(tvFont);
 
 
             return convertView;
