@@ -161,9 +161,7 @@ public class WeekPlan extends Fragment {
 
         for (int i=0;i<5;i++) {
 
-
-//            AllEvents.add(new Const(jsonObjectThu.toString(), null, null, null, null));
-                                AllEvents.add(new Const("1","2","3","4","5"));
+            AllEvents.add(new Const("1","2","3","4","5"));
 
             viewPager.setAdapter(mCustomPagerAdapter);
 
