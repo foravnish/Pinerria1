@@ -45,7 +45,7 @@
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:inputType="phone"
-                android:text="7840893300"
+                android:text=""
                 android:background="@drawable/strock_edit"/>
 
 
@@ -58,7 +58,7 @@
                 android:layout_below="@+id/edit_email"
                 android:paddingLeft="5dp"
                 android:hint="***********"
-                android:text="123456"
+                android:text=""
                 android:inputType="textPassword"
                 android:background="@drawable/strock_edit"/>
 

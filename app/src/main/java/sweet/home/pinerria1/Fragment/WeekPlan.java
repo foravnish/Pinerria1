@@ -43,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -76,6 +77,8 @@ public class WeekPlan extends Fragment {
     CustomPagerAdapter mCustomPagerAdapter;
     List<Const> AllEvents=new ArrayList<>();
     int currPos=0;
+    JSONObject jsonObject1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,12 +100,12 @@ public class WeekPlan extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 //
-        TextView bnt_Week1= view.findViewById(R.id.bnt_Week1);
-        TextView bnt_Week2= view.findViewById(R.id.bnt_Week2);
-        TextView bnt_Week3= view.findViewById(R.id.bnt_Week3);
-        TextView bnt_Week4= view.findViewById(R.id.bnt_Week4);
-        TextView bnt_Week5= view.findViewById(R.id.bnt_Week5);
-        lvExp= view.findViewById(R.id.lvExp);
+//        TextView bnt_Week1= view.findViewById(R.id.bnt_Week1);
+//        TextView bnt_Week2= view.findViewById(R.id.bnt_Week2);
+//        TextView bnt_Week3= view.findViewById(R.id.bnt_Week3);
+//        TextView bnt_Week4= view.findViewById(R.id.bnt_Week4);
+//        TextView bnt_Week5= view.findViewById(R.id.bnt_Week5);
+//        lvExp= view.findViewById(R.id.lvExp);
 
 
         dialog=new Dialog(getActivity());
@@ -122,52 +125,52 @@ public class WeekPlan extends Fragment {
         });
 
 
+//        AllEvents.add(new Const(jsonObject1.optString("name"),"2","3","4","5"));
+//        viewPager.setAdapter(mCustomPagerAdapter);
+//        mCustomPagerAdapter.notifyDataSetChanged();
 
-
-        bnt_Week1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        bnt_Week5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         getWeekPlanData();
 
 
 
+        //Log.d("sdfsdfsdfgsdfs",jsonObject1.toString());
 
-        for (int i=0;i<5;i++) {
+//        bnt_Week1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//            }
+//        });
+//        bnt_Week2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        bnt_Week5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
-            AllEvents.add(new Const("1","2","3","4","5"));
 
-            viewPager.setAdapter(mCustomPagerAdapter);
 
-            mCustomPagerAdapter.notifyDataSetChanged();
 
-        }
+
 
         return view;
     }
@@ -186,6 +189,99 @@ public class WeekPlan extends Fragment {
                             System.out.print(response);
                             Util.cancelPgDialog(dialog);
                             Log.d("WeeklyPlanResponse",response.toString());
+
+                            Iterator<String> iter = response.keys();
+                            while (iter.hasNext()) {
+                                String key = iter.next();
+                                try {
+                                    Object value = response.get(key);
+
+                                    Log.d("dgdfgdfhdfhg",value.toString());
+
+                                    JSONObject jsonObject=new JSONObject(value.toString());
+                                    if (jsonObject.has("1")){
+                                       JSONObject jsonObject1=new JSONObject(jsonObject.optString("1"));
+                                       Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject1.toString());
+                                        AllEvents.add(new Const(jsonObject1.optString("name"),jsonObject1.optString("weeks"),"","",""));
+                                    }
+                                    if (jsonObject.has("2")){
+                                        JSONObject jsonObject2=new JSONObject(jsonObject.optString("2"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject2.toString());
+                                        AllEvents.add(new Const(jsonObject2.optString("name"),jsonObject2.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("3")){
+                                        JSONObject jsonObject3=new JSONObject(jsonObject.optString("3"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject3.toString());
+                                        AllEvents.add(new Const(jsonObject3.optString("name"),jsonObject3.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("4")){
+                                        JSONObject jsonObject4=new JSONObject(jsonObject.optString("4"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject4.toString());
+                                        AllEvents.add(new Const(jsonObject4.optString("name"),jsonObject4.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("5")){
+                                        JSONObject jsonObject5=new JSONObject(jsonObject.optString("5"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject5.toString());
+                                        AllEvents.add(new Const(jsonObject5.optString("name"),jsonObject5.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("6")){
+                                        JSONObject jsonObject6=new JSONObject(jsonObject.optString("6"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject6.toString());
+                                        AllEvents.add(new Const(jsonObject6.optString("name"),jsonObject6.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("7")){
+                                        JSONObject jsonObject7=new JSONObject(jsonObject.optString("7"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject7.toString());
+                                        AllEvents.add(new Const(jsonObject7.optString("name"),jsonObject7.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("8")){
+                                        JSONObject jsonObject8=new JSONObject(jsonObject.optString("8"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject8.toString());
+                                        AllEvents.add(new Const(jsonObject8.optString("name"),jsonObject8.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("9")){
+                                        JSONObject jsonObject9=new JSONObject(jsonObject.optString("9"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject9.toString());
+                                        AllEvents.add(new Const(jsonObject9.optString("name"),jsonObject9.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("10")){
+                                        JSONObject jsonObject10=new JSONObject(jsonObject.optString("10"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject10.toString());
+                                        AllEvents.add(new Const(jsonObject10.optString("name"),jsonObject10.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("11")){
+                                        JSONObject jsonObject11=new JSONObject(jsonObject.optString("11"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject11.toString());
+                                        AllEvents.add(new Const(jsonObject11.optString("name"),jsonObject11.optString("weeks"),"","",""));
+
+                                    }
+                                    if (jsonObject.has("12")){
+                                        JSONObject jsonObject12=new JSONObject(jsonObject.optString("12"));
+                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject12.toString());
+                                        AllEvents.add(new Const(jsonObject12.optString("name"),jsonObject12.optString("weeks"),"","",""));
+
+                                    }
+
+                                    viewPager.setAdapter(mCustomPagerAdapter);
+                                    mCustomPagerAdapter.notifyDataSetChanged();
+
+                                    Log.d("sdvdsvxdvxdvsd",AllEvents.get(0).getId().toString());
+
+
+                                } catch (JSONException e) {
+                                    // Something went wrong!
+                                }
+                            }
+
 
                         }
 
@@ -303,6 +399,10 @@ public class WeekPlan extends Fragment {
             viewHolder.date=itemView.findViewById(R.id.date);
             viewHolder.leftarrow=itemView.findViewById(R.id.leftarrow);
             viewHolder.rightarrow=itemView.findViewById(R.id.rightarrow);
+
+            viewHolder.date.setText(AllEvents.get(position).getId().toString());
+
+            Log.d("Sdgdsfgdfgdfgdfg",AllEvents.get(position).getCatid().toString());
 
             viewHolder.leftarrow.setOnClickListener(new View.OnClickListener() {
                 @Override
