@@ -94,7 +94,7 @@ public class WeekPlan extends Fragment {
 //        date=(TextView)view.findViewById(R.id.date);
 
         mCustomPagerAdapter=new CustomPagerAdapter(getActivity());
-
+        AllProducts=new ArrayList<>();
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -135,37 +135,6 @@ public class WeekPlan extends Fragment {
 
         //Log.d("sdfsdfsdfgsdfs",jsonObject1.toString());
 
-//        bnt_Week1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//            }
-//        });
-//        bnt_Week2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        bnt_Week5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
 
 
 
@@ -311,45 +280,6 @@ public class WeekPlan extends Fragment {
             AppController.getInstance().addToRequestQueue(parentMeRequest);
     }
 
-    class Adapter extends BaseAdapter {
-
-        LayoutInflater inflater;
-        TextView title;
-
-        Adapter() {
-            inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-        @Override
-        public int getCount() {
-            return AllProducts.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return AllProducts.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-
-            convertView=inflater.inflate(R.layout.list_week_plan,parent,false);
-            title=convertView.findViewById(R.id.title);
-
-
-            final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
-            title.setTypeface(tvFont);
-
-
-
-            return convertView;
-        }
-    }
 
 
 
@@ -400,9 +330,176 @@ public class WeekPlan extends Fragment {
             viewHolder.leftarrow=itemView.findViewById(R.id.leftarrow);
             viewHolder.rightarrow=itemView.findViewById(R.id.rightarrow);
 
+            viewHolder.expListView=itemView.findViewById(R.id.lvExp);
+
+            TextView bnt_Week1= itemView.findViewById(R.id.bnt_Week1);
+            TextView bnt_Week2= itemView.findViewById(R.id.bnt_Week2);
+            TextView bnt_Week3= itemView.findViewById(R.id.bnt_Week3);
+            TextView bnt_Week4= itemView.findViewById(R.id.bnt_Week4);
+            TextView bnt_Week5= itemView.findViewById(R.id.bnt_Week5);
+
             viewHolder.date.setText(AllEvents.get(position).getId().toString());
 
-            Log.d("Sdgdsfgdfgdfgdfg",AllEvents.get(position).getCatid().toString());
+
+            try {
+                JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
+                JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                AllProducts.clear();
+                for (int i=0;i<jsonArray.length();i++){
+                    JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                    HashMap<String,String> map=new HashMap<>();
+                    map.put("title",jsonObject12.optString("title"));
+                    map.put("description",jsonObject12.optString("description"));
+                    map.put("image",jsonObject12.optString("image"));
+
+                    Adapter adapter=new Adapter();
+                    viewHolder.expListView.setAdapter(adapter);
+                    AllProducts.add(map);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            bnt_Week1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    AllProducts.clear();
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                        HashMap<String,String> map=new HashMap<>();
+                        map.put("title",jsonObject12.optString("title"));
+                        map.put("description",jsonObject12.optString("description"));
+
+                        Adapter adapter=new Adapter();
+                        viewHolder.expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        bnt_Week2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("2"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    AllProducts.clear();
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                        HashMap<String,String> map=new HashMap<>();
+                        map.put("title",jsonObject12.optString("title"));
+                        map.put("description",jsonObject12.optString("description"));
+
+                        Adapter adapter=new Adapter();
+                        viewHolder.expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        bnt_Week3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("3"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    AllProducts.clear();
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                        HashMap<String,String> map=new HashMap<>();
+                        map.put("title",jsonObject12.optString("title"));
+                        map.put("description",jsonObject12.optString("description"));
+
+                        Adapter adapter=new Adapter();
+                        viewHolder.expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        bnt_Week4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("4"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    AllProducts.clear();
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                        HashMap<String,String> map=new HashMap<>();
+                        map.put("title",jsonObject12.optString("title"));
+                        map.put("description",jsonObject12.optString("description"));
+
+                        Adapter adapter=new Adapter();
+                        viewHolder.expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        bnt_Week5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("5"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    AllProducts.clear();
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                        HashMap<String,String> map=new HashMap<>();
+                        map.put("title",jsonObject12.optString("title"));
+                        map.put("description",jsonObject12.optString("description"));
+
+                        Adapter adapter=new Adapter();
+                        viewHolder.expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+
 
             viewHolder.leftarrow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -422,6 +519,8 @@ public class WeekPlan extends Fragment {
 
 
 
+            Log.d("Sdgdsfgdfgdfgdfg",AllEvents.get(position).getCatid().toString());
+
 
             container.addView(itemView);
 
@@ -432,6 +531,49 @@ public class WeekPlan extends Fragment {
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((RelativeLayout) object);
         }
+
+
+        class Adapter extends BaseAdapter {
+
+            LayoutInflater inflater;
+            TextView title,desc;
+
+            Adapter() {
+                inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            }
+            @Override
+            public int getCount() {
+                return AllProducts.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return AllProducts.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+
+                convertView=inflater.inflate(R.layout.list_week_plan,parent,false);
+                title=convertView.findViewById(R.id.title);
+                desc=convertView.findViewById(R.id.desc);
+
+                title.setText(AllProducts.get(position).get("title").toString());
+                desc.setText(AllProducts.get(position).get("description").toString());
+
+                final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
+                title.setTypeface(tvFont);
+
+                return convertView;
+            }
+        }
+
     }
 
 
