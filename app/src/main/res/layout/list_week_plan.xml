@@ -14,9 +14,10 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/relForColor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/strock_week1">
+            android:background="@drawable/strock_week_p1">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -37,6 +38,12 @@
                 android:textColor="@color/white"
                 android:textSize="12dp"/>
         </RelativeLayout>
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/networkImg"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="170dp"/>
         <TextView
             android:id="@+id/desc"
             android:layout_width="match_parent"
@@ -45,7 +52,7 @@
             android:background="@drawable/strock_week3"
             android:gravity="left"
             android:padding="10dp"
-            android:text="Descriptive text is a text which says what a person or a thing is like. Its purpose is to describe and reveal a particular person, place, or thing."
+            android:text="Descriptive ."
             android:textSize="15dp" />
 
 

@@ -33,7 +33,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -295,7 +297,7 @@ public class WeekPlan extends Fragment {
         TextView br1,br2;
         TextView br3,br4;
         TextView br5,br6;
-        TextView date,leftarrow,rightarrow;
+        TextView date,leftarrow,rightarrow,txtNoData;
     }
     class CustomPagerAdapter extends PagerAdapter {
 
@@ -331,6 +333,7 @@ public class WeekPlan extends Fragment {
             viewHolder.rightarrow=itemView.findViewById(R.id.rightarrow);
 
             viewHolder.expListView=itemView.findViewById(R.id.lvExp);
+            viewHolder.txtNoData=itemView.findViewById(R.id.txtNoData);
 
             TextView bnt_Week1= itemView.findViewById(R.id.bnt_Week1);
             TextView bnt_Week2= itemView.findViewById(R.id.bnt_Week2);
@@ -346,17 +349,25 @@ public class WeekPlan extends Fragment {
                 JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
                 JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
-                AllProducts.clear();
-                for (int i=0;i<jsonArray.length();i++){
-                    JSONObject  jsonObject12=jsonArray.optJSONObject(i);
-                    HashMap<String,String> map=new HashMap<>();
-                    map.put("title",jsonObject12.optString("title"));
-                    map.put("description",jsonObject12.optString("description"));
-                    map.put("image",jsonObject12.optString("image"));
+                if (jsonArray!=null) {
+                    viewHolder.txtNoData.setVisibility(View.GONE);
+                    viewHolder.expListView.setVisibility(View.VISIBLE);
+                    AllProducts.clear();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject12 = jsonArray.optJSONObject(i);
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("title", jsonObject12.optString("title"));
+                        map.put("description", jsonObject12.optString("description"));
+                        map.put("image", jsonObject12.optString("image"));
 
-                    Adapter adapter=new Adapter();
-                    viewHolder.expListView.setAdapter(adapter);
-                    AllProducts.add(map);
+                        Adapter adapter = new Adapter("1");
+                        viewHolder.expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
+                }
+                else{
+                    viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                    viewHolder.expListView.setVisibility(View.GONE);
                 }
 
             } catch (JSONException e) {
@@ -381,8 +392,8 @@ public class WeekPlan extends Fragment {
                         HashMap<String,String> map=new HashMap<>();
                         map.put("title",jsonObject12.optString("title"));
                         map.put("description",jsonObject12.optString("description"));
-
-                        Adapter adapter=new Adapter();
+                        map.put("image",jsonObject12.optString("image"));
+                        Adapter adapter=new Adapter("1");
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
@@ -408,8 +419,8 @@ public class WeekPlan extends Fragment {
                         HashMap<String,String> map=new HashMap<>();
                         map.put("title",jsonObject12.optString("title"));
                         map.put("description",jsonObject12.optString("description"));
-
-                        Adapter adapter=new Adapter();
+                        map.put("image",jsonObject12.optString("image"));
+                        Adapter adapter=new Adapter("2");
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
@@ -434,8 +445,8 @@ public class WeekPlan extends Fragment {
                         HashMap<String,String> map=new HashMap<>();
                         map.put("title",jsonObject12.optString("title"));
                         map.put("description",jsonObject12.optString("description"));
-
-                        Adapter adapter=new Adapter();
+                        map.put("image",jsonObject12.optString("image"));
+                        Adapter adapter=new Adapter("3");
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
@@ -460,8 +471,8 @@ public class WeekPlan extends Fragment {
                         HashMap<String,String> map=new HashMap<>();
                         map.put("title",jsonObject12.optString("title"));
                         map.put("description",jsonObject12.optString("description"));
-
-                        Adapter adapter=new Adapter();
+                        map.put("image",jsonObject12.optString("image"));
+                        Adapter adapter=new Adapter("4");
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
@@ -486,8 +497,8 @@ public class WeekPlan extends Fragment {
                         HashMap<String,String> map=new HashMap<>();
                         map.put("title",jsonObject12.optString("title"));
                         map.put("description",jsonObject12.optString("description"));
-
-                        Adapter adapter=new Adapter();
+                        map.put("image",jsonObject12.optString("image"));
+                        Adapter adapter=new Adapter("5");
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
@@ -537,9 +548,13 @@ public class WeekPlan extends Fragment {
 
             LayoutInflater inflater;
             TextView title,desc;
+            NetworkImageView networkImg;
+            RelativeLayout relForColor;
+            String colorSet;
 
-            Adapter() {
+            Adapter(String colorSet) {
                 inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                this.colorSet=colorSet;
             }
             @Override
             public int getCount() {
@@ -563,12 +578,49 @@ public class WeekPlan extends Fragment {
                 convertView=inflater.inflate(R.layout.list_week_plan,parent,false);
                 title=convertView.findViewById(R.id.title);
                 desc=convertView.findViewById(R.id.desc);
+                networkImg=convertView.findViewById(R.id.networkImg);
+                relForColor=convertView.findViewById(R.id.relForColor);
 
                 title.setText(AllProducts.get(position).get("title").toString());
                 desc.setText(AllProducts.get(position).get("description").toString());
 
+                String imageUrl="http://35.184.93.23:3000/api/upload/"+AllProducts.get(position).get("image").toString();
+
+                Log.d("dsfdsfdfgdgdfgdfgdfg",AllProducts.get(position).get("image").toString());
+
+                if (AllProducts.get(position).get("image").toString().equals("")){
+                    networkImg.setVisibility(View.GONE);
+                }
+                else {
+                    networkImg.setVisibility(View.VISIBLE);
+                    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+                    networkImg.setImageUrl(imageUrl, imageLoader);
+                }
+
                 final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
                 title.setTypeface(tvFont);
+//                desc.setTypeface(tvFont);
+
+                if (colorSet.equals("1")){
+                   //Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+                    relForColor.setBackgroundResource(R.drawable.strock_week_p1);
+                }
+                else if (colorSet.equals("2")){
+                    relForColor.setBackgroundResource(R.drawable.strock_week_p2);
+                   // Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
+                }
+                else if (colorSet.equals("3")){
+                    relForColor.setBackgroundResource(R.drawable.strock_week_p3);
+                   // Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
+                }
+                else if (colorSet.equals("4")){
+                    relForColor.setBackgroundResource(R.drawable.strock_week_p4);
+                    //Toast.makeText(getActivity(), "4", Toast.LENGTH_SHORT).show();
+                }
+                else if (colorSet.equals("5")){
+                    relForColor.setBackgroundResource(R.drawable.strock_week_p5);
+                   // Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
+                }
 
                 return convertView;
             }

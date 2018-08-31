@@ -128,7 +128,7 @@
             android:fontFamily="@font/comicz"
             android:textSize="14dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/strock_noti1"
+            android:background="@drawable/strock_noti5"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:gravity="center"
@@ -145,6 +145,12 @@
         android:verticalSpacing="7dp"
         android:stretchMode="columnWidth"/>
 
+
+    <TextView
+        android:id="@+id/txtNoData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="no data"/>
 
 
 </RelativeLayout>
