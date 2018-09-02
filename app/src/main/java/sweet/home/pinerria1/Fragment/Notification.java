@@ -116,6 +116,7 @@ public class Notification extends Fragment {
                         map.put("language", jsonObject.optString("language"));
                         map.put("description", jsonObject.optString("description"));
                         map.put("createdByRole", jsonObject.optString("createdByRole"));
+                        map.put("createdOn", jsonObject.optString("createdOn"));
 
 
                         Adapter adapter=new Adapter();
@@ -195,6 +196,8 @@ public class Notification extends Fragment {
             byUser=convertView.findViewById(R.id.byUser);
             type=convertView.findViewById(R.id.type);
 
+            Log.d("DFsdfsdgsdfgsfgd",AllProducts.get(position).get("createdOn"));
+
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
             byUser.setText(AllProducts.get(position).get("createdByRole"));
@@ -204,6 +207,8 @@ public class Notification extends Fragment {
             title.setTypeface(tvFont);
             type.setTypeface(tvFont);
 
+
+            Log.d("DFsdfsdgsdfgsfgd",AllProducts.get(position).get("createdOn"));
 
             return convertView;
         }
