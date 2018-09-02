@@ -7,8 +7,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +22,11 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.NetworkImageView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,36 +42,26 @@ import sweet.home.pinerria1.Utils.Util;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeachRemark extends Fragment {
+public class Assessments extends Fragment {
 
 
-    public TeachRemark() {
+    public Assessments() {
         // Required empty public constructor
     }
+
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Dialog dialog;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_teach_remark, container, false);
-//        ImageView textBack= view.findViewById(R.id.textBack);
-//        textBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Fragment fragment = new Profile();
-//                android.support.v4.app.FragmentManager manager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction ft = manager.beginTransaction();
-//                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
-//            }
-//        });
-
+        View view= inflater.inflate(R.layout.fragment_assessments, container, false);
 
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
-
-        Log.d("StudentId",getArguments().getString("sId"));
 
 
         dialog=new Dialog(getActivity());
@@ -83,25 +69,16 @@ public class TeachRemark extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
-        ReamrkofStudent();
+        assessmentData();
+
 
         return view;
     }
 
-    public static Fragment NewInstance(String typeforListing) {
-        Bundle args = new Bundle();
-        args.putString("sId", typeforListing);
-
-        TeachRemark fragment = new TeachRemark();
-        fragment.setArguments(args);
-
-        return fragment;
-    }
-
-    private void ReamrkofStudent() {
+    private void assessmentData() {
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b8ac40b9b6a826723aba859", new Response.Listener<JSONArray>() {
 //        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b1414bb9f3e5271f50c1aa6", new Response.Listener<JSONArray>() {
 
             @Override
@@ -198,7 +175,7 @@ public class TeachRemark extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
 
 
-            convertView=inflater.inflate(R.layout.list_remark,parent,false);
+            convertView=inflater.inflate(R.layout.list_assessment,parent,false);
             title=convertView.findViewById(R.id.title);
             remarkValue=convertView.findViewById(R.id.remarkValue);
             iv1=convertView.findViewById(R.id.iv1);
@@ -228,6 +205,7 @@ public class TeachRemark extends Fragment {
             return convertView;
         }
     }
+
 
 
 
