@@ -34,6 +34,7 @@
         android:layout_height="35dp"
         android:layout_below="@+id/relat"
         android:textStyle="bold"
+        android:visibility="gone"
         android:textColor="#111"
         android:background="#fff"
         android:gravity="center"
