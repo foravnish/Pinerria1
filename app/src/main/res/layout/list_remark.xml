@@ -31,7 +31,7 @@
                 android:id="@+id/remarkValue1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem lpsum is simply dummy text of the printing and typesting industry"
+                android:text=""
                 android:textSize="12dp"
                 android:layout_marginLeft="40dp"/>
 

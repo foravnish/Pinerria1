@@ -215,9 +215,9 @@ public class TeachRemark extends Fragment {
                 title1.setText("Remark "+(position+1));
                 remarkValue1.setText(AllProducts.get(position).get("remark"));
             }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-                title1.setText("Assessment");
-            }
+//            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+//                title1.setText("Assessment");
+//            }
 
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));

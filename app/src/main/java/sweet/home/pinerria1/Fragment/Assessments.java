@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -160,6 +161,7 @@ public class Assessments extends Fragment {
         LayoutInflater inflater;
         TextView title,remarkValue;
         ImageView iv1;
+        LinearLayout linearLay;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -189,19 +191,22 @@ public class Assessments extends Fragment {
             title=convertView.findViewById(R.id.title);
             remarkValue=convertView.findViewById(R.id.remarkValue);
             iv1=convertView.findViewById(R.id.iv1);
+            linearLay=convertView.findViewById(R.id.linearLay);
 
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
 
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
-                title.setText("Remark");
+            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+                linearLay.setVisibility(View.VISIBLE);
+                title.setText("Assessment "+(position+1));
+                remarkValue.setText(AllProducts.get(position).get("remark"));
             }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-                title.setText("Assessment");
+            else{
+                linearLay.setVisibility(View.GONE);
             }
 
-            remarkValue.setText(AllProducts.get(position).get("remark"));
+
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
 
             String imageUrl2="http://35.184.93.23:3000/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
