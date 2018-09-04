@@ -214,7 +214,7 @@ public class Profile extends Fragment {
         teacherMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new TeachRemark();
+                Fragment fragment = new RemarkAssessment();
                 Bundle bundle=new Bundle();
                 bundle.putString("sId",sId);
                 FragmentManager manager = getActivity().getSupportFragmentManager();

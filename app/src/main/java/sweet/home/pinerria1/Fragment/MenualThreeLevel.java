@@ -4,11 +4,13 @@ package sweet.home.pinerria1.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -41,6 +43,18 @@ public class MenualThreeLevel extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_menual_three_level, container, false);
+
+        ImageView textBack= view.findViewById(R.id.textBack);
+        textBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new Profile();
+                android.support.v4.app.FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
+            }
+        });
+
 
         String[] parent = new String[]{"Welcome to families", "Enrollment"," Programs and curriculum"," Schedule","Nutrition","Parent Responsibilities"," Health and Safety"};
 

@@ -116,6 +116,7 @@ public class Notification extends Fragment {
                         map.put("language", jsonObject.optString("language"));
                         map.put("description", jsonObject.optString("description"));
                         map.put("createdByRole", jsonObject.optString("createdByRole"));
+                        map.put("createdOn", jsonObject.optString("createdOn"));
 
 
                         Adapter adapter=new Adapter();
@@ -162,7 +163,7 @@ public class Notification extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,byUser,type;
+        TextView title,desc,byUser,type,dateBox;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -194,11 +195,40 @@ public class Notification extends Fragment {
             desc=convertView.findViewById(R.id.desc);
             byUser=convertView.findViewById(R.id.byUser);
             type=convertView.findViewById(R.id.type);
+            dateBox=convertView.findViewById(R.id.dateBox);
+
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
             byUser.setText(AllProducts.get(position).get("createdByRole"));
             type.setText(AllProducts.get(position).get("type"));
+
+
+
+            String year=AllProducts.get(position).get("createdOn").substring(0,4);
+            String month=AllProducts.get(position).get("createdOn").substring(5,7);
+
+            String year2= null;
+            String month2= null;
+            try {
+                year2 = AllProducts.get(position-1).get("createdOn").substring(0,4);
+                month2 = AllProducts.get(position-1).get("createdOn").substring(5,7);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (year.equals(year2)&& month.equals(month2)){
+
+                dateBox.setVisibility(View.GONE);
+                dateBox.setText("");
+
+            }
+            else {
+                dateBox.setVisibility(View.VISIBLE);
+                String date=month+"-"+year;
+                dateBox.setText(date);
+
+            }
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
