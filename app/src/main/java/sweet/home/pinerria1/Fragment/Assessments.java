@@ -75,11 +75,21 @@ public class Assessments extends Fragment {
         return view;
     }
 
+    public static Fragment NewInstance(String typeforListing) {
+        Bundle args = new Bundle();
+        args.putString("sId", typeforListing);
+
+        Assessments fragment = new Assessments();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     private void assessmentData() {
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b8ac40b9b6a826723aba859", new Response.Listener<JSONArray>() {
-//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b1414bb9f3e5271f50c1aa6", new Response.Listener<JSONArray>() {
+//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b180e59b1fbed41daa94c2c", new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
@@ -184,10 +194,10 @@ public class Assessments extends Fragment {
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
 
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("yes")){
+            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
                 title.setText("Remark");
             }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("no")){
+            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
                 title.setText("Assessment");
             }
 

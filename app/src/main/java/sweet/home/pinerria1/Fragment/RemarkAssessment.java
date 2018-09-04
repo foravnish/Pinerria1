@@ -70,7 +70,7 @@ public class RemarkAssessment extends Fragment {
 
         //        adapter.addFrag(new DeshAll(), "All"+"("+jsonCount.optString("totalAdv")+")");
         adapter.addFrag(TeachRemark.NewInstance(getArguments().getString("sId")),"Remarks");
-        adapter.addFrag(new Assessments(),"Assessments");
+        adapter.addFrag(Assessments.NewInstance(getArguments().getString("sId")),"Assessments");
 
 
         viewPager.setAdapter(adapter);

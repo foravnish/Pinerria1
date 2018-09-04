@@ -150,6 +150,11 @@
         android:id="@+id/txtNoData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/liner"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="25dp"
         android:text="no data"/>
 
 

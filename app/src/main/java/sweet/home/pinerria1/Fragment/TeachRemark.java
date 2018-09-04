@@ -101,8 +101,8 @@ public class TeachRemark extends Fragment {
     private void ReamrkofStudent() {
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
-//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b1414bb9f3e5271f50c1aa6", new Response.Listener<JSONArray>() {
+//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b180e59b1fbed41daa94c2c", new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
@@ -171,8 +171,8 @@ public class TeachRemark extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,remarkValue;
-        ImageView iv1;
+        TextView title1,remarkValue1;
+        ImageView iv11;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -199,27 +199,32 @@ public class TeachRemark extends Fragment {
 
 
             convertView=inflater.inflate(R.layout.list_remark,parent,false);
-            title=convertView.findViewById(R.id.title);
-            remarkValue=convertView.findViewById(R.id.remarkValue);
-            iv1=convertView.findViewById(R.id.iv1);
+            title1=convertView.findViewById(R.id.title1);
+            remarkValue1=convertView.findViewById(R.id.remarkValue1);
+            iv11=convertView.findViewById(R.id.iv11);
+
+            Log.d("dsfsdfgsdfgsdgdfg",AllProducts.get(position).get("isremarks"));
+           // Log.d("dsfsdfgsdfgsdgdfg2",AllProducts.get(position).get("remark"));
+
 
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
-            title.setTypeface(tvFont);
+            title1.setTypeface(tvFont);
 
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("yes")){
-                title.setText("Remark");
+            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
+                title1.setText("Remark "+(position+1));
+                remarkValue1.setText(AllProducts.get(position).get("remark"));
             }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("no")){
-                title.setText("Assessment");
+            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+                title1.setText("Assessment");
             }
 
-            remarkValue.setText(AllProducts.get(position).get("remark"));
+
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
 
             String imageUrl2="http://35.184.93.23:3000/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
 
-            Picasso.with(getActivity()).load(imageUrl2).into(iv1);
+            Picasso.with(getActivity()).load(imageUrl2).into(iv11);
 
             //iv1.setText(Html.fromHtml(AllProducts.get(position).get("emojiIcon")));
 //            iv1.setText(Html.fromHtml("&#9786;"));

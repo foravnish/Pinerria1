@@ -19,16 +19,16 @@
 
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/title1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Remark 1"
+                android:text="Remark "
                 android:textSize="16dp"
                 android:textColor="@color/black"
                 android:layout_marginLeft="40dp"/>
 
             <TextView
-                android:id="@+id/remarkValue"
+                android:id="@+id/remarkValue1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lorem lpsum is simply dummy text of the printing and typesting industry"
@@ -39,7 +39,7 @@
 
 
         <ImageView
-            android:id="@+id/iv1"
+            android:id="@+id/iv11"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
