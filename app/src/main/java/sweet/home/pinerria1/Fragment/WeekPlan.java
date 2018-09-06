@@ -349,9 +349,12 @@ public class WeekPlan extends Fragment {
                 JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
                 JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
-                if (jsonArray!=null) {
+
+                if (jsonArray.length()!=0) {
+                    Log.d("sfgsdgdfgdfgd","true");
                     viewHolder.txtNoData.setVisibility(View.GONE);
                     viewHolder.expListView.setVisibility(View.VISIBLE);
+
                     AllProducts.clear();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject12 = jsonArray.optJSONObject(i);
@@ -386,6 +389,13 @@ public class WeekPlan extends Fragment {
                     JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
                     JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
+                    Log.d("fsdgdgdfgdfgd", String.valueOf(jsonArray));
+
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
                     AllProducts.clear();
                     for (int i=0;i<jsonArray.length();i++){
                         JSONObject  jsonObject12=jsonArray.optJSONObject(i);
@@ -397,21 +407,33 @@ public class WeekPlan extends Fragment {
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
             }
         });
         bnt_Week2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 try {
                     JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
                     JSONObject jsonObject2=new JSONObject(jsonObject.optString("2"));
                     JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
 
                     AllProducts.clear();
                     for (int i=0;i<jsonArray.length();i++){
@@ -424,7 +446,12 @@ public class WeekPlan extends Fragment {
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
-
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -439,7 +466,12 @@ public class WeekPlan extends Fragment {
                     JSONObject jsonObject2=new JSONObject(jsonObject.optString("3"));
                     JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
-                    AllProducts.clear();
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+                        AllProducts.clear();
                     for (int i=0;i<jsonArray.length();i++){
                         JSONObject  jsonObject12=jsonArray.optJSONObject(i);
                         HashMap<String,String> map=new HashMap<>();
@@ -450,6 +482,12 @@ public class WeekPlan extends Fragment {
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
+                }
+                    else{
+                    Log.d("sfgsdgdfgdfgd","false");
+                    viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                    viewHolder.expListView.setVisibility(View.GONE);
+                }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -465,7 +503,13 @@ public class WeekPlan extends Fragment {
                     JSONObject jsonObject2=new JSONObject(jsonObject.optString("4"));
                     JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
-                    AllProducts.clear();
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+
+                        AllProducts.clear();
                     for (int i=0;i<jsonArray.length();i++){
                         JSONObject  jsonObject12=jsonArray.optJSONObject(i);
                         HashMap<String,String> map=new HashMap<>();
@@ -475,6 +519,12 @@ public class WeekPlan extends Fragment {
                         Adapter adapter=new Adapter("4");
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
+                    }
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
                     }
 
                 } catch (JSONException e) {
@@ -491,7 +541,13 @@ public class WeekPlan extends Fragment {
                     JSONObject jsonObject2=new JSONObject(jsonObject.optString("5"));
                     JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
-                    AllProducts.clear();
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+
+                        AllProducts.clear();
                     for (int i=0;i<jsonArray.length();i++){
                         JSONObject  jsonObject12=jsonArray.optJSONObject(i);
                         HashMap<String,String> map=new HashMap<>();
@@ -502,6 +558,12 @@ public class WeekPlan extends Fragment {
                         viewHolder.expListView.setAdapter(adapter);
                         AllProducts.add(map);
                     }
+                }
+                    else{
+                    Log.d("sfgsdgdfgdfgd","false");
+                    viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                    viewHolder.expListView.setVisibility(View.GONE);
+                }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -117,19 +118,22 @@ public class TeachRemark extends Fragment {
 
                         HashMap<String,String> map=new HashMap<>();
 
-                        map.put("_id", jsonObject.optString("_id"));
-                        map.put("remark", jsonObject.optString("remark"));
-                        map.put("emojiIcon", jsonObject.optString("emojiIcon"));
-                        map.put("classId", jsonObject.optString("classId"));
-                        map.put("createdBy", jsonObject.optString("createdBy"));
-                        map.put("__v", jsonObject.optString("__v"));
-                        map.put("modifiedOn", jsonObject.optString("modifiedOn"));
-                        map.put("createdOn", jsonObject.optString("createdOn"));
-                        map.put("isClassLevel", jsonObject.optString("isClassLevel"));
-                        map.put("isremarks", jsonObject.optString("isremarks"));
-                        Adapter adapter=new Adapter();
-                        expListView.setAdapter(adapter);
-                        AllProducts.add(map);
+
+//                        if (jsonObject.optString("isremarks").equalsIgnoreCase("true")) {
+                            map.put("_id", jsonObject.optString("_id"));
+                            map.put("remark", jsonObject.optString("remark"));
+                            map.put("emojiIcon", jsonObject.optString("emojiIcon"));
+                            map.put("classId", jsonObject.optString("classId"));
+                            map.put("createdBy", jsonObject.optString("createdBy"));
+                            map.put("__v", jsonObject.optString("__v"));
+                            map.put("modifiedOn", jsonObject.optString("modifiedOn"));
+                            map.put("createdOn", jsonObject.optString("createdOn"));
+                            map.put("isClassLevel", jsonObject.optString("isClassLevel"));
+                            map.put("isremarks", jsonObject.optString("isremarks"));
+                            Adapter adapter = new Adapter();
+                            expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+//                        }
 
 
 
@@ -173,6 +177,7 @@ public class TeachRemark extends Fragment {
         LayoutInflater inflater;
         TextView title1,remarkValue1;
         ImageView iv11;
+        RelativeLayout relative;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -202,6 +207,7 @@ public class TeachRemark extends Fragment {
             title1=convertView.findViewById(R.id.title1);
             remarkValue1=convertView.findViewById(R.id.remarkValue1);
             iv11=convertView.findViewById(R.id.iv11);
+            relative=convertView.findViewById(R.id.relative);
 
             Log.d("dsfsdfgsdfgsdgdfg",AllProducts.get(position).get("isremarks"));
            // Log.d("dsfsdfgsdfgsdgdfg2",AllProducts.get(position).get("remark"));
@@ -212,12 +218,13 @@ public class TeachRemark extends Fragment {
             title1.setTypeface(tvFont);
 
             if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
-                title1.setText("Remark "+(position+1));
+                relative.setVisibility(View.VISIBLE);
+                title1.setText("Remark ");
                 remarkValue1.setText(AllProducts.get(position).get("remark"));
             }
-//            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-//                title1.setText("Assessment");
-//            }
+            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+                relative.setVisibility(View.GONE);
+            }
 
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));

@@ -25,6 +25,7 @@ public class Api {
     public static String DeleteMsg="http://35.184.93.23:3000/api/message/";
     public static String SchoolManuals="http://35.184.93.23:3000/assets/pdf/SchoolManuals.pdf";
     public static String WeeklyPlan="http://35.184.93.23:3000/api/weekly-plan/getmonthandweekbydata/";
+    public static String AssessmentById="http://35.184.93.23:3000/api/assessments/byid/";
 
                                                               //  api/users/parent/me
 

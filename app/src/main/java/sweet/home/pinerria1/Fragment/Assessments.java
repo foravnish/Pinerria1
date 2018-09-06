@@ -7,16 +7,21 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -73,6 +78,21 @@ public class Assessments extends Fragment {
         assessmentData();
 
 
+        expListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               // Toast.makeText(getActivity(), ""+AllProducts.get(i).get("_id"), Toast.LENGTH_SHORT).show();
+
+                Fragment fragment = new AssessmentDetail();
+                Bundle bundle=new Bundle();
+                bundle.putString("assessmentId",AllProducts.get(i).get("_id"));
+                bundle.putString("sId",getArguments().getString("sId"));
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                fragment.setArguments(bundle);
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
+            }
+        });
         return view;
     }
 
@@ -161,7 +181,7 @@ public class Assessments extends Fragment {
         LayoutInflater inflater;
         TextView title,remarkValue;
         ImageView iv1;
-        LinearLayout linearLay;
+        RelativeLayout relative;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -191,20 +211,22 @@ public class Assessments extends Fragment {
             title=convertView.findViewById(R.id.title);
             remarkValue=convertView.findViewById(R.id.remarkValue);
             iv1=convertView.findViewById(R.id.iv1);
-            linearLay=convertView.findViewById(R.id.linearLay);
+            relative=convertView.findViewById(R.id.relative);
 
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
 
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-                linearLay.setVisibility(View.VISIBLE);
-                title.setText("Assessment "+(position+1));
+            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
+                relative.setVisibility(View.GONE);
+
+            }
+            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+                relative.setVisibility(View.VISIBLE);
+                title.setText("Assessment");
                 remarkValue.setText(AllProducts.get(position).get("remark"));
             }
-            else{
-                linearLay.setVisibility(View.GONE);
-            }
+
 
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
