@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -178,7 +179,8 @@ public class AssessmentDetail extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,assessmentTitle,byUser,type,dateBox;
+        TextView assess,assessmentTitle,subCategory,category,dateBox;
+        LinearLayout assessLayout;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -207,28 +209,41 @@ public class AssessmentDetail extends Fragment {
             convertView=inflater.inflate(R.layout.list_assessment_detail,parent,false);
 
             assessmentTitle=convertView.findViewById(R.id.assessmentTitle);
-            title=convertView.findViewById(R.id.title);
-
-
+            assess=convertView.findViewById(R.id.assess);
+            category=convertView.findViewById(R.id.category);
+            subCategory=convertView.findViewById(R.id.subCategory);
+            assessLayout=convertView.findViewById(R.id.assessLayout);
 
             assessmentTitle.setText(AllProducts.get(position).get("assessmentTitle"));
 
             if (AllProducts.get(position).get("templateType").equals("category")) {
-                title.setText(AllProducts.get(position).get("title"));
-                title.setTextColor(Color.parseColor("#FF60B6E7"));
+                category.setText(AllProducts.get(position).get("title"));
+                category.setTextColor(Color.parseColor("#FF60B6E7"));
+                category.setVisibility(View.VISIBLE);
+                subCategory.setVisibility(View.GONE);
+                assess.setVisibility(View.GONE);
+                assessLayout.setVisibility(View.GONE);
             }
             else  if (AllProducts.get(position).get("templateType").equals("subcategory")) {
-                title.setText(AllProducts.get(position).get("title"));
-                title.setTextColor(Color.parseColor("#FF6B696A"));
+                subCategory.setText(AllProducts.get(position).get("title"));
+                subCategory.setTextColor(Color.parseColor("#FF6B696A"));
+                category.setVisibility(View.GONE);
+                subCategory.setVisibility(View.VISIBLE);
+                assess.setVisibility(View.GONE);
+                assessLayout.setVisibility(View.GONE);
             }
             else  if (AllProducts.get(position).get("templateType").equals("assessment")) {
-                title.setText(AllProducts.get(position).get("title"));
-                title.setTextColor(Color.parseColor("#111111"));
+                assess.setText(AllProducts.get(position).get("title"));
+                assess.setTextColor(Color.parseColor("#111111"));
+                category.setVisibility(View.GONE);
+                subCategory.setVisibility(View.GONE);
+                assess.setVisibility(View.VISIBLE);
+                assessLayout.setVisibility(View.VISIBLE);
             }
 
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
-            title.setTypeface(tvFont);
+            assess.setTypeface(tvFont);
 
 
 

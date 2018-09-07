@@ -20,20 +20,64 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:layout_gravity="center"
+
                         android:fontFamily="@font/comicz"
                         android:textColor="#e88a53"
                         android:textSize="16dp"/>
 
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HSS News"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/comicz"
+                    android:textColor="#444"
+                    android:visibility="gone"
+                    android:textSize="16dp"/>
+                <TextView
+                    android:id="@+id/subCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HSS News"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:fontFamily="@font/comicz"
+                    android:textColor="#444"
+                    android:textSize="16dp"/>
+
+                <LinearLayout
+                    android:id="@+id/assessLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="10">
+
                     <TextView
-                        android:id="@+id/title"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/assess"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="HSS News"
-                        android:textStyle="bold"
+                        android:layout_weight="7"
                         android:fontFamily="@font/comicz"
                         android:textColor="#444"
-                        android:textSize="16dp"/>
+                        android:textSize="14dp"/>
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
 
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
