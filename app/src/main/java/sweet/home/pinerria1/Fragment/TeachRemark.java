@@ -102,8 +102,8 @@ public class TeachRemark extends Fragment {
     private void ReamrkofStudent() {
         Util.showPgDialog(dialog);
 
-//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b180e59b1fbed41daa94c2c", new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
+//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b180e59b1fbed41daa94c2c", new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
@@ -175,7 +175,7 @@ public class TeachRemark extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title1,remarkValue1;
+        TextView title1,remarkValue1,dateBox;
         ImageView iv11;
         RelativeLayout relative;
 
@@ -208,9 +208,45 @@ public class TeachRemark extends Fragment {
             remarkValue1=convertView.findViewById(R.id.remarkValue1);
             iv11=convertView.findViewById(R.id.iv11);
             relative=convertView.findViewById(R.id.relative);
+            dateBox=convertView.findViewById(R.id.dateBox);
 
             Log.d("dsfsdfgsdfgsdgdfg",AllProducts.get(position).get("isremarks"));
            // Log.d("dsfsdfgsdfgsdgdfg2",AllProducts.get(position).get("remark"));
+
+
+            String year=AllProducts.get(position).get("createdOn").substring(0,4);
+            String month=AllProducts.get(position).get("createdOn").substring(5,7);
+            String year2= null;
+            String month2= null;
+            try {
+                year2 = AllProducts.get(position-1).get("createdOn").substring(0,4);
+                month2 = AllProducts.get(position-1).get("createdOn").substring(5,7);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (year.equals(year2)&& month.equals(month2)){
+
+                dateBox.setVisibility(View.GONE);
+                dateBox.setText("");
+
+            }
+            else {
+                if (AllProducts.get(position).get("isremarks").equals("")) {
+
+                    dateBox.setVisibility(View.GONE);
+                    dateBox.setText("");
+
+                }
+                else{
+                    dateBox.setVisibility(View.VISIBLE);
+                    String date = month + "-" + year;
+                    dateBox.setText(date);
+
+                }
+
+            }
+
 
 
 
