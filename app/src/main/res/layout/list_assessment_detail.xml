@@ -9,8 +9,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
                 android:orientation="vertical">
+
 
                     <TextView
                         android:id="@+id/assessmentTitle"
@@ -20,10 +20,10 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:layout_gravity="center"
-
                         android:fontFamily="@font/comicz"
                         android:textColor="#e88a53"
                         android:textSize="16dp"/>
+
 
                 <TextView
                     android:id="@+id/category"
@@ -35,6 +35,8 @@
                     android:textColor="#444"
                     android:visibility="gone"
                     android:textSize="16dp"/>
+
+
                 <TextView
                     android:id="@+id/subCategory"
                     android:layout_width="wrap_content"
@@ -51,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:weightSum="10">
 
                     <TextView
@@ -63,20 +65,39 @@
                         android:fontFamily="@font/comicz"
                         android:textColor="#444"
                         android:textSize="14dp"/>
-                    <CheckBox
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/strock_top_line"
+                        android:layout_weight="3">
+                    <CheckBox
+                        android:id="@+id/check1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/rightcolor"
+                        android:enabled="false"
+                        android:background="@drawable/strck_line"
+
                         android:layout_weight="1"/>
 
                     <CheckBox
+                        android:id="@+id/check2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/rightcolor"
+                        android:enabled="false"
+                        android:background="@drawable/strck_line"
                         android:layout_weight="1"/>
 
                     <CheckBox
+                        android:id="@+id/check3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/rightcolor"
+                        android:enabled="false"
+                        android:background="@drawable/strck_line2"
                         android:layout_weight="1"/>
+                    </LinearLayout>
                 </LinearLayout>
     </LinearLayout>
 

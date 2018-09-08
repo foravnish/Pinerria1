@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,7 +63,7 @@ public class AssessmentDetail extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     ListView expListView;
 
-
+    JSONObject jsonObjectuserSelection;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,8 +124,10 @@ public class AssessmentDetail extends Fragment {
 
                         try {
                             JSONObject jsonObject=response.getJSONObject("templateData");
-                            pageParagraph.setText(jsonObject.optString("pageParagraph"));
+                            jsonObjectuserSelection   =response.getJSONObject("userSelection");
 
+
+                            pageParagraph.setText(jsonObject.optString("pageParagraph"));
 
                             JSONArray jsonArray=jsonObject.getJSONArray("resultDataArray");
                             for (int i=0;i<jsonArray.length();i++){
@@ -134,6 +137,7 @@ public class AssessmentDetail extends Fragment {
                                 map.put("assessmentTitle",jsonObject1.optString("assessmentTitle"));
                                 map.put("title",jsonObject1.optString("title"));
                                 map.put("templateType",jsonObject1.optString("templateType"));
+                                map.put("assessmentId",jsonObject1.optString("assessmentId"));
 
                                 Adapter adapter=new Adapter();
                                 expListView.setAdapter(adapter);
@@ -181,7 +185,7 @@ public class AssessmentDetail extends Fragment {
         LayoutInflater inflater;
         TextView assess,assessmentTitle,subCategory,category,dateBox;
         LinearLayout assessLayout;
-
+        CheckBox check1,check2,check3;
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -213,6 +217,9 @@ public class AssessmentDetail extends Fragment {
             category=convertView.findViewById(R.id.category);
             subCategory=convertView.findViewById(R.id.subCategory);
             assessLayout=convertView.findViewById(R.id.assessLayout);
+            check1=convertView.findViewById(R.id.check1);
+            check2=convertView.findViewById(R.id.check2);
+            check3=convertView.findViewById(R.id.check3);
 
             assessmentTitle.setText(AllProducts.get(position).get("assessmentTitle"));
 
@@ -242,9 +249,52 @@ public class AssessmentDetail extends Fragment {
             }
 
 
+//            if (AllProducts.get(position).get("assessmentId").contains(String.valueOf(jsonObjectuserSelection))){
+//                Log.d("dsfgdgdfgdfgdfgd","True");
+//
+//            }
+            Log.d("fgdfgdfgdfgd", String.valueOf(jsonObjectuserSelection));
+
+
+
+
+
+            Log.d("gdfgfdsgdfsgdsf",jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")));
+
+            if (!jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")).equals("")){
+
+                try {
+                    JSONObject jsonObject=new JSONObject(jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")));
+                    if (jsonObject.optString("semOne").equals("D")){
+                        check1.setChecked(true);
+                        check2.setChecked(false);
+                        check3.setChecked(false);
+                    }
+                    else  if (jsonObject.optString("semOne").equals("M")){
+                        check1.setChecked(false);
+                        check2.setChecked(true);
+                        check3.setChecked(false);
+                    }
+                    else  if (jsonObject.optString("semOne").equals("E")){
+                        check1.setChecked(false);
+                        check2.setChecked(false);
+                        check3.setChecked(true);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else{
+                check1.setChecked(false);
+            }
+
+
+
+            Log.d("dfdvdgdgd", AllProducts.get(position).get("assessmentId"));
+
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             assess.setTypeface(tvFont);
-
 
 
             return convertView;

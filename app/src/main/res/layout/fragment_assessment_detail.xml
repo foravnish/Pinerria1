@@ -57,11 +57,7 @@
         android:id="@+id/lvExp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:horizontalSpacing="3dp"
-        android:verticalSpacing="7dp"
-        android:layout_below="@+id/relat"
-        android:stretchMode="columnWidth"/>
+        android:layout_below="@+id/relat"/>
 
 
 </RelativeLayout>
