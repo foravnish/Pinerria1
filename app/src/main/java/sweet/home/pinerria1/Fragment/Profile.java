@@ -73,8 +73,8 @@ public class Profile extends Fragment {
     ImageView classImage;
     //String [] opt  = {"Profile","Change Password","Logout"};
     ArrayList<String> opt=new ArrayList<>();
-    String sId;
-    String ClassId;
+    String sId, parentId;
+    String ClassId,childName;
 
 
     @Override
@@ -101,6 +101,7 @@ public class Profile extends Fragment {
         opt.clear();
         opt.add("Profile");
         opt.add("Change Password");
+        //opt.add("Update "+childName+" Profile");
         opt.add("Logout");
 
         ArrayAdapter option = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,opt);
@@ -148,6 +149,8 @@ public class Profile extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (i==0){
+//                    Log.d("vfdgvdfgdfgdfg",sId);
+//                    Log.d("vfdgvdfgdfgdfg",parentId);
 
                 }
                 else if (i==1){
@@ -158,6 +161,12 @@ public class Profile extends Fragment {
 
                 }
 
+//                else if (i==2){
+//
+//                    Log.d("vfdgvdfgdfgdfg",sId);
+//                    Log.d("vfdgvdfgdfgdfg",parentId);
+//
+//                }
                 else if (i==2){
 
                     confirmationPopup();
@@ -243,6 +252,7 @@ public class Profile extends Fragment {
                 Log.d("fsdafsdafsdfs",listUserID.get(i));
                 sId=listUserID.get(i).toString();
                 ClassId=listUserClassID.get(i).toString();
+                childName=switchUser.getSelectedItem().toString();
 
                 String imageUrl="http://35.184.93.23:3000/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
@@ -363,6 +373,9 @@ public class Profile extends Fragment {
                         Util.cancelPgDialog(dialog);
                         Log.d("gdfgdfghdfhdhgf",response.toString());
 
+                        Log.d("ParenTId",response.optString("_id"));
+
+                        parentId=response.optString("_id");
                         listUser.clear();
                         try {
                             JSONArray jsonArray=response.getJSONArray("child");

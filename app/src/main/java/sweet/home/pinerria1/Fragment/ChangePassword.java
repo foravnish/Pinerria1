@@ -182,7 +182,7 @@ public class ChangePassword extends Fragment {
             return false;
         }
         else if (!edit_pwdNew.getText().toString().equalsIgnoreCase(edit_pwdConfirm.getText().toString())){
-            Toast.makeText(getActivity(), "Confirm Password must same.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Confirm Password should be same.", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
