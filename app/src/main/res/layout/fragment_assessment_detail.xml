@@ -28,36 +28,172 @@
     </RelativeLayout>
 
 
-
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/relat">-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-
-
-            <!--<TextView-->
-                <!--android:id="@+id/pageParagraph"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:layout_marginRight="10dp"-->
-                <!--android:fontFamily="@font/comicz"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:textColor="#111"/>-->
-        <!--</LinearLayout>-->
-
-    <!--</ScrollView>-->
-
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/lvExp"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/relat"/>
+
+        android:layout_below="@+id/relat">
+
+        <TextView
+            android:id="@+id/pageParagraph"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/comicz"
+            android:textColor="#111"/>
+
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/lvExp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="1dp"
+            android:scrollbars="none"/>
+
+        <LinearLayout
+            android:id="@+id/stickyView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@drawable/strock_top_line"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Objective for Development and Learning"
+                android:textColor="#111"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="left"
+                android:fontFamily="@font/listfont"
+                android:textSize="16dp"
+                android:layout_weight="7"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/strck_line"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/strck_line"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="E"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/strck_line2"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>    </FrameLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/pageParagraph"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:fontFamily="@font/comicz"-->
+        <!--android:layout_below="@+id/relat"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:textColor="#111"/>-->
+
+    <!--<ListView xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/lvExp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/pageParagraph"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/stickyView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="@drawable/strock_top_line"-->
+        <!--android:layout_below="@+id/lvExp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:weightSum="10">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Objective for Development and Learning"-->
+            <!--android:textColor="#111"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:gravity="left"-->
+            <!--android:fontFamily="@font/listfont"-->
+            <!--android:textSize="16dp"-->
+            <!--android:layout_weight="7"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="D"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="16dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--android:background="@drawable/strck_line"-->
+            <!--android:fontFamily="@font/listfont"-->
+            <!--android:textColor="#111"-->
+            <!--android:layout_weight="1"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="M"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="16dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--android:background="@drawable/strck_line"-->
+            <!--android:fontFamily="@font/listfont"-->
+            <!--android:textColor="#111"-->
+            <!--android:layout_weight="1"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="E"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="16dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--android:background="@drawable/strck_line2"-->
+            <!--android:fontFamily="@font/listfont"-->
+            <!--android:textColor="#111"-->
+            <!--android:layout_weight="1"/>-->
+
+
+    <!--</LinearLayout>-->
 
 
 </RelativeLayout>
