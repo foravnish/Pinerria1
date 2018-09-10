@@ -645,6 +645,28 @@ public class MenualThreeLevel extends Fragment {
             convertView = inflater.inflate(R.layout.list_group2, null);
             TextView text = (TextView) convertView.findViewById(R.id.lblListHeader);
             text.setText(this.parentHeaders[groupPosition]);
+            if (groupPosition==0){
+                text.setBackgroundResource(R.drawable.strock_manual2);
+            }
+            else if (groupPosition==1){
+                text.setBackgroundResource(R.drawable.strock_manual3);
+            }
+            else if (groupPosition==2){
+                text.setBackgroundResource(R.drawable.strock_manual4);
+            }
+            else if (groupPosition==3){
+                text.setBackgroundResource(R.drawable.strock_manual5);
+            }
+            else if (groupPosition==4){
+                text.setBackgroundResource(R.drawable.strock_manual6);
+            }
+            else if (groupPosition==5){
+                text.setBackgroundResource(R.drawable.strock_manual7);
+            }
+            else if (groupPosition==6){
+                text.setBackgroundResource(R.drawable.strock_manual8);
+            }
+
 
             return convertView;
         }
