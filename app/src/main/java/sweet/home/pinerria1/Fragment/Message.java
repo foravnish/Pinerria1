@@ -60,6 +60,7 @@ public class Message extends Fragment {
             }
         });
 
+        //Log.d("sdfsdfsdfsdf",Profile.ClassId);
         return view;
     }
 

@@ -163,7 +163,7 @@ public class Notification extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,byUser,type,dateBox;
+        TextView title,desc,byUser,type,dateBox,dateSet;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -196,12 +196,19 @@ public class Notification extends Fragment {
             byUser=convertView.findViewById(R.id.byUser);
             type=convertView.findViewById(R.id.type);
             dateBox=convertView.findViewById(R.id.dateBox);
+            dateSet=convertView.findViewById(R.id.dateSet);
 
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
             byUser.setText(AllProducts.get(position).get("createdByRole"));
             type.setText(AllProducts.get(position).get("type"));
+
+            String year1=AllProducts.get(position).get("createdOn").substring(0,4);
+            String month1=AllProducts.get(position).get("createdOn").substring(5,7);
+            String date1=AllProducts.get(position).get("createdOn").substring(8,10);
+
+            dateSet.setText(date1+"-"+month1+"-"+year1);
 
 
 

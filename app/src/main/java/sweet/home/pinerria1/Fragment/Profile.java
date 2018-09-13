@@ -74,7 +74,7 @@ public class Profile extends Fragment {
     //String [] opt  = {"Profile","Change Password","Logout"};
     ArrayList<String> opt=new ArrayList<>();
     String sId, parentId;
-    String ClassId,childName;
+    public  static String ClassId,childName;
 
 
     @Override
@@ -254,10 +254,10 @@ public class Profile extends Fragment {
                 ClassId=listUserClassID.get(i).toString();
                 childName=switchUser.getSelectedItem().toString();
 
-                String imageUrl="http://35.184.93.23:3000/api/upload/"+listUser2.get(i);
+                String imageUrl="http://35.196.247.27/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
 
-                String imageUrl2="http://35.184.93.23:3000/assets/img/class/"+listUser3.get(i);
+                String imageUrl2="http://35.196.247.27/assets/img/class/"+listUser3.get(i);
                 Picasso.with(getActivity()).load(imageUrl2).into(classImage);
             }
 

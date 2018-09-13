@@ -59,7 +59,7 @@ public class ComposeMgs extends Fragment {
 
     Spinner spiner;
     String[] str = { "To", "Principal", "Class Teacher", "Dean" };
-    String spiVal;
+    String spiVal,spiVal2;
     EditText edit_sub,edit_msg;
     Button submitdata;
     Dialog dialog;
@@ -88,6 +88,7 @@ public class ComposeMgs extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spiVal=AllProducts.get(i).get("name").toString();
+                spiVal2=AllProducts.get(i).get("value").toString();
             }
 
             @Override
@@ -235,8 +236,10 @@ public class ComposeMgs extends Fragment {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("recievedByRole", spiVal.toLowerCase());
+                params.put("displayRole", spiVal2.toLowerCase());
                 params.put("subject", edit_sub.getText().toString());
                 params.put("description", edit_msg.getText().toString());
+                params.put("classId", edit_msg.getText().toString());
 
                 return params;
             }

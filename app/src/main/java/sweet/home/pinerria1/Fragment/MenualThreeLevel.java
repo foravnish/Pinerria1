@@ -2,6 +2,7 @@ package sweet.home.pinerria1.Fragment;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -776,6 +777,9 @@ public class MenualThreeLevel extends Fragment {
             String groupText = getGroup(groupPosition).toString();
             text.setText(groupText);
 
+//            if (groupPosition==0){
+//                text.setTextColor(Color.parseColor("#0d272a"));
+//            }
             return convertView;
         }
 
