@@ -86,6 +86,7 @@ public class Assessments extends Fragment {
                 Fragment fragment = new AssessmentDetail();
                 Bundle bundle=new Bundle();
                 bundle.putString("assessmentId",AllProducts.get(i).get("assessmentId"));
+                bundle.putString("selectedSemester",AllProducts.get(i).get("selectedSemester"));
                 bundle.putString("sId",getArguments().getString("sId"));
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
@@ -109,7 +110,7 @@ public class Assessments extends Fragment {
     private void assessmentData() {
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Assessment+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
 //        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b180e59b1fbed41daa94c2c", new Response.Listener<JSONArray>() {
 
             @Override
@@ -136,6 +137,7 @@ public class Assessments extends Fragment {
                         map.put("isClassLevel", jsonObject.optString("isClassLevel"));
                         map.put("isremarks", jsonObject.optString("isremarks"));
                         map.put("assessmentId", jsonObject.optString("assessmentId"));
+                        map.put("selectedSemester", jsonObject.optString("selectedSemester"));
                         Adapter adapter=new Adapter();
                         expListView.setAdapter(adapter);
                         AllProducts.add(map);
@@ -180,7 +182,7 @@ public class Assessments extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,remarkValue,dateBox;
+        TextView title,remarkValue,dateBox,semester;
         ImageView iv1;
         RelativeLayout relative;
 
@@ -214,20 +216,24 @@ public class Assessments extends Fragment {
             iv1=convertView.findViewById(R.id.iv1);
             relative=convertView.findViewById(R.id.relative);
             dateBox=convertView.findViewById(R.id.dateBox);
+            semester=convertView.findViewById(R.id.semester);
 
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
 
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
-                relative.setVisibility(View.GONE);
+            title.setText("Assessment");
+            remarkValue.setText(AllProducts.get(position).get("remark"));
 
-            }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-                relative.setVisibility(View.VISIBLE);
-                title.setText("Assessment");
-                remarkValue.setText(AllProducts.get(position).get("remark"));
-            }
+//            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
+//                relative.setVisibility(View.GONE);
+//
+//            }
+//            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+//                relative.setVisibility(View.VISIBLE);
+//                title.setText("Assessment");
+//                remarkValue.setText(AllProducts.get(position).get("remark"));
+//            }
 
             String year=AllProducts.get(position).get("createdOn").substring(0,4);
             String month=AllProducts.get(position).get("createdOn").substring(5,7);
@@ -254,6 +260,12 @@ public class Assessments extends Fragment {
 
             }
 
+            if (AllProducts.get(position).get("selectedSemester").equals("semTwo")){
+                semester.setText("Semester Two");
+            }
+            else if (AllProducts.get(position).get("selectedSemester").equals("semOne")){
+                semester.setText("Semester One");
+            }
 
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));

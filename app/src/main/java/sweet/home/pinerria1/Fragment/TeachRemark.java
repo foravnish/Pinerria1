@@ -253,14 +253,17 @@ public class TeachRemark extends Fragment {
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title1.setTypeface(tvFont);
 
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
-                relative.setVisibility(View.VISIBLE);
-                title1.setText("Remark ");
-                remarkValue1.setText(AllProducts.get(position).get("remark"));
-            }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-                relative.setVisibility(View.GONE);
-            }
+            title1.setText("Remark ");
+            remarkValue1.setText(AllProducts.get(position).get("remark"));
+
+//            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
+//                relative.setVisibility(View.VISIBLE);
+//                title1.setText("Remark ");
+//                remarkValue1.setText(AllProducts.get(position).get("remark"));
+//            }
+//            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
+//                relative.setVisibility(View.GONE);
+//            }
 
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
