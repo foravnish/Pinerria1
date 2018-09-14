@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Activity;
+package sweet.home.homesweethome.Activity;
 
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
@@ -29,18 +29,18 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import sweet.home.pinerria1.Fragment.Calender;
-import sweet.home.pinerria1.Fragment.Menual;
-import sweet.home.pinerria1.Fragment.MenualPDF;
-import sweet.home.pinerria1.Fragment.MenualThreeLevel;
-import sweet.home.pinerria1.Fragment.Message;
-import sweet.home.pinerria1.Fragment.Notification;
-import sweet.home.pinerria1.Fragment.Profile;
-import sweet.home.pinerria1.R;
-import sweet.home.pinerria1.Utils.Api;
-import sweet.home.pinerria1.Utils.AppController;
-import sweet.home.pinerria1.Utils.MyPrefrences;
-import sweet.home.pinerria1.Utils.Util;
+import sweet.home.homesweethome.Fragment.Calender;
+import sweet.home.homesweethome.Fragment.Menual;
+import sweet.home.homesweethome.Fragment.MenualPDF;
+import sweet.home.homesweethome.Fragment.MenualThreeLevel;
+import sweet.home.homesweethome.Fragment.Message;
+import sweet.home.homesweethome.Fragment.Notification;
+import sweet.home.homesweethome.Fragment.Profile;
+import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.Api;
+import sweet.home.homesweethome.Utils.AppController;
+import sweet.home.homesweethome.Utils.MyPrefrences;
+import sweet.home.homesweethome.Utils.Util;
 
 public class MainActivitie extends AppCompatActivity {
 

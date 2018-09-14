@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Activity;
+package sweet.home.homesweethome.Activity;
 
 import android.content.Intent;
 import android.media.Image;
@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import sweet.home.pinerria1.R;
+import sweet.home.homesweethome.R;
 
 public class WellcomeScr extends AppCompatActivity {
 

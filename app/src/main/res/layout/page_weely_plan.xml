@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context="sweet.home.pinerria1.Fragment.SentMgs">
+    tools:context="sweet.home.homesweethome.Fragment.SentMgs">
 
     <RelativeLayout
         android:id="@+id/relative"

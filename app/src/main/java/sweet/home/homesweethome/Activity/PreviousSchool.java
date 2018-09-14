@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Activity;
+package sweet.home.homesweethome.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import sweet.home.pinerria1.R;
-import sweet.home.pinerria1.Utils.MyPrefrences;
+import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.MyPrefrences;
 
 public class PreviousSchool extends AppCompatActivity {
 

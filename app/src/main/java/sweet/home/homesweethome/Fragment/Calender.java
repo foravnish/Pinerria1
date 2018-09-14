@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Fragment;
+package sweet.home.homesweethome.Fragment;
 
 
 import android.graphics.Typeface;
@@ -19,7 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import sweet.home.pinerria1.R;
+import sweet.home.homesweethome.R;
 
 /**
  * A simple {@link Fragment} subclass.

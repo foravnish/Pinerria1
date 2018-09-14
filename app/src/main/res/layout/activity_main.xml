@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context="sweet.home.pinerria1.Activity.SplashAct">
+    tools:context="sweet.home.homesweethome.Activity.SplashAct">
 
 
 </android.support.constraint.ConstraintLayout>

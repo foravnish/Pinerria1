@@ -1,4 +1,4 @@
-package sweet.home.pinerria1;
+package sweet.home.homesweethome;
 
 import org.junit.Test;
 

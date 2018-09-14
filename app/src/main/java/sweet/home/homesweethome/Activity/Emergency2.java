@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Activity;
+package sweet.home.homesweethome.Activity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -37,10 +37,10 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import sweet.home.pinerria1.R;
-import sweet.home.pinerria1.Utils.Api;
-import sweet.home.pinerria1.Utils.MyPrefrences;
-import sweet.home.pinerria1.Utils.Util;
+import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.Api;
+import sweet.home.homesweethome.Utils.MyPrefrences;
+import sweet.home.homesweethome.Utils.Util;
 
 public class Emergency2 extends AppCompatActivity {
 

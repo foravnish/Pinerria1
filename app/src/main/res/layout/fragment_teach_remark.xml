@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/gray"
-    tools:context="sweet.home.pinerria1.Fragment.TeachRemark">
+    tools:context="sweet.home.homesweethome.Fragment.TeachRemark">
 
     <!--<RelativeLayout-->
         <!--android:id="@+id/relat"-->

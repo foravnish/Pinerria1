@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Activity;
+package sweet.home.homesweethome.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import sweet.home.pinerria1.R;
+import sweet.home.homesweethome.R;
 
 public class HealthInfo extends AppCompatActivity {
 

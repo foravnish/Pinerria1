@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sweet.home.pinerria1.Activity.MainActivitie">
+    tools:context="sweet.home.homesweethome.Activity.MainActivitie">
 
 
     <LinearLayout
@@ -72,7 +72,7 @@
                     android:scaleType="centerCrop" />
 
 
-                <ImageView
+                <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/classImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"

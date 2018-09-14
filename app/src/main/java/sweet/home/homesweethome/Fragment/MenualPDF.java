@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Fragment;
+package sweet.home.homesweethome.Fragment;
 
 
 import android.content.Intent;
@@ -17,8 +17,8 @@ import android.widget.ProgressBar;
 
 import java.io.File;
 
-import sweet.home.pinerria1.R;
-import sweet.home.pinerria1.Utils.Api;
+import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.Api;
 
 /**
  * A simple {@link Fragment} subclass.

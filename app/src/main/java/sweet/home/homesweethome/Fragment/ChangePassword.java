@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Fragment;
+package sweet.home.homesweethome.Fragment;
 
 
 import android.app.Dialog;
@@ -32,11 +32,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import sweet.home.pinerria1.Activity.Login;
-import sweet.home.pinerria1.R;
-import sweet.home.pinerria1.Utils.Api;
-import sweet.home.pinerria1.Utils.MyPrefrences;
-import sweet.home.pinerria1.Utils.Util;
+import sweet.home.homesweethome.Activity.Login;
+import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.Api;
+import sweet.home.homesweethome.Utils.MyPrefrences;
+import sweet.home.homesweethome.Utils.Util;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="sweet.home.pinerria1.Fragment.Food">
+    tools:context="sweet.home.homesweethome.Fragment.Food">
 
     <RelativeLayout
         android:id="@+id/relat"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/stroke_btn_grad2"
+        android:background="#fdd8db"
         android:orientation="horizontal">
 
         <ImageView
@@ -17,7 +17,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/back"/>
+            android:background="@drawable/back"
+            android:backgroundTint="#000"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
 
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
-            android:textColor="#fff"
+            android:textColor="#111"
             android:text="Food Menu"/>
     </RelativeLayout>
 

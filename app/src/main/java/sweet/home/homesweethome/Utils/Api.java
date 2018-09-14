@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Utils;
+package sweet.home.homesweethome.Utils;
 
 /**
  * Created by Andriod Avnish on 09-Apr-18.

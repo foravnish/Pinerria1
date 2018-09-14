@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Utils;
+package sweet.home.homesweethome.Utils;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import sweet.home.pinerria1.R;
+import sweet.home.homesweethome.R;
 
 import static android.text.Html.fromHtml;
 

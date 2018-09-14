@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Utils;
+package sweet.home.homesweethome.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

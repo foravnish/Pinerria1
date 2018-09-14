@@ -1,4 +1,4 @@
-package sweet.home.pinerria1.Activity;
+package sweet.home.homesweethome.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import sweet.home.pinerria1.R;
-import sweet.home.pinerria1.Utils.MyPrefrences;
+import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.MyPrefrences;
 
 public class SibliingInfo extends AppCompatActivity {
 

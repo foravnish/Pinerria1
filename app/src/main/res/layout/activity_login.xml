@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context="sweet.home.pinerria1.Activity.Login">
+    tools:context="sweet.home.homesweethome.Activity.Login">
 
 
     <RelativeLayout
@@ -82,6 +82,7 @@
                 android:layout_below="@+id/bnt_signin"
                 android:fontFamily="@font/comicz"
                 android:textColor="@color/colorPrimaryDark"
+                android:visibility="gone"
                 android:layout_gravity="center"
                 android:gravity="center"/>
         </RelativeLayout>
