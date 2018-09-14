@@ -186,13 +186,13 @@ public class Food1 extends Fragment {
             title.setText(AllProducts.get(position).get("name"));
 
             if (position%3==0){
-                title.setBackgroundColor(Color.parseColor("#FFC8A9F6"));
+                title.setBackgroundColor(Color.parseColor("#fcefc0"));
             }
             else if (position%3==1){
-                title.setBackgroundColor(Color.parseColor("#FFD6C1F9"));
+                title.setBackgroundColor(Color.parseColor("#fdf2ca"));
             }
             else if (position%3==2){
-                title.setBackgroundColor(Color.parseColor("#FFDBC7F8"));
+                title.setBackgroundColor(Color.parseColor("#fcf4d3"));
             }
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");

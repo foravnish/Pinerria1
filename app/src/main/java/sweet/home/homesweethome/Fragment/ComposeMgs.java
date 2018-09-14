@@ -59,7 +59,7 @@ public class ComposeMgs extends Fragment {
 
     Spinner spiner;
     String[] str = { "To", "Principal", "Class Teacher", "Dean" };
-    String spiVal;
+    String spiVal,spiVal2;
     EditText edit_sub,edit_msg;
     Button submitdata;
     Dialog dialog;
@@ -88,6 +88,7 @@ public class ComposeMgs extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spiVal=AllProducts.get(i).get("name").toString();
+                spiVal2=AllProducts.get(i).get("value").toString();
             }
 
             @Override
@@ -102,6 +103,7 @@ public class ComposeMgs extends Fragment {
 
 //                sendData();
                 Log.d("dfsfsdfsdfsd",spiVal);
+                Log.d("dfsfsdfsdfsd",spiVal2);
 
                 if (!spiVal.equalsIgnoreCase("To")) {
                     if (!TextUtils.isEmpty(edit_sub.getText().toString())) {
@@ -133,6 +135,7 @@ public class ComposeMgs extends Fragment {
                 AllProducts.clear();
                 HashMap<String, String> map2 = new HashMap<>();
                 map2.put("name", "To");
+                map2.put("value", "To");
                 AllProducts.add(map2);
                 CatList.add("To");
 //.
@@ -186,11 +189,11 @@ public class ComposeMgs extends Fragment {
         };
 
 
+        Log.d("sdfghfhfhfghfsdfsdfsdf",Profile.ClassId);
+
         jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(25000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jsonArrayRequest.setShouldCache(false);
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-
-
 
 
         return view;
@@ -216,7 +219,6 @@ public class ComposeMgs extends Fragment {
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
 
 
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -235,8 +237,10 @@ public class ComposeMgs extends Fragment {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("recievedByRole", spiVal.toLowerCase());
+                params.put("displayRole", spiVal2.toLowerCase());
                 params.put("subject", edit_sub.getText().toString());
                 params.put("description", edit_msg.getText().toString());
+                params.put("classId", Profile.ClassId);
 
                 return params;
             }

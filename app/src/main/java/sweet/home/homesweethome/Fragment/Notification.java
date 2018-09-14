@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -25,13 +23,10 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.NetworkImageView;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,67 +42,64 @@ import sweet.home.pinerria1.Utils.Util;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeachRemark extends Fragment {
+public class Notification extends Fragment {
 
 
-    public TeachRemark() {
+    public Notification() {
         // Required empty public constructor
     }
+
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
+
     Dialog dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_teach_remark, container, false);
-//        ImageView textBack= view.findViewById(R.id.textBack);
-//        textBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Fragment fragment = new Profile();
-//                android.support.v4.app.FragmentManager manager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction ft = manager.beginTransaction();
-//                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
-//            }
-//        });
-
-
+        View view= inflater.inflate(R.layout.fragment_notification, container, false);
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
 
-        Log.d("StudentId",getArguments().getString("sId"));
-
+//        HashMap<String,String> map=new HashMap<>();
+//        for (int i=0;i<20;i++) {
+//            map.put("name", "Name");
+//            Adapter adapter=new Adapter();
+//            expListView.setAdapter(adapter);
+//            AllProducts.add(map);
+//        }
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
-        ReamrkofStudent();
+
+        NotificationApi();
+
+
+        ImageView textBack= view.findViewById(R.id.textBack);
+        textBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new Profile();
+                android.support.v4.app.FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
+            }
+        });
 
         return view;
     }
 
-    public static Fragment NewInstance(String typeforListing) {
-        Bundle args = new Bundle();
-        args.putString("sId", typeforListing);
+    private void NotificationApi() {
 
-        TeachRemark fragment = new TeachRemark();
-        fragment.setArguments(args);
-
-        return fragment;
-    }
-
-    private void ReamrkofStudent() {
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+getArguments().getString("sId"), new Response.Listener<JSONArray>() {
-//        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Remark+"5b180e59b1fbed41daa94c2c", new Response.Listener<JSONArray>() {
-
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Notification+"?pagenum=&perpage=", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("ResponseRemark",response.toString());
+                Log.d("ResponseNotification",response.toString());
                 Util.cancelPgDialog(dialog);
 
 
@@ -115,25 +107,21 @@ public class TeachRemark extends Fragment {
                     try {
                         JSONObject jsonObject=response.getJSONObject(i);
 
-
                         HashMap<String,String> map=new HashMap<>();
 
+                        map.put("_id", jsonObject.optString("_id"));
+                        map.put("recordId", jsonObject.optString("recordId"));
+                        map.put("type", jsonObject.optString("type"));
+                        map.put("title", jsonObject.optString("title"));
+                        map.put("language", jsonObject.optString("language"));
+                        map.put("description", jsonObject.optString("description"));
+                        map.put("createdByRole", jsonObject.optString("createdByRole"));
+                        map.put("createdOn", jsonObject.optString("createdOn"));
 
-//                        if (jsonObject.optString("isremarks").equalsIgnoreCase("true")) {
-                            map.put("_id", jsonObject.optString("_id"));
-                            map.put("remark", jsonObject.optString("remark"));
-                            map.put("emojiIcon", jsonObject.optString("emojiIcon"));
-                            map.put("classId", jsonObject.optString("classId"));
-                            map.put("createdBy", jsonObject.optString("createdBy"));
-                            map.put("__v", jsonObject.optString("__v"));
-                            map.put("modifiedOn", jsonObject.optString("modifiedOn"));
-                            map.put("createdOn", jsonObject.optString("createdOn"));
-                            map.put("isClassLevel", jsonObject.optString("isClassLevel"));
-                            map.put("isremarks", jsonObject.optString("isremarks"));
-                            Adapter adapter = new Adapter();
-                            expListView.setAdapter(adapter);
-                            AllProducts.add(map);
-//                        }
+
+                        Adapter adapter=new Adapter();
+                        expListView.setAdapter(adapter);
+                        AllProducts.add(map);
 
 
 
@@ -148,7 +136,7 @@ public class TeachRemark extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErrorMGS",error.toString());
+                Log.d("Errorcala",error.toString());
                 Util.cancelPgDialog(dialog);
             }
         })
@@ -175,9 +163,7 @@ public class TeachRemark extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title1,remarkValue1,dateBox;
-        ImageView iv11;
-        RelativeLayout relative;
+        TextView title,desc,byUser,type,dateBox,dateSet;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -203,19 +189,32 @@ public class TeachRemark extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
 
 
-            convertView=inflater.inflate(R.layout.list_remark,parent,false);
-            title1=convertView.findViewById(R.id.title1);
-            remarkValue1=convertView.findViewById(R.id.remarkValue1);
-            iv11=convertView.findViewById(R.id.iv11);
-            relative=convertView.findViewById(R.id.relative);
-            dateBox=convertView.findViewById(R.id.dateBox);
+            convertView=inflater.inflate(R.layout.list_notifiction,parent,false);
 
-            Log.d("dsfsdfgsdfgsdgdfg",AllProducts.get(position).get("isremarks"));
-           // Log.d("dsfsdfgsdfgsdgdfg2",AllProducts.get(position).get("remark"));
+            title=convertView.findViewById(R.id.title);
+            desc=convertView.findViewById(R.id.desc);
+            byUser=convertView.findViewById(R.id.byUser);
+            type=convertView.findViewById(R.id.type);
+            dateBox=convertView.findViewById(R.id.dateBox);
+            dateSet=convertView.findViewById(R.id.dateSet);
+
+
+            title.setText(AllProducts.get(position).get("title"));
+            desc.setText(AllProducts.get(position).get("description"));
+            byUser.setText(AllProducts.get(position).get("createdByRole"));
+            type.setText(AllProducts.get(position).get("type"));
+
+            String year1=AllProducts.get(position).get("createdOn").substring(0,4);
+            String month1=AllProducts.get(position).get("createdOn").substring(5,7);
+            String date1=AllProducts.get(position).get("createdOn").substring(8,10);
+
+            dateSet.setText(date1+"-"+month1+"-"+year1);
+
 
 
             String year=AllProducts.get(position).get("createdOn").substring(0,4);
             String month=AllProducts.get(position).get("createdOn").substring(5,7);
+
             String year2= null;
             String month2= null;
             try {
@@ -232,51 +231,20 @@ public class TeachRemark extends Fragment {
 
             }
             else {
-                if (AllProducts.get(position).get("isremarks").equals("")) {
-
-                    dateBox.setVisibility(View.GONE);
-                    dateBox.setText("");
-
-                }
-                else{
-                    dateBox.setVisibility(View.VISIBLE);
-                    String date = month + "-" + year;
-                    dateBox.setText(date);
-
-                }
+                dateBox.setVisibility(View.VISIBLE);
+                String date=month+"-"+year;
+                dateBox.setText(date);
 
             }
-
-
-
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
-            title1.setTypeface(tvFont);
-
-            if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("true")){
-                relative.setVisibility(View.VISIBLE);
-                title1.setText("Remark ");
-                remarkValue1.setText(AllProducts.get(position).get("remark"));
-            }
-            else if (AllProducts.get(position).get("isremarks").equalsIgnoreCase("false")){
-                relative.setVisibility(View.GONE);
-            }
+            title.setTypeface(tvFont);
+            type.setTypeface(tvFont);
 
 
-            //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
-
-            String imageUrl2="http://35.184.93.23:3000/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
-
-            Picasso.with(getActivity()).load(imageUrl2).into(iv11);
-
-            //iv1.setText(Html.fromHtml(AllProducts.get(position).get("emojiIcon")));
-//            iv1.setText(Html.fromHtml("&#9786;"));
-
-//            iv1.setText(Html.fromHtml("\ud83d\ude12"));
             return convertView;
         }
     }
-
 
 
 }

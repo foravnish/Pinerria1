@@ -646,7 +646,9 @@ public class WeekPlan extends Fragment {
                 title.setText(AllProducts.get(position).get("title").toString());
                 desc.setText(AllProducts.get(position).get("description").toString());
 
-                String imageUrl="http://35.184.93.23:3000/api/upload/"+AllProducts.get(position).get("image").toString();
+//                String imageUrl="http://35.184.93.23:3000/api/upload/"+AllProducts.get(position).get("image").toString();
+                String imageUrl="http://35.196.247.27/api/upload/"+AllProducts.get(position).get("image").toString();
+
 
                 Log.d("dsfdsfdfgdgdfgdfgdfg",AllProducts.get(position).get("image").toString());
 

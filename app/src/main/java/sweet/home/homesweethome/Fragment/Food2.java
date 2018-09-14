@@ -31,10 +31,10 @@ import sweet.home.pinerria1.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Food3 extends Fragment {
+public class Food2 extends Fragment {
 
 
-    public Food3() {
+    public Food2() {
         // Required empty public constructor
     }
 
@@ -44,7 +44,7 @@ public class Food3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_food4, container, false);
+        View view= inflater.inflate(R.layout.fragment_food3, container, false);
 
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
@@ -67,10 +67,11 @@ public class Food3 extends Fragment {
 //            e.printStackTrace();
 //        }
 
+
         try {
             JSONObject jsonObject = new JSONObject(getArguments().getString("json"));
 
-            JSONObject jsonObject1 = jsonObject.optJSONObject("Lunch");
+            JSONObject jsonObject1 = jsonObject.optJSONObject("Snacks");
             JSONArray jsonArray = jsonObject1.getJSONArray("data");
             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -87,7 +88,6 @@ public class Food3 extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         HashMap<String,String > map2=new HashMap<>();
         map2.put("name","∧");
@@ -118,7 +118,6 @@ public class Food3 extends Fragment {
 
         return view;
     }
-
 
     class Adapter extends BaseAdapter {
 
@@ -155,13 +154,13 @@ public class Food3 extends Fragment {
             title.setText(AllProducts.get(position).get("name"));
 
             if (position%3==0){
-                title.setBackgroundColor(Color.parseColor("#FF93CDCE"));
+                title.setBackgroundColor(Color.parseColor("#fdb6c2"));
             }
             else if (position%3==1){
-                title.setBackgroundColor(Color.parseColor("#FFB2DCDB"));
+                title.setBackgroundColor(Color.parseColor("#fdc2cc"));
             }
             else if (position%3==2){
-                title.setBackgroundColor(Color.parseColor("#FFD1E9E9"));
+                title.setBackgroundColor(Color.parseColor("#fdcdd6"));
             }
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");

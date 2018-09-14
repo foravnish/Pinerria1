@@ -28,7 +28,9 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -70,11 +72,11 @@ public class Profile extends Fragment {
     List<String> listUserClassID = new ArrayList<String>();
     Dialog dialog;
     CircleImageView authorImageView;
-    ImageView classImage;
+    NetworkImageView classImage;
     //String [] opt  = {"Profile","Change Password","Logout"};
     ArrayList<String> opt=new ArrayList<>();
     String sId, parentId;
-    String ClassId,childName;
+    public  static String ClassId,childName;
 
 
     @Override
@@ -254,11 +256,19 @@ public class Profile extends Fragment {
                 ClassId=listUserClassID.get(i).toString();
                 childName=switchUser.getSelectedItem().toString();
 
-                String imageUrl="http://35.184.93.23:3000/api/upload/"+listUser2.get(i);
+                String imageUrl="http://35.196.247.27/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
 
-                String imageUrl2="http://35.184.93.23:3000/assets/img/class/"+listUser3.get(i);
-                Picasso.with(getActivity()).load(imageUrl2).into(classImage);
+//                String imageUrl2="http://35.196.247.27/assets/img/class/"+listUser3.get(i);
+//                Picasso.with(getActivity()).load(imageUrl2).into(classImage);
+
+
+
+                Log.d("fsdfsdfsdfsd",listUser3.get(i));
+                String imageUrl2="http://35.196.247.27/assets/img/class/"+listUser3.get(i);
+                ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+                classImage.setImageUrl(imageUrl2, imageLoader);
+
             }
 
             @Override
@@ -389,7 +399,6 @@ public class Profile extends Fragment {
                                 listUser3.add(jsonObject1.optString("image"));
                                 listUserID.add(jsonObject.optString("_id"));
                                 listUserClassID.add(jsonObject1.optString("_id"));
-
 
                                 ArrayAdapter subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);
                                 subcat.setDropDownViewResource(R.layout.simple_spinner_item);

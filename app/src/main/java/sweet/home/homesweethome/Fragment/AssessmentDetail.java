@@ -86,6 +86,7 @@ public class AssessmentDetail extends Fragment {
         dialog.setCancelable(false);
 
         Log.d("AssessmentID",getArguments().getString("assessmentId"));
+        Log.d("AssessmentID",getArguments().getString("selectedSemester"));
 
         ImageView textBack= view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
@@ -299,25 +300,51 @@ public class AssessmentDetail extends Fragment {
 
             if (!jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")).equals("")){
 
-                try {
-                    JSONObject jsonObject=new JSONObject(jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")));
-                    if (jsonObject.optString("semOne").equals("D")){
-                        check1.setChecked(true);
-                        check2.setChecked(false);
-                        check3.setChecked(false);
+                if (getArguments().getString("selectedSemester").equals("semTwo")){
+                    try {
+                        JSONObject jsonObject=new JSONObject(jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")));
+                        if (jsonObject.optString("semTwo").equals("D")){
+                            check1.setChecked(true);
+                            check2.setChecked(false);
+                            check3.setChecked(false);
+                        }
+                        else  if (jsonObject.optString("semTwo").equals("M")){
+                            check1.setChecked(false);
+                            check2.setChecked(true);
+                            check3.setChecked(false);
+                        }
+                        else  if (jsonObject.optString("semTwo").equals("E")){
+                            check1.setChecked(false);
+                            check2.setChecked(false);
+                            check3.setChecked(true);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    else  if (jsonObject.optString("semOne").equals("M")){
-                        check1.setChecked(false);
-                        check2.setChecked(true);
-                        check3.setChecked(false);
+
+                }
+                else if (getArguments().getString("selectedSemester").equals("semOne")){
+                    try {
+                        JSONObject jsonObject=new JSONObject(jsonObjectuserSelection.optString(AllProducts.get(position).get("assessmentId")));
+                        if (jsonObject.optString("semOne").equals("D")){
+                            check1.setChecked(true);
+                            check2.setChecked(false);
+                            check3.setChecked(false);
+                        }
+                        else  if (jsonObject.optString("semOne").equals("M")){
+                            check1.setChecked(false);
+                            check2.setChecked(true);
+                            check3.setChecked(false);
+                        }
+                        else  if (jsonObject.optString("semOne").equals("E")){
+                            check1.setChecked(false);
+                            check2.setChecked(false);
+                            check3.setChecked(true);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    else  if (jsonObject.optString("semOne").equals("E")){
-                        check1.setChecked(false);
-                        check2.setChecked(false);
-                        check3.setChecked(true);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
                 }
 
             }

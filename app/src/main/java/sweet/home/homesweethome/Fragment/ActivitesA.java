@@ -23,7 +23,9 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.NetworkImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -128,6 +130,7 @@ public class ActivitesA extends Fragment {
                             map.put("title", jsonObject.optString("title"));
                             map.put("description", jsonObject.optString("description"));
                             map.put("datefield", jsonObject.optString("datefield"));
+                            map.put("image", jsonObject.optString("image"));
                             Adapter adapter = new Adapter();
                             expListView.setAdapter(adapter);
                             AllProducts.add(map);
@@ -174,6 +177,7 @@ public class ActivitesA extends Fragment {
 
         LayoutInflater inflater;
         TextView title,desc,date;
+        NetworkImageView network;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -203,10 +207,34 @@ public class ActivitesA extends Fragment {
             title=convertView.findViewById(R.id.title);
             desc=convertView.findViewById(R.id.desc);
             date=convertView.findViewById(R.id.date);
+            network=convertView.findViewById(R.id.network);
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
-            date.setText(AllProducts.get(position).get("datefield").substring(0, Math.min(AllProducts.get(position).get("datefield").length(), 10)));
+
+            String year=AllProducts.get(position).get("datefield").toString().substring(0,4);
+            String months=AllProducts.get(position).get("datefield").toString().substring(5,7);
+            String dateVal=AllProducts.get(position).get("datefield").toString().substring(8,10);
+
+//            date.setText(AllProducts.get(position).get("datefield").substring(0, Math.min(AllProducts.get(position).get("datefield").length(), 10)));
+            date.setText(dateVal+"-"+months+"-"+year);
+
+            String imageUrl="http://35.196.247.27/api/upload/"+AllProducts.get(position).get("image").toString();
+
+
+            if (AllProducts.get(position).get("image").toString().equals("")){
+                network.setVisibility(View.GONE);
+            }
+            else {
+                network.setVisibility(View.VISIBLE);
+                ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+                network.setImageUrl(imageUrl, imageLoader);
+
+            }
+
+
+
+
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);

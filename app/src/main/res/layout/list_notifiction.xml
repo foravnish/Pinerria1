@@ -85,6 +85,14 @@
                         android:text="By Principal"
                         android:layout_alignParentRight="true"
                         android:textSize="12dp"/>
+                    <TextView
+                        android:id="@+id/dateSet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/byUser"
+                        android:text="By Principal"
+                        android:layout_alignParentRight="true"
+                        android:textSize="10dp"/>
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
