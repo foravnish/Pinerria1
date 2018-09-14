@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,8 @@ public class MenualThreeLevel extends Fragment {
 
 
     private ExpandableListView expandableListView;
-
-
+    TextView textSecond;
+    int gPos;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -567,6 +568,14 @@ public class MenualThreeLevel extends Fragment {
                 if (groupPosition != previousGroup)
                     expandableListView.collapseGroup(previousGroup);
                 previousGroup = groupPosition;
+
+                gPos=groupPosition;
+                Log.d("sdgfdsgfdgdfgdf", String.valueOf(groupPosition));
+
+//                if (groupPosition==0){
+//                    textSecond.setTextColor(Color.parseColor("#0d272a"));
+//                }
+
             }
         });
 
@@ -648,6 +657,7 @@ public class MenualThreeLevel extends Fragment {
             text.setText(this.parentHeaders[groupPosition]);
             if (groupPosition==0){
                 text.setBackgroundResource(R.drawable.strock_manual2);
+
             }
             else if (groupPosition==1){
                 text.setBackgroundResource(R.drawable.strock_manual3);
@@ -690,6 +700,7 @@ public class MenualThreeLevel extends Fragment {
                 childData.add(secondLevelData.get(key));
 
             }
+
 
 
 
@@ -773,13 +784,37 @@ public class MenualThreeLevel extends Fragment {
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item2, null);
-            TextView text = (TextView) convertView.findViewById(R.id.lblListItem);
+            textSecond = (TextView) convertView.findViewById(R.id.lblListItem);
             String groupText = getGroup(groupPosition).toString();
-            text.setText(groupText);
+            textSecond.setText(groupText);
 
-//            if (groupPosition==0){
-//                text.setTextColor(Color.parseColor("#0d272a"));
-//            }
+            //convertView.setBackgroundColor(Color.BLUE);
+
+            Log.d("gfdsgdfgdfgdfgdfgd", String.valueOf(gPos));
+
+            if (gPos==0){
+                textSecond.setTextColor(Color.parseColor("#133a3f"));
+            }
+            else if (gPos==1){
+                textSecond.setTextColor(Color.parseColor("#FF847C82"));
+            }
+            else if (gPos==2){
+                textSecond.setTextColor(Color.parseColor("#FFED3C3C"));
+            }
+            else if (gPos==3){
+                textSecond.setTextColor(Color.parseColor("#FFEF827E"));
+            }
+            else if (gPos==4){
+                textSecond.setTextColor(Color.parseColor("#FFAFB96C"));
+            }
+            else if (gPos==5){
+                textSecond.setTextColor(Color.parseColor("#FFDA896F"));
+            }
+            else if (gPos==6){
+                textSecond.setTextColor(Color.parseColor("#FF1F6A7F"));
+            }
+
+
             return convertView;
         }
 
