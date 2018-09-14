@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,6 +57,7 @@ import java.util.Map;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
+import sweet.home.homesweethome.Utils.Event;
 import sweet.home.homesweethome.Utils.MyPrefrences;
 import sweet.home.homesweethome.Utils.Util;
 
@@ -159,8 +162,45 @@ public class Monthely extends Fragment {
                         map.put("_id", jsonObject.optString("_id"));
                         map.put("colorItem", jsonObject.optString("colorItem"));
 
-
                         AllProducts.add(map);
+
+
+
+
+
+
+
+                       // SimpleDateFormatter formatter = new SimpleDateFormatter(); //TODO: update this line with the correct formatter
+                        List<Event> events = new ArrayList<>();
+                       // for (int j = 0; j < response.length(); j++) {
+//                            try {
+                              //  JSONObject obj = response.getJSONObject(j);
+                                //String str2 = obj.optString("eventdate");
+                               // String str1 = obj.optString("#2413AD");
+                              //  Date date = formatter.parse(str2);
+                                int color = Color.parseColor("#228BC34A"); //TODO: update this line with the correct code to parse your color
+                                Event event = new Event(color);
+                                events.add(event);
+//                            }
+//                            catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+                      //  }
+
+                        for (Event event1 : events) {
+                            EventDecorator eventDecorator = new EventDecorator(calendarView,  event1.getColor());
+                            calendarView.addDecorator(eventDecorator);
+                        }
+
+
+
+
+
+
+
+
+
+
 
 
                         Log.d("dfsdfsdfsdf", String.valueOf(calendarView.getCurrentDate()));
@@ -457,6 +497,47 @@ public class Monthely extends Fragment {
 //            }
 
             return convertView;
+        }
+    }
+
+
+    public class EventDecorator implements DayViewDecorator {
+
+        private final Drawable drawable;
+//        private final CalendarDay day;
+        private final int color;
+
+        public EventDecorator(MaterialCalendarView view, int color) {
+            //this.day = CalendarDay.from(date);
+            this.color = color;
+            this.drawable = createTintedDrawable(view.getContext(), color);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+//            if (this.day.equals(day)) {
+//                return true;
+//            }
+            return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.setSelectionDrawable(drawable);
+        }
+
+        private Drawable createTintedDrawable(Context context, int color) {
+            return applyTint(createBaseDrawable(context), color);
+        }
+
+        private Drawable applyTint(Drawable drawable, int color) {
+            Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(wrappedDrawable, color);
+            return wrappedDrawable;
+        }
+
+        private Drawable createBaseDrawable(Context context) {
+            return ContextCompat.getDrawable(context, R.drawable.app_logo_new);
         }
     }
 
