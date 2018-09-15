@@ -41,6 +41,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,9 @@ public class Monthely extends Fragment {
     Boolean flag=false;
     String FianlDate2;
     String colorItem;
+
+    HashSet<CalendarDay> setDays = new HashSet<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,7 +104,6 @@ public class Monthely extends Fragment {
 
         RadioButton rb  = (RadioButton)view. findViewById(R.id.radiobutton1);
         RadioButton rb2  = (RadioButton)view. findViewById(R.id.radiobutton2);
-//
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -148,6 +151,7 @@ public class Monthely extends Fragment {
 
     private void TimeLineCalander() {
 
+        Util.showPgDialog(dialog);
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.Calender, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(final JSONArray response) {
@@ -162,6 +166,8 @@ public class Monthely extends Fragment {
 
                         HashMap<String,String> map=new HashMap<>();
 
+
+                     //   calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays,"true"));
 
                         map.put("_id", jsonObject.optString("_id"));
                         map.put("colorItem", jsonObject.optString("colorItem"));
@@ -251,6 +257,8 @@ public class Monthely extends Fragment {
 
                                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i))), true);
 
+
+
                                     Log.d("fdsfsdfsdfsdfsdf1",FianlDate1);
                                     Log.d("fdsfsdfsdfsdfsdf2",FianlDate2);
 
@@ -293,22 +301,38 @@ public class Monthely extends Fragment {
                     Log.d("dsrggfddfsdfgFinal2",Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1));
                     // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
 
+
+
+//                    if (jsonObject.optString("colorItem").equals("red")){
+//                        calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays));
+//                    }
+//                    else if(jsonObject.optString("colorItem").equals("blue")){
+//                        calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#948ad6"),setDays));
+//                    }
+
+
                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+                    setDays.add(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))));
 
                     Log.d("fsdfsdfsadfsfsdf",ColorData.get(i1));
 
 
-                    if (ColorData.get(i1).toString().equals("blue")){
-                        //calendarView.setSelectionColor(Color.BLUE);
+                  //  calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays,"true"));
 
-                        Log.d("sdfsdghghghgfsdfsdf","true");
-
-                        calendarView.addDecorators(new CurrentDayDecorator(getActivity(),"2018-8-13"));
-                    }
-                    else  if (ColorData.get(i1).toString().equals("red")){
-                        //calendarView.setSelectionColor(Color.RED);
-                        Log.d("sdfsdghghghgfsdfsdf","false");
-                    }
+//                    if (ColorData.get(i1).toString().equals("blue")){
+//                       // calendarView.setSelectionColor(Color.BLUE);
+//
+//                        Log.d("sdfsdghghghgfsdfsdf","true");
+//
+//                       // calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays,"true"));
+//
+////                        calendarView.addDecorators(new EventDecorator(Color.parseColor("#00ff00"),));
+//                    }
+//                    else  if (ColorData.get(i1).toString().equals("red")){
+//                        calendarView.setSelectionColor(Color.BLUE);
+//                        Log.d("sdfsdghghghgfsdfsdf","false");
+//                        calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#948ad6"),setDays,"false"));
+//                    }
 
                     Log.d("dfsdfsdfsdfsdfs",AllProducts.get(i1).get("colorItem"));
 
@@ -520,30 +544,109 @@ public class Monthely extends Fragment {
 
         private Drawable drawable;
         String DateValue;
+        private final int color;
+        String mode;
+        private HashSet<CalendarDay> mCalendarDayCollection;
+//        CalendarDay currentDay = CalendarDay.from(new Date());
+        CalendarDay currentDay = CalendarDay.from(new Date()) ;
 
-        CalendarDay currentDay = CalendarDay.from(new Date());
-
-        public CurrentDayDecorator(Activity context,String DateValue) {
+        public CurrentDayDecorator(Activity context,int color, HashSet<CalendarDay> calendarDayCollection) {
             drawable = ContextCompat.getDrawable(context,R.drawable.first_day_month);
             this.DateValue=DateValue;
+            this.color = color;
+
+            this.mCalendarDayCollection = calendarDayCollection;
         }
 
         @Override
         public boolean shouldDecorate(CalendarDay day) {
 
-            Log.d("dfgdfgdfgdf","CalendarDay{"+DateValue+"}");
+            Log.d("dfgdfgdfgssdsdsdsdf","CalendarDay{"+DateValue+"}");
             Log.d("dfgdfgddfdfdffgdf", String.valueOf(currentDay));
             Log.d("fgfhgfhfghfghgf", String.valueOf(day));
+            Log.d("fdfgfhsdfgdfdfdfdhfghgf", String.valueOf(mCalendarDayCollection));
 
 //            return day.equals("CalendarDay{"+DateValue+"}");
-            return day.equals(currentDay);
+            return mCalendarDayCollection.contains(day);
 
         }
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.setSelectionDrawable(drawable);
+
+            Log.d("fsdfsfsfsfsfrwe",""+view);
+
+
+                view.addSpan(new DotSpan(5, color));
+                view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.first_day_month));
+
+               // view.addSpan(new DotSpan(10, color));
+               // view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.first_day_month));
+
         }
     }
+
+//    public class CurrentDayDecorator2 implements DayViewDecorator {
+//
+//        private Drawable drawable;
+//        String DateValue;
+//        private final int color;
+//        private HashSet<CalendarDay> mCalendarDayCollection;
+//        //        CalendarDay currentDay = CalendarDay.from(new Date());
+//        CalendarDay currentDay = CalendarDay.from(new Date()) ;
+//
+//        public CurrentDayDecorator2(Activity context,int color, HashSet<CalendarDay> calendarDayCollection) {
+//            drawable = ContextCompat.getDrawable(context,R.drawable.first_day_month);
+//            this.DateValue=DateValue;
+//            this.color = color;
+//            mCalendarDayCollection = calendarDayCollection;
+//        }
+//
+//        @Override
+//        public boolean shouldDecorate(CalendarDay day) {
+//
+//            Log.d("dfgdfgdfgssdsdsdsdf","CalendarDay{"+DateValue+"}");
+//            Log.d("dfgdfgddfdfdffgdf", String.valueOf(currentDay));
+//            Log.d("fgfhgfhfghfghgf", String.valueOf(day));
+//
+////            return day.equals("CalendarDay{"+DateValue+"}");
+//            return mCalendarDayCollection .contains(day);
+//
+//        }
+//
+//        @Override
+//        public void decorate(DayViewFacade view) {
+//         //   view.addSpan(new DotSpan(5, color));
+//            view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.first_day_month));
+//
+//        }
+//    }
+
+
+
+
+//    public class EventDecorator implements DayViewDecorator {
+//
+//        private final int color;
+//        private final HashSet<CalendarDay> dates;
+//
+////        public EventDecorator(int color, Collection<CalendarDay> dates) {
+//        public EventDecorator(int color, Collection<CalendarDay> dates) {
+//            this.color = color;
+//            this.dates = new HashSet<>(dates);
+//        }
+//
+//        @Override
+//        public boolean shouldDecorate(CalendarDay day) {
+//            return dates.contains(day);
+//        }
+//
+//        @Override
+//        public void decorate(DayViewFacade view) {
+//            view.addSpan(new DotSpan(5, color));
+//        }
+//    }
+
+
 
 }

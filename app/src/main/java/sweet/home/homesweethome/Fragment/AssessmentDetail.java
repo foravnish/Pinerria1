@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.GridView;
@@ -44,9 +43,9 @@ import java.util.Map;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
-import sweet.home.homesweethome.Utils.Const;
 import sweet.home.homesweethome.Utils.MyPrefrences;
 import sweet.home.homesweethome.Utils.Util;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,9 +64,6 @@ public class AssessmentDetail extends Fragment {
     ListView expListView;
 
     JSONObject jsonObjectuserSelection;
-    private View stickyViewSpacer;
-    LinearLayout stickyView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,7 +74,6 @@ public class AssessmentDetail extends Fragment {
 
         AllProducts = new ArrayList<>();
         expListView = (ListView) view.findViewById(R.id.lvExp);
-        stickyView = (LinearLayout) view.findViewById(R.id.stickyView);
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -86,7 +81,6 @@ public class AssessmentDetail extends Fragment {
         dialog.setCancelable(false);
 
         Log.d("AssessmentID",getArguments().getString("assessmentId"));
-        Log.d("AssessmentID",getArguments().getString("selectedSemester"));
 
         ImageView textBack= view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
@@ -102,48 +96,18 @@ public class AssessmentDetail extends Fragment {
             }
         });
 
-//        View headerView = ((LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.header, null, false);
-//        expListView.addHeaderView(headerView);
-//
-        pageParagraph=view.findViewById(R.id.pageParagraph);
+        View headerView = ((LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.header, null, false);
+        expListView.addHeaderView(headerView);
 
-        LayoutInflater inflater2 = (LayoutInflater)getActivity(). getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View listHeader = inflater2.inflate(R.layout.list_header, null);
-        stickyViewSpacer = listHeader.findViewById(R.id.stickyViewPlaceholder);
-        /* Add list view header */
-        expListView.addHeaderView(listHeader);
+        pageParagraph=headerView.findViewById(R.id.pageParagraph);
 
         assessmentDetail();
-
-        expListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                /* Check if the first item is already reached to top.*/
-                if (expListView.getFirstVisiblePosition() == 0) {
-                    View firstChild = expListView.getChildAt(0);
-                    int topY = 0;
-                    if (firstChild != null) {
-                        topY = firstChild.getTop();
-                    }
-                    int heroTopY = stickyViewSpacer.getTop();
-                    stickyView.setY(Math.max(0, heroTopY + topY));
-                    /* Set the image to scroll half of the amount that of ListView */
-                    pageParagraph.setY(topY * 0.8f);
-                }
-            }
-        });
-
-
-
-
 
 
 
         return  view;
     }
+
 
 
 
@@ -363,5 +327,4 @@ public class AssessmentDetail extends Fragment {
             return convertView;
         }
     }
-
 }

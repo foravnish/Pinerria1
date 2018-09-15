@@ -182,7 +182,14 @@ public class Timeline extends Fragment {
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
-            dateM.setText(AllProducts.get(position).get("start").substring(0, Math.min(AllProducts.get(position).get("start").length(), 10)));
+
+            String year=AllProducts.get(position).get("start").substring(0,4);
+            String months=AllProducts.get(position).get("start").substring(5,7);
+            String mDate=AllProducts.get(position).get("start").substring(8,10);
+
+            dateM.setText(mDate+"-"+months+"-"+year);
+
+//            dateM.setText(AllProducts.get(position).get("start").substring(0, Math.min(AllProducts.get(position).get("start").length(), 10)));
             //dayM.setText(AllProducts.get(position).get("start"));
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
@@ -192,10 +199,11 @@ public class Timeline extends Fragment {
 
 
             if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("blue")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+//                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5ba1cf")));
             }
             else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("red")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#f45c71")));
             }
 
             return convertView;
