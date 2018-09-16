@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
@@ -87,11 +88,15 @@ public class Food extends Fragment {
     JSONObject jsonArrayBr,jsonSnacks,jsonLunch;
 
     List<HashMap<String,String>> MonBr;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View  view= inflater.inflate(R.layout.fragment_food, container, false);
+
 
 
         viewPager = (ViewPager) view.findViewById(R.id.slider);

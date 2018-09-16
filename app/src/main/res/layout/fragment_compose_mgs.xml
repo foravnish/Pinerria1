@@ -75,14 +75,14 @@
                 android:id="@+id/submitdata"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/stroke_btn1"
                 android:text="SUBMIT"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/stroke_btn2"
                 android:text="CANCEL"/>

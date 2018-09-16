@@ -98,24 +98,24 @@ public class Emergency1 extends AppCompatActivity {
             fatherMob.requestFocus();
             return false;
         }
-        else if (TextUtils.isEmpty(person1.getText().toString()))
-        {
-            person1.setError("Oops! Person 1 Name blank");
-            person1.requestFocus();
-            return false;
-        }
-        else if (TextUtils.isEmpty(personMob.getText().toString()))
-        {
-            personMob.setError("Oops! Person 1 Mobile blank");
-            personMob.requestFocus();
-            return false;
-        }
-        else if (TextUtils.isEmpty(personRelation.getText().toString()))
-        {
-            personRelation.setError("Oops! Person 1 Relationship blank");
-            personRelation.requestFocus();
-            return false;
-        }
+//        else if (TextUtils.isEmpty(person1.getText().toString()))
+//        {
+//            person1.setError("Oops! Person 1 Name blank");
+//            person1.requestFocus();
+//            return false;
+//        }
+//        else if (TextUtils.isEmpty(personMob.getText().toString()))
+//        {
+//            personMob.setError("Oops! Person 1 Mobile blank");
+//            personMob.requestFocus();
+//            return false;
+//        }
+//        else if (TextUtils.isEmpty(personRelation.getText().toString()))
+//        {
+//            personRelation.setError("Oops! Person 1 Relationship blank");
+//            personRelation.requestFocus();
+//            return false;
+//        }
 
         return true;
 

@@ -47,6 +47,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme2);
         setContentView(R.layout.activity_login);
         bnt_signin=findViewById(R.id.bnt_signin);
         edit_email=findViewById(R.id.edit_email);

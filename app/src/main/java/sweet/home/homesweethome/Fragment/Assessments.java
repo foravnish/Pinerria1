@@ -58,6 +58,7 @@ public class Assessments extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Dialog dialog;
+    TextView txtNoData;
 
 
     @Override
@@ -68,6 +69,7 @@ public class Assessments extends Fragment {
 
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
+        txtNoData = (TextView) view.findViewById(R.id.txtNoData);
 
 
         dialog=new Dialog(getActivity());
@@ -119,35 +121,45 @@ public class Assessments extends Fragment {
                 Util.cancelPgDialog(dialog);
 
 
-                for (int i=0;i<response.length();i++){
-                    try {
-                        JSONObject jsonObject=response.getJSONObject(i);
+                if (response.length()!=0) {
+
+                    txtNoData.setVisibility(View.GONE);
+                    expListView.setVisibility(View.VISIBLE);
 
 
-                        HashMap<String,String> map=new HashMap<>();
-
-                        map.put("_id", jsonObject.optString("_id"));
-                        map.put("remark", jsonObject.optString("remark"));
-                        map.put("emojiIcon", jsonObject.optString("emojiIcon"));
-                        map.put("classId", jsonObject.optString("classId"));
-                        map.put("createdBy", jsonObject.optString("createdBy"));
-                        map.put("__v", jsonObject.optString("__v"));
-                        map.put("modifiedOn", jsonObject.optString("modifiedOn"));
-                        map.put("createdOn", jsonObject.optString("createdOn"));
-                        map.put("isClassLevel", jsonObject.optString("isClassLevel"));
-                        map.put("isremarks", jsonObject.optString("isremarks"));
-                        map.put("assessmentId", jsonObject.optString("assessmentId"));
-                        map.put("selectedSemester", jsonObject.optString("selectedSemester"));
-                        Adapter adapter=new Adapter();
-                        expListView.setAdapter(adapter);
-                        AllProducts.add(map);
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(i);
 
 
+                            HashMap<String, String> map = new HashMap<>();
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            map.put("_id", jsonObject.optString("_id"));
+                            map.put("remark", jsonObject.optString("remark"));
+                            map.put("emojiIcon", jsonObject.optString("emojiIcon"));
+                            map.put("classId", jsonObject.optString("classId"));
+                            map.put("createdBy", jsonObject.optString("createdBy"));
+                            map.put("__v", jsonObject.optString("__v"));
+                            map.put("modifiedOn", jsonObject.optString("modifiedOn"));
+                            map.put("createdOn", jsonObject.optString("createdOn"));
+                            map.put("isClassLevel", jsonObject.optString("isClassLevel"));
+                            map.put("isremarks", jsonObject.optString("isremarks"));
+                            map.put("assessmentId", jsonObject.optString("assessmentId"));
+                            map.put("selectedSemester", jsonObject.optString("selectedSemester"));
+                            Adapter adapter = new Adapter();
+                            expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
-
+                }
+                else{
+                    txtNoData.setVisibility(View.VISIBLE);
+                    expListView.setVisibility(View.GONE);
                 }
 
 

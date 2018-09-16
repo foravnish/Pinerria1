@@ -11,12 +11,13 @@
         android:id="@+id/relat"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/stroke_btn_emer"
+        android:background="@drawable/stroke_btn_emergency"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/textBack"
             android:layout_width="30dp"
+            android:backgroundTint="@color/black"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/back"/>
@@ -26,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
-            android:textColor="#fff"
+            android:textColor="@color/black"
             android:text="Emergency Conscent Form"/>
     </RelativeLayout>
 
@@ -115,7 +116,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_gravity="center"
-                android:background="@drawable/stroke_btn1"
+                android:background="@drawable/stroke_btn_submit"
                 android:text="SUBMIT THE APPLICATION FORM"/>
         </LinearLayout>
     </ScrollView>

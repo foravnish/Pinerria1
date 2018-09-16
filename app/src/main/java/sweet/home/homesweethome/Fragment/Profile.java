@@ -3,6 +3,7 @@ package sweet.home.homesweethome.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,17 +69,21 @@ public class Profile extends Fragment {
 //    ImageView switchUser;
     Spinner switchUser,optionmMenu;
     List<String> listUser = new ArrayList<String>();
+    List<String> listUserGender = new ArrayList<String>();
     List<String> listUser2 = new ArrayList<String>();
     List<String> listUser3 = new ArrayList<String>();
     List<String> listUserID = new ArrayList<String>();
     List<String> listUserClassID = new ArrayList<String>();
     Dialog dialog;
-    CircleImageView authorImageView;
+//    CircleImageView authorImageView;
+    ImageView authorImageView;
     NetworkImageView classImage;
     //String [] opt  = {"Profile","Change Password","Logout"};
     ArrayList<String> opt=new ArrayList<>();
-    String sId, parentId;
+    public  static String sId, parentId;
     public  static String ClassId,childName;
+    RelativeLayout relativeLayout;
+    LinearLayout linearLayoutColor,linearLayoutColor2;
 
 
     @Override
@@ -94,6 +101,10 @@ public class Profile extends Fragment {
         authorImageView=view.findViewById(R.id.authorImageView);
         classImage=view.findViewById(R.id.classImage);
         optionmMenu=view.findViewById(R.id.optionmMenu);
+
+        linearLayoutColor=view.findViewById(R.id.linearLayoutColor);
+        linearLayoutColor2=view.findViewById(R.id.linearLayoutColor2);
+        relativeLayout=view.findViewById(R.id.relativeLayout);
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -215,6 +226,7 @@ public class Profile extends Fragment {
 
                 Bundle bundle=new Bundle();
                 bundle.putString("ClassId",ClassId);
+                bundle.putString("studentId",sId);
 
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
@@ -256,7 +268,7 @@ public class Profile extends Fragment {
                 ClassId=listUserClassID.get(i).toString();
                 childName=switchUser.getSelectedItem().toString();
 
-                String imageUrl="http://35.196.247.27/api/upload/"+listUser2.get(i);
+                String imageUrl="http://hshpreschooladmin.com/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
 
 //                String imageUrl2="http://35.196.247.27/assets/img/class/"+listUser3.get(i);
@@ -265,10 +277,24 @@ public class Profile extends Fragment {
 
 
                 Log.d("fsdfsdfsdfsd",listUser3.get(i));
-                String imageUrl2="http://35.196.247.27/assets/img/class/"+listUser3.get(i);
+                String imageUrl2="http://hshpreschooladmin.com/assets/img/class/"+listUser3.get(i);
                 ImageLoader imageLoader = AppController.getInstance().getImageLoader();
                 classImage.setImageUrl(imageUrl2, imageLoader);
 
+                if (listUserGender.get(i).equals("Male")){
+                    Log.d("SDfdsfsdfsdfdsgdsgdf","Male");
+                    relativeLayout.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+                    linearLayoutColor.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+                    linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in);
+                }
+                else  if (listUserGender.get(i).equals("Female")){
+                    Log.d("SDfdsfsdfsdfdsgdsgdf","Female");
+
+                    relativeLayout.setBackgroundColor(Color.parseColor("#eecacf"));
+                    linearLayoutColor.setBackgroundColor(Color.parseColor("#eecacf"));
+                    linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in_male);
+
+                }
             }
 
             @Override
@@ -387,6 +413,7 @@ public class Profile extends Fragment {
 
                         parentId=response.optString("_id");
                         listUser.clear();
+                        listUserGender.clear();
                         try {
                             JSONArray jsonArray=response.getJSONArray("child");
                             for (int i=0;i<jsonArray.length();i++) {
@@ -395,6 +422,7 @@ public class Profile extends Fragment {
                                 JSONObject jsonObject1=jsonObject.getJSONObject("classes");
 
                                 listUser.add(jsonObject.optString("name"));
+                                listUserGender.add(jsonObject.optString("gender"));
                                 listUser2.add(jsonObject.optString("image"));
                                 listUser3.add(jsonObject1.optString("image"));
                                 listUserID.add(jsonObject.optString("_id"));

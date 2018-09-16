@@ -72,6 +72,7 @@ public class ActivitesA extends Fragment {
         dialog.setCancelable(false);
 
         Log.d("ClassId",getArguments().getString("ClassId"));
+        Log.d("studentId",getArguments().getString("studentId"));
 
 
         ImageView textBack= view.findViewById(R.id.textBack);
@@ -105,7 +106,7 @@ public class ActivitesA extends Fragment {
 
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.activities+getArguments().getString("ClassId"), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.activities+getArguments().getString("ClassId")+"/"+getArguments().getString("studentId"), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("Response",response.toString());
@@ -219,7 +220,7 @@ public class ActivitesA extends Fragment {
 //            date.setText(AllProducts.get(position).get("datefield").substring(0, Math.min(AllProducts.get(position).get("datefield").length(), 10)));
             date.setText(dateVal+"-"+months+"-"+year);
 
-            String imageUrl="http://35.196.247.27/api/upload/"+AllProducts.get(position).get("image").toString();
+            String imageUrl="http://hshpreschooladmin.com/api/upload/"+AllProducts.get(position).get("image").toString();
 
 
             if (AllProducts.get(position).get("image").toString().equals("")){

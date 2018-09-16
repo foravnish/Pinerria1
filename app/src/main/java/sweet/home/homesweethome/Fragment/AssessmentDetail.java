@@ -128,7 +128,7 @@ public class AssessmentDetail extends Fragment {
                             jsonObjectuserSelection   =response.getJSONObject("userSelection");
 
 
-                            pageParagraph.setText(jsonObject.optString("pageParagraph"));
+                            pageParagraph.setText(jsonObject.optString("pageParagraph")+"\n\nD: Developing    M:Meeting     E:Exceeding\n");
 
                             JSONArray jsonArray=jsonObject.getJSONArray("resultDataArray");
                             for (int i=0;i<jsonArray.length();i++){

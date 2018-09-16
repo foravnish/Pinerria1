@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -178,6 +180,7 @@ public class TeachRemark extends Fragment {
         TextView title1,remarkValue1,dateBox;
         ImageView iv11;
         RelativeLayout relative;
+        LinearLayout linear2;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -209,6 +212,7 @@ public class TeachRemark extends Fragment {
             iv11=convertView.findViewById(R.id.iv11);
             relative=convertView.findViewById(R.id.relative);
             dateBox=convertView.findViewById(R.id.dateBox);
+            linear2=convertView.findViewById(R.id.linear2);
 
             Log.d("dsfsdfgsdfgsdgdfg",AllProducts.get(position).get("isremarks"));
            // Log.d("dsfsdfgsdfgsdgdfg2",AllProducts.get(position).get("remark"));
@@ -223,6 +227,24 @@ public class TeachRemark extends Fragment {
                 month2 = AllProducts.get(position-1).get("createdOn").substring(5,7);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+
+
+
+
+            Calendar c = Calendar.getInstance();
+            int monthCurrent = c.get(Calendar.MONTH);
+
+            Log.d("SDfsdfsdfsdfsdfsdf1", String.valueOf(monthCurrent+1));
+            Log.d("SDfsdfsdfsdfsdfsdf2", String.valueOf(month));
+
+            String monthsC= String.valueOf(monthCurrent+1);
+            String monthsC2= "0"+monthsC;
+
+            Log.d("sgfdsgdgdf",monthsC2);
+            if (!monthsC2.equals(month)){
+                Log.d("sdfadfsfseff","true");
+                linear2.setBackgroundResource(R.drawable.strock_noti_gray);
             }
 
             if (year.equals(year2)&& month.equals(month2)){
@@ -268,7 +290,7 @@ public class TeachRemark extends Fragment {
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
 
-            String imageUrl2="http://35.184.93.23:3000/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
+            String imageUrl2="http://hshpreschooladmin.com/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
 
             Picasso.with(getActivity()).load(imageUrl2).into(iv11);
 

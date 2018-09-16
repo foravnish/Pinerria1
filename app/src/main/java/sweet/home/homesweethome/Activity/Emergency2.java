@@ -462,25 +462,25 @@ public class Emergency2 extends AppCompatActivity {
 
     private boolean validate(){
 
-        if (TextUtils.isEmpty(person2.getText().toString()))
-        {
-            person2.setError("Oops! Person 2 Name blank");
-            person2.requestFocus();
-            return false;
-        }
-
-        else if (TextUtils.isEmpty(personMob2.getText().toString()))
-        {
-            personMob2.setError("Oops! Person 2 Mobile blank");
-            personMob2.requestFocus();
-            return false;
-        }
-        else if (TextUtils.isEmpty(personRelation2.getText().toString()))
-        {
-            personRelation2.setError("Oops! Person 2 Relationship blank");
-            personRelation2.requestFocus();
-            return false;
-        }
+//        if (TextUtils.isEmpty(person2.getText().toString()))
+//        {
+//            person2.setError("Oops! Person 2 Name blank");
+//            person2.requestFocus();
+//            return false;
+//        }
+//
+//        else if (TextUtils.isEmpty(personMob2.getText().toString()))
+//        {
+//            personMob2.setError("Oops! Person 2 Mobile blank");
+//            personMob2.requestFocus();
+//            return false;
+//        }
+//        else if (TextUtils.isEmpty(personRelation2.getText().toString()))
+//        {
+//            personRelation2.setError("Oops! Person 2 Relationship blank");
+//            personRelation2.requestFocus();
+//            return false;
+//        }
 
         return true;
 

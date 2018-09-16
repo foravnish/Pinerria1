@@ -7,8 +7,14 @@ package sweet.home.homesweethome.Utils;
 public class Api {
 
 
-    public static String BASEURL="http://35.196.247.27/";
-    public static String login="http://35.196.247.27/auth/login";
+
+    public static String BASEURL="http://hshpreschooladmin.com/";
+    public static String login="http://hshpreschooladmin.com/auth/login";
+
+//    public static String BASEURL="http://35.196.247.27/";
+//    public static String login="http://35.196.247.27/auth/login";
+
+
     public static String ChangePwd=BASEURL+"api/users/change-password";
     //    public static String food="http://35.184.93.23:3000/api/food-menu";
     public static String food=BASEURL+"api/food-menu/mobile";
@@ -17,6 +23,7 @@ public class Api {
     public static String activities=BASEURL+"api/activities/byclass/";
     public static String Registration=BASEURL+"api/users/parent/register/child";
     public static String PostMsg=BASEURL+"api/message";
+    public static String SentMessage=BASEURL+"api/message/studentid/";
     public static String Calender=BASEURL+"api/calendar";
     //    public static String Remark="http://35.184.93.23:3000/api/remarks/bystudentid/";
 //    public static String Remark=BASEURL+"api/remarksandassessments/bystudentid/all/";

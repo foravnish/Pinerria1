@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/white"
     tools:context="sweet.home.homesweethome.Activity.Login">
 
 
@@ -12,15 +12,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:gravity="center">
 
+        <ImageView
+            android:id="@+id/food"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/logo" />
+
         <RelativeLayout
+            android:id="@+id/relat2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="150dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="50dp"
+            android:elevation="2dp"
             android:background="@drawable/strock_white"
             android:orientation="vertical">
 
@@ -30,8 +42,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sign in"
+                android:textColor="#000"
+                android:textSize="24dp"
                 android:fontFamily="@font/comicz"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:layout_gravity="center"
                 android:gravity="center"/>
 
@@ -46,7 +60,7 @@
                 android:paddingLeft="5dp"
                 android:inputType="phone"
                 android:text=""
-                android:background="@drawable/strock_edit"/>
+                android:background="@drawable/strock_edit_login"/>
 
 
             <EditText
@@ -60,18 +74,19 @@
                 android:hint="***********"
                 android:text=""
                 android:inputType="textPassword"
-                android:background="@drawable/strock_edit"/>
+                android:background="@drawable/strock_edit_login"/>
 
 
             <Button
                 android:id="@+id/bnt_signin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/stroke_btn_grad"
+                android:background="@drawable/stroke_btn_login"
                 android:layout_marginTop="40dp"
                 android:layout_below="@+id/edit_pwd"
                 android:text="Sign in"
-                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textColor="#000"
                 android:layout_marginRight="10dp"/>
 
             <TextView
@@ -88,14 +103,6 @@
         </RelativeLayout>
 
 
-        <ImageView
-            android:id="@+id/food"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/logo" />
 
     </RelativeLayout>
 </LinearLayout>

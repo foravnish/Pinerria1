@@ -11,7 +11,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@drawable/stroke_btn_grad2"
+            android:background="#ccdee7"
             android:orientation="horizontal">
 
             <ImageView
@@ -19,24 +19,26 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
+                android:backgroundTint="@color/black"
                 android:background="@drawable/back"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textSize="21dp"
+                android:textColor="@color/black"
                 android:text="Communicate"/>
         </RelativeLayout>
 
         <android.support.design.widget.TabLayout
-            app:tabTextColor="#fff"
+            app:tabTextColor="@color/black"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="fixed"
-            android:background="@drawable/stroke_btn_grad2"
-            app:tabIndicatorColor="#fff"
-            app:tabSelectedTextColor="#fff"
+            android:background="#ccdee7"
+            app:tabIndicatorColor="@color/black"
+            app:tabSelectedTextColor="@color/black"
             app:tabGravity="fill"/>
     </android.support.design.widget.AppBarLayout>
 

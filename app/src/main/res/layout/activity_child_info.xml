@@ -19,6 +19,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
             android:background="@drawable/back"/>
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
-            android:textColor="#fff"
+            android:textColor="@color/black"
             android:text="Child's Information"/>
     </RelativeLayout>
 
@@ -102,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:hint="Nationality"
+                android:hint="Nationality*"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:background="@drawable/strock_edit"/>
@@ -134,15 +135,15 @@
                     android:id="@+id/next"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/black"
                     android:layout_marginRight="20dp"
 
-                    android:background="@drawable/stroke_btn1"
+                    android:background="@drawable/stroke_btn_login"
                     android:text="NEXT"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/black"
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/stroke_btn2"
                     android:text="CANCEL"/>

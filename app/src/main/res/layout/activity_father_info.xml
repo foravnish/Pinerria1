@@ -12,7 +12,7 @@
         android:id="@+id/relat"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/stroke_father"
+        android:background="@drawable/stroke_btn_emergency"
         android:orientation="horizontal">
 
         <ImageView
@@ -20,6 +20,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
             android:background="@drawable/back"/>
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
-            android:textColor="#fff"
+            android:textColor="@color/black"
             android:text="Father Information"/>
     </RelativeLayout>
 
@@ -59,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
-            android:hint="Father name"
+            android:hint="Father name*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -72,7 +73,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Mobile No."
+            android:hint="Mobile No.*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="phone"
@@ -84,7 +85,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Education"
+            android:hint="Education*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -95,7 +96,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Occupation"
+            android:hint="Occupation*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -106,7 +107,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Place of work"
+            android:hint="Place of work*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -118,7 +119,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Work No."
+            android:hint="Work No.*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="number"
@@ -130,7 +131,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Email Address"
+            android:hint="Email Address*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textEmailAddress"
@@ -141,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
-            android:hint="Home Address"
+            android:hint="Home Address*"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -160,14 +161,14 @@
                 android:id="@+id/next"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/stroke_btn1"
                 android:text="NEXT"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/stroke_btn2"
                 android:text="CANCEL"/>

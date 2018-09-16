@@ -19,6 +19,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
             android:background="@drawable/back"/>
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
-            android:textColor="#fff"
+            android:textColor="@color/black"
             android:text="Health Information"/>
     </RelativeLayout>
 
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="Does your child have any spacial problem or fears?"
+                android:text="Does your child have any spacial problem or fears?*"
                 android:textColor="#111"/>
 
             <EditText
@@ -83,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="is there anything unusual about the child's health?"
+                android:text="is there anything unusual about the child's health?*"
                 android:textColor="#111"/>
 
             <EditText
@@ -104,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="List any allergies the child has"
+                android:text="List any allergies the child has*"
                 android:textColor="#111"/>
 
             <EditText
@@ -123,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="Note any thing which may contribute the better vunderstanding of your child"
+                android:text="Note any thing which may contribute the better vunderstanding of your child*"
                 android:textColor="#111"/>
 
             <EditText
@@ -152,14 +153,14 @@
                     android:id="@+id/next"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/black"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/stroke_btn1"
                     android:text="NEXT"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/black"
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/stroke_btn2"
                     android:text="CANCEL"/>

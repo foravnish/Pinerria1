@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:fontFamily="@font/comicz"
+        android:fontFamily="@font/listfont"
         android:layout_marginTop="5dp"
         android:textColor="#111"/>
 

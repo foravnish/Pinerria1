@@ -85,18 +85,18 @@ public class OtherPermited extends AppCompatActivity {
 
     private boolean validate(){
 
-        if (TextUtils.isEmpty(driverName.getText().toString()))
-        {
-            driverName.setError("Oops! Driver Name blank");
-            driverName.requestFocus();
-            return false;
-        }
-        else if (TextUtils.isEmpty(MobileNo2.getText().toString()))
-        {
-            MobileNo2.setError("Oops! Driver Mobile No blank");
-            MobileNo2.requestFocus();
-            return false;
-        }
+//        if (TextUtils.isEmpty(driverName.getText().toString()))
+//        {
+//            driverName.setError("Oops! Driver Name blank");
+//            driverName.requestFocus();
+//            return false;
+//        }
+//        else if (TextUtils.isEmpty(MobileNo2.getText().toString()))
+//        {
+//            MobileNo2.setError("Oops! Driver Mobile No blank");
+//            MobileNo2.requestFocus();
+//            return false;
+//        }
 //        else if (TextUtils.isEmpty(health3.getText().toString()))
 //        {
 //            health3.setError("Oops! Empty Field 3 blank");

@@ -81,6 +81,7 @@ public class SentMgs extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
+        Log.d("sdfghfhfhfghfsdfsdfsdf",Profile.sId);
 
 
         sentMgs();
@@ -92,7 +93,7 @@ public class SentMgs extends Fragment {
     private void sentMgs() {
         Util.showPgDialog(dialog);
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.PostMsg, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Api.SentMessage+Profile.sId, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("ResponseMGS",response.toString());
@@ -111,6 +112,7 @@ public class SentMgs extends Fragment {
                         map.put("subject", jsonObject.optString("subject"));
                         map.put("description", jsonObject.optString("description"));
                         map.put("createdOn", jsonObject.optString("createdOn"));
+                        map.put("displayRole", jsonObject.optString("displayRole"));
                         Adapter adapter=new Adapter();
                         expListView.setAdapter(adapter);
                         AllProducts.add(map);
@@ -165,7 +167,7 @@ public class SentMgs extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,date,firstChar,editDelete;
+        TextView title,desc,date,firstChar,editDelete,role;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -198,6 +200,7 @@ public class SentMgs extends Fragment {
             date=convertView.findViewById(R.id.date);
             firstChar=convertView.findViewById(R.id.firstChar);
             editDelete=convertView.findViewById(R.id.editDelete);
+            role=convertView.findViewById(R.id.role);
 
             editDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -207,10 +210,12 @@ public class SentMgs extends Fragment {
                 }
             });
 
-            title.setText(AllProducts.get(position).get("recievedByRole"));
+            title.setText(AllProducts.get(position).get("displayRole"));
             desc.setText(AllProducts.get(position).get("description"));
-            String firtsCha = AllProducts.get(position).get("recievedByRole").substring(0, Math.min(AllProducts.get(position).get("recievedByRole").length(), 1));
+            role.setText(AllProducts.get(position).get("subject"));
+            String firtsCha = AllProducts.get(position).get("displayRole").substring(0, Math.min(AllProducts.get(position).get("displayRole").length(), 1));
             firstChar.setText(firtsCha.toUpperCase());
+
             String upToNCharacters = AllProducts.get(position).get("createdOn").substring(0, Math.min(AllProducts.get(position).get("createdOn").length(), 10));
             date.setText(upToNCharacters);
 

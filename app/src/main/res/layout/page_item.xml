@@ -100,9 +100,9 @@
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:background="#fcefc0"
-                android:fontFamily="@font/comicz"
+                android:fontFamily="@font/listfont"
                 android:gravity="center"
-                android:text=" "
+                android:text="Minl"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -113,7 +113,7 @@
                 android:layout_gravity="center"
                 android:background="#fdf2ca"
                 android:gravity="center"
-                android:fontFamily="@font/comicz"
+                android:fontFamily="@font/listfont"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -181,7 +181,7 @@
                 android:background="#fdb6c2"
                 android:gravity="center"
                 android:text=" "
-                android:fontFamily="@font/comicz"
+                android:fontFamily="@font/listfont"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -193,7 +193,7 @@
                 android:background="#fdc2cc"
                 android:gravity="center"
                 android:text=""
-                android:fontFamily="@font/comicz"
+                android:fontFamily="@font/listfont"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
             <TextView
@@ -261,7 +261,7 @@
                 android:background="#c1da8c"
                 android:gravity="center"
                 android:text=" "
-                android:fontFamily="@font/comicz"
+                android:fontFamily="@font/listfont"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -272,7 +272,7 @@
                 android:layout_gravity="center"
                 android:background="#cadaa9"
                 android:gravity="center"
-                android:fontFamily="@font/comicz"
+                android:fontFamily="@font/listfont"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15dp" />
