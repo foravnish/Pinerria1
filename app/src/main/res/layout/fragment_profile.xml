@@ -109,7 +109,7 @@
                     android:layout_height="100dp"
                     android:layout_alignBottom="@+id/relativeLayout"
                     android:layout_alignStart="@+id/textViewUser"
-                    android:layout_marginLeft="70dp" />
+                    android:layout_marginLeft="60dp" />
 
                 <!--app:civ_border_color="#FF000000"-->
                 <!--app:civ_border_width="2dp"-->
