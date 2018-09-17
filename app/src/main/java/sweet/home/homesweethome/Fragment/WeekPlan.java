@@ -349,6 +349,7 @@ public class WeekPlan extends Fragment {
                 JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
                 JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
+                Log.d("sdfsdfsdfsdfsdfs", String.valueOf(jsonObject));
 
                 if (jsonArray.length()!=0) {
                     Log.d("sfgsdgdfgdfgd","true");
