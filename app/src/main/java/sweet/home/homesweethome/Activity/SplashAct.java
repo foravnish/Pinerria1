@@ -39,7 +39,6 @@ public class SplashAct extends AppCompatActivity {
 //                    startActivity(intent);
 //                    finish();
 
-
                     if (MyPrefrences.getUserLogin(SplashAct.this)==true){
 
                         childList();

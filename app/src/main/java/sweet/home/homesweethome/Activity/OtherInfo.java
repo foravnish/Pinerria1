@@ -20,7 +20,7 @@ public class OtherInfo extends AppCompatActivity {
     Button next;
     EditText language2;
     Spinner switchStatus,language;
-    String[] str1 = { "Married", "Unmarried"};
+    String[] str1 = { "Married", "Separated"};
     String[] str2 = { "Arabic", "English","Both"};
     String statusM,statusL;
     boolean flag=false;
