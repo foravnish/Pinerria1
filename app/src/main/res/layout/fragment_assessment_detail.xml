@@ -32,16 +32,112 @@
 
 
 
-
-
-
-
-
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/lvExp"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/relat"/>
+        android:layout_below="@+id/relat">
+
+        <ImageView
+            android:id="@+id/heroImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:scaleType="fitCenter" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#9E9E9E"
+            android:dividerHeight="1dp"
+            android:scrollbars="none"></ListView>
+
+        <!--<TextView-->
+            <!--android:id="@+id/stickyView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="#222"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:text="Heading1"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
+
+        <LinearLayout
+            android:id="@+id/stickyView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/strock_top_line"
+
+            android:paddingBottom="5dp"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Objective for Development and Learning"
+                android:textColor="#111"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="left"
+                android:fontFamily="@font/listfont"
+                android:textSize="16dp"
+                android:layout_weight="7"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/strck_line"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/strck_line"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="E"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/strck_line2"
+                android:fontFamily="@font/listfont"
+                android:textColor="#111"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+
+    <!--<ListView xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/lvExp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/relat"/>-->
 
 
 </RelativeLayout>

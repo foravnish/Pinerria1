@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.GridView;
@@ -64,6 +65,9 @@ public class AssessmentDetail extends Fragment {
     ListView expListView;
 
     JSONObject jsonObjectuserSelection;
+    private View stickyViewSpacer;
+    private LinearLayout stickyView;
+    private View heroImageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,8 +77,10 @@ public class AssessmentDetail extends Fragment {
 
 
         AllProducts = new ArrayList<>();
-        expListView = (ListView) view.findViewById(R.id.lvExp);
+        expListView = (ListView) view.findViewById(R.id.listView);
+        stickyView = (LinearLayout) view.findViewById(R.id.stickyView);
 
+        heroImageView = view.findViewById(R.id.heroImageView);
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -97,9 +103,37 @@ public class AssessmentDetail extends Fragment {
         });
 
         View headerView = ((LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.header, null, false);
+        stickyViewSpacer  = headerView.findViewById(R.id.stickyViewPlaceholder);
         expListView.addHeaderView(headerView);
 
         pageParagraph=headerView.findViewById(R.id.pageParagraph);
+
+
+        expListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                /* Check if the first item is already reached to top.*/
+                if (expListView.getFirstVisiblePosition() == 0) {
+                    View firstChild = expListView.getChildAt(0);
+                    int topY = 0;
+                    if (firstChild != null) {
+                        topY = firstChild.getTop();
+                    }
+
+                    int heroTopY = stickyViewSpacer.getTop();
+                    stickyView.setY(Math.max(0, heroTopY + topY));
+
+                    /* Set the image to scroll half of the amount that of ListView */
+                    heroImageView.setY(topY * 0.5f);
+                }
+            }
+        });
 
         assessmentDetail();
 

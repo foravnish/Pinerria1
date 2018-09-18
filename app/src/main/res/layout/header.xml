@@ -1,106 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<com.amar.library.ui.StickyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:stickyHeader="@+id/linearLay">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <!--<Space-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="500dp" />-->
+    <TextView
+        android:id="@+id/pageParagraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/listfont"
+        android:layout_marginTop="5dp"
+        android:textColor="#111"/>
 
-        <TextView
-            android:id="@+id/pageParagraph"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:fontFamily="@font/listfont"
-            android:layout_marginTop="5dp"
-            android:textColor="#111"/>
+    <Space
+        android:id="@+id/stickyViewPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@android:color/darker_gray" />
-
-
-
-            <LinearLayout
-                android:id="@+id/linearLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/strock_top_line"
-
-                android:paddingBottom="5dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Objective for Development and Learning"
-                    android:textColor="#111"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="left"
-                    android:fontFamily="@font/listfont"
-                    android:textSize="16dp"
-                    android:layout_weight="7"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:background="@drawable/strck_line"
-                    android:fontFamily="@font/listfont"
-                    android:textColor="#111"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="M"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:background="@drawable/strck_line"
-                    android:fontFamily="@font/listfont"
-                    android:textColor="#111"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:background="@drawable/strck_line2"
-                    android:fontFamily="@font/listfont"
-                    android:textColor="#111"
-                    android:layout_weight="1"/>
-
-
-            </LinearLayout>
-
-
-
-
-
-
-
-
-    </LinearLayout>
-</com.amar.library.ui.StickyScrollView>
+</LinearLayout>
