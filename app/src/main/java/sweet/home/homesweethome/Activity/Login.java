@@ -172,6 +172,7 @@ public class Login extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }
+
                                 else if (response.optString("registrationStatus").equalsIgnoreCase("false")) {
                                     Log.d("sdfsdfsdfsdfs","false");
                                     Intent intent = new Intent(Login.this, WellcomeScr.class);
@@ -182,6 +183,10 @@ public class Login extends AppCompatActivity {
 //                                    startActivity(intent);
 //                                    finish();
                                 }
+
+//                                Intent intent = new Intent(Login.this, WellcomeScr.class);
+//                                startActivity(intent);
+//                                finish();
 
                             }
 

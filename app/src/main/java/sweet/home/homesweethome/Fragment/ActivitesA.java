@@ -57,6 +57,7 @@ public class ActivitesA extends Fragment {
     Dialog dialog;
  //   ImageView imageNoListing;
 
+    String month2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -217,8 +218,38 @@ public class ActivitesA extends Fragment {
             String months=AllProducts.get(position).get("datefield").toString().substring(5,7);
             String dateVal=AllProducts.get(position).get("datefield").toString().substring(8,10);
 
+
+            Log.d("fsdfsfsdfs",months);
+
+
+            if (months.equals("01")){
+                month2="January";
+            }else if(months.equals("02")){
+                month2="February";
+            }else if(months.equals("03")){
+                month2="March";
+            }else if(months.equals("04")){
+                month2="April";
+            }else if(months.equals("05")){
+                month2="May";
+            } else if(months.equals("06")){
+                month2="June";
+            } else if(months.equals("07")){
+                month2="July";
+            } else if(months.equals("08")){
+                month2="August";
+            } else if(months.equals("09")){
+                month2="September";
+            } else if(months.equals("10")){
+                month2="October";
+            } else if(months.equals("11")){
+                month2="November";
+            } else if(months.equals("12")){
+                month2="December";
+            }
+
 //            date.setText(AllProducts.get(position).get("datefield").substring(0, Math.min(AllProducts.get(position).get("datefield").length(), 10)));
-            date.setText(dateVal+"-"+months+"-"+year);
+            date.setText(month2+" "+dateVal);
 
             String imageUrl="http://hshpreschooladmin.com/api/upload/"+AllProducts.get(position).get("image").toString();
 

@@ -233,6 +233,7 @@ public class Monthely extends Fragment {
 
 
 
+
                         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
                             @Override
                             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -268,7 +269,7 @@ public class Monthely extends Fragment {
                                         flag=true;
                                         colorItem=AllProducts.get(i).get("colorItem");
 
-                                        showDataCalender(FianlDate2, colorItem, response);
+//                                        showDataCalender(FianlDate2, colorItem, response);
 //                                         break;
                                     }
 //                                    else{
@@ -276,9 +277,12 @@ public class Monthely extends Fragment {
 //                                    }
                                 }
 
-//                                if (flag == true){
-//                                    showDataCalender(FianlDate2,colorItem,response);
-//                                }
+
+                                if (flag == true){
+
+                                    showDataCalender(FianlDate1.toString(),colorItem,response);
+
+                                }
                             }
                         });
 
@@ -454,7 +458,12 @@ public class Monthely extends Fragment {
                         Adapter adapter = new Adapter();
                         listView.setAdapter(adapter);
                         AllProducts2.add(map);
+                        dialog4.show();
                     }
+//                    else{
+//                        Toast.makeText(getActivity(), "No events and no Holidays here.", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    }
 
 
 
@@ -476,7 +485,7 @@ public class Monthely extends Fragment {
             heading.setText("Holiday(s) on " + date);
         }
 
-        dialog4.show();
+
 
     }
     class Adapter extends BaseAdapter {

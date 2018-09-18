@@ -115,7 +115,7 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
                 android:gravity="top"
-                android:hint="HomeAddress"
+                android:hint="HomeAddress*"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:inputType="textPersonName"

@@ -379,9 +379,10 @@ public class Profile extends Fragment {
 
                 dialog4.show();
 
+                MyPrefrences.resetPrefrences(getActivity());
                 Intent intent=new Intent(getActivity(),Login.class);
                 startActivity(intent);
-
+                getActivity().finishAffinity();
             }
         });
 

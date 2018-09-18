@@ -307,7 +307,7 @@ public class SibliingInfo extends AppCompatActivity {
         });
 
 
-        ArrayAdapter subcat1 = new ArrayAdapter(SibliingInfo.this,android.R.layout.simple_spinner_item,str1);
+        ArrayAdapter subcat1 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item2,str1);
         subcat1.setDropDownViewResource(R.layout.simple_spinner_item);
         age1.setAdapter(subcat1);
 

@@ -2,11 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray">
     <RelativeLayout
         android:id="@+id/relat"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+
         android:background="@drawable/stroke_btn_grad2"
         android:orientation="horizontal">
 
@@ -27,77 +29,19 @@
             android:text="Assessment Detail"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/strock_top_line"
-        android:layout_below="@+id/relat"
-        android:paddingBottom="5dp"
-        android:weightSum="10">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Objective for Development and Learning"
-            android:textColor="#111"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:gravity="left"
-            android:fontFamily="@font/listfont"
-            android:textSize="16dp"
-            android:layout_weight="7"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="D"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@drawable/strck_line"
-            android:fontFamily="@font/listfont"
-            android:textColor="#111"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="M"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@drawable/strck_line"
-            android:fontFamily="@font/listfont"
-            android:textColor="#111"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="E"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@drawable/strck_line2"
-            android:fontFamily="@font/listfont"
-            android:textColor="#111"
-            android:layout_weight="1"/>
 
 
-    </LinearLayout>
+
+
+
+
 
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/lvExp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linearLay"/>
+        android:layout_below="@+id/relat"/>
 
 
 </RelativeLayout>

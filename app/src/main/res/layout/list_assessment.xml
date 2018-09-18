@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="Remark "
                 android:textSize="16dp"
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:layout_marginLeft="40dp"/>
 

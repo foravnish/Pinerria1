@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -50,6 +51,7 @@ public class ChildList extends AppCompatActivity {
     CircleImageView authorImageView;
     public static  int val1=1;
     String stId;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class ChildList extends AppCompatActivity {
         btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
         textViewUser = (TextView) findViewById(R.id.textViewUser);
         authorImageView = (CircleImageView) findViewById(R.id.authorImageView);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
 
         btnGetQuote.setOnClickListener(new View.OnClickListener() {
@@ -85,91 +88,104 @@ public class ChildList extends AppCompatActivity {
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==2) {
                 JSONObject jsonObject = jsonArray.getJSONObject(1);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
             else  if (val1==3) {
                 JSONObject jsonObject = jsonArray.getJSONObject(2);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==4) {
                 JSONObject jsonObject = jsonArray.getJSONObject(3);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl =Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
             else  if (val1==5) {
                 JSONObject jsonObject = jsonArray.getJSONObject(4);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==6) {
                 JSONObject jsonObject = jsonArray.getJSONObject(5);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
             else  if (val1==7) {
                 JSONObject jsonObject = jsonArray.getJSONObject(6);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl =Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==8) {
                 JSONObject jsonObject = jsonArray.getJSONObject(7);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
             else  if (val1==9) {
                 JSONObject jsonObject = jsonArray.getJSONObject(8);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==10) {
                 JSONObject jsonObject = jsonArray.getJSONObject(9);
                 textViewUser.setText(jsonObject.optString("name"));
                 stId=jsonObject.optString("_id");
-                String imageUrl = "http://35.184.93.23:3000/api/upload/" + jsonObject.optString("image");
+                String imageUrl =Api.ImageURL+"upload/" + jsonObject.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
+
+                relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
 
         } catch (JSONException e) {

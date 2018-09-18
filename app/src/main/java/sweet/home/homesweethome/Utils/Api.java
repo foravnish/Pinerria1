@@ -14,6 +14,8 @@ public class Api {
 //    public static String BASEURL="http://35.196.247.27/";
 //    public static String login="http://35.196.247.27/auth/login";
 
+    public static String ImageURL="http://hshpreschooladmin.com/api/";
+
 
     public static String ChangePwd=BASEURL+"api/users/change-password";
     //    public static String food="http://35.184.93.23:3000/api/food-menu";
