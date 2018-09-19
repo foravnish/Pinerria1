@@ -80,7 +80,7 @@ public class WeekPlan extends Fragment {
     List<Const> AllEvents=new ArrayList<>();
     int currPos=0;
     JSONObject jsonObject1;
-
+    boolean _areLecturesLoaded = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -243,7 +243,9 @@ public class WeekPlan extends Fragment {
                                     }
 
                                     viewPager.setAdapter(mCustomPagerAdapter);
+                                    //viewPager.setOffscreenPageLimit(0);
                                     mCustomPagerAdapter.notifyDataSetChanged();
+
 
                                     Log.d("sdvdsvxdvxdvsd",AllEvents.get(0).getId().toString());
 
@@ -280,12 +282,25 @@ public class WeekPlan extends Fragment {
             //System.out.print("called twice");
 //                    SingletonRequestQueue.getInstance(getActivity()).getRequestQueue().add(parentMeRequest);
             AppController.getInstance().addToRequestQueue(parentMeRequest);
+
+
+
     }
 
 
 
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && !_areLecturesLoaded) {
+            //Load Your Data Here like.... new GetContacts().execute();
 
+            _areLecturesLoaded = true;
+        }
+        else{
+        }
+    }
 
 
     public class  ViewHolder{
@@ -322,6 +337,7 @@ public class WeekPlan extends Fragment {
         public boolean isViewFromObject(View view, Object object) {
             return view == ((RelativeLayout) object);
         }
+
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {

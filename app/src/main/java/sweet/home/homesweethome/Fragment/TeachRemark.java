@@ -58,6 +58,8 @@ public class TeachRemark extends Fragment {
     List<HashMap<String,String>> AllProducts ;
     GridView expListView;
     Dialog dialog;
+    TextView txtNoData;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class TeachRemark extends Fragment {
 
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
+        txtNoData = (TextView) view.findViewById(R.id.txtNoData);
 
         Log.d("StudentId",getArguments().getString("sId"));
 
@@ -112,8 +115,14 @@ public class TeachRemark extends Fragment {
                 Log.d("ResponseRemark",response.toString());
                 Util.cancelPgDialog(dialog);
 
+                if (response.length()!=0) {
 
-                for (int i=0;i<response.length();i++){
+                    txtNoData.setVisibility(View.GONE);
+                    expListView.setVisibility(View.VISIBLE);
+
+
+
+                    for (int i=0;i<response.length();i++){
                     try {
                         JSONObject jsonObject=response.getJSONObject(i);
 
@@ -144,7 +153,11 @@ public class TeachRemark extends Fragment {
                     }
 
                 }
-
+                }
+                else{
+                    txtNoData.setVisibility(View.VISIBLE);
+                    expListView.setVisibility(View.GONE);
+                }
 
             }
         }, new Response.ErrorListener() {

@@ -51,4 +51,17 @@
         android:layout_below="@+id/date"
         android:verticalSpacing="7dp"
         android:stretchMode="columnWidth"/>
+
+    <TextView
+        android:id="@+id/txtNoData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/liner"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="25dp"
+        android:layout_gravity="center"
+        android:textColor="#111"
+        android:text="No Remark found"/>
 </LinearLayout>

@@ -282,7 +282,8 @@ public class Assessments extends Fragment {
 
             //int code= Integer.parseInt(AllProducts.get(position).get("emojiIcon"));
 
-            String imageUrl2="http://35.184.93.23:3000/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
+            String imageUrl2="http://hshpreschooladmin.com/assets/img/icon/"+AllProducts.get(position).get("emojiIcon");
+
 
             Picasso.with(getActivity()).load(imageUrl2).into(iv1);
 
