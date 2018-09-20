@@ -66,7 +66,7 @@ public class Profile extends Fragment {
 
     TextView teacherMenu,activitmenu,weekMenu,foddMenu,textViewUser;
     Dialog dialog4;
-//    ImageView switchUser;
+    //    ImageView switchUser;
     Spinner switchUser,optionmMenu;
     List<String> listUser = new ArrayList<String>();
     List<String> listUserGender = new ArrayList<String>();
@@ -75,7 +75,7 @@ public class Profile extends Fragment {
     List<String> listUserID = new ArrayList<String>();
     List<String> listUserClassID = new ArrayList<String>();
     Dialog dialog;
-//    CircleImageView authorImageView;
+    //    CircleImageView authorImageView;
     ImageView authorImageView;
     NetworkImageView classImage;
     //String [] opt  = {"Profile","Change Password","Logout"};
@@ -222,6 +222,9 @@ public class Profile extends Fragment {
         activitmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.d("sdgdfgdfgdf", String.valueOf(switchUser.getSelectedItemPosition()));
+                MyPrefrences.setPosition(getActivity(), String.valueOf(switchUser.getSelectedItemPosition()));
                 Fragment fragment = new ActivitesA();
 
                 Bundle bundle=new Bundle();
@@ -257,26 +260,59 @@ public class Profile extends Fragment {
 
 /// https://stackoverflow.com/questions/38784202/how-to-make-a-spinner-show-previously-selected-item-after-refresh
 
+
         partntdDetails();
 
 
+//        if(!MyPrefrences.getPosition(getActivity()).equalsIgnoreCase(""))
+//        {
+//            int spinnerPosition = subcat.getPosition(MyPrefrences.getPosition(getActivity()));
+//            switchUser.setSelection(spinnerPosition);
+//            Log.d("gfdfgsdfgsdgfsd",MyPrefrences.getPosition(getActivity()));
+//        }
 
 
-        if(!MyPrefrences.getPosition(getActivity()).equalsIgnoreCase(""))
-        {
-            int spinnerPosition = subcat.getPosition(MyPrefrences.getPosition(getActivity()));
-            switchUser.setSelection(spinnerPosition);
-            Log.d("gfdfgsdfgsdgfsd",MyPrefrences.getPosition(getActivity()));
-        }
+        Log.d("dfgsdfsdfgdsg",MyPrefrences.getPosition(getActivity()));
+
+//        if (listUser.isEmpty()){
+//            Log.d("SDgdfgsdfgsdfgsdfsdf","true");
+//        }
+//        else{
+//            Log.d("SDgdfgsdfgsdfgsdfsdf","false");
+//
+//            if (MyPrefrences.getPosition(getActivity()).equals("0")){
+//                textViewUser.setText(listUser.get(0));
+//            }
+//            else if (MyPrefrences.getPosition(getActivity()).equals("1")){
+//                textViewUser.setText(listUser.get(1));
+//            }
+//            else if (MyPrefrences.getPosition(getActivity()).equals("2")){
+//                textViewUser.setText(listUser.get(2));
+//            }
+//        }
+
+
+        Log.d("SDfdsfgvdsfsdfsgsg", String.valueOf(listUser));
+
+
+
+
+
+       // switchUser.setSelection(3);
 
 
         switchUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                //switchUser.setSelection(Integer.parseInt(MyPrefrences.getPosition(getActivity())));
+
+
+               // Log.d("sdfsdfsdfsdf",MyPrefrences.getPosition(getActivity()));
+
                 textViewUser.setText(switchUser.getSelectedItem().toString());
-
-                MyPrefrences.setPosition(getActivity(),switchUser.getSelectedItemId()+"");
-
+//                textViewUser.setText(listUser.get(i).toString());
                 Log.d("fsdafsdafsdfs",listUserID.get(i));
                 sId=listUserID.get(i).toString();
                 ClassId=listUserClassID.get(i).toString();
@@ -284,7 +320,6 @@ public class Profile extends Fragment {
 
                 String imageUrl="http://hshpreschooladmin.com/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
-
 
                 Log.d("fsdfsdfsdfsd",listUser3.get(i));
                 String imageUrl2="http://hshpreschooladmin.com/assets/img/class/"+listUser3.get(i);
@@ -303,13 +338,16 @@ public class Profile extends Fragment {
                     relativeLayout.setBackgroundColor(Color.parseColor("#eecacf"));
                     linearLayoutColor.setBackgroundColor(Color.parseColor("#eecacf"));
                     linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in_male);
-
                 }
+
+
+
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                //switchUser.setSelection(3);
             }
         });
 
@@ -363,6 +401,12 @@ public class Profile extends Fragment {
         return view;
 
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        partntdDetails();
+//    }
 
     @Override
     public void onResume() {
@@ -438,6 +482,7 @@ public class Profile extends Fragment {
                                 listUser3.add(jsonObject1.optString("image"));
                                 listUserID.add(jsonObject.optString("_id"));
                                 listUserClassID.add(jsonObject1.optString("_id"));
+
 
                                 subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);
                                 subcat.setDropDownViewResource(R.layout.simple_spinner_item);

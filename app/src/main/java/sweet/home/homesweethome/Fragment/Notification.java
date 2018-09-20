@@ -102,7 +102,6 @@ public class Notification extends Fragment {
                 Log.d("ResponseNotification",response.toString());
                 Util.cancelPgDialog(dialog);
 
-
                 for (int i=0;i<response.length();i++){
                     try {
                         JSONObject jsonObject=response.getJSONObject(i);
