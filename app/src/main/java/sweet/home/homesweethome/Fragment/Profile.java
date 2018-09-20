@@ -84,7 +84,7 @@ public class Profile extends Fragment {
     public  static String ClassId,childName;
     RelativeLayout relativeLayout;
     LinearLayout linearLayoutColor,linearLayoutColor2;
-
+    ArrayAdapter subcat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -255,13 +255,27 @@ public class Profile extends Fragment {
 //        });
 
 
+/// https://stackoverflow.com/questions/38784202/how-to-make-a-spinner-show-previously-selected-item-after-refresh
+
         partntdDetails();
+
+
+
+
+        if(!MyPrefrences.getPosition(getActivity()).equalsIgnoreCase(""))
+        {
+            int spinnerPosition = subcat.getPosition(MyPrefrences.getPosition(getActivity()));
+            switchUser.setSelection(spinnerPosition);
+            Log.d("gfdfgsdfgsdgfsd",MyPrefrences.getPosition(getActivity()));
+        }
 
 
         switchUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 textViewUser.setText(switchUser.getSelectedItem().toString());
+
+                MyPrefrences.setPosition(getActivity(),switchUser.getSelectedItemId()+"");
 
                 Log.d("fsdafsdafsdfs",listUserID.get(i));
                 sId=listUserID.get(i).toString();
@@ -270,10 +284,6 @@ public class Profile extends Fragment {
 
                 String imageUrl="http://hshpreschooladmin.com/api/upload/"+listUser2.get(i);
                 Picasso.with(getActivity()).load(imageUrl).into(authorImageView);
-
-//                String imageUrl2="http://35.196.247.27/assets/img/class/"+listUser3.get(i);
-//                Picasso.with(getActivity()).load(imageUrl2).into(classImage);
-
 
 
                 Log.d("fsdfsdfsdfsd",listUser3.get(i));
@@ -429,7 +439,7 @@ public class Profile extends Fragment {
                                 listUserID.add(jsonObject.optString("_id"));
                                 listUserClassID.add(jsonObject1.optString("_id"));
 
-                                ArrayAdapter subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);
+                                subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);
                                 subcat.setDropDownViewResource(R.layout.simple_spinner_item);
                                 switchUser.setAdapter(subcat);
                             }
