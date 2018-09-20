@@ -24,11 +24,11 @@ public class SibliingInfo extends AppCompatActivity {
     Button next;
     EditText name1,name2,name3,name4,name5;
     Spinner age1,age2,age3,age4,age5;
-    String[] str1 = { "1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
-    String[] str2 = { "1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
-    String[] str3 = { "1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
-    String[] str4 = { "1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
-    String[] str5 = { "1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
+    String[] str1 = { "Age","1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
+    String[] str2 = { "Age","1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
+    String[] str3 = { "Age","1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
+    String[] str4 = { "Age","1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
+    String[] str5 = { "Age","1", "2", "3", "4","5","6", "7", "8", "9","10","11", "12", "13", "14","15","16", "17", "18", "19","20" };
     LinearLayout spi1,spi2,spi3,spi4,spi5;
     public  static JSONObject child1,child2,child3,child4,child5,child6,child7,child8,child9,child10;
     String sibVal;
@@ -92,6 +92,9 @@ public class SibliingInfo extends AppCompatActivity {
                 JSONObject jsonObject5=new JSONObject();
 
                 try {
+                    Log.d("sdfsdfsdfssdfsd", String.valueOf(age1.getSelectedItem().toString()));
+
+
                     jsonObject1.putOpt("age",age1.getSelectedItem().toString());
                     jsonObject1.putOpt("name",name1.getText().toString());
 
@@ -307,23 +310,24 @@ public class SibliingInfo extends AppCompatActivity {
         });
 
 
-        ArrayAdapter subcat1 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item2,str1);
+
+        ArrayAdapter subcat1 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item,str1);
         subcat1.setDropDownViewResource(R.layout.simple_spinner_item);
         age1.setAdapter(subcat1);
 
-        ArrayAdapter subcat2 = new ArrayAdapter(SibliingInfo.this,android.R.layout.simple_spinner_item,str2);
+        ArrayAdapter subcat2 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item,str2);
         subcat2.setDropDownViewResource(R.layout.simple_spinner_item);
         age2.setAdapter(subcat2);
 
-        ArrayAdapter subcat3 = new ArrayAdapter(SibliingInfo.this,android.R.layout.simple_spinner_item,str3);
+        ArrayAdapter subcat3 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item,str3);
         subcat3.setDropDownViewResource(R.layout.simple_spinner_item);
         age3.setAdapter(subcat3);
 
-        ArrayAdapter subcat4= new ArrayAdapter(SibliingInfo.this,android.R.layout.simple_spinner_item,str4);
+        ArrayAdapter subcat4= new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item,str4);
         subcat4.setDropDownViewResource(R.layout.simple_spinner_item);
         age4.setAdapter(subcat4);
 
-        ArrayAdapter subcat5 = new ArrayAdapter(SibliingInfo.this,android.R.layout.simple_spinner_item,str5);
+        ArrayAdapter subcat5 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item,str5);
         subcat5.setDropDownViewResource(R.layout.simple_spinner_item);
         age5.setAdapter(subcat5);
 

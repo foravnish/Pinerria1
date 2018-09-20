@@ -6,6 +6,7 @@ android:layout_height="wrap_content"
 android:padding="15dp"
     android:text="fgdgdfgd"
 android:fontFamily="@font/comicz"
+    android:textColor="#888"
 android:background="@drawable/spinner_item_border"
 
     />
