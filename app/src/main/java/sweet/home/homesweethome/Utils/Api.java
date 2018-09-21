@@ -7,7 +7,6 @@ package sweet.home.homesweethome.Utils;
 public class Api {
 
 
-
     public static String BASEURL="http://hshpreschooladmin.com/";
     public static String login="http://hshpreschooladmin.com/auth/login";
 
