@@ -198,6 +198,7 @@ public class Profile extends Fragment {
         foddMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MyPrefrences.setPosition(getActivity(), String.valueOf(switchUser.getSelectedItemPosition()));
                 Fragment fragment = new Food();
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
@@ -208,6 +209,7 @@ public class Profile extends Fragment {
         weekMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MyPrefrences.setPosition(getActivity(), String.valueOf(switchUser.getSelectedItemPosition()));
                 Fragment fragment = new WeekPlan();
                 Bundle bundle=new Bundle();
                 bundle.putString("ClassId",ClassId);
@@ -240,6 +242,7 @@ public class Profile extends Fragment {
         teacherMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MyPrefrences.setPosition(getActivity(), String.valueOf(switchUser.getSelectedItemPosition()));
                 Fragment fragment = new RemarkAssessment();
                 Bundle bundle=new Bundle();
                 bundle.putString("sId",sId);
@@ -300,16 +303,24 @@ public class Profile extends Fragment {
 
        // switchUser.setSelection(3);
 
+        switchUser.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.d("fgdfgdfgdfgsdgdf","true");
+                MyPrefrences.setPosition(getActivity(),"");
+                return false;
+            }
+        });
 
         switchUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                //switchUser.setSelection(Integer.parseInt(MyPrefrences.getPosition(getActivity())));
+                if (!MyPrefrences.getPosition(getActivity()).equals("")) {
+                    switchUser.setSelection(Integer.parseInt(MyPrefrences.getPosition(getActivity())));
+                }
 
-
-               // Log.d("sdfsdfsdfsdf",MyPrefrences.getPosition(getActivity()));
 
                 textViewUser.setText(switchUser.getSelectedItem().toString());
 //                textViewUser.setText(listUser.get(i).toString());
@@ -376,6 +387,7 @@ public class Profile extends Fragment {
                         Yes_action.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                MyPrefrences.setPosition(getActivity(),"");
                                 getActivity().finishAffinity();
                             }
                         });
