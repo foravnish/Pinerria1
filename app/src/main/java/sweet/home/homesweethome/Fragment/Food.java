@@ -143,6 +143,8 @@ public class Food extends Fragment {
 //            date.setText("Monday");
 //        }
 
+        Log.d("sdfsdgsdfgdfgbdf",MyPrefrences.getPositionFood(getActivity()));
+
         MonBr=new ArrayList<>();
 
         getFoodData();
@@ -162,7 +164,7 @@ public class Food extends Fragment {
                     public void onResponse(JSONObject response) {
                         Util.cancelPgDialog(dialog);
 
-                        AllEvents.clear();
+                                                AllEvents.clear();
                         Log.d("gdfgdfghdfhdhgf",response.toString());
                         try {
                             JSONObject jsonObjectSunday=response.getJSONObject("Sunday");
@@ -200,6 +202,13 @@ public class Food extends Fragment {
 
                                 mCustomPagerAdapter.notifyDataSetChanged();
 
+                            }
+
+                            if (MyPrefrences.getPositionFood(getActivity()).equals("")){
+                                viewPager.setCurrentItem(0);
+                            }
+                            else {
+                                viewPager.setCurrentItem(Integer.parseInt(MyPrefrences.getPositionFood(getActivity())));
                             }
 
 
@@ -401,6 +410,9 @@ public class Food extends Fragment {
             viewHolder.liner1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    MyPrefrences.setPositionFood(getActivity(), String.valueOf(position));
+
                     Fragment fragment = new Food1();
                     Bundle bundle=new Bundle();
                     bundle.putString("type","breakfast");
@@ -416,6 +428,9 @@ public class Food extends Fragment {
             viewHolder.liner2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    MyPrefrences.setPositionFood(getActivity(), String.valueOf(position));
+
                     Fragment fragment = new Food2();
                     Bundle bundle=new Bundle();
                     bundle.putString("type","snack");
@@ -431,6 +446,8 @@ public class Food extends Fragment {
             viewHolder.liner3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    MyPrefrences.setPositionFood(getActivity(), String.valueOf(position));
+
                     Fragment fragment = new Food3();
                     Bundle bundle=new Bundle();
                     bundle.putString("type","lunch");

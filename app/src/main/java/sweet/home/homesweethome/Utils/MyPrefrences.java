@@ -22,6 +22,7 @@ public class MyPrefrences {
     static SharedPreferences NOofChild;
     static SharedPreferences childList;
     static SharedPreferences position;
+    static SharedPreferences positionFood;
 
     public static String USER_LOGIN = "userlogin";
     public static String USER_ID = "user_id";
@@ -212,6 +213,17 @@ public class MyPrefrences {
     }
 
 
+    public static void setPositionFood(Context context, String is) {
+        positionFood = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = positionFood.edit();
+        editor.putString("POSITIONFOOD", is);
+        editor.commit();
+    }
+
+    public static String getPositionFood(Context context) {
+        positionFood = PreferenceManager.getDefaultSharedPreferences(context);
+        return positionFood.getString("POSITIONFOOD","");
+    }
 
 
 
