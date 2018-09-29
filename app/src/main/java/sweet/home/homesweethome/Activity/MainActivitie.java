@@ -1,6 +1,7 @@
 package sweet.home.homesweethome.Activity;
 
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -45,6 +46,7 @@ import sweet.home.homesweethome.Utils.Util;
 public class MainActivitie extends AppCompatActivity {
 
     ImageView menual,message,alerm,calender,profile;
+    String  androidDeviceId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,6 +153,8 @@ public class MainActivitie extends AppCompatActivity {
 
             }
         });
+
+        sendRegistrationTokenToServer(MyPrefrences.getgcm_token(getApplicationContext()));
 
 
     }
@@ -275,6 +279,125 @@ public class MainActivitie extends AppCompatActivity {
 //            txtRegId.setText("Firebase Reg Id is not received yet!");
             Log.d("djfsakljf;sldkfsdk", "Firebase Reg Id is not received yet!");
         }
+    }
+
+
+    private void sendRegistrationTokenToServer(final String token) {
+
+
+        androidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+//        TelephonyManager telephonyManager;
+//        telephonyManager = (TelephonyManager) getSystemService(Context.
+//                TELEPHONY_SERVICE);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        String deviceId = telephonyManager.getDeviceId();
+//
+        Log.d("gdfgdfgdfgdfgd",androidDeviceId);
+
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                Api.URL_STORE_TOKEN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.e("dfsdfsdfsdfsdfs", "MGS Response: " + response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("dfsdfsdfsdfsdfs", "MGS Error: " + error.getMessage());
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Log.e("fgdfgdfgdf","Inside getParams");
+
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("deviceId", androidDeviceId);
+                params.put("deviceType", "android");
+                params.put("deviceToken", token);
+                params.put("remarks", "true");
+                params.put("assessment", "true");
+                params.put("events", "true");
+                params.put("news", "true");
+
+                Log.d("sdfsdgdgdfgd",androidDeviceId);
+                Log.d("sdfsdgdgdfgd",token);
+
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> header = new HashMap<>();
+                String authToken = MyPrefrences.getToken(getApplicationContext());
+                String bearer = "Bearer ".concat(authToken);
+                header.put("Authorization", bearer);
+                return header;
+            }
+
+
+        };
+
+
+        // Adding request to request queue
+        queue.add(strReq);
+
+
+
+
+        //Log.w("GCMRegIntentService", "loadUserid:" + id);
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Api.URL_STORE_TOKEN,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        try {
+//
+//                            Log.d("dfsdfsdfsdfsdfs",s);
+//                            JSONObject jsonObject=new JSONObject(s);
+//                            if (jsonObject.optString("status").equalsIgnoreCase("failure")){
+//                                //Toast.makeText(getApplicationContext(), "Some Error! Contact to Admin...", Toast.LENGTH_SHORT).show();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//                        Log.d("gfsdgdgdfgdfgd",volleyError.toString());
+//                        //Log.w("GCMRegIntentService", "sendRegistrationTokenToServer! ErrorListener:" );
+//                        Toast.makeText(getApplicationContext(), "sendRegistrationTokenToServer! ErrorListener", Toast.LENGTH_LONG).show();
+//                    }
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("deviceId", androidDeviceId);
+//                params.put("deviceType", "android");
+//                params.put("deviceToken", token);
+//                params.put("remarks", "true");
+//                params.put("assessment", "true");
+//                params.put("events", "true");
+//                params.put("news", "true");
+//
+//                Log.d("sdfsdgdgdfgd",androidDeviceId);
+//                Log.d("sdfsdgdgdfgd",token);
+//
+//                return params;
+//            }
+//        };
+//        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
 }

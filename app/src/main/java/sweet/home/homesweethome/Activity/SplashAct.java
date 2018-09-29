@@ -1,8 +1,14 @@
 package sweet.home.homesweethome.Activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,6 +33,7 @@ import sweet.home.homesweethome.Utils.MyPrefrences;
 
 public class SplashAct extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +43,13 @@ public class SplashAct extends AppCompatActivity {
             public void run() {
                 try {
 
-                    sleep(3*1000);
+                    sleep(3 * 1000);
 //
 //                    Intent intent = new Intent(SplashAct.this, Login.class);
 //                    startActivity(intent);
 //                    finish();
 
-                    if (MyPrefrences.getUserLogin(SplashAct.this)==true){
+                    if (MyPrefrences.getUserLogin(SplashAct.this) == true) {
 
                         childList();
 
@@ -50,8 +57,7 @@ public class SplashAct extends AppCompatActivity {
 //                        intent.putExtra("isflag","0");
 //                        startActivity(intent);
 //                        finish();
-                    }
-                    else {
+                    } else {
                         Intent intent = new Intent(SplashAct.this, Login.class);
                         startActivity(intent);
                         finish();
@@ -64,59 +70,10 @@ public class SplashAct extends AppCompatActivity {
         // start thread
         background.start();
 
-        Log.d("tokenId",MyPrefrences.getgcm_token(getApplicationContext()));
-        sendRegistrationTokenToServer(MyPrefrences.getgcm_token(getApplicationContext()));
+        Log.d("tokenId", MyPrefrences.getgcm_token(getApplicationContext()));
+
     }
 
-    private void sendRegistrationTokenToServer(final String token) {
-
-        //Log.w("GCMRegIntentService", "loadUserid:" + id);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Api.URL_STORE_TOKEN,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String s) {
-                        try {
-
-                            Log.d("dfsdfsdfsdfsdfs",s);
-                            JSONObject jsonObject=new JSONObject(s);
-                            if (jsonObject.optString("status").equalsIgnoreCase("failure")){
-                                //Toast.makeText(getApplicationContext(), "Some Error! Contact to Admin...", Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        //Log.w("GCMRegIntentService", "sendRegistrationTokenToServer! ErrorListener:" );
-                        Toast.makeText(getApplicationContext(), "sendRegistrationTokenToServer! ErrorListener", Toast.LENGTH_LONG).show();
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("deviceId", "");
-                params.put("deviceType", "");
-                params.put("deviceToken", token);
-                params.put("remarks", "true");
-                params.put("assessment", "true");
-                params.put("events", "true");
-                params.put("news", "true");
-
-
-
-
-                return params;
-            }
-        };
-        AppController.getInstance().addToRequestQueue(stringRequest);
-    }
 
 
     private void childList() {
