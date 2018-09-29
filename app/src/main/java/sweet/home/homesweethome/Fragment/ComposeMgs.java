@@ -236,12 +236,20 @@ public class ComposeMgs extends Fragment {
 
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("recievedByRole", spiVal.toLowerCase());
-                params.put("displayRole", spiVal2.toLowerCase());
+                params.put("recievedByRole", spiVal.toString());
+                params.put("displayRole", spiVal2.toString());
                 params.put("subject", edit_sub.getText().toString());
                 params.put("description", edit_msg.getText().toString());
                 params.put("classId", Profile.ClassId);
+                params.put("childId", Profile.sId);
 
+
+                Log.d("Sfsdsdgsdgsd1",spiVal.toString());
+                Log.d("Sfsdsdgsdgsd2",spiVal2.toString());
+                Log.d("Sfsdsdgsdgsd3",edit_sub.getText().toString());
+                Log.d("Sfsdsdgsdgsd4",edit_msg.getText().toString());
+                Log.d("Sfsdsdgsdgsd5",Profile.ClassId);
+                Log.d("Sfsdsdgsdgsd6",Profile.sId);
                 return params;
             }
 

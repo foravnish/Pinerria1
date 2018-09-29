@@ -198,6 +198,7 @@ public class Profile extends Fragment {
         foddMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MyPrefrences.setPositionFood(getActivity(),"");
                 MyPrefrences.setPosition(getActivity(), String.valueOf(switchUser.getSelectedItemPosition()));
                 Fragment fragment = new Food();
                 FragmentManager manager = getActivity().getSupportFragmentManager();

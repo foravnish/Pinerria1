@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "61147113200",
+    "firebase_url": "https://hsh-app-64b3e.firebaseio.com",
+    "project_id": "hsh-app-64b3e",
+    "storage_bucket": "hsh-app-64b3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61147113200:android:1de05aaaa2175fbe",
+        "android_client_info": {
+          "package_name": "sweet.home.homesweethome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61147113200-5umq8uum6cg37m4ffs5jnn4rejkbjtc4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOw9OPGwsMlchdkfvbuJbAPrIeziH_1Ws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

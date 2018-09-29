@@ -38,6 +38,7 @@ public class Api {
     public static String WeeklyPlan=BASEURL+"api/weekly-plan/getmonthandweekbydata/";
     public static String AssessmentById=BASEURL+"api/assessments/byid/";
     public static String UpdateChildInfo=BASEURL+"api/child/";  //  ->  /ChildID/ParentId
+    public static String URL_STORE_TOKEN=BASEURL+"api/users/user-device";
 
 
 
