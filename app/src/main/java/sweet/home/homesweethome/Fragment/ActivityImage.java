@@ -83,7 +83,6 @@ public class ActivityImage extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 Fragment fragment = new ActivitesA();
 
                 Bundle bundle=new Bundle();
