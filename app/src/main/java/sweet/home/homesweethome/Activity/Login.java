@@ -169,6 +169,7 @@ public class Login extends AppCompatActivity {
                                 if (response.optString("registrationStatus").equalsIgnoreCase("true")){
                                     Log.d("sdfsdfsdfsdfs","true");
                                     Intent intent =new Intent(Login.this, MainActivitie.class);
+                                    intent.putExtra("type","login");
                                     startActivity(intent);
                                     finish();
                                 }

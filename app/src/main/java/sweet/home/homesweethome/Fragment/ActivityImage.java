@@ -114,11 +114,11 @@ public class ActivityImage extends Fragment {
         });
 
 
-        try {
-            createPdfWrapper();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            createPdfWrapper();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
 
         return view;

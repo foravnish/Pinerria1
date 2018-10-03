@@ -25,6 +25,7 @@ public class Successfully extends AppCompatActivity {
                     sleep(3*1000);
 
                     Intent intent = new Intent(Successfully.this, MainActivitie.class);
+                    intent.putExtra("type","success");
                     startActivity(intent);
                     finish();
 
@@ -52,7 +53,7 @@ public class Successfully extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Successfully.this,MainActivitie.class));
+               // startActivity(new Intent(Successfully.this,MainActivitie.class));
             }
         });
     }

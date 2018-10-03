@@ -105,6 +105,7 @@ public class SplashAct extends AppCompatActivity {
                                 if (response.optString("registrationStatus").equalsIgnoreCase("true")){
                                     Log.d("sdfsdfsdfsdfs","true");
                                     Intent intent =new Intent(SplashAct.this, MainActivitie.class);
+                                    intent.putExtra("type","splash");
                                     startActivity(intent);
                                     finish();
                                 }

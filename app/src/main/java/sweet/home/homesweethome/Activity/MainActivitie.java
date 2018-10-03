@@ -60,13 +60,26 @@ public class MainActivitie extends AppCompatActivity {
         message=findViewById(R.id.message);
         menual=findViewById(R.id.menual);
 
-        Fragment fragment = new Profile();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-        ft.replace(R.id.container, fragment).commit();
 
         //displayFirebaseRegId();
 
+        Log.d("sdfsdfvdgdfsg",getIntent().getStringExtra("type"));
+
+        if (getIntent().getStringExtra("type").equalsIgnoreCase("notification")){
+
+            Fragment fragment = new Notification();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.container, fragment).commit();
+        }
+
+        else{
+            Fragment fragment = new Profile();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.container, fragment).commit();
+
+        }
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

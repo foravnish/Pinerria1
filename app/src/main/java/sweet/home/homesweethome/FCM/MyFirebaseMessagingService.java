@@ -59,6 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 getApplicationContext());
         Intent notificationIntent = new Intent(getApplicationContext(), MainActivitie.class);
+        notificationIntent.putExtra("type","notification");
         PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
         notification = mBuilder.setSmallIcon(R.drawable.app_logo_new).setTicker("HSH").setWhen(0)
                 .setAutoCancel(true)
