@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +83,17 @@ public class ActivityImage extends Fragment {
             @Override
             public void onClick(View view) {
 
-//                getActivity().finish();
+
+                Fragment fragment = new ActivitesA();
+
+                Bundle bundle=new Bundle();
+                bundle.putString("ClassId",getArguments().getString("ClassId"));
+                bundle.putString("studentId",getArguments().getString("studentId"));
+
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                fragment.setArguments(bundle);
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
             }
         });
 

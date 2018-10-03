@@ -100,10 +100,13 @@ public class ActivitesA extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Fragment fragment = new ActivityImage();
 
+
                 Bundle bundle=new Bundle();
                 bundle.putString("image","http://hshpreschooladmin.com/api/upload/"+AllProducts.get(i).get("image"));
                 bundle.putString("title",AllProducts.get(i).get("title"));
                 bundle.putString("description",AllProducts.get(i).get("description"));
+                bundle.putString("ClassId",getArguments().getString("ClassId"));
+                bundle.putString("studentId",getArguments().getString("studentId"));
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
                 fragment.setArguments(bundle);
