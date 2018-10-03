@@ -1,19 +1,25 @@
 package sweet.home.homesweethome.Fragment;
 
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +33,7 @@ import com.squareup.okhttp.internal.Util;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,6 +61,7 @@ public class ActivityImage extends Fragment {
     NetworkImageView network;
     Dialog dialog;
     private AsyncTask mMyTask;
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,7 +104,7 @@ public class ActivityImage extends Fragment {
             }
         });
 
-        mMyTask = new DownloadTask().execute(stringToURL(getArguments().getString("image")));
+
 
         downalod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +112,15 @@ public class ActivityImage extends Fragment {
 
             }
         });
+
+
+        try {
+            createPdfWrapper();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
         return view;
     }
 
@@ -252,6 +269,49 @@ public class ActivityImage extends Fragment {
         // Return the saved image Uri
         return savedImageURI;
     }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(getActivity())
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    private void createPdfWrapper() throws FileNotFoundException{
+
+        int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
+                    showMessageOKCancel("You need to allow access to Storage",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                REQUEST_CODE_ASK_PERMISSIONS);
+                                    }
+                                }
+                            });
+                    return;
+                }
+
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_CODE_ASK_PERMISSIONS);
+            }
+
+            return;
+        }else {
+
+            mMyTask = new DownloadTask().execute(stringToURL(getArguments().getString("image")));
+
+        }
+    }
+
+
 }
 
 
