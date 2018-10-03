@@ -139,10 +139,6 @@ public class WeekPlan extends Fragment {
 
 
 
-
-
-
-
         return view;
     }
 

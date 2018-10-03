@@ -51,6 +51,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         //Todo notification
 
+        //omgdfhgdfghfgjf: {body=test2, type=Activity, title=Activity}
+
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         inboxStyle.addLine(jsonObject.optString("body"));
         Notification notification;

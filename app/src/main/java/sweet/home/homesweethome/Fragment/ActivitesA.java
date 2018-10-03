@@ -7,12 +7,14 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -56,6 +58,7 @@ public class ActivitesA extends Fragment {
     GridView expListView;
     Dialog dialog;
  //   ImageView imageNoListing;
+    TextView txtNoData;
 
     String month2;
     @Override
@@ -65,6 +68,8 @@ public class ActivitesA extends Fragment {
         View view= inflater.inflate(R.layout.fragment_assignments, container, false);
 
        // imageNoListing = (ImageView) view.findViewById(R.id.imageNoListing);
+
+        txtNoData = (TextView) view.findViewById(R.id.txtNoData);
 
 
         dialog=new Dialog(getActivity());
@@ -90,7 +95,21 @@ public class ActivitesA extends Fragment {
 
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
+        expListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Fragment fragment = new ActivityImage();
 
+                Bundle bundle=new Bundle();
+                bundle.putString("image","http://hshpreschooladmin.com/api/upload/"+AllProducts.get(i).get("image"));
+                bundle.putString("title",AllProducts.get(i).get("title"));
+                bundle.putString("description",AllProducts.get(i).get("description"));
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                fragment.setArguments(bundle);
+                ft.replace(R.id.container, fragment).addToBackStack(null).commit();
+            }
+        });
 
 
 
@@ -113,14 +132,10 @@ public class ActivitesA extends Fragment {
                 Log.d("Response",response.toString());
                 Util.cancelPgDialog(dialog);
 
-                if (response.length()==0){
-//                    expListView.setVisibility(View.GONE);
-//                    imageNoListing.setVisibility(View.VISIBLE);
-                }
+                if (response.length()!=0) {
 
-                else {
-//                    expListView.setVisibility(View.VISIBLE);
-//                    imageNoListing.setVisibility(View.GONE);
+                    txtNoData.setVisibility(View.GONE);
+                    expListView.setVisibility(View.VISIBLE);
 
                     for (int i = 0; i < response.length(); i++) {
                         try {
@@ -144,7 +159,10 @@ public class ActivitesA extends Fragment {
 
                     }
                 }
-
+                else{
+                    txtNoData.setVisibility(View.VISIBLE);
+                    expListView.setVisibility(View.GONE);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
