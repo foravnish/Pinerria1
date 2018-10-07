@@ -87,6 +87,11 @@ public class ActivityImage extends Fragment {
         title.setText(getArguments().getString("title"));
         desc.setText(getArguments().getString("description"));
 
+        try {
+            createPdfWrapper();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,11 +119,6 @@ public class ActivityImage extends Fragment {
         });
 
 
-//        try {
-//            createPdfWrapper();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
 
 
         return view;
@@ -234,7 +234,7 @@ public class ActivityImage extends Fragment {
         // The bellow line return a directory in internal storage
        // File file = wrapper.getDir("Images",MODE_PRIVATE);
 
-        String root = Environment.getDataDirectory().toString();
+        String root = Environment.getExternalStorageDirectory().toString();
         File file = new File(root + "/yourDirectory");
 
 //        File file = new File(getActivity().getFilesDir(),"mydir");
@@ -285,6 +285,7 @@ public class ActivityImage extends Fragment {
         if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Log.d("sdfsdfsdfsdfsd","true");
                 if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
                     showMessageOKCancel("You need to allow access to Storage",
                             new DialogInterface.OnClickListener() {
@@ -305,6 +306,7 @@ public class ActivityImage extends Fragment {
 
             return;
         }else {
+            Log.d("sdfsdfsdfsdfsd","flase");
 
             mMyTask = new DownloadTask().execute(stringToURL(getArguments().getString("image")));
 
