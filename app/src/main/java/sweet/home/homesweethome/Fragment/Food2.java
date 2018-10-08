@@ -97,7 +97,7 @@ public class Food2 extends Fragment {
         textBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new Profile();
+                Fragment fragment = new Food();
                 android.support.v4.app.FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
