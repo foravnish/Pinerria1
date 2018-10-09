@@ -274,9 +274,9 @@ public class Emergency2 extends AppCompatActivity {
 
         JSONObject jsonObject1=new JSONObject();
         try {
-            jsonObject1.put("emergencyInformation",jsonObjectEmergency);
-            jsonObject1.put("parentsInformation",jsoFather);
             jsonObject1.put("child",arrChild);
+            jsonObject1.put("parentsInformation",jsoFather);
+            jsonObject1.put("emergencyInformation",jsonObjectEmergency);
 
             Log.d("gfsdsdgdgd", String.valueOf(arrChild));
             Log.d("gfsdsdgdgd", String.valueOf(jsoFather));
