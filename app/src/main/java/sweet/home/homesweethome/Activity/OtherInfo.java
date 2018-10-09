@@ -21,7 +21,7 @@ public class OtherInfo extends AppCompatActivity {
     EditText language2;
     Spinner switchStatus,language;
     String[] str1 = { "Married", "Separated"};
-    String[] str2 = { "Language","Arabic", "English","Both"};
+    String[] str2 = { "Language spoken at Home","Arabic", "English","Both"};
     String statusM,statusL;
     boolean flag=false;
     @Override

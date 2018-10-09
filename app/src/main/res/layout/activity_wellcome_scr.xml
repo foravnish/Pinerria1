@@ -12,8 +12,8 @@
         android:id="@+id/proceed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/welcome_screen"/>
+        android:background="@drawable/welcome_screen2"/>
 
 </LinearLayout>

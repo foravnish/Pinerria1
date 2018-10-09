@@ -166,28 +166,24 @@ public class Login extends AppCompatActivity {
                                 MyPrefrences.setChildList(getApplicationContext(), jsonArray.toString());
 
 
-                                if (response.optString("registrationStatus").equalsIgnoreCase("true")){
-                                    Log.d("sdfsdfsdfsdfs","true");
-                                    Intent intent =new Intent(Login.this, MainActivitie.class);
-                                    intent.putExtra("type","login");
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")) {
-                                    Log.d("sdfsdfsdfsdfs","false");
-                                    Intent intent = new Intent(Login.this, WellcomeScr.class);
-                                    startActivity(intent);
-                                    finish();
-
-//                                    Intent intent =new Intent(Login.this, WellcomeScr.class);
+//                                if (response.optString("registrationStatus").equalsIgnoreCase("true")){
+//                                    Log.d("sdfsdfsdfsdfs","true");
+//                                    Intent intent =new Intent(Login.this, MainActivitie.class);
+//                                    intent.putExtra("type","login");
 //                                    startActivity(intent);
 //                                    finish();
-                                }
+//                                }
+//
+//                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")) {
+//                                    Log.d("sdfsdfsdfsdfs","false");
+//                                    Intent intent = new Intent(Login.this, WellcomeScr.class);
+//                                    startActivity(intent);
+//                                    finish();
+//                                }
 
-//                                Intent intent = new Intent(Login.this, WellcomeScr.class);
-//                                startActivity(intent);
-//                                finish();
+                                Intent intent = new Intent(Login.this, WellcomeScr.class);
+                                startActivity(intent);
+                                finish();
 
                             }
 

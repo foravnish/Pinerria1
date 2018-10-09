@@ -95,7 +95,7 @@ public class Monthely extends Fragment {
     String colorItem;
 
     HashSet<CalendarDay> setDays = new HashSet<>();
-
+    String FianlDate1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -232,8 +232,6 @@ public class Monthely extends Fragment {
                        // calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Years.get(i)+"-"+Months.get(i)+"-"+Days));
 
 
-
-
                         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
                             @Override
                             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -244,7 +242,23 @@ public class Monthely extends Fragment {
                                 Log.d("fsdfsdfsdfsdfs3", String.valueOf(date.getYear()));
 
                                 Log.d("fddsfsdfsdfgsFinal",0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear());
-                                String FianlDate1=0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+                                if (date.getDay()<=9 && date.getMonth()+1>=10 ){
+                                    FianlDate1="0"+date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+                                    Log.d("gdfgdfgdfgdgdg","1");
+                                }
+                                else if (date.getDay()<=9 && date.getMonth()+1<=9 ){
+                                    FianlDate1=0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+                                    Log.d("gdfgdfgdfgdgdg","2");
+                                }
+                                else if (date.getDay()>=10 && date.getMonth()+1<=9 ){
+                                    FianlDate1=date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+                                    Log.d("gdfgdfgdfgdgdg","13");
+                                }
+                                else if (date.getDay()>=10 && date.getMonth()+1>=10 ){
+                                    FianlDate1=date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+                                    Log.d("gdfgdfgdfgdgdg","4");
+                                }
+                                //String FianlDate1=0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
 
 
                                 for (int i=0;i<Years.size();i++) {
@@ -257,8 +271,6 @@ public class Monthely extends Fragment {
 
 
                                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i))), true);
-
-
 
                                     Log.d("fdsfsdfsdfsdfsdf1",FianlDate1);
                                     Log.d("fdsfsdfsdfsdfsdf2",FianlDate2);

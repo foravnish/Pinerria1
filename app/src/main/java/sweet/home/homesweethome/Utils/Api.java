@@ -14,6 +14,7 @@ public class Api {
 //    public static String login="http://35.196.247.27/auth/login";
 
     public static String ImageURL="http://hshpreschooladmin.com/api/";
+    public static String ImageURLCLASS="http://hshpreschooladmin.com/assets/img/class/";
 
 
     public static String ChangePwd=BASEURL+"api/users/change-password";

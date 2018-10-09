@@ -28,7 +28,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="@color/black"
-            android:text="Emergency Conscent Form"/>
+            android:text="Emergency Consent Form"/>
     </RelativeLayout>
 
 

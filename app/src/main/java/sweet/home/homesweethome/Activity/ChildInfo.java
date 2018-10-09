@@ -94,6 +94,8 @@ public class ChildInfo extends AppCompatActivity {
                     startActivity(intent);
 
 
+                    Log.d("fsdgfsdgdg",DOB.getText().toString());
+                    Log.d("fsdgfsdgdg",genderVal.toString());
                 }
 
 

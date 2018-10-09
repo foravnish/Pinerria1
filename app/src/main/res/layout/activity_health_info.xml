@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="Does your child have any spacial problem or fears?*"
+                android:text="Does your child have any special problem or fears?*"
                 android:textColor="#111"/>
 
             <EditText

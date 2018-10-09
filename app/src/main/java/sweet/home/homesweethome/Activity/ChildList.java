@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class ChildList extends AppCompatActivity {
     Dialog dialog;
     TextView textViewUser;
     CircleImageView authorImageView;
+    ImageView classImage;
     public static  int val1=1;
     String stId;
     RelativeLayout relativeLayout;
@@ -63,6 +65,7 @@ public class ChildList extends AppCompatActivity {
         btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
         textViewUser = (TextView) findViewById(R.id.textViewUser);
         authorImageView = (CircleImageView) findViewById(R.id.authorImageView);
+        classImage = (ImageView) findViewById(R.id.classImage);
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
 
@@ -87,20 +90,28 @@ public class ChildList extends AppCompatActivity {
             if (val1==1) {
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
                 textViewUser.setText(jsonObject.optString("name"));
+
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
+
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==2) {
                 JSONObject jsonObject = jsonArray.getJSONObject(1);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
 
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
@@ -108,60 +119,78 @@ public class ChildList extends AppCompatActivity {
             else  if (val1==3) {
                 JSONObject jsonObject = jsonArray.getJSONObject(2);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==4) {
                 JSONObject jsonObject = jsonArray.getJSONObject(3);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl =Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
             else  if (val1==5) {
                 JSONObject jsonObject = jsonArray.getJSONObject(4);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==6) {
                 JSONObject jsonObject = jsonArray.getJSONObject(5);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
             }
             else  if (val1==7) {
                 JSONObject jsonObject = jsonArray.getJSONObject(6);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl =Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==8) {
                 JSONObject jsonObject = jsonArray.getJSONObject(7);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
 
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);
@@ -169,20 +198,26 @@ public class ChildList extends AppCompatActivity {
             else  if (val1==9) {
                 JSONObject jsonObject = jsonArray.getJSONObject(8);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl = Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in);
             }
             else  if (val1==10) {
                 JSONObject jsonObject = jsonArray.getJSONObject(9);
                 textViewUser.setText(jsonObject.optString("name"));
+                JSONObject jsonObject1=jsonObject.getJSONObject("classes");
                 stId=jsonObject.optString("_id");
                 String imageUrl =Api.ImageURL+"upload/" + jsonObject.optString("image");
+                String imageUrlCLASS = Api.ImageURLCLASS+ jsonObject1.optString("image");
 
                 Picasso.with(getApplicationContext()).load(imageUrl).into(authorImageView);
+                Picasso.with(getApplicationContext()).load(imageUrlCLASS).into(classImage);
                 Log.d("dfsdfsdfgsdgdgdf", jsonObject.optString("name"));
 
                 relativeLayout.setBackgroundResource(R.drawable.redius_img_in_male);

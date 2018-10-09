@@ -186,6 +186,8 @@ public class Emergency2 extends AppCompatActivity {
                             parentsInformation.put("reason", getIntent().getStringExtra("reason"));
 
 
+                            Log.d("gfsdgdfgdfgdfgd",getIntent().getStringExtra("childData"));
+
                             Log.d("childData", getIntent().getStringExtra("childData"));
                             Log.d("emergencyInformation", cartItemsObjedct.toString());
 
@@ -201,6 +203,9 @@ public class Emergency2 extends AppCompatActivity {
                                 jsonObjectData.put("childHealth", jsonObjectData.get("childHealth"));
                                 jsonObjectData.put("childNote", jsonObjectData.get("childNote"));
                                 jsonObjectData.put("childProblems", jsonObjectData.get("childProblems"));
+                                jsonObjectData.put("gender", jsonObjectData.get("gender"));
+                                jsonObjectData.put("dob", jsonObjectData.get("dob"));
+                                jsonObjectData.put("name", jsonObjectData.get("name"));
 
                                 //jsonObjectData.put("siblingDetail",jsonObjectData.get("siblingDetail"));
 
@@ -235,6 +240,9 @@ public class Emergency2 extends AppCompatActivity {
                                 jsonObjectChild.put("nationality", jsonObjectData.get("nationality"));
                                 jsonObjectChild.put("previousSchoolAttended", jsonObjectData.get("previousSchoolAttended"));
                                 jsonObjectChild.put("previousSchoolDetail", jsonObjectData.get("previousSchoolDetail"));
+                                jsonObjectChild.put("gender", jsonObjectData.get("gender"));
+                                jsonObjectChild.put("dob", jsonObjectData.get("dob"));
+                                jsonObjectChild.put("name", jsonObjectData.get("name"));
                                 jsonObjectChild.put("siblingDetail", jsonArray14);
 
                                 jsonArray123.put(jsonObjectChild);
@@ -262,16 +270,17 @@ public class Emergency2 extends AppCompatActivity {
 
     }
 
-
-
     private void childDataSubmit(JSONObject jsonObjectEmergency,JSONObject jsoFather,JSONArray arrChild) {
 
         JSONObject jsonObject1=new JSONObject();
         try {
-            jsonObject1.put("child",arrChild);
-            jsonObject1.put("parentsInformation",jsoFather);
             jsonObject1.put("emergencyInformation",jsonObjectEmergency);
+            jsonObject1.put("parentsInformation",jsoFather);
+            jsonObject1.put("child",arrChild);
 
+            Log.d("gfsdsdgdgd", String.valueOf(arrChild));
+            Log.d("gfsdsdgdgd", String.valueOf(jsoFather));
+            Log.d("gfsdsdgdgd", String.valueOf(jsonObjectEmergency));
 
             Log.d("dfsdfgsdfgsdgsg",jsonObject1.toString());
         } catch (JSONException e) {
@@ -288,7 +297,6 @@ public class Emergency2 extends AppCompatActivity {
                         Util.cancelPgDialog(dialog);
                         Log.d("dfsdfsdfggdfgdfgdf", response.toString());
 
-//
                         Intent intent=new Intent(Emergency2.this,Successfully.class);
                         startActivity(intent);
 

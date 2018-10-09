@@ -143,15 +143,22 @@ public class SibliingInfo extends AppCompatActivity {
                     cartItemsObjedct.putOpt("childHealth", getIntent().getStringExtra("health2"));
                     cartItemsObjedct.putOpt("childNote", getIntent().getStringExtra("health3"));
                     cartItemsObjedct.putOpt("childProblems", getIntent().getStringExtra("health4"));
-                    cartItemsObjedct.putOpt("classes", getIntent().getStringExtra("id"));
+                    cartItemsObjedct.putOpt("classes", getIntent().getStringExtra("classes"));
                     cartItemsObjedct.putOpt("dob", getIntent().getStringExtra("DOB"));
                     cartItemsObjedct.putOpt("gender", getIntent().getStringExtra("gender"));
-                    cartItemsObjedct.putOpt("image", getIntent().getStringExtra("id"));
-                    cartItemsObjedct.putOpt("name", getIntent().getStringExtra("id"));
+                    cartItemsObjedct.putOpt("image", getIntent().getStringExtra("image"));
+                    cartItemsObjedct.putOpt("name", getIntent().getStringExtra("name"));
                     cartItemsObjedct.putOpt("nationality", getIntent().getStringExtra("nationality"));
                     cartItemsObjedct.putOpt("previousSchoolAttended", getIntent().getStringExtra("DOB2"));
                     cartItemsObjedct.putOpt("previousSchoolDetail", getIntent().getStringExtra("homeAddress2"));
                     cartItemsObjedct.putOpt("siblingDetail",finalCartItemsArray2);
+
+                    Log.d("id",getIntent().getStringExtra("id"));
+                    Log.d("name",getIntent().getStringExtra("name"));
+                    Log.d("DOB",getIntent().getStringExtra("DOB"));
+                    Log.d("gender",getIntent().getStringExtra("gender"));
+                    Log.d("nationality",getIntent().getStringExtra("nationality"));
+                    Log.d("homeAddress",getIntent().getStringExtra("homeAddress"));
 
 
                     if (ChildList.val1==1) {
