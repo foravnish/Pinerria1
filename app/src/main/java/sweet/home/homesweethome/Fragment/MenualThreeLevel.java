@@ -793,25 +793,25 @@ public class MenualThreeLevel extends Fragment {
             Log.d("gfdsgdfgdfgdfgdfgd", String.valueOf(gPos));
 
             if (gPos==0){
-                textSecond.setTextColor(Color.parseColor("#133a3f"));
+                textSecond.setTextColor(Color.parseColor("#FFB1B5D9"));
             }
             else if (gPos==1){
-                textSecond.setTextColor(Color.parseColor("#FF847C82"));
+                textSecond.setTextColor(Color.parseColor("#FFF8C0D8"));
             }
             else if (gPos==2){
-                textSecond.setTextColor(Color.parseColor("#FFED3C3C"));
+                textSecond.setTextColor(Color.parseColor("#FFF9DFEC"));
             }
             else if (gPos==3){
-                textSecond.setTextColor(Color.parseColor("#FFEF827E"));
+                textSecond.setTextColor(Color.parseColor("#FFB5E2E5"));
             }
             else if (gPos==4){
-                textSecond.setTextColor(Color.parseColor("#FFAFB96C"));
+                textSecond.setTextColor(Color.parseColor("#FFE1F2FB"));
             }
             else if (gPos==5){
-                textSecond.setTextColor(Color.parseColor("#FFDA896F"));
+                textSecond.setTextColor(Color.parseColor("#FFC8E08C"));
             }
             else if (gPos==6){
-                textSecond.setTextColor(Color.parseColor("#FF1F6A7F"));
+                textSecond.setTextColor(Color.parseColor("#FFDEECBC"));
             }
 
 

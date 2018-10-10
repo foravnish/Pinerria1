@@ -87,11 +87,23 @@ public class ActivityImage extends Fragment {
         title.setText(getArguments().getString("title"));
         desc.setText(getArguments().getString("description"));
 
+
+//        if(isPermissionGranted()){
+//            Log.d("fsdfsdfdfdfsdf","true");
+//
+//
+//        }else{
+//            Log.d("fsdfsdfdfdfsdf","false");
+//            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1);
+//        }
+
+
         try {
             createPdfWrapper();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -312,6 +324,21 @@ public class ActivityImage extends Fragment {
 
         }
     }
+
+
+//    public boolean isPermissionGranted() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                return false;
+//            } else {
+//                return true;
+//            }
+//        } else {
+//            return true;
+//        }
+//
+//    }
+
 
 
 }
