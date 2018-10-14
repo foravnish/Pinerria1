@@ -14,14 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.Util;
 
 public class OtherInfo extends AppCompatActivity {
 
     Button next;
     EditText language2;
     Spinner switchStatus,language;
-    String[] str1 = { "Married", "Separated"};
-    String[] str2 = { "Language spoken at Home","Arabic", "English","Both"};
+    String[] str1 = { "Marital Status*","Married", "Separated"};
+    String[] str2 = { "Language spoken at Home *","Arabic", "English","Both"};
     String statusM,statusL;
     boolean flag=false;
     @Override
@@ -43,11 +44,11 @@ public class OtherInfo extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter subcat1 = new ArrayAdapter(OtherInfo.this,android.R.layout.simple_spinner_item,str1);
+        ArrayAdapter subcat1 = new ArrayAdapter(OtherInfo.this,R.layout.simple_spinner_item,str1);
         subcat1.setDropDownViewResource(R.layout.simple_spinner_item);
         switchStatus.setAdapter(subcat1);
 
-        ArrayAdapter subcat2 = new ArrayAdapter(OtherInfo.this,android.R.layout.simple_spinner_item,str2);
+        ArrayAdapter subcat2 = new ArrayAdapter(OtherInfo.this,R.layout.simple_spinner_item,str2);
         subcat2.setDropDownViewResource(R.layout.simple_spinner_item);
         language.setAdapter(subcat2);
 
@@ -60,12 +61,12 @@ public class OtherInfo extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 statusM=switchStatus.getSelectedItem().toString();
-                if (i==0){
+                if (i==1){
 
                     language2.setVisibility(View.GONE);
                     flag=false;
                 }
-                else if (i==1){
+                else if (i==2){
                     flag=true;
                     language2.setVisibility(View.VISIBLE);
                 }
@@ -114,16 +115,23 @@ public class OtherInfo extends AppCompatActivity {
 
     private boolean validate(){
 
-//        if (TextUtils.isEmpty(language.getText().toString()))
-//        {
-//            language.setError("Oops! Language Spoken blank");
-//            language.requestFocus();
-//            return false;
-//        }
-
+        if (statusL.equalsIgnoreCase("Language spoken at Home *"))
+        {
+//            education.setError("Oops! Education field blank");
+//            education.requestFocus();
+            Util.errorDialog2(OtherInfo.this,"Language spoken field blank");
+            return false;
+        }
+        else if (statusM.equalsIgnoreCase("Marital Status*"))
+        {
+//            education.setError("Oops! Education field blank");
+//            education.requestFocus();
+            Util.errorDialog2(OtherInfo.this,"Marital Status field blank");
+            return false;
+        }
         if (flag==true) {
          if (TextUtils.isEmpty(language2.getText().toString())) {
-                language2.setError("Oops! Empty Field 2");
+                language2.setError("Oops! Empty Field ");
                 language2.requestFocus();
                 return false;
             }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import sweet.home.homesweethome.R;
@@ -58,4 +59,34 @@ public class Util {
         dialog.show();
 
     }
+
+    public static void errorDialog2(Context context , String message) {
+
+        final LinearLayout okBtn,cancel;
+
+        final Dialog dialog4 = new Dialog(context);
+        dialog4.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog4.setContentView(R.layout.message_dialog);
+        dialog4.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        okBtn=(LinearLayout)dialog4.findViewById(R.id.okBtn);
+        TextView heading = (TextView) dialog4.findViewById(R.id.heading);
+
+        heading.setText(message);
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.exit(0);
+                //getActivity().finish();
+//                getActivity().finishAffinity();
+                dialog4.dismiss();
+
+            }
+        });
+
+
+        dialog4.show();
+
+    }
+
 }

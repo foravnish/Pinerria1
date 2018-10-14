@@ -27,6 +27,8 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Other Information"/>
     </RelativeLayout>
@@ -97,8 +99,8 @@
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_marginRight="10dp"
-                    android:hint="Marital Status for Parents*"
-                    android:layout_weight="1.7"
+                    android:hint="@string/Marital"
+                    android:layout_weight="1.5"
                     android:textSize="10dp"
                     android:layout_below="@+id/sign"
                     android:paddingLeft="5dp"
@@ -109,7 +111,7 @@
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:background="@drawable/strock_edit"
-                    android:layout_weight="1.3">
+                    android:layout_weight="1.5">
                     <Spinner
                         android:id="@+id/switchStatus"
                         android:layout_width="match_parent"
@@ -126,9 +128,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
                 android:layout_marginTop="10dp"
-                android:hint="If separated, indicate procedures that affect Home \nSweet Home's care for your child"
+                android:hint="If separated, indicate procedures that \naffect Home Sweet Home's care \nfor your child"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
+                android:visibility="gone"
                 android:gravity="top"
                 android:inputType="textPersonName"
                 android:background="@drawable/strock_edit"/>

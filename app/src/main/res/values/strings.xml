@@ -4,4 +4,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_wellcome_scr">WellcomeScr</string>
+    <string name="health1">Does your child have any special problem or fears?<font color="red">*</font></string>
+    <string name="health2">is there anything unusual about the child\'s health?<font color="red">*</font></string>
+    <string name="health3">List any allergies the child has<font color="red">*</font></string>
+    <string name="health4">Note any thing which may contribute the better understanding of your child<font color="red">*</font></string>
+    <string name="dob">Date Of Birth<font color="red">*</font></string>
+    <string name="Nationality">Nationality<font color="red">*</font></string>
+    <string name="HomeAddress">HomeAddress<font color="red">*</font></string>
+    <string name="Fathername">Father name<font color="red">*</font></string>
+    <string name="mothername">Mother name<font color="red">*</font></string>
+    <string name="mobileno">Mobile number<font color="red">*</font></string>
+    <string name="Occupation">Occupation<font color="red">*</font></string>
+    <string name="Placeof">Place of work<font color="red">*</font></string>
+    <string name="workno">Work number<font color="red">*</font></string>
+    <string name="emailaddress">Email Address<font color="red">*</font></string>
+    <string name="homeaddress">Home Address<font color="red">*</font></string>
+    <string name="Education">Education<font color="red">*</font></string>
+    <string name="Marital">Marital Status for Parents<font color="red">*</font></string>
+
 </resources>

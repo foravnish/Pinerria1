@@ -261,7 +261,8 @@ public class Emergency2 extends AppCompatActivity {
                         Util.showPgDialog(dialog);
 
                     } else {
-                        Toast.makeText(Emergency2.this, "Please check I have read...", Toast.LENGTH_SHORT).show();
+                        Util.errorDialog2(Emergency2.this,"Please check I have read Home Sweet Home terms.");
+//                        Toast.makeText(Emergency2.this, "Please check I have read...", Toast.LENGTH_SHORT).show();
                     }
                 }
 

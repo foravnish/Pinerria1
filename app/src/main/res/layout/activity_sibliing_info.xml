@@ -29,6 +29,8 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:text="Sibling's Information"/>
     </RelativeLayout>
 

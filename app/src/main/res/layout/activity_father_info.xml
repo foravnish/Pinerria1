@@ -29,6 +29,8 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:text="Father Information"/>
     </RelativeLayout>
 
@@ -60,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
-            android:hint="Father name*"
+            android:hint="@string/Fathername"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -71,32 +73,44 @@
             android:id="@+id/mobile"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-
+            android:maxLength="15"
             android:layout_marginTop="10dp"
-            android:hint="Mobile No.*"
+            android:hint="@string/mobileno"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="phone"
             android:background="@drawable/strock_edt_father"/>
 
-        <EditText
-            android:id="@+id/education"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:background="@drawable/strock_edt_father"
+            android:layout_marginTop="10dp">
+            <Spinner
+                android:id="@+id/educationSpin"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_alignTop="@+id/postImageView" />
+        </LinearLayout>
 
-            android:layout_marginTop="10dp"
-            android:hint="Education*"
-            android:layout_below="@+id/sign"
-            android:paddingLeft="5dp"
-            android:inputType="textPersonName"
-            android:background="@drawable/strock_edt_father"/>
+        <!--<EditText-->
+            <!--android:id="@+id/education"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:hint="Education*"-->
+            <!--android:layout_below="@+id/sign"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:background="@drawable/strock_edt_father"/>-->
         <EditText
             android:id="@+id/ocption"
             android:layout_width="match_parent"
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Occupation*"
+            android:hint="@string/Occupation"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -107,7 +121,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Place of work*"
+            android:hint="@string/Placeof"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"
@@ -117,12 +131,12 @@
             android:id="@+id/workNo"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-
+            android:maxLength="15"
             android:layout_marginTop="10dp"
-            android:hint="Work No.*"
+            android:hint="@string/workno"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
-            android:inputType="number"
+            android:inputType="phone"
             android:background="@drawable/strock_edt_father"/>
 
         <EditText
@@ -131,7 +145,7 @@
             android:layout_height="45dp"
 
             android:layout_marginTop="10dp"
-            android:hint="Email Address*"
+            android:hint="@string/emailaddress"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textEmailAddress"
@@ -142,7 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
-            android:hint="Home Address*"
+            android:hint="@string/homeaddress"
             android:layout_below="@+id/sign"
             android:paddingLeft="5dp"
             android:inputType="textPersonName"

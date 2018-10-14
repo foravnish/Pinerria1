@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,12 +19,17 @@ import org.json.JSONObject;
 
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Const;
+import sweet.home.homesweethome.Utils.Util;
 
 public class MotherInfo extends AppCompatActivity {
 
     Button next;
     EditText motherName,mobile,education,ocption,pow,workNo,emailId,homeAddress;
     JSONObject cartItemsObjedct;
+    Spinner educationSpin;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String[] str1 = {"Education *", "Graduate", "Post Graduate","Under Graduate"};
+    String stringEducation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +40,8 @@ public class MotherInfo extends AppCompatActivity {
         workNo=findViewById(R.id.workNo);
         pow=findViewById(R.id.pow);
         ocption=findViewById(R.id.ocption);
-        education=findViewById(R.id.education);
+//        education=findViewById(R.id.education);
+        educationSpin=findViewById(R.id.educationSpin);
         mobile=findViewById(R.id.mobile);
         motherName=findViewById(R.id.motherName);
 
@@ -44,6 +53,24 @@ public class MotherInfo extends AppCompatActivity {
             }
         });
         Log.d("sdfsdfsdgfsdg",getIntent().getStringExtra("fatherData"));
+
+        ArrayAdapter subcat1 = new ArrayAdapter(MotherInfo.this,R.layout.simple_spinner_item,str1);
+        subcat1.setDropDownViewResource(R.layout.simple_spinner_item);
+        educationSpin.setAdapter(subcat1);
+
+        educationSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                stringEducation=educationSpin.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +84,7 @@ public class MotherInfo extends AppCompatActivity {
                         // for (int i = 0; i< 1; i++) {
                         cartItemsObjedct = new JSONObject();
                         cartItemsObjedct.putOpt("address",homeAddress.getText().toString());
-                        cartItemsObjedct.putOpt("education", education.getText().toString());
+                        cartItemsObjedct.putOpt("education", stringEducation.toString());
                         cartItemsObjedct.putOpt("emailId", emailId.getText().toString());
                         cartItemsObjedct.putOpt("mobileNumber", mobile.getText().toString());
                         cartItemsObjedct.putOpt("name", motherName.getText().toString());
@@ -104,10 +131,17 @@ public class MotherInfo extends AppCompatActivity {
             mobile.requestFocus();
             return false;
         }
-        else if (TextUtils.isEmpty(education.getText().toString()))
+        else if (mobile.getText().length()<7)
         {
-            education.setError("Oops! Education field blank");
-            education.requestFocus();
+            Util.errorDialog2(MotherInfo.this,"Mobile number should be 7-15 characters");
+            mobile.requestFocus();
+            return false;
+        }
+        else if (stringEducation.equalsIgnoreCase("Education *"))
+        {
+//            education.setError("Oops! Education field blank");
+//            education.requestFocus();
+            Util.errorDialog2(MotherInfo.this,"Education field blank");
             return false;
         }
         else if (TextUtils.isEmpty(ocption.getText().toString()))
@@ -129,9 +163,21 @@ public class MotherInfo extends AppCompatActivity {
             return false;
         }
 
+        else if (workNo.getText().length()<7)
+        {
+            Util.errorDialog2(MotherInfo.this,"Mobile number should be 7-15 characters");
+            workNo.requestFocus();
+            return false;
+        }
         else if (TextUtils.isEmpty(emailId.getText().toString()))
         {
             emailId.setError("Oops! Email Id field blank");
+            emailId.requestFocus();
+            return false;
+        }
+        else if (!emailId.getText().toString().trim().matches(emailPattern))
+        {
+            emailId.setError("Oops! invalid email id");
             emailId.requestFocus();
             return false;
         }

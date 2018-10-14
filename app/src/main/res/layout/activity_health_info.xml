@@ -28,6 +28,8 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:text="Health Information"/>
     </RelativeLayout>
 
@@ -65,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="Does your child have any special problem or fears?*"
+                android:text="@string/health1"
                 android:textColor="#111"/>
 
             <EditText
@@ -84,7 +86,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="is there anything unusual about the child's health?*"
+                android:text="@string/health2"
+
                 android:textColor="#111"/>
 
             <EditText
@@ -105,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="List any allergies the child has*"
+                android:text="@string/health3"
                 android:textColor="#111"/>
 
             <EditText
@@ -124,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/listfont"
                 android:layout_marginTop="15dp"
-                android:text="Note any thing which may contribute the better understanding of your child*"
+                android:text="@string/health4"
                 android:textColor="#111"/>
 
             <EditText

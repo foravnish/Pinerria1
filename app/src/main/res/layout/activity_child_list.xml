@@ -57,6 +57,20 @@
             android:scaleType="centerCrop" />
 
 
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Content on next screen(s) will show the child related information. Parents should fill/update all necessary information related to child."
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:layout_below="@+id/postImageView"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/listfont"/>
+
+
         <ImageView
             android:id="@+id/classImage"
             android:layout_width="100dp"
@@ -95,14 +109,19 @@
     </RelativeLayout>
 
 
+
     <Button
         android:id="@+id/btnGetQuote"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/stroke_btn_grad"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Continue"
+        android:text="Proceed"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:textColor="@color/black"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"/>

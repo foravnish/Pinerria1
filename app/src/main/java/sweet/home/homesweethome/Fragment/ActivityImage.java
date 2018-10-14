@@ -3,12 +3,14 @@ package sweet.home.homesweethome.Fragment;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -25,14 +27,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.squareup.okhttp.internal.Util;
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,7 +47,12 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+import sweet.home.homesweethome.Activity.FatherInfo;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.AppController;
 
@@ -58,10 +69,15 @@ public class ActivityImage extends Fragment {
     }
 
     TextView downalod,title,desc,back;
-    NetworkImageView network;
+//    NetworkImageView network;
+    ImageView network;
     Dialog dialog;
     private AsyncTask mMyTask;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
+
+    Bitmap bitmap ;
+    String mSavedInfo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,28 +97,15 @@ public class ActivityImage extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
-        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-        network.setImageUrl(getArguments().getString("image"), imageLoader);
+//        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+//        network.setImageUrl(getArguments().getString("image"), imageLoader);
+
+        Picasso.with(getActivity()).load(getArguments().getString("image")).into(network);
 
         title.setText(getArguments().getString("title"));
         desc.setText(getArguments().getString("description"));
 
 
-//        if(isPermissionGranted()){
-//            Log.d("fsdfsdfdfdfsdf","true");
-//
-//
-//        }else{
-//            Log.d("fsdfsdfdfdfsdf","false");
-//            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1);
-//        }
-
-
-        try {
-            createPdfWrapper();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +129,8 @@ public class ActivityImage extends Fragment {
         downalod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                sweet.home.homesweethome.Utils.Util.showPgDialog(dialog);
+                new DownloadFromURL().execute(getArguments().getString("image"));
             }
         });
 
@@ -138,208 +142,88 @@ public class ActivityImage extends Fragment {
 
 
 
+    class DownloadFromURL extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            showDialog(progressType);
 
-//
-    private class DownloadTask extends AsyncTask<URL,Void,Bitmap> {
-        // Before the tasks execution
-        protected void onPreExecute(){
-            // Display the progress dialog on async task start
-//            mProgressDialog.show();
-            sweet.home.homesweethome.Utils.Util.showPgDialog(dialog);
+
         }
 
-        // Do the task in background/non UI thread
-        protected Bitmap doInBackground(URL...urls){
-            URL url = urls[0];
-            HttpURLConnection connection = null;
+        @Override
+        protected String doInBackground(String... fileUrl) {
+            int count;
+            sweet.home.homesweethome.Utils.Util.cancelPgDialog(dialog);
 
-            try{
-                // Initialize a new http url connection
-                connection = (HttpURLConnection) url.openConnection();
+            try {
+                URL url = new URL(fileUrl[0]);
+                URLConnection urlConnection = url.openConnection();
+                urlConnection.connect();
+                // show progress bar 0-100%
+                int fileLength = urlConnection.getContentLength();
+                InputStream inputStream = new BufferedInputStream(url.openStream(), 8192);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                String currentDateandTime = sdf.format(new Date());
 
-                // Connect the http url connection
-                connection.connect();
+                OutputStream outputStream = new FileOutputStream("/sdcard/HSH_Image"+ currentDateandTime+".jpg");
 
-                // Get the input stream from http url connection
-                InputStream inputStream = connection.getInputStream();
+                byte data[] = new byte[1024];
+                long total = 0;
+                while ((count = inputStream.read(data)) != -1) {
+                    total += count;
+                    publishProgress("" + (int) ((total * 100) / fileLength));
+                    outputStream.write(data, 0, count);
+                }
+                // flushing output
+                outputStream.flush();
+                // closing streams
+                outputStream.close();
+                inputStream.close();
 
-                /*
-                    BufferedInputStream
-                        A BufferedInputStream adds functionality to another input stream-namely,
-                        the ability to buffer the input and to support the mark and reset methods.
-                */
-                /*
-                    BufferedInputStream(InputStream in)
-                        Creates a BufferedInputStream and saves its argument,
-                        the input stream in, for later use.
-                */
-                // Initialize a new BufferedInputStream from InputStream
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
 
-                /*
-                    decodeStream
-                        Bitmap decodeStream (InputStream is)
-                            Decode an input stream into a bitmap. If the input stream is null, or
-                            cannot be used to decode a bitmap, the function returns null. The stream's
-                            position will be where ever it was after the encoded data was read.
-
-                        Parameters
-                            is InputStream : The input stream that holds the raw data
-                                              to be decoded into a bitmap.
-                        Returns
-                            Bitmap : The decoded bitmap, or null if the image data could not be decoded.
-                */
-                // Convert BufferedInputStream to Bitmap object
-                Bitmap bmp = BitmapFactory.decodeStream(bufferedInputStream);
-
-                // Return the downloaded bitmap
-                return bmp;
-
-            }catch(IOException e){
-                e.printStackTrace();
-            }finally{
-                // Disconnect the http url connection
-                connection.disconnect();
+            } catch (Exception e) {
+                Log.e("Error: ", e.getMessage());
             }
             return null;
         }
 
-        // When all async task done
-        protected void onPostExecute(Bitmap result){
-            // Hide the progress dialog
-//            mProgressDialog.dismiss();
-            sweet.home.homesweethome.Utils.Util.cancelPgDialog(dialog);
+        // progress bar Updating
 
-            if(result!=null){
-                // Display the downloaded image into ImageView
-               // mImageView.setImageBitmap(result);
+        protected void onProgressUpdate(String... progress) {
+            // progress percentage
+//            progressDialog.setProgress(Integer.parseInt(progress[0]));
+//            sweet.home.homesweethome.Utils.Util.cancelPgDialog(dialog);
+//            Toast.makeText(getActivity(), "Image saved successfully.", Toast.LENGTH_SHORT).show();
+            //sweet.home.homesweethome.Utils.Util.errorDialog2(getActivity(),"Image saved successfully.");
+        }
 
-                // Save bitmap to internal storage
-                Uri imageInternalUri = saveImageToInternalStorage(result);
-                Log.d("sgfsdgdfgdfgdf", String.valueOf(imageInternalUri));
-                // Set the ImageView image from internal storage
-               // mImageViewInternal.setImageURI(imageInternalUri);
-            }else {
-                // Notify user that an error occurred while downloading image
-               // Snackbar.make(geta,"Error",Snackbar.LENGTH_LONG).show();
-            }
+        @Override
+        protected void onPostExecute(String file_url) {
+          //  dismissDialog(progressType);
+            String imagePath = Environment.getExternalStorageDirectory().toString() + "/downloadedfile.jpg";
+            sweet.home.homesweethome.Utils.Util.errorDialog2(getActivity(),"Image saved successfully.");
+            Log.d("dfdgdfgfdgdfgd",imagePath);
+            //imageView.setImageDrawable(Drawable.createFromPath(imagePath));
         }
     }
 
-    // Custom method to convert string to url
-    protected URL stringToURL(String urlString){
-        try{
-            URL url = new URL(urlString);
-            return url;
-        }catch(MalformedURLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    // Custom method to save a bitmap into internal storage
-    protected Uri saveImageToInternalStorage(Bitmap bitmap){
-        // Initialize ContextWrapper
-        //ContextWrapper wrapper = new ContextWrapper(getActivity());
-
-        // Initializing a new file
-        // The bellow line return a directory in internal storage
-       // File file = wrapper.getDir("Images",MODE_PRIVATE);
-
-        String root = Environment.getExternalStorageDirectory().toString();
-        File file = new File(root + "/yourDirectory");
-
-//        File file = new File(getActivity().getFilesDir(),"mydir");
-
-        // Create a file to save the image
-        file = new File(file, "UniqueFileName"+".jpg");
-
-        try{
-            // Initialize a new OutputStream
-            OutputStream stream = null;
-
-            // If the output file exists, it can be replaced or appended to it
-            stream = new FileOutputStream(file);
-
-            // Compress the bitmap
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-
-            // Flushes the stream
-            stream.flush();
-
-            // Closes the stream
-            stream.close();
-
-        }catch (IOException e) // Catch the exception
-        {
-            e.printStackTrace();
-        }
-
-        // Parse the gallery image url to uri
-        Uri savedImageURI = Uri.parse(file.getAbsolutePath());
-
-        // Return the saved image Uri
-        return savedImageURI;
-    }
-
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(getActivity())
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
-    }
-
-    private void createPdfWrapper() throws FileNotFoundException{
-
-        int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                Log.d("sdfsdfsdfsdfsd","true");
-                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
-                    showMessageOKCancel("You need to allow access to Storage",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                REQUEST_CODE_ASK_PERMISSIONS);
-                                    }
-                                }
-                            });
-                    return;
-                }
-
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_CODE_ASK_PERMISSIONS);
-            }
-
-            return;
-        }else {
-            Log.d("sdfsdfsdfsdfsd","flase");
-
-            mMyTask = new DownloadTask().execute(stringToURL(getArguments().getString("image")));
-
-        }
-    }
-
-
-//    public boolean isPermissionGranted() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        } else {
-//            return true;
+    //progress dialog
+//    @Override
+//    protected Dialog onCreateDialog(int id) {
+//        switch (id) {
+//            case progressType: // we set this to 0
+//                progressDialog = new ProgressDialog(this);
+//                progressDialog.setMessage("File is Downloading. Please wait...");
+//                progressDialog.setIndeterminate(false);
+//                progressDialog.setMax(100);
+//                progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//                progressDialog.setCancelable(true);
+//                progressDialog.show();
+//                return progressDialog;
+//            default:
+//                return null;
 //        }
-//
-//    }
-
-
 
 }
 

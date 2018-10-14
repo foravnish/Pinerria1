@@ -27,6 +27,8 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Child's Information"/>
     </RelativeLayout>
@@ -69,13 +71,26 @@
                 android:inputType="textPersonName"
                 android:background="@drawable/strock_edit"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/strock_edit"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp">
+                    <Spinner
+                        android:id="@+id/gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_alignTop="@+id/postImageView" />
+                </LinearLayout>
 
             <TextView
                 android:id="@+id/DOB"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:hint="Date Of Birth"
+                android:hint="@string/dob"
                 android:focusable="true"
                 android:fontFamily="@font/listfont"
                 android:layout_below="@+id/sign"
@@ -83,19 +98,6 @@
                 android:inputType="phone"
                 android:background="@drawable/strock_edit"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/strock_edit"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp">
-                <Spinner
-                    android:id="@+id/gender"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_alignTop="@+id/postImageView" />
-            </LinearLayout>
 
 
             <EditText
@@ -103,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:hint="Nationality*"
+                android:hint="@string/Nationality"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:background="@drawable/strock_edit"/>
@@ -115,7 +117,7 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
                 android:gravity="top"
-                android:hint="HomeAddress*"
+                android:hint="@string/HomeAddress"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:inputType="textPersonName"

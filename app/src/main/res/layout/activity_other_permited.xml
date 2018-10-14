@@ -27,6 +27,8 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Other permitted to pick up the child"/>
     </RelativeLayout>

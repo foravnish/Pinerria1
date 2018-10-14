@@ -28,6 +28,8 @@
             android:layout_centerHorizontal="true"
             android:textSize="21dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/comicz"
+            android:textStyle="bold"
             android:text="Emergency Consent Form"/>
     </RelativeLayout>
 

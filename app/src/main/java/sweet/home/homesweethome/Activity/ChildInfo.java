@@ -21,7 +21,9 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.MyPrefrences;
@@ -30,8 +32,10 @@ public class ChildInfo extends AppCompatActivity {
 
     Button next;
     Spinner gender,gender2,gender3,gender4,gender5;
-    String[] str = { "Select Gender","Male", "Female" };
+//    String[] str = { "Select Gender *","Male", "Female" };
+    List<String> str=new ArrayList<>();
     TextView DOB;
+
     DatePickerDialog  datePickerDialog;
     EditText childName,nationality,homeAddress;
     LinearLayout liner1;
@@ -45,6 +49,10 @@ public class ChildInfo extends AppCompatActivity {
         Log.d("sdfsdfsdgfsgdgdfgd",getIntent().getStringExtra("id"));
         next=findViewById(R.id.next);
 
+//        str.add(getResources().getString(R.string.Education).toString());
+        str.add("Select Gender*");
+        str.add("Male");
+        str.add("Female");
         gender=findViewById(R.id.gender);
 
         DOB=findViewById(R.id.DOB);
@@ -106,7 +114,7 @@ public class ChildInfo extends AppCompatActivity {
 //
 
 
-        ArrayAdapter subcat = new ArrayAdapter(ChildInfo.this,android.R.layout.simple_spinner_item,str);
+        ArrayAdapter subcat = new ArrayAdapter(ChildInfo.this,R.layout.simple_spinner_item,str);
         subcat.setDropDownViewResource(R.layout.simple_spinner_item);
         gender.setAdapter(subcat);
 
