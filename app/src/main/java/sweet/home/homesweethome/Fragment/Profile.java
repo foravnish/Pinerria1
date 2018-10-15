@@ -498,7 +498,7 @@ public class Profile extends Fragment {
 
 
                                 subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);
-                                subcat.setDropDownViewResource(R.layout.simple_spinner_item);
+                                subcat.setDropDownViewResource(R.layout.simple_spinner_item4);
                                 switchUser.setAdapter(subcat);
                             }
 

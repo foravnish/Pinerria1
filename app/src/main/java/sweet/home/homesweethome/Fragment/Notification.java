@@ -3,6 +3,7 @@ package sweet.home.homesweethome.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -234,6 +235,46 @@ public class Notification extends Fragment {
                 String date=month+"-"+year;
                 dateBox.setText(date);
 
+            }
+            if (AllProducts.get(position).get("type").equalsIgnoreCase("News")){
+                type.setTextColor(Color.parseColor("#9df441"));
+                title.setTextColor(Color.parseColor("#9df441"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Calendar")){
+                type.setTextColor(Color.parseColor("#4141f4"));
+                title.setTextColor(Color.parseColor("#4141f4"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Activity")){
+                type.setTextColor(Color.parseColor("#f44194"));
+                title.setTextColor(Color.parseColor("#f44194"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Announcement")){
+                type.setTextColor(Color.parseColor("#f44141"));
+                title.setTextColor(Color.parseColor("#f44141"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Assessment")){
+                type.setTextColor(Color.parseColor("#f441f1"));
+                title.setTextColor(Color.parseColor("#f441f1"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Attendance")){
+                type.setTextColor(Color.parseColor("#4286f4"));
+                title.setTextColor(Color.parseColor("#4286f4"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("CheckIn")){
+                type.setTextColor(Color.parseColor("#f4414c"));
+                title.setTextColor(Color.parseColor("#f4414c"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("CheckOut")){
+                type.setTextColor(Color.parseColor("#c741f4"));
+                title.setTextColor(Color.parseColor("#f44c741f4194"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Feedback")){
+                type.setTextColor(Color.parseColor("#f1f441"));
+                title.setTextColor(Color.parseColor("#f1f441"));
+            }
+            else if (AllProducts.get(position).get("type").equalsIgnoreCase("Remark")){
+                type.setTextColor(Color.parseColor("#f49741"));
+                title.setTextColor(Color.parseColor("#f49741"));
             }
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
