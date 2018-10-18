@@ -124,13 +124,20 @@ public class ActivityImage extends Fragment {
             }
         });
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+//            openFilePicker();
+        }
+
 
 
         downalod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sweet.home.homesweethome.Utils.Util.showPgDialog(dialog);
-                new DownloadFromURL().execute(getArguments().getString("image"));
+                Log.d("sdsfsdfsdf",getArguments().getString("image"));
+                new DownloadFromURL().execute(getArguments().getString("image")); //https://www.viralandroid.com/2016/12/downloading-file-or-image-and-displaying-in-android.html
             }
         });
 
@@ -140,6 +147,12 @@ public class ActivityImage extends Fragment {
         return view;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            openFilePicker();
+        }
+    }
 
 
     class DownloadFromURL extends AsyncTask<String, String, String> {
@@ -163,10 +176,10 @@ public class ActivityImage extends Fragment {
                 // show progress bar 0-100%
                 int fileLength = urlConnection.getContentLength();
                 InputStream inputStream = new BufferedInputStream(url.openStream(), 8192);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmm");
                 String currentDateandTime = sdf.format(new Date());
 
-                OutputStream outputStream = new FileOutputStream("/sdcard/HSH_Image"+ currentDateandTime+".jpg");
+                OutputStream outputStream = new FileOutputStream("/sdcard/HSH_image"+ currentDateandTime+".jpg");
 
                 byte data[] = new byte[1024];
                 long total = 0;

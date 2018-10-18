@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,7 @@ public class ActivitesA extends Fragment {
     }
 
     List<HashMap<String,String>> AllProducts ;
-    GridView expListView;
+    ListView expListView;
     Dialog dialog;
  //   ImageView imageNoListing;
     TextView txtNoData;
@@ -70,7 +71,7 @@ public class ActivitesA extends Fragment {
        // imageNoListing = (ImageView) view.findViewById(R.id.imageNoListing);
 
         txtNoData = (TextView) view.findViewById(R.id.txtNoData);
-
+        expListView = (ListView) view.findViewById(R.id.lvExp);
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -94,7 +95,7 @@ public class ActivitesA extends Fragment {
 
 
         AllProducts = new ArrayList<>();
-        expListView = (GridView) view.findViewById(R.id.lvExp);
+
         expListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
