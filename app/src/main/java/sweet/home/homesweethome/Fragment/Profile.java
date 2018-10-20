@@ -47,6 +47,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sweet.home.homesweethome.Activity.Login;
+import sweet.home.homesweethome.Activity.SplashAct;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -323,7 +324,16 @@ public class Profile extends Fragment {
                 }
 
 
-                textViewUser.setText(switchUser.getSelectedItem().toString());
+                try {
+                    Log.d("dfgdfgdfgdfgd",switchUser.getSelectedItem().toString());
+                    textViewUser.setText(switchUser.getSelectedItem().toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Intent intent = new Intent(getActivity(), Login.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
 //                textViewUser.setText(listUser.get(i).toString());
                 Log.d("fsdafsdafsdfs",listUserID.get(i));
                 sId=listUserID.get(i).toString();
