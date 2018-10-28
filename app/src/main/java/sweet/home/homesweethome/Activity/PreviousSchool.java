@@ -105,5 +105,50 @@ public class PreviousSchool extends AppCompatActivity {
             }
         });
 
+
+
+
+        if (ChildList.val1==1) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==2) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==3) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==4) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==5) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==6) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==7) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==8) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==9) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==10) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
     }
+
+
 }

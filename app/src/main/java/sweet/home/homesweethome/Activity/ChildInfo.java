@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.MyPrefrences;
 
 public class ChildInfo extends AppCompatActivity {
@@ -58,6 +61,8 @@ public class ChildInfo extends AppCompatActivity {
         DOB=findViewById(R.id.DOB);
 
 
+        Log.d("dgdfgdfgdfhgdf", String.valueOf(ChildList.val1));
+
         childName=findViewById(R.id.childName);
         nationality=findViewById(R.id.nationality);
         homeAddress=findViewById(R.id.homeAddress);
@@ -69,6 +74,7 @@ public class ChildInfo extends AppCompatActivity {
 
 
         RelativeLayout relat=findViewById(R.id.relat);
+
         relat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +147,48 @@ public class ChildInfo extends AppCompatActivity {
             }
         });
 
-//
+
+            if (ChildList.val1==1) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in);
+            }
+            else  if (ChildList.val1==2) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in_male);
+            }
+            else  if (ChildList.val1==3) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in);
+            }
+            else  if (ChildList.val1==4) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in_male);
+            }
+            else  if (ChildList.val1==5) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in);
+            }
+            else  if (ChildList.val1==6) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in_male);
+            }
+            else  if (ChildList.val1==7) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in);
+            }
+            else  if (ChildList.val1==8) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in_male);
+            }
+            else  if (ChildList.val1==9) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in);
+            }
+            else  if (ChildList.val1==10) {
+
+                relat.setBackgroundResource(R.drawable.redius_img_in_male);
+            }
+
 
 
 //        if (ChildList.val1==1) {

@@ -76,10 +76,13 @@ public class ChildList extends AppCompatActivity {
                 intent.putExtra("value", MyPrefrences.getNoOfChild(getApplicationContext()));
                 intent.putExtra("name", textViewUser.getText().toString());
                 intent.putExtra("id", stId);
+                //intent.putExtra("number_change",ChildList.val1);
                 startActivity(intent);
 
             }
         });
+
+        Log.d("dgdfgdfgdfhgdf", String.valueOf(ChildList.val1));
 
         Log.d("sdfsdgd",MyPrefrences.getChildList(getApplicationContext()));
         try {
@@ -340,4 +343,9 @@ public class ChildList extends AppCompatActivity {
 //    }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ChildList.val1=ChildList.val1-1;
+    }
 }

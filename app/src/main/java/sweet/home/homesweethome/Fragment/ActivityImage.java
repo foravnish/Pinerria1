@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.squareup.okhttp.internal.Util;
+
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
@@ -49,12 +50,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
 
 import sweet.home.homesweethome.Activity.FatherInfo;
 import sweet.home.homesweethome.R;
-import sweet.home.homesweethome.Utils.AppController;
+import sweet.home.homesweethome.Utils.Util;
+
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -167,7 +169,7 @@ public class ActivityImage extends Fragment {
         @Override
         protected String doInBackground(String... fileUrl) {
             int count;
-            sweet.home.homesweethome.Utils.Util.cancelPgDialog(dialog);
+            Util.cancelPgDialog(dialog);
 
             try {
                 URL url = new URL(fileUrl[0]);
@@ -215,7 +217,7 @@ public class ActivityImage extends Fragment {
         protected void onPostExecute(String file_url) {
           //  dismissDialog(progressType);
             String imagePath = Environment.getExternalStorageDirectory().toString() + "/downloadedfile.jpg";
-            sweet.home.homesweethome.Utils.Util.errorDialog2(getActivity(),"Image saved successfully.");
+            Util.errorDialog2(getActivity(),"Image saved successfully.");
             Log.d("dfdgdfgfdgdfgd",imagePath);
             //imageView.setImageDrawable(Drawable.createFromPath(imagePath));
         }

@@ -54,17 +54,19 @@ public class Food1 extends Fragment {
             try {
                 JSONObject jsonObject = new JSONObject(getArguments().getString("json"));
 
-                JSONObject jsonObject1 = jsonObject.optJSONObject("Breakfast");
-                JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                for (int i = 0; i < jsonArray.length(); i++) {
+                if (jsonObject.has("Breakfast")) {
+                    JSONObject jsonObject1 = jsonObject.optJSONObject("Breakfast");
+                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                    JSONObject jsonObject3 = jsonArray.getJSONObject(i);
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("_id", jsonObject3.optString("_id"));
-                    map.put("name", jsonObject3.optString("name"));
-                    Adapter adapter = new Adapter();
-                    expListView.setAdapter(adapter);
-                    AllProducts.add(map);
+                        JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("_id", jsonObject3.optString("_id"));
+                        map.put("name", jsonObject3.optString("name"));
+                        Adapter adapter = new Adapter();
+                        expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
                 }
 
 
@@ -75,18 +77,19 @@ public class Food1 extends Fragment {
         else  if (getArguments().getString("type").equalsIgnoreCase("snack")) {
             try {
                 JSONObject jsonObject = new JSONObject(getArguments().getString("json"));
+                if (jsonObject.has("Snacks")) {
+                    JSONObject jsonObject1 = jsonObject.optJSONObject("Snacks");
+                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                JSONObject jsonObject1 = jsonObject.optJSONObject("Snacks");
-                JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                    JSONObject jsonObject3 = jsonArray.getJSONObject(i);
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("_id", jsonObject3.optString("_id"));
-                    map.put("name", jsonObject3.optString("name"));
-                    Adapter adapter = new Adapter();
-                    expListView.setAdapter(adapter);
-                    AllProducts.add(map);
+                        JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("_id", jsonObject3.optString("_id"));
+                        map.put("name", jsonObject3.optString("name"));
+                        Adapter adapter = new Adapter();
+                        expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
                 }
 
 
@@ -98,20 +101,20 @@ public class Food1 extends Fragment {
         else  if (getArguments().getString("type").equalsIgnoreCase("lunch")) {
             try {
                 JSONObject jsonObject = new JSONObject(getArguments().getString("json"));
+                if (jsonObject.has("Lunch")) {
+                    JSONObject jsonObject1 = jsonObject.optJSONObject("Lunch");
+                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                JSONObject jsonObject1 = jsonObject.optJSONObject("Lunch");
-                JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                    JSONObject jsonObject3 = jsonArray.getJSONObject(i);
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("_id", jsonObject3.optString("_id"));
-                    map.put("name", jsonObject3.optString("name"));
-                    Adapter adapter = new Adapter();
-                    expListView.setAdapter(adapter);
-                    AllProducts.add(map);
+                        JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("_id", jsonObject3.optString("_id"));
+                        map.put("name", jsonObject3.optString("name"));
+                        Adapter adapter = new Adapter();
+                        expListView.setAdapter(adapter);
+                        AllProducts.add(map);
+                    }
                 }
-
 
             } catch (JSONException e) {
                 e.printStackTrace();

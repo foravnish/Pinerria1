@@ -313,8 +313,10 @@ public class Food extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
 
-                    JSONObject jsonObject1 = jsonObject.optJSONObject("Breakfast");
-                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
+                    if (jsonObject.has("Breakfast")) {
+
+                        JSONObject jsonObject1 = jsonObject.optJSONObject("Breakfast");
+                        JSONArray jsonArray = jsonObject1.getJSONArray("data");
 
 
                         JSONObject jsonObject31 = jsonArray.getJSONObject(0);
@@ -323,24 +325,7 @@ public class Food extends Fragment {
                         JSONObject jsonObject32 = jsonArray.getJSONObject(1);
                         viewHolder.br2.setText(jsonObject32.optString("name"));
 
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
-
-                    JSONObject jsonObject1 = jsonObject.optJSONObject("Snacks");
-                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
-
-
-                    JSONObject jsonObject31 = jsonArray.getJSONObject(0);
-                    viewHolder.br3.setText(jsonObject31.optString("name"));
-                    JSONObject jsonObject32 = jsonArray.getJSONObject(1);
-                    viewHolder.br4.setText(jsonObject32.optString("name"));
-
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -348,15 +333,33 @@ public class Food extends Fragment {
 
                 try {
                     JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
+                    if (jsonObject.has("Snacks")) {
+                        JSONObject jsonObject1 = jsonObject.optJSONObject("Snacks");
+                        JSONArray jsonArray = jsonObject1.getJSONArray("data");
 
-                    JSONObject jsonObject1 = jsonObject.optJSONObject("Lunch");
-                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
 
-                    JSONObject jsonObject31 = jsonArray.getJSONObject(0);
-                    viewHolder.br5.setText(jsonObject31.optString("name"));
-                    JSONObject jsonObject32 = jsonArray.getJSONObject(1);
-                    viewHolder.br6.setText(jsonObject32.optString("name"));
+                        JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                        viewHolder.br3.setText(jsonObject31.optString("name"));
+                        JSONObject jsonObject32 = jsonArray.getJSONObject(1);
+                        viewHolder.br4.setText(jsonObject32.optString("name"));
 
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+
+                        JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
+                    if (jsonObject.has("Lunch")) {
+                        JSONObject jsonObject1 = jsonObject.optJSONObject("Lunch");
+                        JSONArray jsonArray = jsonObject1.getJSONArray("data");
+
+                        JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                        viewHolder.br5.setText(jsonObject31.optString("name"));
+                        JSONObject jsonObject32 = jsonArray.getJSONObject(1);
+                        viewHolder.br6.setText(jsonObject32.optString("name"));
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -288,9 +288,6 @@ public class SibliingInfo extends AppCompatActivity {
 
 
 
-
-
-
                 if (MyPrefrences.getNoOfChild(getApplicationContext()).equalsIgnoreCase(String.valueOf(ChildList.val1))){
                     Intent intent=new Intent(SibliingInfo.this,ParentFirstScr.class);
                     intent.putExtra("childData", finalCartItemsArray.toString());
@@ -337,6 +334,50 @@ public class SibliingInfo extends AppCompatActivity {
         ArrayAdapter subcat5 = new ArrayAdapter(SibliingInfo.this,R.layout.simple_spinner_item,str5);
         subcat5.setDropDownViewResource(R.layout.simple_spinner_item);
         age5.setAdapter(subcat5);
+
+
+
+
+        if (ChildList.val1==1) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==2) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==3) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==4) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==5) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==6) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==7) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==8) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+        else  if (ChildList.val1==9) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (ChildList.val1==10) {
+
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
 
     }
 }
