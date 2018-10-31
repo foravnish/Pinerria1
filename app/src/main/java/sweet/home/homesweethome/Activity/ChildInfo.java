@@ -81,6 +81,14 @@ public class ChildInfo extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button textBack2=findViewById(R.id.textBack2);
+        textBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

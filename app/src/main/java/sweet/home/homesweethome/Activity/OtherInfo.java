@@ -44,6 +44,14 @@ public class OtherInfo extends AppCompatActivity {
             }
         });
 
+        Button textBack2=findViewById(R.id.textBack2);
+        textBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         ArrayAdapter subcat1 = new ArrayAdapter(OtherInfo.this,R.layout.simple_spinner_item,str1);
         subcat1.setDropDownViewResource(R.layout.simple_spinner_item);
         switchStatus.setAdapter(subcat1);

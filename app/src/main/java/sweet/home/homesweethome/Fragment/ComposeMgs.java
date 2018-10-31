@@ -61,7 +61,7 @@ public class ComposeMgs extends Fragment {
     String[] str = { "To", "Principal", "Class Teacher", "Dean" };
     String spiVal,spiVal2;
     EditText edit_sub,edit_msg;
-    Button submitdata;
+    Button submitdata,cancel;
     Dialog dialog;
     ArrayAdapter aa;
     List<String> CatList = new ArrayList<String>();
@@ -75,7 +75,7 @@ public class ComposeMgs extends Fragment {
         edit_sub=view.findViewById(R.id.edit_sub);
         edit_msg=view.findViewById(R.id.edit_msg);
         submitdata=view.findViewById(R.id.submitdata);
-
+        cancel=view.findViewById(R.id.cancel);
         AllProducts = new ArrayList<>();
 
         dialog=new Dialog(getActivity());
@@ -121,6 +121,14 @@ public class ComposeMgs extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Please select Role", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edit_sub.setText("");
+                edit_msg.setText("");
+                spiner.setSelection(0);
             }
         });
 

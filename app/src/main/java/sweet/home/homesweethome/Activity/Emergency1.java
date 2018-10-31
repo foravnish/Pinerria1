@@ -45,6 +45,14 @@ public class Emergency1 extends AppCompatActivity {
             }
         });
 
+        Button textBack2=findViewById(R.id.textBack2);
+        textBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 //        intent.putExtra("childData",getIntent().getStringExtra("childData"));
 //        intent.putExtra("fatherData",getIntent().getStringExtra("fatherData"));
 //        intent.putExtra("motherData",getIntent().getStringExtra("motherData"));

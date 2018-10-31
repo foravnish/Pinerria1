@@ -73,10 +73,19 @@ public class SibliingInfo extends AppCompatActivity {
 
         Log.d("id",getIntent().getStringExtra("id"));
         Log.d("name",getIntent().getStringExtra("name"));
-        Log.d("DOB",getIntent().getStringExtra("DOB"));
+//        Log.d("DOB",getIntent().getStringExtra("DOB"));
         Log.d("gender",getIntent().getStringExtra("gender"));
         Log.d("nationality",getIntent().getStringExtra("nationality"));
         Log.d("homeAddress",getIntent().getStringExtra("homeAddress"));
+
+
+        Button textBack2=findViewById(R.id.textBack2);
+        textBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
 
@@ -155,7 +164,7 @@ public class SibliingInfo extends AppCompatActivity {
 
                     Log.d("id",getIntent().getStringExtra("id"));
                     Log.d("name",getIntent().getStringExtra("name"));
-                    Log.d("DOB",getIntent().getStringExtra("DOB"));
+                    //Log.d("DOB",getIntent().getStringExtra("DOB"));
                     Log.d("gender",getIntent().getStringExtra("gender"));
                     Log.d("nationality",getIntent().getStringExtra("nationality"));
                     Log.d("homeAddress",getIntent().getStringExtra("homeAddress"));

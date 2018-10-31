@@ -34,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,7 +147,7 @@ public class Timeline extends Fragment {
 
         LayoutInflater inflater;
         TextView title,desc,dateM,dayM;
-        LinearLayout linearColor;
+        LinearLayout linearColor,linear2;
 
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -179,6 +180,7 @@ public class Timeline extends Fragment {
             dateM=convertView.findViewById(R.id.dateM);
             dayM=convertView.findViewById(R.id.dayM);
             linearColor=convertView.findViewById(R.id.linearColor);
+            linear2=convertView.findViewById(R.id.linear2);
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
@@ -205,6 +207,23 @@ public class Timeline extends Fragment {
             else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("red")){
                 linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#f45c71")));
             }
+
+
+
+//            Calendar c = Calendar.getInstance();
+//            int monthCurrent = c.get(Calendar.MONTH);
+//
+//            Log.d("SDfsdfsdfsdfsdfsdf1", String.valueOf(monthCurrent+1));
+//            Log.d("SDfsdfsdfsdfsdfsdf2", String.valueOf(months));
+//
+//            String monthsC= String.valueOf(monthCurrent+1);
+//            String monthsC2= "0"+monthsC;
+//
+//            Log.d("sgfdsgdgdf",monthsC2);
+//            if (!monthsC2.equals(months)){
+//                Log.d("sdfadfsfseff","true");
+//                linear2.setBackgroundResource(R.drawable.strock_noti_gray);
+//            }
 
             return convertView;
         }

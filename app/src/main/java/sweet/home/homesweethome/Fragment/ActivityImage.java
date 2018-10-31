@@ -137,7 +137,7 @@ public class ActivityImage extends Fragment {
         downalod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sweet.home.homesweethome.Utils.Util.showPgDialog(dialog);
+                Util.showPgDialog(dialog);
                 Log.d("sdsfsdfsdf",getArguments().getString("image"));
                 new DownloadFromURL().execute(getArguments().getString("image")); //https://www.viralandroid.com/2016/12/downloading-file-or-image-and-displaying-in-android.html
             }

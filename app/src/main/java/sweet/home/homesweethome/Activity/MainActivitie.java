@@ -45,7 +45,7 @@ import sweet.home.homesweethome.Utils.Util;
 
 public class MainActivitie extends AppCompatActivity {
 
-    ImageView menual,message,alerm,calender,profile;
+    public static ImageView menual,message,alerm,calender,profile;
     String  androidDeviceId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

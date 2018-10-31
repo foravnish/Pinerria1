@@ -47,6 +47,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sweet.home.homesweethome.Activity.Login;
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.Activity.SplashAct;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
@@ -117,6 +118,14 @@ public class Profile extends Fragment {
         opt.add("Change Password");
         //opt.add("Update "+childName+" Profile");
         opt.add("Logout");
+
+
+        MainActivitie.profile.setImageResource(R.drawable.profilehover);
+        MainActivitie.calender.setImageResource(R.drawable.calendar);
+        MainActivitie.alerm.setImageResource(R.drawable.notification);
+        MainActivitie.message.setImageResource(R.drawable.message);
+        MainActivitie.menual.setImageResource(R.drawable.schoolmannual);
+
 
         ArrayAdapter option = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,opt);
         option.setDropDownViewResource(R.layout.simple_spinner_item);

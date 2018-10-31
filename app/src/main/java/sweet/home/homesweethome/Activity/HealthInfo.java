@@ -49,7 +49,13 @@ public class HealthInfo extends AppCompatActivity {
             }
         });
 
-
+        Button textBack2=findViewById(R.id.textBack2);
+        textBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

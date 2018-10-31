@@ -42,6 +42,14 @@ public class OtherPermited extends AppCompatActivity {
         MobileNo1=findViewById(R.id.MobileNo1);
         nanyyName=findViewById(R.id.nanyyName);
 
+        Button textBack2=findViewById(R.id.textBack2);
+        textBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
