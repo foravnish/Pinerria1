@@ -44,11 +44,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -81,6 +83,9 @@ public class WeekPlan extends Fragment {
     int currPos=0;
     JSONObject jsonObject1;
     boolean _areLecturesLoaded = false;
+    RelativeLayout relat;
+    int currentMonth, currentWeek;
+    int incre;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,9 +93,12 @@ public class WeekPlan extends Fragment {
         View view= inflater.inflate(R.layout.fragment_week_plan, container, false);
 
         ImageView textBack= view.findViewById(R.id.textBack);
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
+
+        viewPager = (ViewPager) view.findViewById(R.id.slider) ;
+        relat = (RelativeLayout) view.findViewById(R.id.relat);;
 
 
-        viewPager = (ViewPager) view.findViewById(R.id.slider);
 //        leftarrow=(TextView)view.findViewById(R.id.leftarrow);
 //        rightarrow=(TextView)view.findViewById(R.id.rightarrow);
 //        date=(TextView)view.findViewById(R.id.date);
@@ -110,11 +118,20 @@ public class WeekPlan extends Fragment {
 //        lvExp= view.findViewById(R.id.lvExp);
 
 
+        viewPager.setOffscreenPageLimit(0);
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
+        if (MyPrefrences.getColorGender(getActivity()).equals("male")){
+            Log.d("dfggfgdg","Male");
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (MyPrefrences.getColorGender(getActivity()).equals("female")){
+            Log.d("dfggfgdg","Female");
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
 
         textBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +161,95 @@ public class WeekPlan extends Fragment {
 
     private void getWeekPlanData() {
 
+        /// Set current month of weekly plan
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.MONTH);
+        int day2 = calendar.get(Calendar.WEEK_OF_MONTH);
+
+        Log.d("dfgdfhdfhdfhfdh1", String.valueOf(day));
+        Log.d("dfgdfhdfhdfhfdh2", String.valueOf(day2));
+
+
+        if (day2==1){
+            currentWeek =1;
+        }
+        else  if (day2==2){
+            currentWeek=2;
+        }
+        else if (day2==3){
+            currentWeek=3;
+        }
+        else if (day2==4){
+            currentWeek=4;
+        }
+        else if (day2==5){
+            currentWeek=5;
+        }
+
+        switch (day) {
+            case Calendar.JANUARY:
+                viewPager.setCurrentItem(0);
+                currentMonth =1;
+                Log.d("fhdffdfghfghfg","0");
+                break;
+            case Calendar.FEBRUARY:
+                viewPager.setCurrentItem(1);
+                currentMonth =2;
+                Log.d("fhdffdfghfghfg","1");
+                break;
+            case Calendar.MARCH:
+                viewPager.setCurrentItem(2);
+                currentMonth =3;
+                Log.d("fhdffdfghfghfg","2");
+                break;
+            case Calendar.APRIL:
+                viewPager.setCurrentItem(3);
+                currentMonth =4;
+                Log.d("fhdffdfghfghfg","3");
+                break;
+            case Calendar.MAY:
+                viewPager.setCurrentItem(4);
+                currentMonth =5;
+                Log.d("fhdffdfghfghfg","4");
+                break;
+            case Calendar.JUNE:
+                viewPager.setCurrentItem(0);
+                currentMonth =6;
+                Log.d("fhdffdfghfghfg","5");
+                break;
+            case Calendar.JULY:
+                viewPager.setCurrentItem(0);
+                currentMonth =7;
+                Log.d("fhdffdfghfghfg","6");
+                break;
+            case Calendar.AUGUST:
+                viewPager.setCurrentItem(0);
+                currentMonth =8;
+                Log.d("fhdffdfghfghfg","7");
+                break;
+            case Calendar.SEPTEMBER:
+                viewPager.setCurrentItem(0);
+                currentMonth =9;
+                Log.d("fhdffdfghfghfg","8");
+                break;
+            case Calendar.OCTOBER:
+                viewPager.setCurrentItem(0);
+                currentMonth =10;
+                Log.d("fhdffdfghfghfg","9");
+                break;
+            case Calendar.NOVEMBER:
+                viewPager.setCurrentItem(0);
+                currentMonth =11;
+                Log.d("fhdffdfghfghfg","10");
+                break;
+            case Calendar.DECEMBER:
+                viewPager.setCurrentItem(0);
+                currentMonth =12;
+                Log.d("fhdffdfghfghfg","11");
+                break;
+        }
+
         Log.d("sdgfdsgdgdfgd",getArguments().getString("ClassId"));
             Util.showPgDialog(dialog);
             //// TODO Header APi
@@ -160,16 +266,44 @@ public class WeekPlan extends Fragment {
                             Iterator<String> iter = response.keys();
                             while (iter.hasNext()) {
                                 String key = iter.next();
+                                Log.d("sdgdfhdfhdfhd",key);
                                 try {
+
                                     Object value = response.get(key);
+
 
                                     Log.d("dgdfgdfhdfhg",value.toString());
 
                                     JSONObject jsonObject=new JSONObject(value.toString());
+
+                                    Iterator<String> iter2 = jsonObject.keys();
+                                    while (iter2.hasNext()) {
+                                        String key2 = iter2.next();
+
+                                        Log.d("fgfdghdfhdfhd", key2);
+                                        int jsoMonths= Integer.parseInt(key2);
+                                        if (currentMonth==jsoMonths){
+                                            Log.d("dfgdfgdfhbdfhdgndg","yes");
+                                            incre=incre+1;
+                                            break;
+
+                                        }
+                                        else{
+                                            Log.d("dfgdfgdfhbdfhdgndg","no");
+                                            incre=incre+1;
+                                        }
+
+
+                                        Log.d("SDgsfdgsdfghsfhgdfgh", String.valueOf(incre));
+                                    }
+                                    Log.d("dfbfhbfghghfhnjfgh", String.valueOf(currentMonth));
+
                                     if (jsonObject.has("1")){
                                        JSONObject jsonObject1=new JSONObject(jsonObject.optString("1"));
                                        Log.d("Sdfsdfsertrdgdgddfsdf",jsonObject1.toString());
                                         AllEvents.add(new Const(jsonObject1.optString("name"),jsonObject1.optString("weeks"),"","",""));
+                                      // if (currentMonth==)
+
                                     }
                                     if (jsonObject.has("2")){
                                         JSONObject jsonObject2=new JSONObject(jsonObject.optString("2"));
@@ -238,9 +372,13 @@ public class WeekPlan extends Fragment {
 
                                     }
 
+                                    Log.d("sgsdfgdfhdfgdfh", String.valueOf(incre));
                                     viewPager.setAdapter(mCustomPagerAdapter);
                                     //viewPager.setOffscreenPageLimit(0);
+                                    viewPager.setCurrentItem(incre);
                                     mCustomPagerAdapter.notifyDataSetChanged();
+
+
 
 
                                     Log.d("sdvdsvxdvxdvsd",AllEvents.get(0).getId().toString());
@@ -356,39 +494,224 @@ public class WeekPlan extends Fragment {
             viewHolder.date.setText(AllEvents.get(position).getId().toString());
 
 
-            try {
-                JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
-                JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
-                JSONArray jsonArray=jsonObject2.getJSONArray("data");
+            if (currentWeek==1){
+                Log.d("sdgsfgdfhdfhgdfhfg","1");
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
 
-                Log.d("sdfsdfsdfsdfsdfs", String.valueOf(jsonObject));
+                    Log.d("sdfsdfsdfsdfsdfs", String.valueOf(jsonObject));
 
-                if (jsonArray.length()!=0) {
-                    Log.d("sfgsdgdfgdfgd","true");
-                    viewHolder.txtNoData.setVisibility(View.GONE);
-                    viewHolder.expListView.setVisibility(View.VISIBLE);
 
-                    AllProducts.clear();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject12 = jsonArray.optJSONObject(i);
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("title", jsonObject12.optString("title"));
-                        map.put("description", jsonObject12.optString("description"));
-                        map.put("image", jsonObject12.optString("image"));
 
-                        Adapter adapter = new Adapter("1");
-                        viewHolder.expListView.setAdapter(adapter);
-                        AllProducts.add(map);
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+                        AllProducts.clear();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject12 = jsonArray.optJSONObject(i);
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("title", jsonObject12.optString("title"));
+                            map.put("description", jsonObject12.optString("description"));
+                            map.put("image", jsonObject12.optString("image"));
+
+                            Adapter adapter = new Adapter("1");
+                            viewHolder.expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+                        }
                     }
-                }
-                else{
-                    viewHolder.txtNoData.setVisibility(View.VISIBLE);
-                    viewHolder.expListView.setVisibility(View.GONE);
+                    else{
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
+            else if (currentWeek==2){
+                Log.d("sdgsfgdfhdfhgdfhfg","2");
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("2"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+
+                        AllProducts.clear();
+                        for (int i=0;i<jsonArray.length();i++){
+                            JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                            HashMap<String,String> map=new HashMap<>();
+                            map.put("title",jsonObject12.optString("title"));
+                            map.put("description",jsonObject12.optString("description"));
+                            map.put("image",jsonObject12.optString("image"));
+                            Adapter adapter=new Adapter("2");
+                            viewHolder.expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+                        }
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else if (currentWeek==3){
+                Log.d("sdgsfgdfhdfhgdfhfg","3");
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("3"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+                        AllProducts.clear();
+                        for (int i=0;i<jsonArray.length();i++){
+                            JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                            HashMap<String,String> map=new HashMap<>();
+                            map.put("title",jsonObject12.optString("title"));
+                            map.put("description",jsonObject12.optString("description"));
+                            map.put("image",jsonObject12.optString("image"));
+                            Adapter adapter=new Adapter("3");
+                            viewHolder.expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+                        }
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else if (currentWeek==4){
+                Log.d("sdgsfgdfhdfhgdfhfg","4");
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("4"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+
+                        AllProducts.clear();
+                        for (int i=0;i<jsonArray.length();i++){
+                            JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                            HashMap<String,String> map=new HashMap<>();
+                            map.put("title",jsonObject12.optString("title"));
+                            map.put("description",jsonObject12.optString("description"));
+                            map.put("image",jsonObject12.optString("image"));
+                            Adapter adapter=new Adapter("4");
+                            viewHolder.expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+                        }
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else if (currentWeek==5){
+                Log.d("sdgsfgdfhdfhgdfhfg","5");
+                try {
+                    JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+                    JSONObject jsonObject2=new JSONObject(jsonObject.optString("5"));
+                    JSONArray jsonArray=jsonObject2.getJSONArray("data");
+
+                    if (jsonArray.length()!=0) {
+                        Log.d("sfgsdgdfgdfgd","true");
+                        viewHolder.txtNoData.setVisibility(View.GONE);
+                        viewHolder.expListView.setVisibility(View.VISIBLE);
+
+
+                        AllProducts.clear();
+                        for (int i=0;i<jsonArray.length();i++){
+                            JSONObject  jsonObject12=jsonArray.optJSONObject(i);
+                            HashMap<String,String> map=new HashMap<>();
+                            map.put("title",jsonObject12.optString("title"));
+                            map.put("description",jsonObject12.optString("description"));
+                            map.put("image",jsonObject12.optString("image"));
+                            Adapter adapter=new Adapter("5");
+                            viewHolder.expListView.setAdapter(adapter);
+                            AllProducts.add(map);
+                        }
+                    }
+                    else{
+                        Log.d("sfgsdgdfgdfgd","false");
+                        viewHolder.txtNoData.setVisibility(View.VISIBLE);
+                        viewHolder.expListView.setVisibility(View.GONE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+//            try {
+//                JSONObject jsonObject=new JSONObject(AllEvents.get(position).getCatid().toString());
+//                JSONObject jsonObject2=new JSONObject(jsonObject.optString("1"));
+//                JSONArray jsonArray=jsonObject2.getJSONArray("data");
+//
+//                Log.d("sdfsdfsdfsdfsdfs", String.valueOf(jsonObject));
+//
+//
+//
+//                if (jsonArray.length()!=0) {
+//                    Log.d("sfgsdgdfgdfgd","true");
+//                    viewHolder.txtNoData.setVisibility(View.GONE);
+//                    viewHolder.expListView.setVisibility(View.VISIBLE);
+//
+//                    AllProducts.clear();
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject jsonObject12 = jsonArray.optJSONObject(i);
+//                        HashMap<String, String> map = new HashMap<>();
+//                        map.put("title", jsonObject12.optString("title"));
+//                        map.put("description", jsonObject12.optString("description"));
+//                        map.put("image", jsonObject12.optString("image"));
+//
+//                        Adapter adapter = new Adapter("1");
+//                        viewHolder.expListView.setAdapter(adapter);
+//                        AllProducts.add(map);
+//                    }
+//                }
+//                else{
+//                    viewHolder.txtNoData.setVisibility(View.VISIBLE);
+//                    viewHolder.expListView.setVisibility(View.GONE);
+//                }
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
 
             bnt_Week1.setOnClickListener(new View.OnClickListener() {

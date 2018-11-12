@@ -22,6 +22,7 @@
             android:layout_gravity="right"
             android:gravity="right"
             android:paddingTop="5dp"
+            android:visibility="invisible"
             android:background="@color/colorAccent">
 
         <Spinner
@@ -65,14 +66,12 @@
                 <ImageView
                     android:id="@+id/postImageView"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_height="130dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/redius"
                     android:scaleType="centerCrop" />
-
-
 
                 <LinearLayout
                     android:id="@+id/authorImageView2"
@@ -87,19 +86,19 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayoutColor2"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="120dp"
+                    android:layout_height="110dp"
                     android:gravity="center"
-                    android:elevation="2dp"
-                    android:background="@drawable/redius_img_in"
+                    android:elevation="0dp"
                     android:layout_centerHorizontal="true">
 
                 <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/authorImageView"
                     android:layout_width="120dp"
-                    android:layout_height="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     />
+
                 </LinearLayout>
                 </LinearLayout>
 
@@ -138,6 +137,8 @@
                     android:layout_alignTop="@+id/postImageView"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="-15dp"
                     android:background="@drawable/profileswitcher"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp" />
@@ -170,7 +171,7 @@
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                             android:layout_width="0dp"
-                            android:layout_height="130dp"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_gravity="top"
                             android:layout_margin="5dp"
@@ -189,12 +190,30 @@
                                 android:textSize="13dp"
                                 android:text="Food Menu"
                                 android:textColor="@color/black" />
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="150dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="top"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawablePadding="10dp"
+                                    android:drawableTop="@drawable/profile"
+                                    android:text="Food Menu"
+                                    android:textColor="@color/colorPrimary" />
+
+                            </android.support.v7.widget.CardView>
+
                         </android.support.v7.widget.CardView>
 
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                             android:layout_width="0dp"
-                            android:layout_height="130dp"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_gravity="top"
                             android:layout_margin="5dp"
@@ -247,7 +266,7 @@
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                             android:layout_width="0dp"
-                            android:layout_height="130dp"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_gravity="top"
                             android:layout_margin="5dp"
@@ -267,12 +286,33 @@
                                 android:text="Activities"
                                 android:textSize="13dp"
                                 android:textColor="@color/black" />
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="150dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="top"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawablePadding="10dp"
+                                    android:drawableTop="@drawable/profile"
+                                    android:text="Food Menu"
+                                    android:textColor="@color/colorPrimary" />
+
+                            </android.support.v7.widget.CardView>
+
+
                         </android.support.v7.widget.CardView>
 
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                             android:layout_width="0dp"
-                            android:layout_height="130dp"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_gravity="top"
                             android:layout_margin="5dp"

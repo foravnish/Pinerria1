@@ -4,12 +4,12 @@
     package="sweet.home.homesweethome">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"  />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".Utils.AppController"
@@ -19,7 +19,6 @@
         android:roundIcon="@drawable/app_logo_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <service android:name=".FCM.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -30,7 +29,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
 
         <activity
             android:name=".Activity.SplashAct"
@@ -43,7 +41,8 @@
         </activity>
         <activity
             android:name=".Activity.MainActivitie"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label=""/>
         <activity
             android:name=".Activity.Login"
             android:screenOrientation="portrait" />
@@ -52,27 +51,59 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
         <activity
-            android:name=".Activity.WellcomeScr"  android:screenOrientation="portrait"
+            android:name=".Activity.WellcomeScr"
             android:label="@string/title_activity_wellcome_scr"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.ChildScr"  android:screenOrientation="portrait" />
-        <activity android:name=".Activity.SeelctKids" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.SibliingInfo" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.ParentFirstScr" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.FatherInfo" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.MotherInfo" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.OtherInfo" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.OtherPermited" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Emergency" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Emergency1" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Emergency2" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Successfully" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.HealthInfo" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.ChildInfo" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.PreviousSchool" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.ChildList" android:screenOrientation="portrait" ></activity>
+        <activity
+            android:name=".Activity.ChildScr"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SeelctKids"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SibliingInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ParentFirstScr"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.FatherInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.MotherInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.OtherInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.OtherPermited"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Emergency"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Emergency1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Emergency2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Successfully"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.HealthInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ChildInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.PreviousSchool"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ChildList"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

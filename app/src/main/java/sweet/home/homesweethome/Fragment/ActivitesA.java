@@ -19,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -60,7 +62,7 @@ public class ActivitesA extends Fragment {
     Dialog dialog;
  //   ImageView imageNoListing;
     TextView txtNoData;
-
+    RelativeLayout relat;
     String month2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,9 +71,10 @@ public class ActivitesA extends Fragment {
         View view= inflater.inflate(R.layout.fragment_assignments, container, false);
 
        // imageNoListing = (ImageView) view.findViewById(R.id.imageNoListing);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         txtNoData = (TextView) view.findViewById(R.id.txtNoData);
         expListView = (ListView) view.findViewById(R.id.lvExp);
+        relat = (RelativeLayout) view.findViewById(R.id.relat);
 
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -115,7 +118,14 @@ public class ActivitesA extends Fragment {
             }
         });
 
-
+        if (MyPrefrences.getColorGender(getActivity()).equals("male")){
+            Log.d("dfggfgdg","Male");
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (MyPrefrences.getColorGender(getActivity()).equals("female")){
+            Log.d("dfggfgdg","Female");
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
 
         getActivities();
 
@@ -291,8 +301,11 @@ public class ActivitesA extends Fragment {
 
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
-            title.setTypeface(tvFont);
-            //desc.setTypeface(tvFont);
+            final Typeface tvFont2 = Typeface.createFromAsset(getActivity().getAssets(), "listfont.ttf");
+            title.setTypeface(tvFont2);
+            desc.setTypeface(tvFont2);
+            date.setTypeface(tvFont);
+
 
 
 

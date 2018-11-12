@@ -24,6 +24,7 @@ public class Api {
     public static String classApi=BASEURL+"api/class";
     public static String activities=BASEURL+"api/activities/byclass/";
     public static String Registration=BASEURL+"api/users/parent/register/child";
+    public static String Logout=BASEURL+"api/users/logout";
     public static String PostMsg=BASEURL+"api/message";
     public static String SentMessage=BASEURL+"api/message/studentid/";
     public static String Calender=BASEURL+"api/calendar";

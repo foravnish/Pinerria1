@@ -30,10 +30,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -46,9 +51,11 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sweet.home.homesweethome.Activity.Emergency2;
 import sweet.home.homesweethome.Activity.Login;
 import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.Activity.SplashAct;
+import sweet.home.homesweethome.Activity.Successfully;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -93,7 +100,8 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
-
+        setHasOptionsMenu(true);
+        MainActivitie.mTopToolbar.setVisibility(View.VISIBLE);
         foddMenu=view.findViewById(R.id.foddMenu);
         weekMenu=view.findViewById(R.id.weekMenu);
         activitmenu=view.findViewById(R.id.activitmenu);
@@ -116,9 +124,7 @@ public class Profile extends Fragment {
         opt.clear();
         opt.add("Profile");
         opt.add("Change Password");
-        //opt.add("Update "+childName+" Profile");
         opt.add("Logout");
-
 
         MainActivitie.profile.setImageResource(R.drawable.profilehover);
         MainActivitie.calender.setImageResource(R.drawable.calendar);
@@ -126,55 +132,17 @@ public class Profile extends Fragment {
         MainActivitie.message.setImageResource(R.drawable.message);
         MainActivitie.menual.setImageResource(R.drawable.schoolmannual);
 
-
-        ArrayAdapter option = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,opt);
+        ArrayAdapter option = new ArrayAdapter(getActivity(),R.layout.simple_spinner_user,opt);
         option.setDropDownViewResource(R.layout.simple_spinner_item);
         optionmMenu.setAdapter(option);
 
-//        optionmMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                if (i==0){
-//
-//                    Fragment fragment = new ChangePassword();
-//                    FragmentManager manager = getActivity().getSupportFragmentManager();
-//                    FragmentTransaction ft = manager.beginTransaction();
-//                    ft.replace(R.id.container, fragment).addToBackStack(null).commit();
-//
-//                }
-//                else if (i==1){
-//                    Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
-//        optionmMenu.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//
-//                if(motionEvent.getAction()==MotionEvent.ACTION_UP){
-//                    if(opt.length()==0){
-//
-//                        return true;
-//                    }
-//                }
-//
-//
-//                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
-//
-//                return false;
-//            }
-//        });
-
         optionmMenu.setSelection(0);
+
         optionmMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (i==0){
-//                    Log.d("vfdgvdfgdfgdfg",sId);
-//                    Log.d("vfdgvdfgdfgdfg",parentId);
-
                 }
                 else if (i==1){
                     Fragment fragment = new ChangePassword();
@@ -183,25 +151,14 @@ public class Profile extends Fragment {
                     ft.replace(R.id.container, fragment).addToBackStack(null).commit();
 
                 }
-
-//                else if (i==2){
-//
-//                    Log.d("vfdgvdfgdfgdfg",sId);
-//                    Log.d("vfdgvdfgdfgdfg",parentId);
-//
-//                }
                 else if (i==2){
-
                     confirmationPopup();
-
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-
         });
 
 
@@ -224,7 +181,6 @@ public class Profile extends Fragment {
                 Fragment fragment = new WeekPlan();
                 Bundle bundle=new Bundle();
                 bundle.putString("ClassId",ClassId);
-
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
                 fragment.setArguments(bundle);
@@ -239,7 +195,6 @@ public class Profile extends Fragment {
                 Log.d("sdgdfgdfgdf", String.valueOf(switchUser.getSelectedItemPosition()));
                 MyPrefrences.setPosition(getActivity(), String.valueOf(switchUser.getSelectedItemPosition()));
                 Fragment fragment = new ActivitesA();
-
                 Bundle bundle=new Bundle();
                 bundle.putString("ClassId",ClassId);
                 bundle.putString("studentId",sId);
@@ -319,9 +274,14 @@ public class Profile extends Fragment {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Log.d("fgdfgdfgdfgsdgdf","true");
                 MyPrefrences.setPosition(getActivity(),"");
+
+
                 return false;
             }
         });
+
+
+
 
         switchUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -357,20 +317,40 @@ public class Profile extends Fragment {
                 ImageLoader imageLoader = AppController.getInstance().getImageLoader();
                 classImage.setImageUrl(imageUrl2, imageLoader);
 
-                if (listUserGender.get(i).equals("Male")){
-                    Log.d("SDfdsfsdfsdfdsgdsgdf","Male");
-                    relativeLayout.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
-                    linearLayoutColor.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
-                    linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in);
-                }
-                else  if (listUserGender.get(i).equals("Female")){
+//                if (listUserGender.get(i).equals("Male")){
+//                    Log.d("SDfdsfsdfsdfdsgdsgdf","Male");
+//                    relativeLayout.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+//                    linearLayoutColor.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+//                   // linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in);
+//                    MyPrefrences.setColorGender(getActivity(),"male");
+//                }
+//                else  if (listUserGender.get(i).equals("Female")){
+//                    Log.d("SDfdsfsdfsdfdsgdsgdf","Female");
+//
+//                    relativeLayout.setBackgroundColor(Color.parseColor("#eecacf"));
+//                    linearLayoutColor.setBackgroundColor(Color.parseColor("#eecacf"));
+//                    //linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in_male);
+//                    MyPrefrences.setColorGender(getActivity(),"female");
+//                }
+
+
+                if (listUserGender.get(i).equals("Female")){
                     Log.d("SDfdsfsdfsdfdsgdsgdf","Female");
 
                     relativeLayout.setBackgroundColor(Color.parseColor("#eecacf"));
                     linearLayoutColor.setBackgroundColor(Color.parseColor("#eecacf"));
-                    linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in_male);
+                    //linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in_male);
+                    MyPrefrences.setColorGender(getActivity(),"female");
+                    MainActivitie.mTopToolbar.setBackgroundColor(Color.parseColor("#eecacf"));
                 }
-
+                else{
+                    Log.d("SDfdsfsdfsdfdsgdsgdf","Male");
+                    relativeLayout.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+                    linearLayoutColor.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+                    // linearLayoutColor2.setBackgroundResource(R.drawable.redius_img_in);
+                    MyPrefrences.setColorGender(getActivity(),"male");
+                    MainActivitie.mTopToolbar.setBackgroundColor(Color.parseColor("#FFD1E3EC"));
+                }
 
 
 
@@ -469,6 +449,8 @@ public class Profile extends Fragment {
                 Intent intent=new Intent(getActivity(),Login.class);
                 startActivity(intent);
                 getActivity().finishAffinity();
+
+                logoutApi();
             }
         });
 
@@ -481,6 +463,48 @@ public class Profile extends Fragment {
         });
         dialog4.show();
 
+    }
+
+    private void logoutApi() {
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST, Api.Logout,null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Util.cancelPgDialog(dialog);
+                        Log.d("dfsdfsdfggdfgdfgdf", response.toString());
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Util.cancelPgDialog(dialog);
+                VolleyLog.d("dsfsdfsdfsdf", "Error: " + error.getMessage());
+//                hideProgressDialog();
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+//
+                String authToken = MyPrefrences.getToken(getActivity());
+                String bearer = "Bearer ".concat(authToken);
+                headers.put("Authorization", bearer);
+//
+
+                return headers;
+            }
+        };
+        queue.add(jsonObjReq);
     }
 
 
@@ -516,15 +540,14 @@ public class Profile extends Fragment {
                                 listUserClassID.add(jsonObject1.optString("_id"));
 
 
-                                subcat = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,listUser);
-                                subcat.setDropDownViewResource(R.layout.simple_spinner_item4);
+                                subcat = new ArrayAdapter(getActivity(),R.layout.simple_spinner_dropdown_user,listUser);
+                                subcat.setDropDownViewResource(R.layout.simple_spinner_item_user);
                                 switchUser.setAdapter(subcat);
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
 
                 }, new com.android.volley.Response.ErrorListener() {
@@ -579,6 +602,8 @@ public class Profile extends Fragment {
 //
 //        return false;
 //    }
+
+
 
 
 

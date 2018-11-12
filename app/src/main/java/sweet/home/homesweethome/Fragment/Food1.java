@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 
 /**
@@ -46,7 +47,7 @@ public class Food1 extends Fragment {
         View view= inflater.inflate(R.layout.fragment_food1, container, false);
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
       //  Log.d("fsfgsdgsfgdfhg",getArguments().getString("type"));
         Log.d("fsfgsdgsfgdfhg",getArguments().getString("json"));
 

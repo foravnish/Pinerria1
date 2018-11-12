@@ -27,8 +27,12 @@ public class AppController extends Application {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        mInstance = this;
+        try {
+            super.onCreate();
+            mInstance = this;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -51,18 +55,30 @@ public class AppController extends Application {
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         // set the default tag if tag is empty
-        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
-        getRequestQueue().add(req);
+        try {
+            req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+            getRequestQueue().add(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
-        req.setTag(TAG);
-        getRequestQueue().add(req);
+        try {
+            req.setTag(TAG);
+            getRequestQueue().add(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
+        try {
+            if (mRequestQueue != null) {
+                mRequestQueue.cancelAll(tag);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

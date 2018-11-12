@@ -2,12 +2,29 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
 
+    <TextView
+        android:id="@+id/dateBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem lpsum i"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:textSize="16dp"/>
 
     <LinearLayout
-        android:id="@+id/linear2"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -23,7 +40,7 @@
             android:layout_weight="1">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -34,12 +51,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:text=""/>
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="ddd"/>
                 <TextView
                     android:id="@+id/dayM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:textColor="@color/white"
                     android:text="Thu"/>
 
@@ -48,6 +67,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linear2"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:background="@drawable/strock_time2"

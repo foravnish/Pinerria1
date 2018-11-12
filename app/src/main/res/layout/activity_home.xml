@@ -28,6 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleTextColor="@color/white"
+                app:layout_collapseMode="pin"
+                android:theme="@style/ToolbarTheme"
+                android:background="#FFD1E3EC"/>
+
+
             <android.support.v7.widget.CardView
                 android:id="@+id/liner"
                 android:layout_width="match_parent"
@@ -46,7 +56,7 @@
                     <ImageView
                         android:id="@+id/profile"
                         android:layout_width="0dp"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_weight="1"
                         android:textColor="#111"
                         android:textSize="13dp"
@@ -58,7 +68,7 @@
                     <ImageView
                         android:id="@+id/calender"
                         android:layout_width="0dp"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_weight="1"
                         android:textSize="13dp"
                         android:src="@drawable/calendar"
@@ -66,22 +76,23 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text=""/>
+
                     <ImageView
                         android:id="@+id/alerm"
                         android:layout_width="0dp"
-                        android:layout_height="22dp"
-                        android:layout_weight="1"
-                        android:textSize="13dp"
-                        android:drawablePadding="5dp"
-                        android:src="@drawable/notification"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
                         android:gravity="center"
-                        android:text=""/>
+                        android:src="@drawable/notification"
+                        android:text=""
+                        android:textSize="13dp" />
 
                     <ImageView
                         android:id="@+id/message"
                         android:layout_width="0dp"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -93,7 +104,7 @@
                     <ImageView
                         android:id="@+id/menual"
                         android:layout_width="0dp"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_weight="1"
                         android:src="@drawable/schoolmannual"
                         android:textSize="13dp"

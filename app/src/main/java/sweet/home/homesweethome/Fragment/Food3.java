@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 
 /**
@@ -45,7 +46,7 @@ public class Food3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_food4, container, false);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
 

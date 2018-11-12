@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:text="fgdgdfgd"
+    android:textSize="16dp"
+    android:paddingLeft="4dp"
+    android:fontFamily="@font/listfont"
+    android:textColor="#111"
+    android:background="@drawable/spinner_item_border" />

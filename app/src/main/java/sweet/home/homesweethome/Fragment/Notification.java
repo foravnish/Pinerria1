@@ -118,7 +118,6 @@ public class Notification extends Fragment {
                         map.put("createdByRole", jsonObject.optString("createdByRole"));
                         map.put("createdOn", jsonObject.optString("createdOn"));
 
-
                         Adapter adapter=new Adapter();
                         expListView.setAdapter(adapter);
                         AllProducts.add(map);
@@ -237,20 +236,20 @@ public class Notification extends Fragment {
 
             }
             if (AllProducts.get(position).get("type").equalsIgnoreCase("News")){
-                type.setTextColor(Color.parseColor("#9df441"));
-                title.setTextColor(Color.parseColor("#9df441"));
+                type.setTextColor(Color.parseColor("#FFC0CB"));
+                title.setTextColor(Color.parseColor("#FFC0CB"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("Calendar")){
-                type.setTextColor(Color.parseColor("#4141f4"));
-                title.setTextColor(Color.parseColor("#4141f4"));
+                type.setTextColor(Color.parseColor("#0000FF"));
+                title.setTextColor(Color.parseColor("#0000FF"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("Activity")){
                 type.setTextColor(Color.parseColor("#f44194"));
                 title.setTextColor(Color.parseColor("#f44194"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("Announcement")){
-                type.setTextColor(Color.parseColor("#f44141"));
-                title.setTextColor(Color.parseColor("#f44141"));
+                type.setTextColor(Color.parseColor("#800080"));
+                title.setTextColor(Color.parseColor("#800080"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("Assessment")){
                 type.setTextColor(Color.parseColor("#f441f1"));
@@ -261,12 +260,12 @@ public class Notification extends Fragment {
                 title.setTextColor(Color.parseColor("#4286f4"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("CheckIn")){
-                type.setTextColor(Color.parseColor("#f4414c"));
-                title.setTextColor(Color.parseColor("#f4414c"));
+                type.setTextColor(Color.parseColor("#008000"));
+                title.setTextColor(Color.parseColor("#008000"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("CheckOut")){
-                type.setTextColor(Color.parseColor("#c741f4"));
-                title.setTextColor(Color.parseColor("#f44c741f4194"));
+                type.setTextColor(Color.parseColor("#FF0000"));
+                title.setTextColor(Color.parseColor("#FF0000"));
             }
             else if (AllProducts.get(position).get("type").equalsIgnoreCase("Feedback")){
                 type.setTextColor(Color.parseColor("#f1f441"));

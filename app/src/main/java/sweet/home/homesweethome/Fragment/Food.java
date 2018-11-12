@@ -3,6 +3,7 @@ package sweet.home.homesweethome.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 
 
@@ -51,11 +52,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -86,7 +89,7 @@ public class Food extends Fragment {
    // TextView rightarrow,leftarrow,date;
     Dialog dialog;
     JSONObject jsonArrayBr,jsonSnacks,jsonLunch;
-
+    RelativeLayout relat;
     List<HashMap<String,String>> MonBr;
 
 
@@ -97,9 +100,10 @@ public class Food extends Fragment {
         // Inflate the layout for this fragment
         View  view= inflater.inflate(R.layout.fragment_food, container, false);
 
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
 
         viewPager = (ViewPager) view.findViewById(R.id.slider);
+        relat = (RelativeLayout) view.findViewById(R.id.relat);
 //        leftarrow=(TextView)view.findViewById(R.id.leftarrow);
 //        rightarrow=(TextView)view.findViewById(R.id.rightarrow);
 //        date=(TextView)view.findViewById(R.id.date);
@@ -122,6 +126,17 @@ public class Food extends Fragment {
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
             }
         });
+
+
+
+        if (MyPrefrences.getColorGender(getActivity()).equals("male")){
+            Log.d("dfggfgdg","Male");
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (MyPrefrences.getColorGender(getActivity()).equals("female")){
+            Log.d("dfggfgdg","Female");
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
 
 //        leftarrow.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -199,19 +214,45 @@ public class Food extends Fragment {
 //                                AllEvents.add(new Const(jsonArrayBr.toString(),"2","3","4","5"));
 
                                 viewPager.setAdapter(mCustomPagerAdapter);
-
                                 mCustomPagerAdapter.notifyDataSetChanged();
+
+
+                                Calendar calendar = Calendar.getInstance();
+                                int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+
+                                switch (day) {
+                                    case Calendar.SUNDAY:
+                                        viewPager.setCurrentItem(0);
+                                        break;
+                                    case Calendar.MONDAY:
+                                        viewPager.setCurrentItem(1);
+                                        break;
+                                    case Calendar.TUESDAY:
+                                        viewPager.setCurrentItem(2);
+                                        break;
+                                    case Calendar.WEDNESDAY:
+                                        viewPager.setCurrentItem(3);
+                                        break;
+                                    case Calendar.THURSDAY:
+                                        viewPager.setCurrentItem(4);
+                                        break;
+                                    case Calendar.FRIDAY:
+                                        viewPager.setCurrentItem(0);
+                                        break;
+                                    case Calendar.SATURDAY:
+                                        viewPager.setCurrentItem(0);
+                                        break;
+                                }
 
                             }
 
                             if (MyPrefrences.getPositionFood(getActivity()).equals("")){
-                                viewPager.setCurrentItem(0);
+                                //viewPager.setCurrentItem(0);
                             }
                             else {
                                 viewPager.setCurrentItem(Integer.parseInt(MyPrefrences.getPositionFood(getActivity())));
                             }
-
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -240,9 +281,6 @@ public class Food extends Fragment {
         //System.out.print("called twice");
 //                    SingletonRequestQueue.getInstance(getActivity()).getRequestQueue().add(parentMeRequest);
         AppController.getInstance().addToRequestQueue(parentMeRequest);
-
-
-
     }
 
 
@@ -255,6 +293,7 @@ public class Food extends Fragment {
         TextView br1,br2;
         TextView br3,br4;
         TextView br5,br6;
+        TextView br11,br22,br33;
         TextView date,leftarrow,rightarrow;
     }
     class CustomPagerAdapter extends PagerAdapter {
@@ -273,8 +312,6 @@ public class Food extends Fragment {
         public int getCount() {
             return AllEvents.size();
         }
-
-
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
@@ -299,6 +336,10 @@ public class Food extends Fragment {
             viewHolder.br5=itemView.findViewById(R.id.br5);
             viewHolder.br6=itemView.findViewById(R.id.br6);
 
+            viewHolder.br11=itemView.findViewById(R.id.br11);
+            viewHolder.br22=itemView.findViewById(R.id.br22);
+            viewHolder.br33=itemView.findViewById(R.id.br33);
+
             viewHolder.date=itemView.findViewById(R.id.date);
             viewHolder.leftarrow=itemView.findViewById(R.id.leftarrow);
             viewHolder.rightarrow=itemView.findViewById(R.id.rightarrow);
@@ -316,14 +357,56 @@ public class Food extends Fragment {
                     if (jsonObject.has("Breakfast")) {
 
                         JSONObject jsonObject1 = jsonObject.optJSONObject("Breakfast");
+                        Log.d("sdfdsfsdgfdsgvdf1", String.valueOf(jsonObject1));
+
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
 
+                        if (jsonArray.length()==0){
+                            viewHolder.br1.setText("No Data Found");
+                            viewHolder.br2.setVisibility(View.INVISIBLE);
+                            viewHolder.br11.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            viewHolder.br2.setVisibility(View.VISIBLE);
+                            viewHolder.br11.setVisibility(View.VISIBLE);
+                        }
+                        if (jsonArray.length()==1){
+                            viewHolder.br1.setVisibility(View.VISIBLE);
+                            JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                            viewHolder.br1.setText(jsonObject31.optString("name"));
 
+                            viewHolder.br2.setVisibility(View.INVISIBLE);
+                            viewHolder.br11.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()==2){
+                            viewHolder.br1.setVisibility(View.VISIBLE);
+                            viewHolder.br2.setVisibility(View.VISIBLE);
+                            JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                            viewHolder.br1.setText(jsonObject31.optString("name"));
+                            JSONObject jsonObject32 = jsonArray.getJSONObject(1);
+                            viewHolder.br2.setText(jsonObject32.optString("name"));
+                            viewHolder.br11.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()==3){
+                            viewHolder.br11.setVisibility(View.VISIBLE);
+                        }
+                        else{
+                            viewHolder.br11.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (jsonArray.length()>3){
+                            viewHolder.br11.setVisibility(View.VISIBLE);
+                        }
                         JSONObject jsonObject31 = jsonArray.getJSONObject(0);
                         viewHolder.br1.setText(jsonObject31.optString("name"));
 
                         JSONObject jsonObject32 = jsonArray.getJSONObject(1);
                         viewHolder.br2.setText(jsonObject32.optString("name"));
+
+                    }
+                    else{
+                        viewHolder.br1.setText("No Data Found");
+                        viewHolder.br2.setVisibility(View.INVISIBLE);
 
                     }
 
@@ -335,13 +418,54 @@ public class Food extends Fragment {
                     JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
                     if (jsonObject.has("Snacks")) {
                         JSONObject jsonObject1 = jsonObject.optJSONObject("Snacks");
+                        Log.d("sdfdsfsdgfdsgvdf2", String.valueOf(jsonObject1));
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
 
+                        if (jsonArray.length()==0){
+                            viewHolder.br3.setText("No Data Found");
+                            viewHolder.br4.setVisibility(View.INVISIBLE);
+                            viewHolder.br22.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            viewHolder.br4.setVisibility(View.VISIBLE);
+                            viewHolder.br22.setVisibility(View.VISIBLE);
+                        }
+                        if (jsonArray.length()==1){
+                            viewHolder.br3.setVisibility(View.VISIBLE);
+                            JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                            viewHolder.br3.setText(jsonObject31.optString("name"));
+
+                            viewHolder.br4.setVisibility(View.INVISIBLE);
+                            viewHolder.br22.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()==2){
+                            viewHolder.br3.setVisibility(View.VISIBLE);
+                            viewHolder.br4.setVisibility(View.VISIBLE);
+                            JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                            viewHolder.br3.setText(jsonObject31.optString("name"));
+                            JSONObject jsonObject32 = jsonArray.getJSONObject(1);
+                            viewHolder.br4.setText(jsonObject32.optString("name"));
+                            viewHolder.br22.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()==3){
+                            viewHolder.br22.setVisibility(View.VISIBLE);
+                        }
+                        else{
+                            viewHolder.br22.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()>3){
+                            viewHolder.br22.setVisibility(View.VISIBLE);
+                        }
 
                         JSONObject jsonObject31 = jsonArray.getJSONObject(0);
                         viewHolder.br3.setText(jsonObject31.optString("name"));
                         JSONObject jsonObject32 = jsonArray.getJSONObject(1);
                         viewHolder.br4.setText(jsonObject32.optString("name"));
+
+                    }
+                    else{
+                        viewHolder.br3.setText("No Data Found");
+                        viewHolder.br4.setVisibility(View.INVISIBLE);
 
                     }
                 } catch (JSONException e) {
@@ -350,15 +474,59 @@ public class Food extends Fragment {
 
                 try {
 
-                        JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
+                 JSONObject jsonObject = new JSONObject(AllEvents.get(position).getId().toString());
                     if (jsonObject.has("Lunch")) {
                         JSONObject jsonObject1 = jsonObject.optJSONObject("Lunch");
+                        Log.d("sdfdsfsdgfdsgvdf3", String.valueOf(jsonObject1));
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
 
+                        if (jsonArray.length()==0){
+                            viewHolder.br5.setText("No Data Found");
+                            viewHolder.br6.setVisibility(View.INVISIBLE);
+                            viewHolder.br33.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            viewHolder.br6.setVisibility(View.VISIBLE);
+                            viewHolder.br33.setVisibility(View.VISIBLE);
+
+                        }
+                        if (jsonArray.length()==1){
+                            viewHolder.br5.setVisibility(View.VISIBLE);
+                            JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                            viewHolder.br5.setText(jsonObject31.optString("name"));
+
+                            viewHolder.br6.setVisibility(View.INVISIBLE);
+                            viewHolder.br33.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()==2){
+                            viewHolder.br5.setVisibility(View.VISIBLE);
+                            viewHolder.br6.setVisibility(View.VISIBLE);
+                            JSONObject jsonObject31 = jsonArray.getJSONObject(0);
+                            viewHolder.br5.setText(jsonObject31.optString("name"));
+                            JSONObject jsonObject32 = jsonArray.getJSONObject(1);
+                            viewHolder.br6.setText(jsonObject32.optString("name"));
+                            viewHolder.br33.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()==3){
+                            viewHolder.br33.setVisibility(View.VISIBLE);
+                        }
+                        else{
+                            viewHolder.br33.setVisibility(View.INVISIBLE);
+                        }
+                        if (jsonArray.length()>3){
+                            viewHolder.br33.setVisibility(View.VISIBLE);
+                        }
                         JSONObject jsonObject31 = jsonArray.getJSONObject(0);
                         viewHolder.br5.setText(jsonObject31.optString("name"));
                         JSONObject jsonObject32 = jsonArray.getJSONObject(1);
                         viewHolder.br6.setText(jsonObject32.optString("name"));
+
+
+                    }
+                    else{
+                        viewHolder.br5.setText("No Data Found");
+                        viewHolder.br6.setVisibility(View.INVISIBLE);
+
                     }
 
                 } catch (JSONException e) {
@@ -410,7 +578,7 @@ public class Food extends Fragment {
 //                date.setText("Sunday");
             }
 
-            viewHolder.liner1.setOnClickListener(new View.OnClickListener() {
+            viewHolder.br11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -428,7 +596,7 @@ public class Food extends Fragment {
                 }
             });
 
-            viewHolder.liner2.setOnClickListener(new View.OnClickListener() {
+            viewHolder.br22.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -446,7 +614,7 @@ public class Food extends Fragment {
             });
 
 
-            viewHolder.liner3.setOnClickListener(new View.OnClickListener() {
+            viewHolder.br33.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     MyPrefrences.setPositionFood(getActivity(), String.valueOf(position));

@@ -1,6 +1,7 @@
 package sweet.home.homesweethome.Fragment;
 
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +35,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -63,6 +73,7 @@ public class Timeline extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View  view= inflater.inflate(R.layout.fragment_timeline, container, false);
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         AllProducts = new ArrayList<>();
         expListView = (GridView) view.findViewById(R.id.lvExp);
 
@@ -146,9 +157,9 @@ public class Timeline extends Fragment {
     class Adapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        TextView title,desc,dateM,dayM;
+        TextView title,desc,dateM,dayM,dateBox;
         LinearLayout linearColor,linear2;
-
+        Date date;
         Adapter() {
             inflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -169,10 +180,10 @@ public class Timeline extends Fragment {
             return position;
         }
 
+        @TargetApi(Build.VERSION_CODES.O)
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
 
             convertView=inflater.inflate(R.layout.list_timeline,parent,false);
             title=convertView.findViewById(R.id.title);
@@ -181,6 +192,7 @@ public class Timeline extends Fragment {
             dayM=convertView.findViewById(R.id.dayM);
             linearColor=convertView.findViewById(R.id.linearColor);
             linear2=convertView.findViewById(R.id.linear2);
+            dateBox=convertView.findViewById(R.id.dateBox);
 
             title.setText(AllProducts.get(position).get("title"));
             desc.setText(AllProducts.get(position).get("description"));
@@ -189,42 +201,156 @@ public class Timeline extends Fragment {
             String months=AllProducts.get(position).get("start").substring(5,7);
             String mDate=AllProducts.get(position).get("start").substring(8,10);
 
-            dateM.setText(mDate+"-"+months+"-"+year);
 
-//            dateM.setText(AllProducts.get(position).get("start").substring(0, Math.min(AllProducts.get(position).get("start").length(), 10)));
-            //dayM.setText(AllProducts.get(position).get("start"));
+//            String ourdate;
+//            String serverdateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+//            try {
+//                SimpleDateFormat formatter = new SimpleDateFormat(serverdateFormat, Locale.UK);
+//                formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+//                Date value = formatter.parse(AllProducts.get(position).get("start"));
+//                TimeZone timeZone = TimeZone.getTimeZone("Asia/Kolkata");
+//                SimpleDateFormat dateFormatter = new SimpleDateFormat(serverdateFormat, Locale.UK); //this format changeable
+//                dateFormatter.setTimeZone(timeZone);
+//                ourdate = dateFormatter.format(value);
+//
+//
+//                //Log.d("OurDate", OurDate);
+//            } catch (Exception e) {
+//                ourdate = "0000-00-00 00:00:00";
+//            }
+//            Log.d("sdfgdsfgdsgsdfgdf",ourdate);
+
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+            try {
+                 date = format.parse(AllProducts.get(position).get("start").replaceAll("Z$", "+0000"));
+                System.out.println(date);
+                Log.d("sdfgdsfgdsgsdfgdf", String.valueOf(date));
+
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+
+//            dateM.setText(mDate+"-"+months+"-"+year);
+//            dateM.setText(mDate+"");
+            dateM.setText(date.getDate()+"");
+
+
+
+            SimpleDateFormat inFormat = new SimpleDateFormat("dd-MM-yyyy");
+            Date date2 = null;
+            try {
+                date2 = inFormat.parse(AllProducts.get(position).get("start"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat outFormat = new SimpleDateFormat("E");
+            String goal = outFormat.format(date);
+            Log.d("sdgfdgsdgdf",goal);
+            dayM.setText(goal);
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
             dateM.setTypeface(tvFont);
-          //  dayM.setTypeface(tvFont);
+            dayM.setTypeface(tvFont);
+            desc.setTypeface(tvFont);
+            dateBox.setTypeface(tvFont);
 
 
             if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("blue")){
 //                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5ba1cf")));
+                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF26D1E9")));
             }
             else if (AllProducts.get(position).get("colorItem").equalsIgnoreCase("red")){
-                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#f45c71")));
+                linearColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFBCDD5")));
+            }
+
+//            Calendar c = Calendar.getInstance();
+//            c.setTime(AllProducts.get(position).get("start").toString());
+//            int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+//
+//            Date date=
+//            String dayOfTheWeek = (String) DateFormat.format("EEEE", AllProducts.get(position).get("start"));
+//            Log.d("dfgdfgdfgdfg",dayOfTheWeek);
+
+
+
+
+            String month=AllProducts.get(position).get("start").substring(5,7);
+
+            Calendar c = Calendar.getInstance();
+            int monthCurrent = c.get(Calendar.MONTH);
+
+            Log.d("SDfsdfsdfsdfsdfsdf1", String.valueOf(monthCurrent+1));
+            Log.d("SDfsdfsdfsdfsdfsdf2", String.valueOf(month));
+            String monthsC2;
+            String monthsC= String.valueOf(monthCurrent+1);
+            if ((monthCurrent+1)>9){
+                monthsC2 =monthsC;
+            }
+            else {
+                monthsC2 = "0" + monthsC;
+            }
+            Log.d("sgfdsgdgdf",monthsC2);
+            if (!monthsC2.equals(month)){
+                Log.d("sdfadfsfseff","true");
+                linear2.setBackgroundResource(R.drawable.strock_noti_gray2);
             }
 
 
+            String year2= null;
+            String month2= null;
+            try {
+                year2 = AllProducts.get(position-1).get("start").substring(0,4);
+                month2 = AllProducts.get(position-1).get("start").substring(5,7);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-//            Calendar c = Calendar.getInstance();
-//            int monthCurrent = c.get(Calendar.MONTH);
-//
-//            Log.d("SDfsdfsdfsdfsdfsdf1", String.valueOf(monthCurrent+1));
-//            Log.d("SDfsdfsdfsdfsdfsdf2", String.valueOf(months));
-//
-//            String monthsC= String.valueOf(monthCurrent+1);
-//            String monthsC2= "0"+monthsC;
-//
-//            Log.d("sgfdsgdgdf",monthsC2);
-//            if (!monthsC2.equals(months)){
-//                Log.d("sdfadfsfseff","true");
-//                linear2.setBackgroundResource(R.drawable.strock_noti_gray);
-//            }
 
+            if (year.equals(year2)&& month.equals(month2)){
+
+                dateBox.setVisibility(View.GONE);
+                dateBox.setText("");
+
+            }
+            else {
+                dateBox.setVisibility(View.VISIBLE);
+
+
+                if (month.equals("01")){
+                    month2="January";
+                }else if(month.equals("02")){
+                    month2="February";
+                }else if(month.equals("03")){
+                    month2="March";
+                }else if(month.equals("04")){
+                    month2="April";
+                }else if(month.equals("05")){
+                    month2="May";
+                } else if(month.equals("06")){
+                    month2="June";
+                } else if(month.equals("07")){
+                    month2="July";
+                } else if(month.equals("08")){
+                    month2="August";
+                } else if(month.equals("09")){
+                    month2="September";
+                } else if(month.equals("10")){
+                    month2="October";
+                } else if(month.equals("11")){
+                    month2="November";
+                } else if(month.equals("12")){
+                    month2="December";
+                }
+
+                String date=month2+" "+year;
+                dateBox.setText(date);
+
+
+            }
             return convertView;
         }
     }

@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sweet.home.homesweethome.Activity.Login;
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.MyPrefrences;
@@ -55,7 +56,7 @@ public class ChangePassword extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_change_password, container, false);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         edit_pwdConfirm=view.findViewById(R.id.edit_pwdConfirm);
         edit_pwdNew=view.findViewById(R.id.edit_pwdNew);
         edit_pwdOld=view.findViewById(R.id.edit_pwdOld);

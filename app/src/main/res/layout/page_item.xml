@@ -11,9 +11,14 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
+            android:gravity="center"
+            android:elevation="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/strock_food_menu"
             android:foregroundGravity="center"
             android:layout_below="@+id/relat">
             <TextView
@@ -22,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/left"
                 android:textColor="#111"
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="30dp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/date"
@@ -42,7 +47,7 @@
                 android:id="@+id/rightarrow"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="30dp"
                 android:textColor="#111"
                 android:background="@drawable/right"
                 android:textStyle="bold"
@@ -61,12 +66,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
             <RelativeLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/strock_food"
@@ -102,7 +107,7 @@
                 android:background="#fcefc0"
                 android:fontFamily="@font/listfont"
                 android:gravity="center"
-                android:text="Minl"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -118,6 +123,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
             <TextView
+                android:id="@+id/br11"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
@@ -125,6 +131,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/listfont"
                 android:text="∨"
+                android:visibility="invisible"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -197,11 +204,13 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
             <TextView
+                android:id="@+id/br22"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:background="#fdcdd6"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:fontFamily="@font/listfont"
                 android:text="∨"
                 android:layout_marginBottom="5dp"
@@ -277,6 +286,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
             <TextView
+                android:id="@+id/br33"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
@@ -284,6 +294,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/listfont"
                 android:text="∨"
+                android:visibility="invisible"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
                 android:textSize="15dp" />

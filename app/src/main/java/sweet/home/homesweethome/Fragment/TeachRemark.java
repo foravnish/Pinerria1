@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -65,6 +66,7 @@ public class TeachRemark extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_teach_remark, container, false);
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
 //        ImageView textBack= view.findViewById(R.id.textBack);
 //        textBack.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -250,10 +252,14 @@ public class TeachRemark extends Fragment {
 
             Log.d("SDfsdfsdfsdfsdfsdf1", String.valueOf(monthCurrent+1));
             Log.d("SDfsdfsdfsdfsdfsdf2", String.valueOf(month));
-
+            String monthsC2;
             String monthsC= String.valueOf(monthCurrent+1);
-            String monthsC2= "0"+monthsC;
-
+            if ((monthCurrent+1)>9){
+                monthsC2 =monthsC;
+            }
+            else {
+                monthsC2 = "0" + monthsC;
+            }
             Log.d("sgfdsgdgdf",monthsC2);
             if (!monthsC2.equals(month)){
                 Log.d("sdfadfsfseff","true");
@@ -275,9 +281,34 @@ public class TeachRemark extends Fragment {
                 }
                 else{
                     dateBox.setVisibility(View.VISIBLE);
-                    String date = month + "-" + year;
-                    dateBox.setText(date);
+                    if (month.equals("01")){
+                        month2="January";
+                    }else if(month.equals("02")){
+                        month2="February";
+                    }else if(month.equals("03")){
+                        month2="March";
+                    }else if(month.equals("04")){
+                        month2="April";
+                    }else if(month.equals("05")){
+                        month2="May";
+                    } else if(month.equals("06")){
+                        month2="June";
+                    } else if(month.equals("07")){
+                        month2="July";
+                    } else if(month.equals("08")){
+                        month2="August";
+                    } else if(month.equals("09")){
+                        month2="September";
+                    } else if(month.equals("10")){
+                        month2="October";
+                    } else if(month.equals("11")){
+                        month2="November";
+                    } else if(month.equals("12")){
+                        month2="December";
+                    }
 
+                    String date=month2+" "+year;
+                    dateBox.setText(date);
                 }
 
             }
@@ -287,6 +318,7 @@ public class TeachRemark extends Fragment {
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title1.setTypeface(tvFont);
+            dateBox.setTypeface(tvFont);
 
             title1.setText("Remark ");
             remarkValue1.setText(AllProducts.get(position).get("remark"));

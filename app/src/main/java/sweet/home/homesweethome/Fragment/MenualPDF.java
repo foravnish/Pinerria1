@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 
 import java.io.File;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 
@@ -39,7 +40,7 @@ public class MenualPDF extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View  view=inflater.inflate(R.layout.fragment_menual_pd, container, false);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
 
 //        Log.d("dsfsfsdfgsdgs",getIntent().getStringExtra("link"));

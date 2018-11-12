@@ -1,8 +1,11 @@
 package sweet.home.homesweethome.Activity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -65,26 +68,36 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(validate()){
+                ConnectivityManager connectivityManager
+                        = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
-                    Util.showPgDialog(dialog);
+                if (activeNetworkInfo != null && activeNetworkInfo.isConnected()){
 
-                    RequestQueue queue = Volley.newRequestQueue(Login.this);
-                    StringRequest strReq = new StringRequest(Request.Method.POST,
-                            Api.login, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Util.cancelPgDialog(dialog);
-                            Log.e("dfsjfdfsdfgd", "Login Response: " + response);
-                            //parse your response here
+                    if(validate()){
+                        Util.showPgDialog(dialog);
+                        RequestQueue queue = Volley.newRequestQueue(Login.this);
+                        StringRequest strReq = new StringRequest(Request.Method.POST,
+                                Api.login, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Util.cancelPgDialog(dialog);
+                                Log.e("dfsjfdfsdfgd", "Login Response: " + response);
+                                //parse your response here
 
-                            try {
-                                JSONObject jsonObject=new JSONObject(response);
+                                try {
+                                    JSONObject jsonObject=new JSONObject(response);
 
-                              //  Toast.makeText(getApplicationContext(),"Login Successfully..." , Toast.LENGTH_SHORT).show();
+                                    if (jsonObject.has("token")){
+                                        Log.d("Dgdfgdfgdfgdfgdfh","token");
+                                    }
+                                    else if (jsonObject.has("message")){
+                                        Log.d("Dgdfgdfgdfgdfgdfh","message");
+                                    }
+                                    //  Toast.makeText(getApplicationContext(),"Login Successfully..." , Toast.LENGTH_SHORT).show();
 
-                                MyPrefrences.setUserLogin(getApplicationContext(), true);
-                                MyPrefrences.setToken(getApplicationContext(),jsonObject.optString("token") );
+                                    MyPrefrences.setUserLogin(getApplicationContext(), true);
+                                    MyPrefrences.setToken(getApplicationContext(),jsonObject.optString("token") );
 //                                            MyPrefrences.setUserID(getApplicationContext(),jsonObject1.optString("id").toString());
 //                                            MyPrefrences.setCatID(getApplicationContext(),jsonObject1.optString("cat_id").toString());
 //                                            MyPrefrences.setSCatID(getApplicationContext(),jsonObject1.optString("subcat").toString());
@@ -92,36 +105,33 @@ public class Login extends AppCompatActivity {
 //                                            MyPrefrences.setEMAILID(getApplicationContext(),jsonObject1.optString("c1_email").toString());
 //                                            MyPrefrences.setMobile(getApplicationContext(),jsonObject1.optString("c1_mobile1").toString());
 
+                                    childList();
 
-                                childList();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Util.cancelPgDialog(dialog);
+                                Log.e("fdgdfgdfgd", "Login Error: " + error.getMessage());
+                                Toast.makeText(Login.this,"Invalid Username or Password", Toast.LENGTH_LONG).show();
+                            }
+                        }){
 
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Log.e("fgdfgdfgdf","Inside getParams");
 
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Util.cancelPgDialog(dialog);
-                            Log.e("fdgdfgdfgd", "Login Error: " + error.getMessage());
-                            Toast.makeText(getApplicationContext(),"Please Connect to the Internet or Wrong Password", Toast.LENGTH_LONG).show();
-                        }
-                    }){
+                                // Posting parameters to login url
+                                Map<String, String> params = new HashMap<>();
+                                params.put("username", edit_email.getText().toString());
+                                params.put("password", edit_pwd.getText().toString());
 
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Log.e("fgdfgdfgdf","Inside getParams");
-
-                            // Posting parameters to login url
-                            Map<String, String> params = new HashMap<>();
-                            params.put("username", edit_email.getText().toString());
-                            params.put("password", edit_pwd.getText().toString());
-
-                            return params;
-                        }
+                                return params;
+                            }
 
 //                        @Override
 //                        public Map<String, String> getHeaders() throws AuthFailureError {
@@ -130,9 +140,13 @@ public class Login extends AppCompatActivity {
 //                            headers.put("Content-Type","application/x-www-form-urlencoded");
 //                            return headers;
 //                        }
-                    };
-                   // Adding request to request queue
-                    queue.add(strReq);
+                        };
+                        // Adding request to request queue
+                        queue.add(strReq);
+                    }
+                }
+                else{
+                    Toast.makeText(Login.this, "Please connect to the internet.", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -295,6 +309,8 @@ public class Login extends AppCompatActivity {
         queue.add(strReq);
 
     }
+
+
 
 
 }

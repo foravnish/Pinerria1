@@ -67,6 +67,7 @@ public class SentMgs extends Fragment {
     GridView expListView;
     Adapter  listAdapter;
     Dialog dialog,dialog4;
+    TextView txtNoData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,8 +75,8 @@ public class SentMgs extends Fragment {
         View view= inflater.inflate(R.layout.fragment_sent_mgs, container, false);
             AllProducts = new ArrayList<>();
             expListView = (GridView) view.findViewById(R.id.lvExp);
-
-
+             txtNoData=view.findViewById(R.id.txtNoData);
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -99,23 +100,26 @@ public class SentMgs extends Fragment {
                 Log.d("ResponseMGS",response.toString());
                 Util.cancelPgDialog(dialog);
 
+                if (response.length()!=0) {
+                    Log.d("sfgsdgdfgdfgd", "true");
+                    txtNoData.setVisibility(View.GONE);
+                    expListView.setVisibility(View.VISIBLE);
 
-                for (int i=0;i<response.length();i++){
-                    try {
-                        JSONObject jsonObject=response.getJSONObject(i);
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(i);
 
+                            HashMap<String, String> map = new HashMap<>();
 
-                        HashMap<String,String> map=new HashMap<>();
-
-                        map.put("_id", jsonObject.optString("_id"));
-                        map.put("recievedByRole", jsonObject.optString("recievedByRole"));
-                        map.put("subject", jsonObject.optString("subject"));
-                        map.put("description", jsonObject.optString("description"));
-                        map.put("createdOn", jsonObject.optString("createdOn"));
-                        map.put("displayRole", jsonObject.optString("displayRole"));
-                        Adapter adapter=new Adapter();
-                        expListView.setAdapter(adapter);
-                        AllProducts.add(map);
+                            map.put("_id", jsonObject.optString("_id"));
+                            map.put("recievedByRole", jsonObject.optString("recievedByRole"));
+                            map.put("subject", jsonObject.optString("subject"));
+                            map.put("description", jsonObject.optString("description"));
+                            map.put("createdOn", jsonObject.optString("createdOn"));
+                            map.put("displayRole", jsonObject.optString("displayRole"));
+                            Adapter adapter = new Adapter();
+                            expListView.setAdapter(adapter);
+                            AllProducts.add(map);
 
 
 //                        HashMap<String,String> map=new HashMap<>();
@@ -128,13 +132,17 @@ public class SentMgs extends Fragment {
 //
 
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-
                 }
 
+                else{
+                    txtNoData.setVisibility(View.VISIBLE);
+                    expListView.setVisibility(View.GONE);
+                }
 
             }
         }, new Response.ErrorListener() {

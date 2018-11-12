@@ -16,6 +16,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -56,6 +59,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -77,9 +81,15 @@ public class Monthely extends Fragment {
     Dialog dialog,dialog4;
     MaterialCalendarView calendarView;
     JSONObject jsonObject;
+
     List<String> Years=new ArrayList<>();
     List<String> Months=new ArrayList<>();
     List<String> Days=new ArrayList<>();
+
+    List<String> YearsColor=new ArrayList<>();
+    List<String> MonthsColor=new ArrayList<>();
+    List<String> DaysColor=new ArrayList<>();
+
     List<String> ColorData=new ArrayList<>();
 
     List<String> Years1=new ArrayList<>();
@@ -95,7 +105,10 @@ public class Monthely extends Fragment {
     String colorItem;
 
     HashSet<CalendarDay> setDays = new HashSet<>();
+    HashSet<CalendarDay> setDays2 = new HashSet<>();
     String FianlDate1;
+    int i1;
+    Date date;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,7 +117,8 @@ public class Monthely extends Fragment {
 
         RadioButton rb  = (RadioButton)view. findViewById(R.id.radiobutton1);
         RadioButton rb2  = (RadioButton)view. findViewById(R.id.radiobutton2);
-
+        calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -121,11 +135,8 @@ public class Monthely extends Fragment {
 //
 //        cal.add(Calendar.DATE, -1);
 
-         calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+
         //calendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
-
-
-
 
         Calendar cal = Calendar.getInstance();
 
@@ -140,7 +151,6 @@ public class Monthely extends Fragment {
         rb2.setTypeface(font);
 
         TimeLineCalander();
-
 
 
 
@@ -166,19 +176,12 @@ public class Monthely extends Fragment {
 
                         HashMap<String,String> map=new HashMap<>();
 
-
-                     //   calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays,"true"));
+                        //   calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays,"true"));
 
                         map.put("_id", jsonObject.optString("_id"));
                         map.put("colorItem", jsonObject.optString("colorItem"));
 
                         AllProducts.add(map);
-
-
-
-
-
-
 
 
 //                       // SimpleDateFormatter formatter = new SimpleDateFormatter(); //TODO: update this line with the correct formatter
@@ -203,34 +206,52 @@ public class Monthely extends Fragment {
 //                            calendarView.addDecorator(eventDecorator);
 //                        }
 
-
-
-
-
-
-
-
-
-
-
-
-                        Log.d("dfsdfsdfsdf", String.valueOf(calendarView.getCurrentDate()));
-                       // calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4))), Integer.parseInt(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10))), Integer.parseInt(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)))), true);
+                        Log.d("dfsdfsdfgfgfgfgfsdf", String.valueOf(calendarView.getCurrentDate()));
+                        // calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4))), Integer.parseInt(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10))), Integer.parseInt(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)))), true);
                         //calendarView.setDateSelected(CalendarDay.from(2018, 3, 20), true);
 
+//                        try {
+//                            String source = "2013-02-19T11:20:16.393Z";
+//                            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+//                            Date formatted = null;
+//                            formatted = formatter.parse(source);
+//                            String formattedString = formatted.toString();
+//                            Log.d("sdgdfgdfgdfgdf",formattedString);
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+
+
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+                        try {
+                            date = format.parse(jsonObject.optString("start").replaceAll("Z$", "+0000"));
+                            System.out.println(date);
+                            Log.d("sdfgdsfgdsgsdfgdf", String.valueOf(date));
+
+                        } catch (ParseException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+
+
                         Log.d("year_data",jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
-                        Log.d("months_data",jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
-                        Log.d("date_data",jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
+                        Log.d("months_data",String.valueOf(date.getMonth()));
+                        Log.d("date_data", String.valueOf(date.getDate()));
 
+                        ///Date set for calender
+                        if (jsonObject.optString("colorItem").equals("blue")) {
+                            Years.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+                            Months.add(String.valueOf(date.getMonth()+1));
+                            Days.add(String.valueOf(date.getDate()));
+                        }
+                        else if (jsonObject.optString("colorItem").equals("red")){
+                            YearsColor.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+                            MonthsColor.add(String.valueOf(date.getMonth()+1));
+                            DaysColor.add(String.valueOf(date.getDate()));
+                        }
 
-                        Years.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
-                        Months.add(jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
-                        Days.add(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
-
-
-
-                       // calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Years.get(i)+"-"+Months.get(i)+"-"+Days));
-
+                        // calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Years.get(i)+"-"+Months.get(i)+"-"+Days));
 
                         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
                             @Override
@@ -242,24 +263,25 @@ public class Monthely extends Fragment {
                                 Log.d("fsdfsdfsdfsdfs3", String.valueOf(date.getYear()));
 
                                 Log.d("fddsfsdfsdfgsFinal",0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear());
-                                if (date.getDay()<=9 && date.getMonth()+1>=10 ){
-                                    FianlDate1="0"+date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
-                                    Log.d("gdfgdfgdfgdgdg","1");
-                                }
-                                else if (date.getDay()<=9 && date.getMonth()+1<=9 ){
-                                    FianlDate1=0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
-                                    Log.d("gdfgdfgdfgdgdg","2");
-                                }
-                                else if (date.getDay()>=10 && date.getMonth()+1<=9 ){
-                                    FianlDate1=date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
-                                    Log.d("gdfgdfgdfgdgdg","13");
-                                }
-                                else if (date.getDay()>=10 && date.getMonth()+1>=10 ){
-                                    FianlDate1=date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
-                                    Log.d("gdfgdfgdfgdgdg","4");
-                                }
-                                //String FianlDate1=0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+//                                if (date.getDay()<=9 && date.getMonth()+1>=10 ){
+//                                    FianlDate1="0"+date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+//                                    Log.d("gdfgdfgdfgdgdg","1");
+//                                }
+//                                else if (date.getDay()<=9 && date.getMonth()+1<=9 ){
+//                                    FianlDate1=0+date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+//                                    Log.d("gdfgdfgdfgdgdg","2");
+//                                }
+//                                else if (date.getDay()>=10 && date.getMonth()+1<=9 ){
+//                                    FianlDate1=date.getDay()+"-"+0+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+//                                    Log.d("gdfgdfgdfgdgdg","13");
+//                                }
+//                                else if (date.getDay()>=10 && date.getMonth()+1>=10 ){
+//                                    FianlDate1=date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
+//                                    Log.d("gdfgdfgdfgdgdg","4");
+//                                }
+                                String FianlDate1=date.getDay()+"-"+String.valueOf(date.getMonth()+1)+"-"+date.getYear();
 
+                                Log.d("Sdvsfvdgvdfgbdfb",FianlDate1);
 
                                 for (int i=0;i<Years.size();i++) {
 
@@ -274,6 +296,23 @@ public class Monthely extends Fragment {
 
                                     Log.d("fdsfsdfsdfsdfsdf1",FianlDate1);
                                     Log.d("fdsfsdfsdfsdfsdf2",FianlDate2);
+
+
+//                                    calendarView.addDecorator(new DayViewDecorator() {
+//                                        @Override
+//                                        public boolean shouldDecorate(CalendarDay day) {
+////                            CalendarDay eventDay = new CalendarDay(2018, 11, 04);
+////                            CalendarDay eventDay = new CalendarDay(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1)+1), Integer.parseInt(Days.get(i1)));
+////                            CalendarDay date= CalendarDay.today();
+//                                            CalendarDay date= CalendarDay.from(Integer.parseInt(Years.get(i)), Integer.parseInt(Months.get(i))-1, Integer.parseInt(Days.get(i)));
+//                                            return date != null && day.equals(date);
+//                                        }
+//                                        @Override
+//                                        public void decorate(DayViewFacade view) {
+//                                            view.addSpan(new ForegroundColorSpan(Color.BLUE));
+//                                        }
+//                                    });
+
 
                                     if (FianlDate2.contains(FianlDate1)){
                                         Log.d("gdfgdfgdfhgdfhfghfgh","yes");
@@ -292,6 +331,7 @@ public class Monthely extends Fragment {
 
                                 if (flag == true){
 
+                                    Log.d("Sdfgsdfgdfgdfg","true");
                                     showDataCalender(FianlDate1.toString(),colorItem,response);
 
                                 }
@@ -299,15 +339,12 @@ public class Monthely extends Fragment {
                         });
 
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
 
-
-
-                for (int i1=0;i1<Years.size();i1++) {
+                for (i1=0;i1<Years.size();i1++) {
 
                     Log.d("dsfsdfsdfgggsds", String.valueOf(Years.size()));
                     Log.d("dsfsdfdgfsdfgs",Days.get(i1));
@@ -315,9 +352,37 @@ public class Monthely extends Fragment {
                     Log.d("dsfsdfdgfsdfgs",Years.get(i1));
 
                     Log.d("dsrggfddfsdfgFinal2",Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1));
+
+
+
+//                    calendarView.addDecorator(new DayViewDecorator() {
+//                        @Override
+//                        public boolean shouldDecorate(CalendarDay day) {
+//                            return day.getCalendar().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
+//                                    day.getCalendar().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ;
+//                        }
+//
+//                        @Override
+//                        public void decorate(DayViewFacade view) {
+//                            view.addSpan(new ForegroundColorSpan(Color.RED));
+//                        }
+//                    });
+
+
+                    calendarView.addDecorator(new DayViewDecorator() {
+                        @Override
+                        public boolean shouldDecorate(CalendarDay day) {
+                            return true; //decorat
+                        }
+                        @Override
+                        public void decorate(DayViewFacade view) {
+                            view.setDaysDisabled(true); //disable all days
+                        }
+                    });
+
+
+
                     // String FianlDate2=Days.get(i1)+"-"+Months.get(i1)+"-"+Years.get(i1);
-
-
 
 //                    if (jsonObject.optString("colorItem").equals("red")){
 //                        calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays));
@@ -326,14 +391,72 @@ public class Monthely extends Fragment {
 //                        calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#948ad6"),setDays));
 //                    }
 
+                    // set Default Date Selected
+//                    if (colorItem.equals("blue")){
+//
+//                    }
 
+
+//                    if (ColorData.get(i1).equals("blue")) {
+//                        calendarView.setSelectionColor(Color.GREEN);
+//                        calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+//                    }
+//
+//                    else if (ColorData.get(i1).equals("red")){
+//                        calendarView.setSelectionColor(Color.RED);
+////                        calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(YearsColor.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+//                        calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+//
+//                    }
                     calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+
                     setDays.add(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))));
+                    //setDays2.add(CalendarDay.from(Integer.parseInt(YearsColor.get(i1)), Integer.parseInt(MonthsColor.get(i1))-1, Integer.parseInt(DaysColor.get(i1))));
+
+                    calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#fb0000"),setDays));
+
 
                     Log.d("fsdfsdfsadfsfsdf",ColorData.get(i1));
 
+//                    calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#fb0000"),setDays));
 
-                  //  calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#00ff00"),setDays,"true"));
+                    if (ColorData.get(i1).equals("red")){
+//                        Log.d("dsfgdgdfgdfgdf","true");
+//
+//
+//                        calendarView.addDecorator(new DayViewDecorator() {
+//                        @Override
+//                        public boolean shouldDecorate(CalendarDay day) {
+//                            return day.getCalendar().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
+//                                    day.getCalendar().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ;
+//                        }
+//
+//                        @Override
+//                        public void decorate(DayViewFacade view) {
+//                            view.addSpan(new BackgroundColorSpan(Color.RED));
+//                        }
+//                    });
+
+
+                    }
+                    else{
+                        Log.d("dsfgdgdfgdfgdf","false");
+
+//                        calendarView.addDecorator(new DayViewDecorator() {
+//                            @Override
+//                            public boolean shouldDecorate(CalendarDay day) {
+//                                return day.getCalendar().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
+//                                        day.getCalendar().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ;
+//                            }
+//
+//                            @Override
+//                            public void decorate(DayViewFacade view) {
+//                                view.addSpan(new BackgroundColorSpan(Color.GREEN));
+//                            }
+//                        });
+
+//                        calendarView.addDecorators(new CurrentDayDecorator2(getActivity(),Color.parseColor("#00ff00"),setDays));
+                    }
 
 //                    if (ColorData.get(i1).toString().equals("blue")){
 //                       // calendarView.setSelectionColor(Color.BLUE);
@@ -362,6 +485,27 @@ public class Monthely extends Fragment {
                 }
 
 
+
+                for (i1=0;i1<YearsColor.size();i1++) {
+
+                    Log.d("dsfsdfsdfgggsds", String.valueOf(YearsColor.size()));
+                    Log.d("dsfsdfdgfsdfgs",DaysColor.get(i1));
+                    Log.d("dsfsdfdgfsdfgs",MonthsColor.get(i1));
+                    Log.d("dsfsdfdgfsdfgs",YearsColor.get(i1));
+
+                    Log.d("dsrggfddfsdfgFinal2",DaysColor.get(i1)+"-"+MonthsColor.get(i1)+"-"+YearsColor.get(i1));
+
+
+//                    calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))), true);
+                    calendarView.setDateSelected(CalendarDay.from(Integer.parseInt(YearsColor.get(i1)), Integer.parseInt(MonthsColor.get(i1))-1, Integer.parseInt(DaysColor.get(i1))), true);
+
+//                    setDays.add(CalendarDay.from(Integer.parseInt(Years.get(i1)), Integer.parseInt(Months.get(i1))-1, Integer.parseInt(Days.get(i1))));
+                    setDays2.add(CalendarDay.from(Integer.parseInt(YearsColor.get(i1)), Integer.parseInt(MonthsColor.get(i1))-1, Integer.parseInt(DaysColor.get(i1))));
+
+//                    calendarView.addDecorators(new CurrentDayDecorator(getActivity(),Color.parseColor("#fb0000"),setDays));
+                    calendarView.addDecorators(new CurrentDayDecorator2(getActivity(),Color.parseColor("#fb0000"),setDays2));
+
+                }
 
 
             }
@@ -426,20 +570,6 @@ public class Monthely extends Fragment {
         Log.d("sdfsdfsdffgfgfgfsdfs",date);
 
 
-//
-//        Log.d("year_data",jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
-//        Log.d("months_data",jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
-//        Log.d("date_data",jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
-//
-//        String year1=jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4));
-//        String months1=jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7));
-//        String day1=jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10));
-//        String dateNew=year1+"-"+months1+"-"+day1;
-
-
-
-//        Log.d("jhkdgfhjhsjkhd",dateNew);
-
         try {
             JSONArray jsonArray1=new JSONArray(jsonArray.toString());
 
@@ -451,9 +581,26 @@ public class Monthely extends Fragment {
 
                     HashMap<String,String> map=new HashMap<>();
 
-                    Years1.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
-                    Months1.add(jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
-                    Days1.add(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
+
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+                    try {
+                       Date date2 = format.parse(jsonObject.optString("start").replaceAll("Z$", "+0000"));
+                        System.out.println(date);
+                        Log.d("sdfgdsfgdsgsdfgdf", String.valueOf(date));
+                        Years1.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+                        Months1.add(String.valueOf(date2.getMonth()+1));
+                        Days1.add(String.valueOf(date2.getDate()));
+                    } catch (ParseException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+
+
+//                    Years1.add(jsonObject.optString("start").substring(0, Math.min(jsonObject.optString("start").length(), 4)));
+//                    Months1.add(jsonObject.optString("start").substring(5, Math.min(jsonObject.optString("start").length(), 7)));
+//                    Days1.add(jsonObject.optString("start").substring(8, Math.min(jsonObject.optString("start").length(), 10)));
 
 //                    String dateNew=Years1.get(i)+"-"+Months1.get(i)+"-"+Days1.get(i);
 //                    Log.d("jhkdgfhjhsjkhd",dateNew);
@@ -534,18 +681,18 @@ public class Monthely extends Fragment {
             convertView=inflater.inflate(R.layout.list_alet_event,parent,false);
             title=convertView.findViewById(R.id.title);
             desc=convertView.findViewById(R.id.desc);
-           // dateM=convertView.findViewById(R.id.dateM);
+            // dateM=convertView.findViewById(R.id.dateM);
             //dayM=convertView.findViewById(R.id.dayM);
             //linearColor=convertView.findViewById(R.id.linearColor);
 
             title.setText(AllProducts2.get(position).get("title"));
             desc.setText(AllProducts2.get(position).get("description"));
-           // dateM.setText(AllProducts2.get(position).get("start").substring(0, Math.min(AllProducts2.get(position).get("start").length(), 10)));
+            // dateM.setText(AllProducts2.get(position).get("start").substring(0, Math.min(AllProducts2.get(position).get("start").length(), 10)));
             //dayM.setText(AllProducts.get(position).get("start"));
 
             final Typeface tvFont = Typeface.createFromAsset(getActivity().getAssets(), "comicz.ttf");
             title.setTypeface(tvFont);
-          //  dateM.setTypeface(tvFont);
+            //  dateM.setTypeface(tvFont);
             //  dayM.setTypeface(tvFont);
 
 
@@ -568,11 +715,46 @@ public class Monthely extends Fragment {
         private final int color;
         String mode;
         private HashSet<CalendarDay> mCalendarDayCollection;
-//        CalendarDay currentDay = CalendarDay.from(new Date());
+        //        CalendarDay currentDay = CalendarDay.from(new Date());
         CalendarDay currentDay = CalendarDay.from(new Date()) ;
 
         public CurrentDayDecorator(Activity context,int color, HashSet<CalendarDay> calendarDayCollection) {
-            drawable = ContextCompat.getDrawable(context,R.drawable.first_day_month);
+            this.DateValue=DateValue;
+            this.color = color;
+            this.mCalendarDayCollection = calendarDayCollection;
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+
+            Log.d("dfgdfgdfgssdsdsdsdf","CalendarDay{"+DateValue+"}");
+            Log.d("dfgdfgddfdfdffgdf", String.valueOf(currentDay));
+            Log.d("fgfhgfhfghfghgf", String.valueOf(day));
+            Log.d("fdfgfhsdfgdfdfdfdhfghgf", String.valueOf(mCalendarDayCollection));
+
+            return mCalendarDayCollection.contains(day);
+
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+
+            view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.first_day_month));
+
+        }
+    }
+
+    public class CurrentDayDecorator2 implements DayViewDecorator {
+
+        private Drawable drawable;
+        String DateValue;
+        private final int color;
+        String mode;
+        private HashSet<CalendarDay> mCalendarDayCollection;
+        //        CalendarDay currentDay = CalendarDay.from(new Date());
+        CalendarDay currentDay = CalendarDay.from(new Date()) ;
+
+        public CurrentDayDecorator2(Activity context,int color, HashSet<CalendarDay> calendarDayCollection) {
             this.DateValue=DateValue;
             this.color = color;
 
@@ -587,7 +769,6 @@ public class Monthely extends Fragment {
             Log.d("fgfhgfhfghfghgf", String.valueOf(day));
             Log.d("fdfgfhsdfgdfdfdfdhfghgf", String.valueOf(mCalendarDayCollection));
 
-//            return day.equals("CalendarDay{"+DateValue+"}");
             return mCalendarDayCollection.contains(day);
 
         }
@@ -595,79 +776,12 @@ public class Monthely extends Fragment {
         @Override
         public void decorate(DayViewFacade view) {
 
-            Log.d("fsdfsfsfsfsfrwe",""+view);
+            // Log.d("fsdfsfsfsfsfrwe",""+view);
 
-
-                view.addSpan(new DotSpan(5, color));
-                view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.first_day_month));
-
-               // view.addSpan(new DotSpan(10, color));
-               // view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.first_day_month));
+            view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.first_day_month2));
 
         }
     }
-
-//    public class CurrentDayDecorator2 implements DayViewDecorator {
-//
-//        private Drawable drawable;
-//        String DateValue;
-//        private final int color;
-//        private HashSet<CalendarDay> mCalendarDayCollection;
-//        //        CalendarDay currentDay = CalendarDay.from(new Date());
-//        CalendarDay currentDay = CalendarDay.from(new Date()) ;
-//
-//        public CurrentDayDecorator2(Activity context,int color, HashSet<CalendarDay> calendarDayCollection) {
-//            drawable = ContextCompat.getDrawable(context,R.drawable.first_day_month);
-//            this.DateValue=DateValue;
-//            this.color = color;
-//            mCalendarDayCollection = calendarDayCollection;
-//        }
-//
-//        @Override
-//        public boolean shouldDecorate(CalendarDay day) {
-//
-//            Log.d("dfgdfgdfgssdsdsdsdf","CalendarDay{"+DateValue+"}");
-//            Log.d("dfgdfgddfdfdffgdf", String.valueOf(currentDay));
-//            Log.d("fgfhgfhfghfghgf", String.valueOf(day));
-//
-////            return day.equals("CalendarDay{"+DateValue+"}");
-//            return mCalendarDayCollection .contains(day);
-//
-//        }
-//
-//        @Override
-//        public void decorate(DayViewFacade view) {
-//         //   view.addSpan(new DotSpan(5, color));
-//            view.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.first_day_month));
-//
-//        }
-//    }
-
-
-
-
-//    public class EventDecorator implements DayViewDecorator {
-//
-//        private final int color;
-//        private final HashSet<CalendarDay> dates;
-//
-////        public EventDecorator(int color, Collection<CalendarDay> dates) {
-//        public EventDecorator(int color, Collection<CalendarDay> dates) {
-//            this.color = color;
-//            this.dates = new HashSet<>(dates);
-//        }
-//
-//        @Override
-//        public boolean shouldDecorate(CalendarDay day) {
-//            return dates.contains(day);
-//        }
-//
-//        @Override
-//        public void decorate(DayViewFacade view) {
-//            view.addSpan(new DotSpan(5, color));
-//        }
-//    }
-
 
 
 }

@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -71,7 +72,7 @@ public class Assessments extends Fragment {
         expListView = (GridView) view.findViewById(R.id.lvExp);
         txtNoData = (TextView) view.findViewById(R.id.txtNoData);
 
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));

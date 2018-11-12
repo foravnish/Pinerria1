@@ -34,5 +34,7 @@
         <item name="android:textColorSecondary">#111</item>
     </style>
 
-
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/listfont</item>
+    </style>
 </resources>

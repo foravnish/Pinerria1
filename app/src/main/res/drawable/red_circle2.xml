@@ -8,5 +8,5 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/pink_cal" />
+        android:color="@color/even_cal" />
 </shape>

@@ -289,7 +289,6 @@ public class Emergency2 extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(Emergency2.this);
-
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, Api.Registration, jsonObject1,
                 new Response.Listener<JSONObject>() {

@@ -41,6 +41,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
@@ -79,7 +80,7 @@ public class AssessmentDetail extends Fragment {
         AllProducts = new ArrayList<>();
         expListView = (ListView) view.findViewById(R.id.listView);
         stickyView = (LinearLayout) view.findViewById(R.id.stickyView);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         heroImageView = view.findViewById(R.id.heroImageView);
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

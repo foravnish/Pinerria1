@@ -24,6 +24,7 @@ public class MyPrefrences {
     static SharedPreferences position;
     static SharedPreferences positionFood;
     static SharedPreferences mySharedPreferencesToken;
+    static SharedPreferences myColorGendder;
 
     public static String USER_LOGIN = "userlogin";
     public static String USER_ID = "user_id";
@@ -238,6 +239,17 @@ public class MyPrefrences {
     }
 
 
+
+    public static String getColorGender(Context context) {
+        myColorGendder = PreferenceManager.getDefaultSharedPreferences(context);
+        return myColorGendder.getString("color_gender", "");
+    }
+    public static void setColorGender(Context context, String Value) {
+        myColorGendder = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor sharedpreferenceeditor = myColorGendder.edit();
+        sharedpreferenceeditor.putString("color_gender", Value);
+        sharedpreferenceeditor.commit();
+    }
 
 
 }

@@ -33,17 +33,17 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="330dp"
-                app:mcv_showOtherDates="all"
+                android:layout_height="wrap_content"
+                app:mcv_showOtherDates="defaults"
+                android:padding="20dp"
                 app:mcv_selectionColor="@color/rightcolor"
-                />
+                android:layout_marginTop="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/strock_liner"
@@ -55,9 +55,9 @@
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:checked="true"
-            android:buttonTint="@color/rightcolor"
+            android:buttonTint="@color/even_cal"
             android:fontFamily="@font/comicz"
-            android:text="Event(s)"/>
+            android:text="Event(s) "/>
 
         <RadioButton
             android:id="@+id/radiobutton2"
@@ -65,8 +65,9 @@
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:checked="true"
+            android:buttonTint="@color/pink_cal"
             android:fontFamily="@font/comicz"
-            android:text="Holidays"/>
+            android:text="Holiday(s) "/>
 
     </LinearLayout>
         </LinearLayout>

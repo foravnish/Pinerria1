@@ -15,12 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.MyPrefrences;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +37,7 @@ public class RemarkAssessment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    RelativeLayout relat;
 
 
     @Override
@@ -42,9 +46,11 @@ public class RemarkAssessment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_remark_assessment, container, false);
 
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+
+        relat = (RelativeLayout) view.findViewById(R.id.relat);
 
         Log.d("StudentId",getArguments().getString("sId"));
 
@@ -61,6 +67,17 @@ public class RemarkAssessment extends Fragment {
             }
         });
 
+        if (MyPrefrences.getColorGender(getActivity()).equals("male")){
+            Log.d("dfggfgdg","Male");
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+            tabLayout.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (MyPrefrences.getColorGender(getActivity()).equals("female")){
+            Log.d("dfggfgdg","Female");
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+            tabLayout.setBackgroundResource(R.drawable.redius_img_in_male);
+
+        }
 
         return view;
     }

@@ -54,6 +54,7 @@ import java.util.Date;
 
 
 import sweet.home.homesweethome.Activity.FatherInfo;
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Util;
 
@@ -87,7 +88,7 @@ public class ActivityImage extends Fragment {
         View view= inflater.inflate(R.layout.fragment_activity_image, container, false);
 
         Log.d("fsdgdgdfgdfg",getArguments().getString("image"));
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         desc=view.findViewById(R.id.desc);
         title=view.findViewById(R.id.title);
         downalod=view.findViewById(R.id.downalod);

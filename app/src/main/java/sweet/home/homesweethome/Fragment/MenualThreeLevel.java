@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,7 +21,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
+import sweet.home.homesweethome.Utils.MyPrefrences;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,12 +43,13 @@ public class MenualThreeLevel extends Fragment {
     private ExpandableListView expandableListView;
     TextView textSecond;
     int gPos;
+    RelativeLayout relat;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_menual_three_level, container, false);
-
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         ImageView textBack= view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +62,20 @@ public class MenualThreeLevel extends Fragment {
         });
 
 
-        String[] parent = new String[]{"Welcome to families", "Enrollment"," Programs and curriculum"," Schedule","Nutrition","Parent Responsibilities"," Health and Safety"};
+        relat = (RelativeLayout) view.findViewById(R.id.relat);
 
+        if (MyPrefrences.getColorGender(getActivity()).equals("male")){
+            Log.d("dfggfgdg","Male");
+            relat.setBackgroundResource(R.drawable.redius_img_in);
+        }
+        else  if (MyPrefrences.getColorGender(getActivity()).equals("female")){
+            Log.d("dfggfgdg","Female");
+            relat.setBackgroundResource(R.drawable.redius_img_in_male);
+        }
+
+
+        String[] parent = new String[]{"I. Welcome to families", "II. Organization of HSH Preschool\n","III. Enrollment","IV. Programs and curriculum","V. Schedule","VI. Nutrition","VII. Parent Responsibilities","VIII. Health and Safety"};
+        String[] orga = new String[]{""};
         String[] parent1 = new String[]{"Philosophy", "Vision", "Mission","Licensing, evaluation, and inspection","Confidentiality"};
         String[] parent2 = new String[]{"Registration", "Tuition and payment", "Waiting lists", "Required forms "," Termination policy","Accommodation for children"};
         String[] parent3 = new String[]{"About our curriculum", "Cotton Candy Class", "Lollipop Class", "Cupcake Class","Cookie Class","Ice-cream Class","Outdoor play","Winter","Summer","Ratios","Television"};
@@ -450,9 +466,10 @@ public class MenualThreeLevel extends Fragment {
                 "• Can let you know when he/she has “to go”.\n" +
                 "• Understands what is expected.\n" +
                 "• Cooperates with your requests."};
-
+        String[] ora1= new String[]{""};
 
         LinkedHashMap<String, String[]> thirdLevelParent1 = new LinkedHashMap<>();
+        LinkedHashMap<String, String[]> orgaL = new LinkedHashMap<>();
         LinkedHashMap<String, String[]> thirdLevelParent2 = new LinkedHashMap<>();
         LinkedHashMap<String, String[]> thirdLevelParent3 = new LinkedHashMap<>();
         LinkedHashMap<String, String[]> thirdLevelParent4 = new LinkedHashMap<>();
@@ -465,6 +482,7 @@ public class MenualThreeLevel extends Fragment {
 
 
         secondLevel.add(parent1);
+        secondLevel.add(orga);
         secondLevel.add(parent2);
         secondLevel.add(parent3);
         secondLevel.add(parent4);
@@ -542,9 +560,11 @@ public class MenualThreeLevel extends Fragment {
         thirdLevelParent7.put(parent7[8], p7_9);
         thirdLevelParent7.put(parent7[9], p7_10);
 
+        orgaL.put(orga[0],ora1);
 
         // all data
         data.add(thirdLevelParent1);
+        data.add(orgaL);
         data.add(thirdLevelParent2);
         data.add(thirdLevelParent3);
         data.add(thirdLevelParent4);
@@ -660,21 +680,24 @@ public class MenualThreeLevel extends Fragment {
 
             }
             else if (groupPosition==1){
-                text.setBackgroundResource(R.drawable.strock_manual3);
+                text.setBackgroundResource(R.drawable.strock_manual_org);
             }
             else if (groupPosition==2){
-                text.setBackgroundResource(R.drawable.strock_manual4);
+                text.setBackgroundResource(R.drawable.strock_manual3);
             }
             else if (groupPosition==3){
-                text.setBackgroundResource(R.drawable.strock_manual5);
+                text.setBackgroundResource(R.drawable.strock_manual4);
             }
             else if (groupPosition==4){
-                text.setBackgroundResource(R.drawable.strock_manual6);
+                text.setBackgroundResource(R.drawable.strock_manual5);
             }
             else if (groupPosition==5){
-                text.setBackgroundResource(R.drawable.strock_manual7);
+                text.setBackgroundResource(R.drawable.strock_manual6);
             }
             else if (groupPosition==6){
+                text.setBackgroundResource(R.drawable.strock_manual7);
+            }
+            else if (groupPosition==7){
                 text.setBackgroundResource(R.drawable.strock_manual8);
             }
 
@@ -785,6 +808,10 @@ public class MenualThreeLevel extends Fragment {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item2, null);
             textSecond = (TextView) convertView.findViewById(R.id.lblListItem);
+            ImageView img=(ImageView) convertView.findViewById(R.id.imageView1);
+
+
+
             String groupText = getGroup(groupPosition).toString();
             textSecond.setText(groupText);
 
@@ -793,25 +820,43 @@ public class MenualThreeLevel extends Fragment {
             Log.d("gfdsgdfgdfgdfgdfgd", String.valueOf(gPos));
 
             if (gPos==0){
+                img.setVisibility(View.GONE);
                 textSecond.setTextColor(Color.parseColor("#FFB1B5D9"));
             }
             else if (gPos==1){
+                img.setVisibility(View.VISIBLE);
                 textSecond.setTextColor(Color.parseColor("#FFF8C0D8"));
             }
             else if (gPos==2){
-                textSecond.setTextColor(Color.parseColor("#FFF9DFEC"));
+                img.setVisibility(View.GONE);
+                textSecond.setTextColor(Color.parseColor("#FFF8C0D8"));
+
             }
             else if (gPos==3){
-                textSecond.setTextColor(Color.parseColor("#FFB5E2E5"));
+                img.setVisibility(View.GONE);
+                textSecond.setTextColor(Color.parseColor("#FFF9DFEC"));
+
             }
             else if (gPos==4){
-                textSecond.setTextColor(Color.parseColor("#FFE1F2FB"));
+                img.setVisibility(View.GONE);
+                textSecond.setTextColor(Color.parseColor("#FFB5E2E5"));
+
             }
             else if (gPos==5){
-                textSecond.setTextColor(Color.parseColor("#FFC8E08C"));
+                img.setVisibility(View.GONE);
+                textSecond.setTextColor(Color.parseColor("#FFE1F2FB"));
+
+
             }
             else if (gPos==6){
+                img.setVisibility(View.GONE);
+                textSecond.setTextColor(Color.parseColor("#FFC8E08C"));
+
+            }
+            else if (gPos==7){
+                img.setVisibility(View.GONE);
                 textSecond.setTextColor(Color.parseColor("#FFDEECBC"));
+
             }
 
 

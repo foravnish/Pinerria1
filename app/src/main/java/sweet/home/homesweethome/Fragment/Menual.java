@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sweet.home.homesweethome.Activity.MainActivitie;
 import sweet.home.homesweethome.R;
 
 /**
@@ -41,6 +42,7 @@ public class Menual extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_menual, container, false);
+        MainActivitie.mTopToolbar.setVisibility(View.GONE);
         expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
         ImageView textBack= view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
