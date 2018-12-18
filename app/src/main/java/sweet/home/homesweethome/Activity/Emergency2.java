@@ -316,7 +316,7 @@ public class Emergency2 extends AppCompatActivity {
              */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headnoers = new HashMap<String, String>();
+                HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
 //
                 String authToken = MyPrefrences.getToken(getApplicationContext());
