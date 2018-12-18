@@ -4,7 +4,6 @@ package sweet.home.homesweethome.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,11 +18,9 @@ import android.widget.RelativeLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,17 +36,16 @@ import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
 import sweet.home.homesweethome.Utils.AppController;
 import sweet.home.homesweethome.Utils.MyPrefrences;
-import sweet.home.homesweethome.Utils.Util;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NotificationPage extends Fragment {
 
-
     public NotificationPage() {
         // Required empty public constructor
     }
+
     private int pageIndex = 1;
     private RelativeLayout progressBar;
     private RecyclerView products_rclv;
@@ -63,7 +59,7 @@ public class NotificationPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_notification_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_notification_page, container, false);
         progressBar = (RelativeLayout) view.findViewById(R.id.rltv_progressBar);
         products_rclv = (RecyclerView) view.findViewById(R.id.rclv_products);
         MainActivitie.mTopToolbar.setVisibility(View.GONE);
@@ -71,7 +67,7 @@ public class NotificationPage extends Fragment {
 
         products_arrayList = new ArrayList<>();
 //        getProductData(Api.Notification+"?catId=" + getArguments().getString("cat_id").toString()+"&page_no=0");
-        ImageView textBack= view.findViewById(R.id.textBack);
+        ImageView textBack = view.findViewById(R.id.textBack);
         textBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +77,7 @@ public class NotificationPage extends Fragment {
                 ft.replace(R.id.container, fragment).addToBackStack(null).commit();
             }
         });
-        getProductData(Api.Notification+"?pagenum=1&perpage=8");
+        getProductData(Api.Notification + "?pagenum=1&perpage=8");
 
 
         MainActivitie.profile.setImageResource(R.drawable.profile);
@@ -108,7 +104,7 @@ public class NotificationPage extends Fragment {
 
 //                        String ProductsUrl = ConstantData.service_URL + "search?page="+pageIndex+"&pageSize=15";
 //                        String ProductsUrl = Api.subCategoriesList+"?catId=" + getArguments().getString("cat_id").toString()+"&page_no="+pageIndex;
-                        String ProductsUrl = Api.Notification+"?pagenum="+pageIndex+"&perpage=8";
+                        String ProductsUrl = Api.Notification + "?pagenum=" + pageIndex + "&perpage=8";
 
                         getProductData(ProductsUrl);
                     }
@@ -117,9 +113,10 @@ public class NotificationPage extends Fragment {
 
                 products_rclv.addOnItemTouchListener(
                         new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
-                            @Override public void onItemClick(View view, int position) {
+                            @Override
+                            public void onItemClick(View view, int position) {
                                 // TODO Handle item click
-                                Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
+                                Log.d("fsdfsdfsdgfsd", "dfgdfg" + position);
 
 
 //                                Fragment fragment=new CatagoryViewFragment();
@@ -136,20 +133,18 @@ public class NotificationPage extends Fragment {
                 );
 
 
-
             }
         });
 
-        if (MyPrefrences.getColorGender(getActivity()).equals("male")){
-            Log.d("dfggfgdg","Male");
+        if (MyPrefrences.getColorGender(getActivity()).equals("male")) {
+            Log.d("dfggfgdg", "Male");
             relat.setBackgroundResource(R.drawable.redius_img_in);
-        }
-        else  if (MyPrefrences.getColorGender(getActivity()).equals("female")){
-            Log.d("dfggfgdg","Female");
+        } else if (MyPrefrences.getColorGender(getActivity()).equals("female")) {
+            Log.d("dfggfgdg", "Female");
             relat.setBackgroundResource(R.drawable.redius_img_in_male);
         }
 
-        return  view;
+        return view;
     }
 
     private void getProductData(String ProductsUrl) {
@@ -158,7 +153,7 @@ public class NotificationPage extends Fragment {
         final int pageNumber = pageIndex;
 
 //
-        JsonArrayRequest mJsonObjectRequest=new JsonArrayRequest(ProductsUrl, new Response.Listener<JSONArray>() {
+        JsonArrayRequest mJsonObjectRequest = new JsonArrayRequest(ProductsUrl, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 if (response.length() >= 1) {
@@ -191,7 +186,7 @@ public class NotificationPage extends Fragment {
 //                            mactView.updateData(products_arrayList);
 
                         if (pageIndex == 1) {
-                            productsAdapter = new ProductsAdapter(getActivity(), products_arrayList,products_rclv);
+                            productsAdapter = new ProductsAdapter(getActivity(), products_arrayList, products_rclv);
 
                             products_rclv.setAdapter(productsAdapter);
 
@@ -223,16 +218,14 @@ public class NotificationPage extends Fragment {
                     progressBar.setVisibility(View.GONE);
                 }
 
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Errorcala",error.toString());
-               // Util.cancelPgDialog(dialog);
+                Log.d("Errorcala", error.toString());
+                // Util.cancelPgDialog(dialog);
             }
-        })
-        {
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> header = new HashMap<>();
@@ -282,15 +275,6 @@ public class NotificationPage extends Fragment {
             });
         }
 
-//        @Override
-//        public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
-//            View childView = view.findChildViewUnder(e.getX(), e.getY());
-//            if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
-//                mListener.onItemClick(childView, view.getChildAdapterPosition(childView));
-//            }
-//            return false;
-//        }
-
         @Override
         public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) {
         }
@@ -300,6 +284,5 @@ public class NotificationPage extends Fragment {
 
         }
     }
-
 
 }
