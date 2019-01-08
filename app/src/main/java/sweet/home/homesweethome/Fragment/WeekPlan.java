@@ -96,7 +96,7 @@ public class WeekPlan extends Fragment {
         MainActivitie.mTopToolbar.setVisibility(View.GONE);
 
         viewPager = (ViewPager) view.findViewById(R.id.slider) ;
-        relat = (RelativeLayout) view.findViewById(R.id.relat);;
+        relat = (RelativeLayout) view.findViewById(R.id.relat);
 
 
 //        leftarrow=(TextView)view.findViewById(R.id.leftarrow);

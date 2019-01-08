@@ -72,7 +72,7 @@
                 android:id="@+id/mobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-
+                android:maxLength="15"
                 android:layout_marginTop="10dp"
                 android:hint="@string/mobileno"
                 android:layout_below="@+id/sign"
@@ -121,7 +121,7 @@
                 android:layout_height="45dp"
 
                 android:layout_marginTop="10dp"
-                android:hint="Place of work*"
+                android:hint="@string/Placeof"
                 android:layout_below="@+id/sign"
                 android:paddingLeft="5dp"
                 android:inputType="textPersonName"

@@ -21,5 +21,7 @@
     <string name="homeaddress">Home Address<font color="red">*</font></string>
     <string name="Education">Education<font color="red">*</font></string>
     <string name="Marital">Marital Status for Parents<font color="red">*</font></string>
+    <string name="education">Education<font color="red">*</font></string>
+    <string name="select_gender">Select Gender<font color="red">*</font></string>
 
 </resources>

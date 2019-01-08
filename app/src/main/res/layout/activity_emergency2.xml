@@ -99,7 +99,7 @@
                 android:textSize="13dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="*School will arrange emergency transporttion to the nearest emergency medical facility. If necessary, my child will be transported an ambulance or other such vehicle when necessary. "/>
+                android:text="*School will arrange emergency transportation to the nearest emergency medical facility. If necessary, my child will be transported an ambulance or other such vehicle when necessary. "/>
 
 
             <CheckBox

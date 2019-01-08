@@ -6,10 +6,9 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,10 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 import sweet.home.homesweethome.R;
 import sweet.home.homesweethome.Utils.Api;
@@ -180,24 +176,24 @@ public class Login extends AppCompatActivity {
                                 MyPrefrences.setChildList(getApplicationContext(), jsonArray.toString());
 
 
-//                                if (response.optString("registrationStatus").equalsIgnoreCase("true")){
-//                                    Log.d("sdfsdfsdfsdfs","true");
-//                                    Intent intent =new Intent(Login.this, MainActivitie.class);
-//                                    intent.putExtra("type","login");
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
-//
-//                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")) {
-//                                    Log.d("sdfsdfsdfsdfs","false");
-//                                    Intent intent = new Intent(Login.this, WellcomeScr.class);
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
+                                if (response.optString("registrationStatus").equalsIgnoreCase("true")){
+                                    Log.d("sdfsdfsdfsdfs","true");
+                                    Intent intent =new Intent(Login.this, MainActivitie.class);
+                                    intent.putExtra("type","login");
+                                    startActivity(intent);
+                                    finish();
+                                }
 
-                                Intent intent = new Intent(Login.this, WellcomeScr.class);
-                                startActivity(intent);
-                                finish();
+                                else if (response.optString("registrationStatus").equalsIgnoreCase("false")) {
+                                    Log.d("sdfsdfsdfsdfs","false");
+                                    Intent intent = new Intent(Login.this, WellcomeScr.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+//                                Intent intent = new Intent(Login.this, WellcomeScr.class);
+//                                startActivity(intent);
+//                                finish();
 
                             }
 

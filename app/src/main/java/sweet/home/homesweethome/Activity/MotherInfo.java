@@ -28,7 +28,7 @@ public class MotherInfo extends AppCompatActivity {
     JSONObject cartItemsObjedct;
     Spinner educationSpin;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    String[] str1 = {"Education *", "Graduate", "Post Graduate","Under Graduate"};
+    String[] str1 = {"Education*", "Graduate", "Post Graduate","Under Graduate"};
     String stringEducation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

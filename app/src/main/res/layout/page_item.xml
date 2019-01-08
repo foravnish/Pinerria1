@@ -7,11 +7,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="300dp"
+            android:layout_width="330dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:gravity="center"
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/left"
                 android:textColor="#111"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="100dp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/date"
@@ -47,7 +47,7 @@
                 android:id="@+id/rightarrow"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="100dp"
                 android:textColor="#111"
                 android:background="@drawable/right"
                 android:textStyle="bold"
@@ -55,11 +55,11 @@
         </RelativeLayout>
 
         <LinearLayout
-        android:id="@+id/mainLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="3"
-        android:orientation="vertical">
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3"
+            android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/liner1"
@@ -80,8 +80,8 @@
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/breakf"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/breakf"/>
                 <TextView
@@ -91,6 +91,7 @@
                     android:gravity="center"
                     android:layout_toRightOf="@+id/breakf"
                     android:text="Breakfast"
+                    android:layout_marginLeft="10dp"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/comicz"
                     android:textColor="@color/black"
@@ -145,7 +146,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -158,8 +158,8 @@
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/scck"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/snack"/>
                 <TextView
@@ -169,9 +169,9 @@
                     android:gravity="center"
                     android:layout_toRightOf="@+id/scck"
                     android:text="Snacks"
+                    android:layout_marginLeft="10dp"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/comicz"
-                    android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -226,7 +226,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
 
@@ -240,8 +239,8 @@
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/lucch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/lunch"/>
                 <TextView
@@ -251,9 +250,9 @@
                     android:gravity="center"
                     android:layout_toRightOf="@+id/lucch"
                     android:text="Lunch"
+                    android:layout_marginLeft="10dp"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/comicz"
-                    android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />

@@ -54,6 +54,8 @@ public class ChildInfo extends AppCompatActivity {
 
 //        str.add(getResources().getString(R.string.Education).toString());
         str.add("Select Gender*");
+//        str.add(getResources().getString(R.string.select_gender));
+
         str.add("Male");
         str.add("Female");
         gender=findViewById(R.id.gender);
