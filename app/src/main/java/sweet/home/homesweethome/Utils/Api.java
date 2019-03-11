@@ -9,6 +9,7 @@ public class Api {
 
     public static String BASEURL="http://hshpreschooladmin.com/";
     public static String login="http://hshpreschooladmin.com/auth/login";
+    public static String forgot_password="http://hshpreschooladmin.com/auth/forgot-password";
 
 //    public static String BASEURL="http://35.196.247.27/";
 //    public static String login="http://35.196.247.27/auth/login";

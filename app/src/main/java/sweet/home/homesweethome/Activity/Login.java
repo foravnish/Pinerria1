@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -42,6 +43,7 @@ public class Login extends AppCompatActivity {
     Button  bnt_signin;
     EditText edit_email,edit_pwd;
     Dialog dialog;
+    TextView forgotPassword;
     Map<String, String> params=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +54,23 @@ public class Login extends AppCompatActivity {
         edit_email=findViewById(R.id.edit_email);
         edit_pwd=findViewById(R.id.edit_pwd);
 
+        forgotPassword=findViewById(R.id.forgotPassword);
+
         dialog=new Dialog(Login.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
 
+
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(Login.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         bnt_signin.setOnClickListener(new View.OnClickListener() {
