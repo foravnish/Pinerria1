@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
 
+        ImageView textBack=findViewById(R.id.textBack);
+        textBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
 
         bnt_submit.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +89,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 Log.e("dfsjfdfsdfgd", "Login Response: " + response);
                 //parse your response here
 
+                Toast.makeText(ForgotPasswordActivity.this, "Password send successfully.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
 
@@ -89,6 +99,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Util.cancelPgDialog(dialog);
                 Log.e("fdgdfgdfgd", "Login Error: " + error.getMessage());
+                Toast.makeText(ForgotPasswordActivity.this,"Invalid Username or Password", Toast.LENGTH_LONG).show();
             }
         }){
 
